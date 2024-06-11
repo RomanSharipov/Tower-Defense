@@ -1,4 +1,4 @@
-Shader "Shader Graphs/SciFiStrategy_Main"
+Shader "Shader Graphs2/SciFiStrategy_Main2"
 {
     Properties
     {
