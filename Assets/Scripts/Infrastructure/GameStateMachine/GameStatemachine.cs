@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using VContainer;
 
 namespace Assets.Scripts.Infrastructure
 {
     public class GameStatemachine
     {
-        public readonly Dictionary<Type, IState> _states;
+        private Dictionary<Type, IState> _states;
         private IState _activeState;
 
         public IReadOnlyDictionary<Type, IState> States => _states;
-
-
-        public GameStatemachine(Dictionary<Type, IState> states, IObjectResolver objectResolver)
+        
+        public void SetStates(Dictionary<Type, IState> states)
         {
             _states = states;
-
-            foreach (IState state in _states.Values)
-            {
-                objectResolver.Inject(state);
-            }
         }
 
         public void Enter<TState>() where TState : IState

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Infrastructure
 {
-    public class SceneLoader
+    public class SceneLoader : ISceneLoader
     {
         public async UniTask<Scene> Load(SceneName name, Action onLoaded = null)
         {

@@ -5,20 +5,29 @@ namespace Assets.Scripts.Infrastructure
 {
     public class BootstrapState : IState
     {
-        [Inject]
-        public BootstrapState()
+        private ISceneLoader _sceneLoader;
+        private GameStatemachine _mainGameStatemachine;
+        
+        public BootstrapState(GameStatemachine mainGameStatemachine)
         {
+            _mainGameStatemachine = mainGameStatemachine;
+        }
 
+        [Inject]
+        public void Construct(ISceneLoader sceneLoader)
+        {
+            _sceneLoader = sceneLoader;
         }
 
         public UniTask Enter()
         {
+            _mainGameStatemachine.Enter<MenuState>();
             return UniTask.CompletedTask;
         }
 
-        public UniTask Exit()
+        public async UniTask Exit()
         {
-            return UniTask.CompletedTask;
+            await _sceneLoader.Load(SceneName.Menu);
         }
     }
 }

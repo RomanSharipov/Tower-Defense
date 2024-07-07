@@ -10,12 +10,21 @@ namespace Assets.Scripts.Infrastructure
 
         public GameRoot(IObjectResolver objectResolver)
         {
-            _mainGameStatemachine = new GameStatemachine(new Dictionary<Type, IState>()
+            _mainGameStatemachine = new GameStatemachine();
+            
+            Dictionary<Type, IState> states = new Dictionary<Type, IState>()
             {
-                [typeof(BootstrapState)] = new BootstrapState(),
-                [typeof(MenuState)] = new MenuState(),
-                [typeof(GameLoopState)] = new GameLoopState(),
-            }, objectResolver);
+                [typeof(BootstrapState)] = new BootstrapState(_mainGameStatemachine),
+                [typeof(MenuState)] = new MenuState(_mainGameStatemachine),
+                [typeof(GameLoopState)] = new GameLoopState(_mainGameStatemachine),
+            };
+            
+            _mainGameStatemachine.SetStates(states);
+
+            foreach (IState state in _mainGameStatemachine.States.Values)
+            {
+                objectResolver.Inject(state);
+            }
             
             _mainGameStatemachine.Enter<BootstrapState>();
         }
