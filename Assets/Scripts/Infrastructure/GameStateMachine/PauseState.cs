@@ -6,12 +6,12 @@ namespace Assets.Scripts.Infrastructure
     {
         public UniTask Enter()
         {
-            throw new System.NotImplementedException();
+            return UniTask.CompletedTask;
         }
 
         public UniTask Exit()
         {
-            throw new System.NotImplementedException();
+            return UniTask.CompletedTask;
         }
     }
 }

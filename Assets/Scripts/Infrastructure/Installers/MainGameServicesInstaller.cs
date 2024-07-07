@@ -12,8 +12,7 @@ namespace Assets.Scripts.Infrastructure
     {
         public override void Install(IContainerBuilder builder)
         {
-            builder.Register<SceneLoader>(Lifetime.Singleton)
-                .As<ISceneLoader>();
+
         }
     }
 }
