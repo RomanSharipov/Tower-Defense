@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using VContainer;
 
 namespace Assets.Scripts.Infrastructure
 {
     public class GameStatemachine
     {
-        private readonly Dictionary<Type, IState> _states;
+        public readonly Dictionary<Type, IState> _states;
         private IState _activeState;
-
-        public GameStatemachine()
+        
+        public GameStatemachine(Dictionary<Type, IState> states, IObjectResolver objectResolver)
         {
-            _states = new Dictionary<Type, IState>()
+            _states = states;
+
+            foreach (IState state in _states.Values)
             {
-                [typeof(BootstrapState)] = new BootstrapState()
-            };
+                objectResolver.Inject(state);
+            }
         }
 
         public void Enter<TState>() where TState : IState
@@ -24,4 +27,5 @@ namespace Assets.Scripts.Infrastructure
             state.Enter();
         }
     }
+
 }
