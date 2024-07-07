@@ -8,7 +8,10 @@ namespace Assets.Scripts.Infrastructure
     {
         public readonly Dictionary<Type, IState> _states;
         private IState _activeState;
-        
+
+        public IReadOnlyDictionary<Type, IState> States => _states;
+
+
         public GameStatemachine(Dictionary<Type, IState> states, IObjectResolver objectResolver)
         {
             _states = states;

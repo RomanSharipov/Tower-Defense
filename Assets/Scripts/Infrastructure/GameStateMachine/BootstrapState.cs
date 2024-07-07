@@ -5,9 +5,6 @@ namespace Assets.Scripts.Infrastructure
 {
     public class BootstrapState : IState
     {
-        private readonly GameStatemachine _gameStatemachine;
-        private readonly SceneLoader _sceneLoader;
-
         [Inject]
         public BootstrapState()
         {

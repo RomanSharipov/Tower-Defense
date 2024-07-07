@@ -7,14 +7,17 @@ namespace Assets.Scripts.Infrastructure
 {
     public class GameLoopState : IState
     {
+        [Inject] 
+        private IObjectResolver _resolver;
+
         private GameStatemachine _subStatemachine;
 
-        public GameLoopState(IObjectResolver objectResolver)
+        public GameLoopState()
         {
             _subStatemachine = new GameStatemachine(new Dictionary<Type, IState>()
             {
                 [typeof(PauseState)] = new PauseState()
-            }, objectResolver);
+            },_resolver);
         }
 
         public UniTask Enter()
