@@ -12,10 +12,17 @@ namespace Assets.Scripts.Infrastructure
     public class SceneLoader : ISceneLoader
     {
         private readonly Dictionary<SceneName, AssetReference> _sceneReferences;
+        private readonly Dictionary<SceneName, AsyncOperationHandle<SceneInstance>> _handles = 
+            new Dictionary<SceneName, AsyncOperationHandle<SceneInstance>>();
 
         public SceneLoader(Dictionary<SceneName, AssetReference> sceneReferences)
         {
             _sceneReferences = sceneReferences;
+
+            foreach (SceneName sceneName in _sceneReferences.Keys)
+            {
+                _handles.Add(sceneName, default);
+            }
         }
 
         public async UniTask<Scene> Load(SceneName name, Action onLoaded = null)
@@ -26,8 +33,11 @@ namespace Assets.Scripts.Infrastructure
                 return default;
             }
 
-            AsyncOperationHandle<SceneInstance> handle = sceneReference.LoadSceneAsync(LoadSceneMode.Single);
+            AsyncOperationHandle<SceneInstance> handle = sceneReference.LoadSceneAsync(LoadSceneMode.Additive);
+            
             await handle.Task;
+
+            _handles[name] = handle;
 
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
@@ -38,6 +48,22 @@ namespace Assets.Scripts.Infrastructure
             {
                 Debug.LogError($"Failed to load scene: {name}");
                 return default;
+            }
+        }
+
+        public async UniTask Unload(SceneName name, Action onUnloaded = null)
+        {
+            if (!_handles.TryGetValue(name, out AsyncOperationHandle<SceneInstance> handle))
+            {
+                Debug.LogError($"Scene {name} is not loaded");
+                return;
+            }
+            
+            if (handle.IsValid())
+            {
+                Addressables.Release(handle);
+                _handles[name] = default;
+                onUnloaded?.Invoke();
             }
         }
     }

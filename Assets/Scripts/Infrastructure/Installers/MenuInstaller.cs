@@ -8,25 +8,12 @@ using VContainer.Unity;
 
 namespace Scripts.Infrastructure
 {
-    public class BootstrapInstaller : LifetimeScope
+    public class MenuInstaller : LifetimeScope
     {
         [Header("Scriptable Installers")]
         [SerializeField]
         private List<AScriptableInstaller> _mainInstallers;
-
-
-        private IDisposable _globalParentOverride;
-        protected override void Awake()
-        {
-            base.Awake();
-            _globalParentOverride = EnqueueParent(this);
-        }
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            _globalParentOverride?.Dispose();
-        }
-
+        
         protected override void Configure(IContainerBuilder builder)
         {
             foreach (AScriptableInstaller installer in _mainInstallers)

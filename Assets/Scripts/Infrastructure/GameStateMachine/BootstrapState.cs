@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 using VContainer;
 
 namespace Assets.Scripts.Infrastructure
@@ -25,9 +26,9 @@ namespace Assets.Scripts.Infrastructure
             return UniTask.CompletedTask;
         }
 
-        public async UniTask Exit()
+        public  UniTask Exit()
         {
-            await _sceneLoader.Load(SceneName.Menu);
+            return UniTask.CompletedTask;
         }
     }
 }
