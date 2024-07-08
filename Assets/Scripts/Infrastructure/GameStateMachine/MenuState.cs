@@ -22,7 +22,6 @@ namespace Assets.Scripts.Infrastructure
 
         public async UniTask Enter()
         {
-            Debug.Log($"MenuState Enter");
             await _sceneLoader.Load(SceneName.Menu);
         }
 

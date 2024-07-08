@@ -17,6 +17,7 @@ namespace Assets.Scripts.Infrastructure
             builder.RegisterBuildCallback(resolver =>
             {
                 _gameRoot = new GameRoot(resolver);
+                _gameRoot.Start();
             });
         }
     }

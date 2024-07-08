@@ -6,6 +6,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
+using VContainer;
 
 namespace Assets.Scripts.Infrastructure
 {
@@ -15,6 +16,7 @@ namespace Assets.Scripts.Infrastructure
         private readonly Dictionary<SceneName, AsyncOperationHandle<SceneInstance>> _handles = 
             new Dictionary<SceneName, AsyncOperationHandle<SceneInstance>>();
 
+        [Inject]
         public SceneLoader(Dictionary<SceneName, AssetReference> sceneReferences)
         {
             _sceneReferences = sceneReferences;
