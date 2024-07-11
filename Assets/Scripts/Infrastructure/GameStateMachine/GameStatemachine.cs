@@ -15,11 +15,14 @@ namespace Assets.Scripts.Infrastructure
             _states = states;
         }
 
-        public void Enter<TState>() where TState : IState
+        public void Enter<TState>(Action<TState> setupBeforeEnter = null) where TState : IState
         {
             _activeState?.Exit();
             IState state = _states[typeof(TState)];
             _activeState = state;
+            
+            setupBeforeEnter?.Invoke((TState)state);
+
             state.Enter();
         }
     }

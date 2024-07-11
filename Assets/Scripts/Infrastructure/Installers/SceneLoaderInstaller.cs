@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Scripts.Infrastructure.Installers;
-using UniRx;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using VContainer;
