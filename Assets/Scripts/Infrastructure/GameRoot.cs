@@ -9,7 +9,14 @@ namespace Assets.Scripts.Infrastructure
         private GameStatemachine _mainGameStatemachine;
         private IObjectResolver _objectResolver;
 
-        public GameRoot(IObjectResolver objectResolver)
+        public GameStatemachine MainGameStatemachine => _mainGameStatemachine;
+
+        public GameRoot()
+        {
+            
+        }
+
+        public void Construct(IObjectResolver objectResolver)
         {
             _objectResolver = objectResolver;
         }

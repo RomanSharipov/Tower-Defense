@@ -1,5 +1,6 @@
 ﻿using Scripts.Infrastructure.Installers;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 using VContainer;
 
 namespace Assets.Scripts.Infrastructure
@@ -14,11 +15,17 @@ namespace Assets.Scripts.Infrastructure
 
         public override void Install(IContainerBuilder builder)
         {
+            _gameRoot = new GameRoot();
+
+            builder.RegisterInstance(_gameRoot)
+                .AsSelf();
+
             builder.RegisterBuildCallback(resolver =>
             {
-                _gameRoot = new GameRoot(resolver);
+                _gameRoot.Construct(resolver);
                 _gameRoot.Start();
             });
+
         }
     }
 }

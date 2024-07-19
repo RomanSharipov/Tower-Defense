@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Infrastructure
 {
@@ -6,6 +8,7 @@ namespace Assets.Scripts.Infrastructure
     {
         public UniTask Enter()
         {
+            Debug.Log($"PauseState Enter");
             return UniTask.CompletedTask;
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 using VContainer;
 
 namespace Assets.Scripts.Infrastructure
@@ -40,6 +41,7 @@ namespace Assets.Scripts.Infrastructure
 
         public UniTask Enter()
         {
+            Debug.Log($"GameLoopState Enter");
             return UniTask.CompletedTask;
         }
 
