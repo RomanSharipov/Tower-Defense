@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceProviders;
-using UnityEngine.SceneManagement;
-using Assets.Scripts.Infrastructure;
 using Cysharp.Threading.Tasks;
 
 public class AddressableProvider : IAssetProvider
@@ -11,28 +8,18 @@ public class AddressableProvider : IAssetProvider
     private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new();
     private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new();
 
-    public void Initialize() =>
-        Addressables.InitializeAsync();
-
-    public async UniTask<T> Load<T>(string key) where T : class
+    public void Initialize()
     {
-        if (_completedCache.TryGetValue(key, out var completedHandle))
+        Addressables.InitializeAsync();
+    }
+
+    public async UniTask<T> Load<T>(AssetReference assetReference) where T : class
+    {
+        if (_completedCache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandle))
             return completedHandle.Result as T;
 
-        var handle = Addressables.LoadAssetAsync<T>(key);
-
-        return await RunWithCacheOnComplete(handle: handle, cacheKey: key);
+        return await RunWithCacheOnComplete(Addressables.LoadAssetAsync<T>(assetReference), assetReference.AssetGUID);
     }
-
-    public async UniTask<SceneInstance> LoadScene(SceneName sceneName, LoadSceneMode mode = LoadSceneMode.Single)
-    {
-        return await Addressables
-            .LoadSceneAsync(
-                key: sceneName.ToString(),
-                loadMode: mode)
-            .Task;
-    }
-
     public void Release(string key)
     {
         if (!_handles.ContainsKey(key))
@@ -50,8 +37,8 @@ public class AddressableProvider : IAssetProvider
         if (_handles.Count == 0)
             return;
 
-        foreach (var resourceHandles in _handles.Values)
-            foreach (var handle in resourceHandles)
+        foreach (List<AsyncOperationHandle> resourceHandles in _handles.Values)
+            foreach (AsyncOperationHandle handle in resourceHandles)
                 Addressables.Release(handle);
 
         _completedCache.Clear();
@@ -68,7 +55,7 @@ public class AddressableProvider : IAssetProvider
         return await handle.Task;
     }
 
-    private void AddHandle(string key, AsyncOperationHandle handle)
+    private void AddHandle<T>(string key, AsyncOperationHandle<T> handle)
     {
         if (!_handles.TryGetValue(key, out var resourceHandles))
         {
