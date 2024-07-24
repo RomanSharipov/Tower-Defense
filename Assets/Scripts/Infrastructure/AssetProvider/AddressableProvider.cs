@@ -3,6 +3,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using System;
 
 public class AddressableProvider : IAssetProvider
 {
@@ -21,7 +22,7 @@ public class AddressableProvider : IAssetProvider
 
         return await RunWithCacheOnComplete(Addressables.LoadAssetAsync<T>(assetReference), assetReference.AssetGUID);
     }
-
+    
     public async UniTask<GameObject> Instantiate(AssetReference assetReference, Vector3 position)
     {
         return await Addressables.InstantiateAsync(assetReference, position,Quaternion.identity);

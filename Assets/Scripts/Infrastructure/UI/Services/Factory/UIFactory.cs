@@ -13,6 +13,8 @@ namespace Assets.Scripts.Infrastructure.UI.Services
         private readonly IAssetProvider _assetProvider;
         private readonly IReadOnlyDictionary<UIAsset, AssetReference> _assetReferenceData;
 
+        private Transform _rootCanvas;
+
         [Inject]
         public UIFactory(IAssetProvider assetProvider, IReadOnlyDictionary<UIAsset, AssetReference> assetReferenceData)
         {
@@ -24,12 +26,11 @@ namespace Assets.Scripts.Infrastructure.UI.Services
         {
             throw new NotImplementedException();
         }
+
         public async UniTask CreateRootCanvas()
         {
-            Debug.Log($"_assetReferenceData[UIAsset.RootCanvas] = {_assetReferenceData[UIAsset.RootCanvas]}");
-
-            RootCanvas prefab = await _assetProvider.Load<RootCanvas>(_assetReferenceData[UIAsset.RootCanvas]);
-            GameObject.Instantiate(prefab);
+            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[UIAsset.RootCanvas]);
+            _rootCanvas = GameObject.Instantiate(prefab).transform;
         }
     }
 }
