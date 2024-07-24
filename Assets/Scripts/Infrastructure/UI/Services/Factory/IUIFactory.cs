@@ -1,7 +1,10 @@
-﻿namespace Assets.Scripts.Infrastructure.UI
+﻿using Cysharp.Threading.Tasks;
+
+namespace Assets.Scripts.Infrastructure.UI
 {
     public interface IUIFactory
     {
-        public void CreateShop();
+        public UniTask CreateRootCanvas();
+        public UniTask CreateShop();
     }
 }

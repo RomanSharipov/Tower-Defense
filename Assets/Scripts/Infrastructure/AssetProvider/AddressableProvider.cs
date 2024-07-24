@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public class AddressableProvider : IAssetProvider
 {
@@ -20,12 +21,23 @@ public class AddressableProvider : IAssetProvider
 
         return await RunWithCacheOnComplete(Addressables.LoadAssetAsync<T>(assetReference), assetReference.AssetGUID);
     }
+
+    public async UniTask<GameObject> Instantiate(AssetReference assetReference, Vector3 position)
+    {
+        return await Addressables.InstantiateAsync(assetReference, position,Quaternion.identity);
+    }
+
+    public async UniTask<GameObject> Instantiate(AssetReference assetReference)
+    {
+        return await Addressables.InstantiateAsync(assetReference);
+    }
+
     public void Release(string key)
     {
         if (!_handles.ContainsKey(key))
             return;
 
-        foreach (var handle in _handles[key])
+        foreach (AsyncOperationHandle handle in _handles[key])
             Addressables.Release(handle);
 
         _completedCache.Remove(key);
@@ -57,7 +69,7 @@ public class AddressableProvider : IAssetProvider
 
     private void AddHandle<T>(string key, AsyncOperationHandle<T> handle)
     {
-        if (!_handles.TryGetValue(key, out var resourceHandles))
+        if (!_handles.TryGetValue(key, out List<AsyncOperationHandle> resourceHandles))
         {
             resourceHandles = new List<AsyncOperationHandle>();
             _handles[key] = resourceHandles;

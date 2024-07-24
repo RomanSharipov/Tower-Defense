@@ -4,10 +4,10 @@ using VContainer;
 namespace Scripts.Infrastructure.Installers
 {
     [CreateAssetMenu(
-        fileName = "AddressableProviderInstaller",
-        menuName = "Scriptable Installers/AddressableProviderInstaller"
+        fileName = "AssetProviderInstaller",
+        menuName = "Scriptable Installers/AssetProviderInstaller"
     )]
-    public class AddressableProviderInstaller : AScriptableInstaller
+    public class AssetProviderInstaller : AScriptableInstaller
     {
         public override void Install(IContainerBuilder builder)
         {

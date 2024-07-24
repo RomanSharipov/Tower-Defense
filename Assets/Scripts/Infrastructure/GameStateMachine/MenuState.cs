@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Assets.Scripts.Infrastructure.UI;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 
@@ -8,11 +9,13 @@ namespace Assets.Scripts.Infrastructure
     {
         private GameStatemachine _mainGameStatemachine;
         private ISceneLoader _sceneLoader;
+        private IUIFactory _uiFactory;
 
         [Inject]
-        public void Construct(ISceneLoader sceneLoader)
+        public void Construct(ISceneLoader sceneLoader, IUIFactory uiFactory)
         {
             _sceneLoader = sceneLoader;
+            _uiFactory = uiFactory;
         }
 
         public MenuState(GameStatemachine mainGameStatemachine)

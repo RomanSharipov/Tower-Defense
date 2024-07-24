@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
-  m_Name: Default Local Group_ContentUpdateGroupSchema
+  m_Script: {fileID: 11500000, guid: f4b724fe72bfe4448ad44da7b68f7ded, type: 3}
+  m_Name: AssetProviderInstaller
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: 64d94b12604fc8648a43eaeb965d1071, type: 2}
-  m_StaticContent: 0
