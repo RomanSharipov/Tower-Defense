@@ -148,6 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4032684509024766658}
   - component: {fileID: 8330115254347532577}
+  - component: {fileID: 8330115254347532578}
   m_Layer: 0
   m_Name: BootstrapInstaller
   m_TagString: Untagged
@@ -171,7 +172,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects:
-  - {fileID: 0}
+  - {fileID: 5089391288073444642}
   _mainInstallers:
   - {fileID: 11400000, guid: dd6e9a7242d48fe4db85d4f4e0eaea77, type: 2}
   - {fileID: 11400000, guid: 763bcd2528a2af54cbf16a5d4875f11e, type: 2}
@@ -179,6 +180,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3de48298f092a46489c57976b0e665c3, type: 2}
   - {fileID: 11400000, guid: 80b7a12edf4d31a4a9a0d2727ac70453, type: 2}
   - {fileID: 11400000, guid: 9b4efb6c5f8eb944aaf42fd64fab09d6, type: 2}
+--- !u!114 &8330115254347532578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5089391288073444642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a745e62e449a740a04f519c448bc0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
