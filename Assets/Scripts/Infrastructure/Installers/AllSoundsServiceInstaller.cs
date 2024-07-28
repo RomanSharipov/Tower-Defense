@@ -4,10 +4,8 @@ using VContainer;
 
 namespace CodeBase.Infrastructure.Installers
 {
-    [CreateAssetMenu(
-        fileName = "AllSoundsServiceInstaller",
-        menuName = "Scriptable Installers/AllSoundsServiceInstaller"
-    )]
+    [CreateAssetMenu(fileName = "AllSoundsServiceInstaller",
+        menuName = "Scriptable Installers/AllSoundsServiceInstaller")]
     public class AllSoundsServiceInstaller : AScriptableInstaller
     {
         public override void Install(IContainerBuilder builder)

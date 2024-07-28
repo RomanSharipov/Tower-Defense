@@ -7,10 +7,8 @@ using VContainer;
 
 namespace CodeBase.Infrastructure.Installers
 {
-    [CreateAssetMenu(
-    fileName = "SceneLoaderInstaller",
-    menuName = "Scriptable Installers/SceneLoaderInstaller"
-)]
+    [CreateAssetMenu(fileName = "SceneLoaderInstaller",
+    menuName = "Scriptable Installers/SceneLoaderInstaller")]
     public class SceneLoaderInstaller : AScriptableInstaller
     {
         [SerializeField] private SceneReference[] _sceneReferences;

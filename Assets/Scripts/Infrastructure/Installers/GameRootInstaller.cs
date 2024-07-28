@@ -3,10 +3,8 @@ using VContainer;
 
 namespace CodeBase.Infrastructure.Installers
 {
-    [CreateAssetMenu(
-    fileName = "GameRootInstaller",
-    menuName = "Scriptable Installers/GameRootInstaller"
-)]
+    [CreateAssetMenu(fileName = "GameRootInstaller",
+    menuName = "Scriptable Installers/GameRootInstaller")]
     public class GameRootInstaller : AScriptableInstaller
     {
         private GameRoot _gameRoot;

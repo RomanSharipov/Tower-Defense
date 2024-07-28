@@ -5,10 +5,8 @@ using VContainer;
 
 namespace CodeBase.Infrastructure.Installers
 {
-    [CreateAssetMenu(
-    fileName = "UIFactoryInstaller",
-    menuName = "Scriptable Installers/UIFactoryInstaller"
-)]
+    [CreateAssetMenu(fileName = "UIFactoryInstaller",
+    menuName = "Scriptable Installers/UIFactoryInstaller")]
     
     public class UIFactoryInstaller : AScriptableInstaller
     {
