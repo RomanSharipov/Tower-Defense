@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -10,13 +11,13 @@ namespace CodeBase.Infrastructure.Services
 {
     public class SceneLoader : ISceneLoader
     {
-        private readonly Dictionary<SceneName, AssetReference> _sceneReferences;
         private readonly IAssetProvider _assetProvider;
+        private readonly IReadOnlyDictionary<SceneName, AssetReference> _sceneReferences;
 
         [Inject]
-        public SceneLoader(Dictionary<SceneName, AssetReference> sceneReferences, IAssetProvider assetProvider)
+        public SceneLoader(IStaticDataService staticDataService, IAssetProvider assetProvider)
         {
-            _sceneReferences = sceneReferences;
+            _sceneReferences = staticDataService.SceneAssetReferences;
             _assetProvider = assetProvider;
         }
 

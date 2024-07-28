@@ -11,15 +11,15 @@ namespace CodeBase.Infrastructure.UI.Services
     public class UIFactory : IUIFactory
     {
         private readonly IAssetProvider _assetProvider;
-        private readonly IReadOnlyDictionary<UIAsset, AssetReference> _assetReferenceData;
+        private readonly IReadOnlyDictionary<WindowType, AssetReference> _assetReferenceData;
 
         private Transform _rootCanvas;
 
         [Inject]
-        public UIFactory(IAssetProvider assetProvider, IReadOnlyDictionary<UIAsset, AssetReference> assetReferenceData)
+        public UIFactory(IAssetProvider assetProvider, IStaticDataService staticDataService)
         {
             _assetProvider = assetProvider;
-            _assetReferenceData = assetReferenceData;
+            _assetReferenceData = staticDataService.Windows;
         }
 
         public UniTask CreateShop()
@@ -29,12 +29,12 @@ namespace CodeBase.Infrastructure.UI.Services
 
         public async UniTask CreateRootCanvas()
         {
-            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[UIAsset.RootCanvas]);
+            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.RootCanvas]);
             _rootCanvas = GameObject.Instantiate(prefab).transform;
         }
     }
 
-    public enum UIAsset
+    public enum WindowType
     {
         None,
         RootCanvas,
@@ -42,9 +42,9 @@ namespace CodeBase.Infrastructure.UI.Services
     }
 
     [Serializable]
-    public class UIAssetReferenceData
+    public class WindowAssetReference
     {
-        public UIAsset UIType;
+        public WindowType WindowType;
         public AssetReference assetReference;
     }
 }
