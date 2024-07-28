@@ -14,4 +14,6 @@ public interface IAssetProvider
     public void Initialize();
     public UniTask<GameObject> Instantiate(AssetReference assetReference, Vector3 position);
     public UniTask<GameObject> Instantiate(AssetReference assetReference);
+    public UniTask<Scene> LoadScene(AssetReference assetReference);
+    public void ReleaseScene(AssetReference assetReference);
 }

@@ -4,15 +4,57 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
+using UnityEngine.ResourceManagement.ResourceProviders;
+using Assets.Scripts.Infrastructure;
 
 public class AddressableProvider : IAssetProvider
 {
     private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new();
     private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new();
+    private readonly Dictionary<AssetReference, AsyncOperationHandle<SceneInstance>> _sceneHandles = new();
 
     public void Initialize()
     {
         Addressables.InitializeAsync();
+    }
+
+
+
+    public async UniTask<Scene> LoadScene(AssetReference assetReference) 
+    {
+        if (_sceneHandles.TryGetValue(assetReference,out AsyncOperationHandle<SceneInstance> handle))
+        {
+            return handle.Result.Scene;
+        }
+
+        AsyncOperationHandle<SceneInstance> newHandle = Addressables.LoadSceneAsync(assetReference, LoadSceneMode.Additive);
+        await newHandle.Task;
+
+
+        if (newHandle.Status == AsyncOperationStatus.Succeeded)
+        {
+            _sceneHandles[assetReference] = newHandle;
+            return handle.Result.Scene;
+        }
+        else
+        {
+            Debug.LogError($"Failed to load scene: {assetReference.SubObjectName}");
+            return default;
+        }
+    }
+
+    public void ReleaseScene(AssetReference assetReference)
+    {
+        if (_sceneHandles.TryGetValue(assetReference, out AsyncOperationHandle<SceneInstance> handle))
+        {
+            Addressables.Release(handle);
+        }
+
+        else
+        {
+            Debug.LogError($"Failed to Release Scene: {assetReference.SubObjectName}");
+        }
     }
 
     public async UniTask<T> Load<T>(AssetReference assetReference) where T : class
