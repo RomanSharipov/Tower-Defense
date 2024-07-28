@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Infrastructure.UI;
 using Assets.Scripts.Infrastructure.UI.Services;
 using Scripts.Infrastructure.Installers;
@@ -21,19 +22,8 @@ namespace Assets.Scripts.Infrastructure.Installers
         public override void Install(IContainerBuilder builder)
         {
             builder.Register<UIFactory>(Lifetime.Singleton)
-                .WithParameter("assetReferenceData", CovertToDictionary(_uIAssetReferences))
+                .WithParameter("assetReferenceData", _uIAssetReferences.ToDictionary<UIAsset, AssetReference>())
                 .As<IUIFactory>();
-        }
-
-        private Dictionary<UIAsset, AssetReference> CovertToDictionary(IEnumerable<UIAssetReferenceData> assetReferenceList)
-        {
-            Dictionary<UIAsset, AssetReference> soundData = new Dictionary<UIAsset, AssetReference>();
-
-            foreach (UIAssetReferenceData item in assetReferenceList)
-            {
-                soundData.Add(item.UIType, item.assetReference);
-            }
-            return soundData;
         }
     }
 
