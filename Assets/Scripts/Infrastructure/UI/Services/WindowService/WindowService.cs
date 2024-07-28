@@ -1,6 +1,6 @@
 ﻿namespace CodeBase.Infrastructure.UI.Services
 {
-    public partial class WindowService : IWindowService
+    public class WindowService : IWindowService
     {
         private IUIFactory _uiFactory;
         
