@@ -10,12 +10,14 @@ namespace CodeBase.Infrastructure
         private GameStatemachine _mainGameStatemachine;
         private ISceneLoader _sceneLoader;
         private IUIFactory _uiFactory;
+        private IWindowService _windowService;
 
         [Inject]
-        public void Construct(ISceneLoader sceneLoader, IUIFactory uiFactory)
+        public void Construct(ISceneLoader sceneLoader, IUIFactory uiFactory, IWindowService windowService)
         {
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
+            _windowService = windowService;
         }
 
         public MenuState(GameStatemachine mainGameStatemachine)
@@ -25,8 +27,8 @@ namespace CodeBase.Infrastructure
 
         public async UniTask Enter()
         {
-            await _sceneLoader.Load(SceneName.Menu);
-            _uiFactory.CreateRootCanvas();
+            //await _sceneLoader.Load(SceneName.Menu);
+            _windowService.Open(WindowId.MainMenu);
         }
 
         public UniTask Exit()

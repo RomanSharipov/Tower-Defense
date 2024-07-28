@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: ac7f36ca520ae4847b39901d3dd6753d
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: d68acdd42edf62863d9552fbca7ec1ce
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -87,8 +87,8 @@ MonoBehaviour:
     m_ProfileVersion: 1
   m_LabelTable:
     m_LabelNames:
-    - MainScenes
-    - UIElements
+    - Scenes
+    - Windows
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: e077e05a6ea91fc4cab5943f0ec14301, type: 2}

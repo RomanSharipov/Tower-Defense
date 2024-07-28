@@ -19,6 +19,12 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  - WindowType: 3
+    assetReference:
+      m_AssetGUID: 856ddc4915d8b3245b06687bd16a981e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
   SceneReferences:
   - SceneName: 1
     Reference:

@@ -3,7 +3,6 @@
     public partial class WindowService : IWindowService
     {
         private IUIFactory _uiFactory;
-
         
         public WindowService(IUIFactory uiFactory)
         {
@@ -16,8 +15,13 @@
             {
                 case WindowId.None:
                     break;
+
                 case WindowId.Shop:
                     _uiFactory.CreateShop();
+                    break;
+
+                case WindowId.MainMenu:
+                    _uiFactory.CreateMainMenu();
                     break;
             }
         }

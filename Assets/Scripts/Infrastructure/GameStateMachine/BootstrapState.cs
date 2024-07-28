@@ -28,6 +28,7 @@ namespace CodeBase.Infrastructure
         public async UniTask Enter()
         {
             await _assetProvider.Initialize();
+            await _uiFactory.CreateRootCanvas();
             _mainGameStatemachine.Enter<MenuState>();
         }
 

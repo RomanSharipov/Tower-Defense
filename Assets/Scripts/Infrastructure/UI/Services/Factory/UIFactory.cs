@@ -27,6 +27,12 @@ namespace CodeBase.Infrastructure.UI.Services
             throw new NotImplementedException();
         }
 
+        public async UniTask CreateMainMenu()
+        {
+            GameObject mainMenuPrefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.MainMenu]);
+            GameObject.Instantiate(mainMenuPrefab, _rootCanvas);
+        }
+
         public async UniTask CreateRootCanvas()
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.RootCanvas]);
@@ -38,7 +44,8 @@ namespace CodeBase.Infrastructure.UI.Services
     {
         None,
         RootCanvas,
-        Shop
+        Shop,
+        MainMenu
     }
 
     [Serializable]
