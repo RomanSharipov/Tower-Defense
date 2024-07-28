@@ -13,13 +13,15 @@ namespace Assets.Scripts.Infrastructure
     public class SceneLoader : ISceneLoader
     {
         private readonly Dictionary<SceneName, AssetReference> _sceneReferences;
+        private readonly IAssetProvider _assetProvider;
         private readonly Dictionary<SceneName, AsyncOperationHandle<SceneInstance>> _handles = 
             new Dictionary<SceneName, AsyncOperationHandle<SceneInstance>>();
 
         [Inject]
-        public SceneLoader(Dictionary<SceneName, AssetReference> sceneReferences)
+        public SceneLoader(Dictionary<SceneName, AssetReference> sceneReferences,IAssetProvider assetProvider)
         {
             _sceneReferences = sceneReferences;
+            _assetProvider = assetProvider;
 
             foreach (SceneName sceneName in _sceneReferences.Keys)
             {
@@ -34,9 +36,9 @@ namespace Assets.Scripts.Infrastructure
                 Debug.LogError($"Scene {name} not found in references.");
                 return default;
             }
-
-            AsyncOperationHandle<SceneInstance> handle = sceneReference.LoadSceneAsync(LoadSceneMode.Additive);
             
+            AsyncOperationHandle<SceneInstance> handle = Addressables.LoadSceneAsync(sceneReference, LoadSceneMode.Additive);
+
             await handle.Task;
 
             _handles[name] = handle;
