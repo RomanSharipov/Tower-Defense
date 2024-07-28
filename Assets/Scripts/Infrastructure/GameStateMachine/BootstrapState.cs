@@ -28,7 +28,6 @@ namespace Assets.Scripts.Infrastructure
         {
             await _assetProvider.Initialize();
             _mainGameStatemachine.Enter<MenuState>();
-            _uiFactory.CreateRootCanvas();
         }
 
         public  UniTask Exit()

@@ -26,6 +26,7 @@ namespace Assets.Scripts.Infrastructure
         public async UniTask Enter()
         {
             await _sceneLoader.Load(SceneName.Menu);
+            _uiFactory.CreateRootCanvas();
         }
 
         public UniTask Exit()
