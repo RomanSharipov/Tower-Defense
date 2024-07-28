@@ -3,10 +3,8 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.ResourceManagement.ResourceProviders;
-using Assets.Scripts.Infrastructure;
 
 public class AddressableProvider : IAssetProvider
 {
@@ -14,13 +12,11 @@ public class AddressableProvider : IAssetProvider
     private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new();
     private readonly Dictionary<AssetReference, AsyncOperationHandle<SceneInstance>> _sceneHandles = new();
 
-    public void Initialize()
+    public async UniTask Initialize()
     {
-        Addressables.InitializeAsync();
+        await Addressables.InitializeAsync();
     }
-
-
-
+    
     public async UniTask<Scene> LoadScene(AssetReference assetReference) 
     {
         if (_sceneHandles.TryGetValue(assetReference,out AsyncOperationHandle<SceneInstance> handle))
@@ -35,7 +31,7 @@ public class AddressableProvider : IAssetProvider
         if (newHandle.Status == AsyncOperationStatus.Succeeded)
         {
             _sceneHandles[assetReference] = newHandle;
-            return handle.Result.Scene;
+            return newHandle.Result.Scene;
         }
         else
         {
