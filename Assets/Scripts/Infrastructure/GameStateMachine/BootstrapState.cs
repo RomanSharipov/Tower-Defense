@@ -1,8 +1,9 @@
-﻿using Assets.Scripts.Infrastructure.UI;
+﻿using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
 using VContainer;
 
-namespace Assets.Scripts.Infrastructure
+namespace CodeBase.Infrastructure
 {
     public class BootstrapState : IState
     {

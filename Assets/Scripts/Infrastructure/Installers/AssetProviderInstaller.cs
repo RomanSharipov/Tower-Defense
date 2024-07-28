@@ -1,7 +1,8 @@
+using CodeBase.Infrastructure.Services;
 using UnityEngine;
 using VContainer;
 
-namespace Scripts.Infrastructure.Installers
+namespace CodeBase.Infrastructure.Installers
 {
     [CreateAssetMenu(
         fileName = "AssetProviderInstaller",

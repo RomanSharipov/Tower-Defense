@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Infrastructure.UI
+﻿namespace CodeBase.Infrastructure.UI
 {
     public class ShopWindow : WindowBase
     {

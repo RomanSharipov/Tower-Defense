@@ -2,7 +2,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Infrastructure
+namespace CodeBase.Infrastructure
 {
     public class PauseState : IState
     {

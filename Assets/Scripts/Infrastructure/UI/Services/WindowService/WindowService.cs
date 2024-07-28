@@ -1,5 +1,4 @@
-﻿
-namespace Assets.Scripts.Infrastructure.UI.Services
+﻿namespace CodeBase.Infrastructure.UI.Services
 {
     public partial class WindowService : IWindowService
     {

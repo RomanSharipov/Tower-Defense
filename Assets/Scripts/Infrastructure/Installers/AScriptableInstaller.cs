@@ -1,7 +1,7 @@
 using UnityEngine;
 using VContainer;
 
-namespace Scripts.Infrastructure.Installers
+namespace CodeBase.Infrastructure.Installers
 {
     public abstract class AScriptableInstaller : ScriptableObject
     {

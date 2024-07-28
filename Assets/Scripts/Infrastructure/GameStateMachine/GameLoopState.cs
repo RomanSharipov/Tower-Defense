@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 
-namespace Assets.Scripts.Infrastructure
+namespace CodeBase.Infrastructure
 {
     public class GameLoopState : IState
     {

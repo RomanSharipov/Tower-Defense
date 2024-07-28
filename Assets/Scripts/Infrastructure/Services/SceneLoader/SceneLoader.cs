@@ -6,15 +6,15 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 using VContainer;
 
-namespace Assets.Scripts.Infrastructure
+namespace CodeBase.Infrastructure.Services
 {
     public class SceneLoader : ISceneLoader
     {
         private readonly Dictionary<SceneName, AssetReference> _sceneReferences;
         private readonly IAssetProvider _assetProvider;
-        
+
         [Inject]
-        public SceneLoader(Dictionary<SceneName, AssetReference> sceneReferences,IAssetProvider assetProvider)
+        public SceneLoader(Dictionary<SceneName, AssetReference> sceneReferences, IAssetProvider assetProvider)
         {
             _sceneReferences = sceneReferences;
             _assetProvider = assetProvider;
@@ -55,4 +55,12 @@ namespace Assets.Scripts.Infrastructure
         None,
         Menu
     }
+
+    [Serializable]
+    public class SceneReference
+    {
+        public SceneName SceneName;
+        public AssetReference Reference;
+    }
 }
+

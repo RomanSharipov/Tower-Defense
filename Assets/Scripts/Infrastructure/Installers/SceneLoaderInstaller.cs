@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Scripts.Infrastructure.Installers;
+using CodeBase.Infrastructure.Services;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using VContainer;
 
-namespace Assets.Scripts.Infrastructure
+namespace CodeBase.Infrastructure.Installers
 {
     [CreateAssetMenu(
     fileName = "SceneLoaderInstaller",
@@ -36,11 +36,5 @@ namespace Assets.Scripts.Infrastructure
             return references;
         }
     }
-
-    [Serializable]
-    public class SceneReference
-    {
-        public SceneName SceneName;
-        public AssetReference Reference;
-    }
 }
+

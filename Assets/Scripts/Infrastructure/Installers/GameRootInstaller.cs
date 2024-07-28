@@ -1,9 +1,7 @@
-﻿using Scripts.Infrastructure.Installers;
-using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
+﻿using UnityEngine;
 using VContainer;
 
-namespace Assets.Scripts.Infrastructure
+namespace CodeBase.Infrastructure.Installers
 {
     [CreateAssetMenu(
     fileName = "GameRootInstaller",

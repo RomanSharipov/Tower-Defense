@@ -1,4 +1,4 @@
-using Assets.Scripts.Infrastructure;
+using CodeBase.Infrastructure.Services;
 using UnityEngine;
 using VContainer;
 

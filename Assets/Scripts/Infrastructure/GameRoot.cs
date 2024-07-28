@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using VContainer;
 
-namespace Assets.Scripts.Infrastructure
+namespace CodeBase.Infrastructure
 {
     public class GameRoot
     {

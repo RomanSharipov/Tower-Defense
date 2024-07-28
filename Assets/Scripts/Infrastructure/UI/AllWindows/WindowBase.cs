@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Infrastructure.UI
+namespace CodeBase.Infrastructure.UI
 {
     public abstract class WindowBase : MonoBehaviour
     {

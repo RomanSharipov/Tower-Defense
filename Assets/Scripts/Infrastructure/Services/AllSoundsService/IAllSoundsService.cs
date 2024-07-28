@@ -1,4 +1,4 @@
-namespace Scripts.Infrastructure.Services
+namespace CodeBase.Infrastructure.Services
 {
     public interface IAllSoundsService
     {

@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Scripts.Infrastructure.Installers;
+using CodeBase.Infrastructure.Installers;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Scripts.Infrastructure
+namespace CodeBase.Infrastructure
 {
     public class MenuInstaller : LifetimeScope
     {

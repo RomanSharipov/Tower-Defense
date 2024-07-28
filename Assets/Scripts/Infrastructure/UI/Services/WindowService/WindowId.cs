@@ -1,5 +1,5 @@
 ﻿
-namespace Assets.Scripts.Infrastructure.UI.Services
+namespace CodeBase.Infrastructure.UI.Services
 {
     public enum WindowId
     {

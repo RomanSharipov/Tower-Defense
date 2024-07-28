@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Assets.Scripts.Infrastructure.UI;
-using Assets.Scripts.Infrastructure.UI.Services;
-using Scripts.Infrastructure.Installers;
+﻿using CodeBase.Infrastructure.UI.Services;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using VContainer;
 
-namespace Assets.Scripts.Infrastructure.Installers
+namespace CodeBase.Infrastructure.Installers
 {
     [CreateAssetMenu(
     fileName = "UIFactoryInstaller",
@@ -25,19 +20,5 @@ namespace Assets.Scripts.Infrastructure.Installers
                 .WithParameter("assetReferenceData", _uIAssetReferences.ToDictionary<UIAsset, AssetReference>())
                 .As<IUIFactory>();
         }
-    }
-
-    public enum UIAsset
-    {
-        None,
-        RootCanvas,
-        Shop
-    }
-
-    [Serializable]
-    public class UIAssetReferenceData
-    {
-        public UIAsset UIType;
-        public AssetReference assetReference;
-    }
+    }    
 }

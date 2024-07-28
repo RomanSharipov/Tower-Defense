@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Scripts.Infrastructure.Installers;
+using CodeBase.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using VContainer;
 
-namespace Assets.Scripts.Infrastructure.UI.Services
+namespace CodeBase.Infrastructure.UI.Services
 {
     public class UIFactory : IUIFactory
     {
@@ -32,5 +32,19 @@ namespace Assets.Scripts.Infrastructure.UI.Services
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[UIAsset.RootCanvas]);
             _rootCanvas = GameObject.Instantiate(prefab).transform;
         }
+    }
+
+    public enum UIAsset
+    {
+        None,
+        RootCanvas,
+        Shop
+    }
+
+    [Serializable]
+    public class UIAssetReferenceData
+    {
+        public UIAsset UIType;
+        public AssetReference assetReference;
     }
 }

@@ -1,6 +1,6 @@
 namespace CodeBase.Infrastructure.Services
 {
-    public class AllSoundsService : IAllSoundsService
+    public class StaticDataService : IStaticDataService
     {
 
     }
