@@ -11,7 +11,7 @@ public interface IAssetProvider
     public UniTask<T> Load<T>(AssetReference key) where T : class;
     public void Release(string key);
     public void Cleanup();
-    public void Initialize();
+    public UniTask Initialize();
     public UniTask<GameObject> Instantiate(AssetReference assetReference, Vector3 position);
     public UniTask<GameObject> Instantiate(AssetReference assetReference);
     public UniTask<Scene> LoadScene(AssetReference assetReference);

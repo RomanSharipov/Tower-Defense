@@ -8,6 +8,7 @@ namespace Assets.Scripts.Infrastructure
     {
         private ISceneLoader _sceneLoader;
         private IUIFactory _uiFactory;
+        private IAssetProvider _assetProvider;
         private GameStatemachine _mainGameStatemachine;
         
         public BootstrapState(GameStatemachine mainGameStatemachine)
@@ -16,17 +17,18 @@ namespace Assets.Scripts.Infrastructure
         }
 
         [Inject]
-        public void Construct(ISceneLoader sceneLoader, IUIFactory uiFactory)
+        public void Construct(ISceneLoader sceneLoader, IUIFactory uiFactory, IAssetProvider assetProvider)
         {
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
+            _assetProvider = assetProvider;
         }
 
-        public UniTask Enter()
+        public async UniTask Enter()
         {
+            await _assetProvider.Initialize();
             _mainGameStatemachine.Enter<MenuState>();
             _uiFactory.CreateRootCanvas();
-            return UniTask.CompletedTask;
         }
 
         public  UniTask Exit()

@@ -16,10 +16,10 @@ public class AddressableProvider : IAssetProvider
     {
         await Addressables.InitializeAsync();
     }
-    
-    public async UniTask<Scene> LoadScene(AssetReference assetReference) 
+
+    public async UniTask<Scene> LoadScene(AssetReference assetReference)
     {
-        if (_sceneHandles.TryGetValue(assetReference,out AsyncOperationHandle<SceneInstance> handle))
+        if (_sceneHandles.TryGetValue(assetReference, out AsyncOperationHandle<SceneInstance> handle))
         {
             return handle.Result.Scene;
         }
@@ -45,6 +45,7 @@ public class AddressableProvider : IAssetProvider
         if (_sceneHandles.TryGetValue(assetReference, out AsyncOperationHandle<SceneInstance> handle))
         {
             Addressables.Release(handle);
+            _sceneHandles.Remove(assetReference);
         }
 
         else
@@ -60,10 +61,10 @@ public class AddressableProvider : IAssetProvider
 
         return await RunWithCacheOnComplete(Addressables.LoadAssetAsync<T>(assetReference), assetReference.AssetGUID);
     }
-    
+
     public async UniTask<GameObject> Instantiate(AssetReference assetReference, Vector3 position)
     {
-        return await Addressables.InstantiateAsync(assetReference, position,Quaternion.identity);
+        return await Addressables.InstantiateAsync(assetReference, position, Quaternion.identity);
     }
 
     public async UniTask<GameObject> Instantiate(AssetReference assetReference)

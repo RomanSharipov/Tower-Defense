@@ -7,6 +7,6 @@ namespace Assets.Scripts.Infrastructure
     public interface ISceneLoader
     {
         public UniTask<Scene> Load(SceneName name, Action onLoaded = null);
-        public UniTask Unload(SceneName name, Action onUnloaded = null);
+        public void Unload(SceneName name);
     }
 }
