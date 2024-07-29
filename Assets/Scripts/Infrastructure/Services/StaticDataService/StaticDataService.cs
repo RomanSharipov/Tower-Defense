@@ -12,8 +12,8 @@ namespace CodeBase.Infrastructure.Services
         public IReadOnlyDictionary<WindowType, AssetReference> Windows => 
             _mainStaticData.WindowsData.ToDictionary<WindowType, AssetReference>();
 
-        public IReadOnlyDictionary<SceneName, AssetReference> SceneAssetReferences => 
-            _mainStaticData.SceneReferences.ToDictionary<SceneName, AssetReference>();
+        public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences => 
+            _mainStaticData.SceneReferences.ToDictionary<AssetReference>();
 
         public StaticDataService(MainStaticData mainStaticData)
         {

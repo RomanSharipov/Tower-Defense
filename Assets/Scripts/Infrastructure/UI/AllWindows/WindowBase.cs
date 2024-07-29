@@ -14,7 +14,7 @@ namespace CodeBase.Infrastructure.UI
 
         protected virtual void OnAwake()
         {
-            _closeButton.onClick.AddListener(() => Destroy(gameObject));
+            _closeButton?.onClick.AddListener(() => Destroy(gameObject));
         }
     }
 }

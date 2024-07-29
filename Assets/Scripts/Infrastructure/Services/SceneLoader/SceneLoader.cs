@@ -12,7 +12,7 @@ namespace CodeBase.Infrastructure.Services
     public class SceneLoader : ISceneLoader
     {
         private readonly IAssetProvider _assetProvider;
-        private readonly IReadOnlyDictionary<SceneName, AssetReference> _sceneReferences;
+        private readonly IReadOnlyDictionary<string, AssetReference> _sceneReferences;
 
         [Inject]
         public SceneLoader(IStaticDataService staticDataService, IAssetProvider assetProvider)
@@ -21,7 +21,7 @@ namespace CodeBase.Infrastructure.Services
             _assetProvider = assetProvider;
         }
 
-        public async UniTask<Scene> Load(SceneName name, Action onLoaded = null)
+        public async UniTask<Scene> Load(string name, Action onLoaded = null)
         {
             if (_sceneReferences.TryGetValue(name, out AssetReference sceneReference))
             {
@@ -36,7 +36,7 @@ namespace CodeBase.Infrastructure.Services
             }
         }
 
-        public void Unload(SceneName name)
+        public void Unload(string name)
         {
             if (_sceneReferences.TryGetValue(name, out AssetReference handle))
             {
@@ -50,17 +50,10 @@ namespace CodeBase.Infrastructure.Services
             }
         }
     }
-
-    public enum SceneName
-    {
-        None,
-        Menu
-    }
-
     [Serializable]
     public class SceneReference
     {
-        public SceneName SceneName;
+        public string SceneName;
         public AssetReference Reference;
     }
 }

@@ -9,12 +9,12 @@ public class TestServices : MonoBehaviour
     [ContextMenu("UnloadMenu")]
     public void UnloadMenu()
     {
-        sceneLoader.Unload(SceneName.Menu);
+        sceneLoader.Unload("Menu");
     }
 
     [ContextMenu("LoadMenu")]
     public void LoadMenu()
     {
-        sceneLoader.Load(SceneName.Menu);
+        sceneLoader.Load("Menu");
     }
 }

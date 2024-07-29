@@ -6,7 +6,7 @@ namespace CodeBase.Infrastructure.Services
 {
     public interface ISceneLoader
     {
-        public UniTask<Scene> Load(SceneName name, Action onLoaded = null);
-        public void Unload(SceneName name);
+        public UniTask<Scene> Load(string name, Action onLoaded = null);
+        public void Unload(string name);
     }
 }

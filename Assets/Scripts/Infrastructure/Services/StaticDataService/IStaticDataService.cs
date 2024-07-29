@@ -7,6 +7,7 @@ namespace CodeBase.Infrastructure.Services
     public interface IStaticDataService
     {
         public IReadOnlyDictionary<WindowType, AssetReference> Windows { get; }
-        IReadOnlyDictionary<SceneName, AssetReference> SceneAssetReferences { get; }
+
+        public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences { get; }
     }
 }
