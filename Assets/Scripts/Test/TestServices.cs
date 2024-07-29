@@ -6,15 +6,15 @@ public class TestServices : MonoBehaviour
 {
     [Inject] private ISceneLoader sceneLoader;
     
-    [ContextMenu("UnloadMenu")]
-    public void UnloadMenu()
+    [ContextMenu("UnloadLevel_1")]
+    public void UnloadLevel_1()
     {
-        sceneLoader.Unload("Menu");
+        sceneLoader.Unload("Level_1");
     }
 
-    [ContextMenu("LoadMenu")]
-    public void LoadMenu()
+    [ContextMenu("LoadLevel_1")]
+    public void LoadLevel_1()
     {
-        sceneLoader.Load("Menu");
+        sceneLoader.Load("Level_1");
     }
 }

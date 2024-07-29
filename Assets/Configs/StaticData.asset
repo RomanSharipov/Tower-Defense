@@ -32,3 +32,9 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  - SceneName: Level_1
+    Reference:
+      m_AssetGUID: 214f17350d03b254c98e31d65425ba0e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
