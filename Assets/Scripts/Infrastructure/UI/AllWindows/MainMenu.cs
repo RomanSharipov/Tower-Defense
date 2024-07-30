@@ -1,17 +1,20 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using VContainer;
+﻿using VContainer;
+using UnityEngine;
+using CodeBase.Infrastructure.UI.Services;
 
 namespace CodeBase.Infrastructure.UI
 {
     public class MainMenu : WindowBase
     {
-        [Inject] GameRoot GameRoot;
+        [SerializeField] private GoToStateButton[] _buttons; 
 
-        [ContextMenu("Print()")]
-        public void Print()
+        [Inject]
+        public void Construct(IObjectResolver objectResolver)
         {
-            Debug.Log($"GameRoot = {GameRoot}");
+            foreach (GoToStateButton button in _buttons)
+            {
+                button.Construct(objectResolver.Resolve<GameRoot>().MainGameStatemachine);
+            }
         }
     }
 }

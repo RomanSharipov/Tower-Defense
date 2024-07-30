@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
@@ -9,6 +10,7 @@ namespace CodeBase.Infrastructure
     public class GameLoopState : IState
     {
         private IObjectResolver _resolver;
+        private ILevelService _levelService;
         private GameStatemachine _mainGameStateMachine;
 
         private GameStatemachine _subStatemachine;
@@ -29,10 +31,10 @@ namespace CodeBase.Infrastructure
         }
 
         [Inject]
-        public void Construct(IObjectResolver objectResolver)
+        public void Construct(IObjectResolver objectResolver,ILevelService levelService)
         {
             _resolver = objectResolver;
-            
+            _levelService = levelService;
             foreach (IState state in _subStatemachine.States.Values)
             {
                 _resolver.Inject(state);
@@ -41,7 +43,7 @@ namespace CodeBase.Infrastructure
 
         public UniTask Enter()
         {
-            Debug.Log($"GameLoopState Enter");
+            _levelService.LoadCurrentLevel();
             return UniTask.CompletedTask;
         }
 

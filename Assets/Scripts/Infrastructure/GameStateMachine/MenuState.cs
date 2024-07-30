@@ -27,7 +27,6 @@ namespace CodeBase.Infrastructure
 
         public async UniTask Enter()
         {
-            //await _sceneLoader.Load(SceneName.Menu);
             _windowService.Open(WindowId.MainMenu);
         }
 

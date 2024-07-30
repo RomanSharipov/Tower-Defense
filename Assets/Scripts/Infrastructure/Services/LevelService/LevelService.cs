@@ -1,5 +1,4 @@
-﻿using System;
-using CodeBase.Infrastructure.Services;
+﻿using CodeBase.Infrastructure.Services;
 using VContainer;
 
 namespace Assets.Scripts.Infrastructure.Services
@@ -16,7 +15,7 @@ namespace Assets.Scripts.Infrastructure.Services
 
         public void LoadCurrentLevel()
         {
-            throw new NotImplementedException();
+            _sceneLoader.Load("Level_1");
         }
     }
 }

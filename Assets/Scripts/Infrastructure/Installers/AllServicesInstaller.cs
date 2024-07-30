@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure.UI.Services;
+﻿using Assets.Scripts.Infrastructure.Services;
+using CodeBase.Infrastructure.UI.Services;
 using UnityEngine;
 using VContainer;
 
@@ -13,6 +14,8 @@ namespace CodeBase.Infrastructure.Installers
         {
             builder.Register<WindowService>(Lifetime.Singleton)
                 .As<IWindowService>();
+            builder.Register<LevelService>(Lifetime.Singleton)
+                .As<ILevelService>();
         }
     }    
 }
