@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CodeBase.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using VContainer;
@@ -15,6 +16,7 @@ namespace CodeBase.Infrastructure.UI.Services
         private readonly IObjectResolver _objectResolver;
 
         private Transform _rootCanvas;
+        private List<WindowBase> _windows = new List<WindowBase>();
 
         [Inject]
         public UIFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, IObjectResolver objectResolver)
@@ -34,6 +36,7 @@ namespace CodeBase.Infrastructure.UI.Services
             GameObject mainMenuPrefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.MainMenu]);
             GameObject newGameObject =  GameObject.Instantiate(mainMenuPrefab, _rootCanvas);
            MainMenu mainMenu = newGameObject.GetComponent<MainMenu>();
+            _windows.Add(mainMenu);
             _objectResolver.Inject(mainMenu);
         }
 
@@ -41,6 +44,15 @@ namespace CodeBase.Infrastructure.UI.Services
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.RootCanvas]);
             _rootCanvas = GameObject.Instantiate(prefab).transform;
+        }
+
+        public void DestroyAllWindows()
+        {
+            foreach (WindowBase windows in _windows)
+            {
+                GameObject.Destroy(windows.gameObject);
+            }
+            _assetProvider.Cleanup();
         }
     }
 

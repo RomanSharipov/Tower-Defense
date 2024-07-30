@@ -25,5 +25,10 @@
                     break;
             }
         }
+
+        public void CloseAllWindows() 
+        {
+            _uiFactory.DestroyAllWindows();
+        }
     }
 }

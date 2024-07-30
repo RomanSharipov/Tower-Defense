@@ -32,6 +32,7 @@ namespace CodeBase.Infrastructure
 
         public UniTask Exit()
         {
+            _windowService.CloseAllWindows();
             return UniTask.CompletedTask;
         }
     }

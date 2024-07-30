@@ -2,6 +2,7 @@
 {
     public interface IWindowService
     {
+        public void CloseAllWindows();
         public void Open(WindowId windowId);
     }
 }
