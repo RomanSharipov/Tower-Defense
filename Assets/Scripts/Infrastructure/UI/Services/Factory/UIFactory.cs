@@ -12,14 +12,16 @@ namespace CodeBase.Infrastructure.UI.Services
     {
         private readonly IAssetProvider _assetProvider;
         private readonly IReadOnlyDictionary<WindowType, AssetReference> _assetReferenceData;
+        private readonly IObjectResolver _objectResolver;
 
         private Transform _rootCanvas;
 
         [Inject]
-        public UIFactory(IAssetProvider assetProvider, IStaticDataService staticDataService)
+        public UIFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, IObjectResolver objectResolver)
         {
             _assetProvider = assetProvider;
             _assetReferenceData = staticDataService.Windows;
+            _objectResolver = objectResolver;
         }
 
         public UniTask CreateShop()
@@ -30,7 +32,9 @@ namespace CodeBase.Infrastructure.UI.Services
         public async UniTask CreateMainMenu()
         {
             GameObject mainMenuPrefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.MainMenu]);
-            GameObject.Instantiate(mainMenuPrefab, _rootCanvas);
+            GameObject newGameObject =  GameObject.Instantiate(mainMenuPrefab, _rootCanvas);
+           MainMenu mainMenu = newGameObject.GetComponent<MainMenu>();
+            _objectResolver.Inject(mainMenu);
         }
 
         public async UniTask CreateRootCanvas()

@@ -1,10 +1,14 @@
 using CodeBase.Infrastructure.Services;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using VContainer;
 
 public class TestServices : MonoBehaviour
 {
     [Inject] private ISceneLoader sceneLoader;
+    [Inject] private IObjectResolver IObjectResolver;
+    [SerializeField] private AssetReference TestWindow;
+    [SerializeField] private AssetReference MainMenu;
     
     [ContextMenu("UnloadLevel_1")]
     public void UnloadLevel_1()
