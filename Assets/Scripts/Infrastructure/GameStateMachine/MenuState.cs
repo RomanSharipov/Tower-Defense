@@ -9,14 +9,13 @@ namespace CodeBase.Infrastructure
     {
         private GameStatemachine _mainGameStatemachine;
         private ISceneLoader _sceneLoader;
-        private IUIFactory _uiFactory;
+        
         private IWindowService _windowService;
 
         [Inject]
-        public void Construct(ISceneLoader sceneLoader, IUIFactory uiFactory, IWindowService windowService)
+        public void Construct(ISceneLoader sceneLoader,IWindowService windowService)
         {
             _sceneLoader = sceneLoader;
-            _uiFactory = uiFactory;
             _windowService = windowService;
         }
 
