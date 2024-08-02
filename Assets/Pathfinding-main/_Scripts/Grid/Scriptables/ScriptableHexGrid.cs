@@ -11,19 +11,20 @@ namespace Tarodev_Pathfinding._Scripts.Grid.Scriptables {
         
         public override Dictionary<Vector2, NodeBase> GenerateGrid() {
             var tiles = new Dictionary<Vector2, NodeBase>();
-            var grid = new GameObject {
+            GameObject grid = new GameObject {
                 name = "Grid"
             };
-            for (var r = 0; r < _gridDepth ; r++) {
-                var rOffset = r >> 1;
-                for (var q = -rOffset; q < _gridWidth - rOffset; q++) {
+            
+            for (int r = 0; r < _gridDepth ; r++) {
+                int rOffset = r >> 1;
+                for (int q = -rOffset; q < _gridWidth - rOffset; q++) {
                     NodeBase tile = Instantiate(nodeBasePrefab,grid.transform);
-                    tile.gameObject.name = $"{r}.{q} {tile.gameObject.name}";
                     tile.Init(DecideIfObstacle(), new HexCoords(q,r));
                     tiles.Add(tile.Coords.Pos,tile);
+                    tile.gameObject.name = $"{tile.Coords.Pos.x}.{tile.Coords.Pos.y} {tile.gameObject.name}";
                 }
             }
-
+            grid.transform.rotation = Quaternion.Euler(90, 0, 0);
             return tiles;
         }
     }
