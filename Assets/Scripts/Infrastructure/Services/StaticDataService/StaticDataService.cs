@@ -13,7 +13,7 @@ namespace CodeBase.Infrastructure.Services
             _mainStaticData.WindowsData.ToDictionary<WindowType, AssetReference>();
 
         public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences => 
-            _mainStaticData.SceneReferences.ToDictionary<AssetReference>();
+            _mainStaticData.SceneReferences.ToDictionary<string,AssetReference>();
 
         public StaticDataService(MainStaticData mainStaticData)
         {
