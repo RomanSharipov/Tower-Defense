@@ -14,12 +14,13 @@ namespace _Scripts.Tiles {
      
         public ICoords Coords;
         public float GetDistance(NodeBase other) => Coords.GetDistance(other.Coords); // Helper to reduce noise in pathfinding
-        public bool Walkable { get; private set; }
+        public bool Walkable => _walkable;
         private bool _selected;
+        [SerializeField] private bool _walkable;
         [SerializeField] private Color _defaultColor;
 
         public virtual void Init(bool walkable, ICoords coords) {
-            Walkable = walkable;
+            _walkable = walkable;
 
             _renderer.color = walkable ? _walkableColor.Evaluate(Random.Range(0f, 1f)) : _obstacleColor;
             _defaultColor = _renderer.color;
@@ -36,7 +37,7 @@ namespace _Scripts.Tiles {
         private void OnOnHoverTile(NodeBase selected) => _selected = selected == this;
 
         protected virtual void OnMouseDown() {
-            if (!Walkable) return;
+            if (!_walkable) return;
             OnHoverTile?.Invoke(this);
         }
 
