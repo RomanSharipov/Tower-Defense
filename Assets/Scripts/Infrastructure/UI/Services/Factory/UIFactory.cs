@@ -11,7 +11,7 @@ namespace CodeBase.Infrastructure.UI.Services
     public class UIFactory : IUIFactory
     {
         private readonly IAssetProvider _assetProvider;
-        private readonly IReadOnlyDictionary<WindowType, AssetReference> _assetReferenceData;
+        private readonly IReadOnlyDictionary<WindowId, AssetReference> _assetReferenceData;
         private readonly IObjectResolver _objectResolver;
 
         private Transform _rootCanvas;
@@ -31,21 +31,21 @@ namespace CodeBase.Infrastructure.UI.Services
 
         public async UniTask<MainMenu> CreateMainMenu()
         {
-            return await CreateWindow<MainMenu>(WindowType.MainMenu);
+            return await CreateWindow<MainMenu>(WindowId.MainMenu);
         }
 
         public async UniTask<GameLoopWindow> CreateGameLoopWindow()
         {
-            return await CreateWindow<GameLoopWindow>(WindowType.GameLoopWindow);
+            return await CreateWindow<GameLoopWindow>(WindowId.GameLoopWindow);
         }
 
         public async UniTask CreateRootCanvas()
         {
-            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.RootCanvas]);
+            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowId.RootCanvas]);
             _rootCanvas = GameObject.Instantiate(prefab).transform;
         }
 
-        private async UniTask<T> CreateWindow<T>(WindowType windowType) where T : Component
+        private async UniTask<T> CreateWindow<T>(WindowId windowType) where T : Component
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[windowType]);
             GameObject newGameObject = GameObject.Instantiate(prefab, _rootCanvas);
@@ -54,20 +54,11 @@ namespace CodeBase.Infrastructure.UI.Services
             return windowComponent;
         }
     }
-
-    public enum WindowType
-    {
-        None,
-        RootCanvas,
-        Shop,
-        MainMenu,
-        GameLoopWindow
-    }
-
+    
     [Serializable]
     public class WindowAssetReference
     {
-        public WindowType WindowType;
+        public WindowId WindowType;
         public AssetReference assetReference;
     }
 }

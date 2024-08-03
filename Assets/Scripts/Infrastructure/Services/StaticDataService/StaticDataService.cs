@@ -9,8 +9,8 @@ namespace CodeBase.Infrastructure.Services
     {
         private readonly MainStaticData _mainStaticData;
 
-        public IReadOnlyDictionary<WindowType, AssetReference> Windows => 
-            _mainStaticData.WindowsData.ToDictionary<WindowType, AssetReference>();
+        public IReadOnlyDictionary<WindowId, AssetReference> Windows => 
+            _mainStaticData.WindowsData.ToDictionary<WindowId, AssetReference>();
 
         public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences => 
             _mainStaticData.SceneReferences.ToDictionary<AssetReference>();

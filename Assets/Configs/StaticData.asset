@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StaticData
   m_EditorClassIdentifier: 
   WindowsData:
-  - WindowType: 1
+  - WindowType: 2
     assetReference:
       m_AssetGUID: 33b67f947d8defd42b1fc6fd90ce5e7b
       m_SubObjectName: 
