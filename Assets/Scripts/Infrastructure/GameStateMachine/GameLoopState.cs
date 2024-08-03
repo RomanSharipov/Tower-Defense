@@ -54,6 +54,7 @@ namespace CodeBase.Infrastructure
         public UniTask Exit()
         {
             _windowService.CloseWindow(WindowId.GameLoopWindow);
+            _levelService.UnLoadCurrentLevel();
             return UniTask.CompletedTask;
         }
     }

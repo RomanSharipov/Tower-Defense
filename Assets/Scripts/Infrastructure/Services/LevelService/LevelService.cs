@@ -17,5 +17,10 @@ namespace Assets.Scripts.Infrastructure.Services
         {
             _sceneLoader.Load("Level_1");
         }
+
+        public void UnLoadCurrentLevel()
+        {
+            _sceneLoader.Unload("Level_1");
+        }
     }
 }
