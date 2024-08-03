@@ -9,5 +9,6 @@ namespace CodeBase.Infrastructure.Services
         public IReadOnlyDictionary<WindowId, AssetReference> Windows { get; }
 
         public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences { get; }
+        public AssetReference RootCanvas { get; }
     }
 }

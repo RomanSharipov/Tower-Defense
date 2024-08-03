@@ -8,7 +8,7 @@ namespace CodeBase.Configs
     public class MainStaticData : ScriptableObject
     {
         [Header("All Windows")]
-        public WindowAssetReference[] WindowsData;
+        public WindowsData WindowsData;
 
         [Header("All Scenes")]
         public SceneReference[] SceneReferences;

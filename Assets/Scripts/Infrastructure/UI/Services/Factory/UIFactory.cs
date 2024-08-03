@@ -13,6 +13,7 @@ namespace CodeBase.Infrastructure.UI.Services
         private readonly IAssetProvider _assetProvider;
         private readonly IReadOnlyDictionary<WindowId, AssetReference> _assetReferenceData;
         private readonly IObjectResolver _objectResolver;
+        private readonly AssetReference _rootCanvasPrefab;
 
         private Transform _rootCanvas;
 
@@ -22,11 +23,15 @@ namespace CodeBase.Infrastructure.UI.Services
             _assetProvider = assetProvider;
             _assetReferenceData = staticDataService.Windows;
             _objectResolver = objectResolver;
+            _rootCanvasPrefab = staticDataService.RootCanvas;
         }
 
-        public UniTask CreateRootCanvas()
+        public async UniTask CreateRootCanvas()
         {
-            throw new NotImplementedException();
+            GameObject rootCanvasPrefab = await _assetProvider.Load<GameObject>(_rootCanvasPrefab);
+            GameObject rootCanvasGameobject = GameObject.Instantiate(rootCanvasPrefab);
+            _rootCanvas = rootCanvasGameobject.transform;
+            Debug.Log($"_rootCanvas = {_rootCanvas}");
         }
 
         public async UniTask<T> CreateWindow<T>(WindowId windowType) where T : Component
@@ -44,5 +49,12 @@ namespace CodeBase.Infrastructure.UI.Services
     {
         public WindowId WindowType;
         public AssetReference assetReference;
+    }
+
+    [Serializable]
+    public class WindowsData
+    {
+        public WindowAssetReference[] WindowAssetReference;
+        public AssetReference rootCanvas;
     }
 }

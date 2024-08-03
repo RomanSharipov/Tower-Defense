@@ -40,8 +40,6 @@ namespace CodeBase.Infrastructure.UI.Services
                 case WindowId.GameLoopWindow:
                     CreateWindow<GameLoopWindow>(windowId).Forget();
                     break;
-                case WindowId.RootCanvas:
-                    break;
             }
         }
         private async UniTask<TypeWindow> CreateWindow<TypeWindow>(WindowId windowId) where TypeWindow : WindowBase

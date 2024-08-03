@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: StaticData
   m_EditorClassIdentifier: 
   WindowsData:
-  - WindowType: 2
-    assetReference:
+    WindowAssetReference:
+    - WindowType: 2
+      assetReference:
+        m_AssetGUID: 856ddc4915d8b3245b06687bd16a981e
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+    - WindowType: 3
+      assetReference:
+        m_AssetGUID: 2cb029ef8cf0560489aba0ce89c17b26
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+    rootCanvas:
       m_AssetGUID: 33b67f947d8defd42b1fc6fd90ce5e7b
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-  - WindowType: 3
-    assetReference:
-      m_AssetGUID: 856ddc4915d8b3245b06687bd16a981e
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-  - WindowType: 4
-    assetReference:
-      m_AssetGUID: 2cb029ef8cf0560489aba0ce89c17b26
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0

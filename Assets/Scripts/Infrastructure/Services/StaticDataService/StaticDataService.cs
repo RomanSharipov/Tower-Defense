@@ -10,7 +10,10 @@ namespace CodeBase.Infrastructure.Services
         private readonly MainStaticData _mainStaticData;
 
         public IReadOnlyDictionary<WindowId, AssetReference> Windows => 
-            _mainStaticData.WindowsData.ToDictionary<WindowId, AssetReference>();
+            _mainStaticData.WindowsData.WindowAssetReference.ToDictionary<WindowId, AssetReference>();
+
+        public AssetReference RootCanvas =>
+            _mainStaticData.WindowsData.rootCanvas;
 
         public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences => 
             _mainStaticData.SceneReferences.ToDictionary<AssetReference>();
