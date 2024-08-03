@@ -4,8 +4,7 @@ namespace CodeBase.Infrastructure.UI.Services
 {
     public interface IUIFactory
     {
-        public void DestroyAllWindows();
-        public UniTask CreateMainMenu();
+        public UniTask<MainMenu> CreateMainMenu();
         public UniTask CreateRootCanvas();
         public UniTask CreateShop();
     }

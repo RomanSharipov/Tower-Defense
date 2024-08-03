@@ -16,8 +16,7 @@ namespace CodeBase.Infrastructure.UI.Services
         private readonly IObjectResolver _objectResolver;
 
         private Transform _rootCanvas;
-        private List<WindowBase> _windows = new List<WindowBase>();
-
+        
         [Inject]
         public UIFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, IObjectResolver objectResolver)
         {
@@ -31,28 +30,19 @@ namespace CodeBase.Infrastructure.UI.Services
             throw new NotImplementedException();
         }
 
-        public async UniTask CreateMainMenu()
+        public async UniTask<MainMenu> CreateMainMenu()
         {
             GameObject mainMenuPrefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.MainMenu]);
             GameObject newGameObject =  GameObject.Instantiate(mainMenuPrefab, _rootCanvas);
            MainMenu mainMenu = newGameObject.GetComponent<MainMenu>();
-            _windows.Add(mainMenu);
             _objectResolver.Inject(mainMenu);
+            return mainMenu;
         }
 
         public async UniTask CreateRootCanvas()
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.RootCanvas]);
             _rootCanvas = GameObject.Instantiate(prefab).transform;
-        }
-
-        public void DestroyAllWindows()
-        {
-            foreach (WindowBase windows in _windows)
-            {
-                GameObject.Destroy(windows.gameObject);
-            }
-            _assetProvider.Cleanup();
         }
     }
 

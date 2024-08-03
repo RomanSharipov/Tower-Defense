@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using CodeBase.Infrastructure.UI.Services;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace CodeBase.Infrastructure.UI
@@ -6,6 +8,10 @@ namespace CodeBase.Infrastructure.UI
     public abstract class WindowBase : MonoBehaviour
     {
         [SerializeField] private Button _closeButton;
+        [SerializeField] private WindowId _windowId;
+
+        public event Action<WindowBase> CloseButtonClicked;
+        public WindowId WindowId => _windowId;
 
         private void Awake()
         {
@@ -14,7 +20,7 @@ namespace CodeBase.Infrastructure.UI
 
         protected virtual void OnAwake()
         {
-            _closeButton?.onClick.AddListener(() => Destroy(gameObject));
+            _closeButton?.onClick.AddListener(() => CloseButtonClicked?.Invoke(this));
         }
     }
 }

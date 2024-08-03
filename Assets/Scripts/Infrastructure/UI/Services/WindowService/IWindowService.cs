@@ -1,8 +1,10 @@
-﻿namespace CodeBase.Infrastructure.UI.Services
+﻿using Cysharp.Threading.Tasks;
+
+namespace CodeBase.Infrastructure.UI.Services
 {
     public interface IWindowService
     {
         public void CloseAllWindows();
-        public void Open(WindowId windowId);
+        public UniTask Open(WindowId windowId);
     }
 }
