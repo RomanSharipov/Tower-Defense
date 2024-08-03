@@ -5,6 +5,7 @@ namespace CodeBase.Infrastructure.UI.Services
     {
         None,
         Shop,
-        MainMenu
+        MainMenu,
+        GameLoopWindow
     }
 }

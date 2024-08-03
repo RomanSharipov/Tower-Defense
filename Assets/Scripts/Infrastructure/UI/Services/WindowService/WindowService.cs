@@ -23,7 +23,7 @@ namespace CodeBase.Infrastructure.UI.Services
                 Debug.LogError($"Window with name {windowId} already opened");
                 return;
             }
-            
+
             switch (windowId)
             {
                 case WindowId.None:
@@ -38,22 +38,29 @@ namespace CodeBase.Infrastructure.UI.Services
                     _openedWindows.Add(windowId, menu);
                     menu.CloseButtonClicked += CloseWindow;
                     break;
+                case WindowId.GameLoopWindow:
+                    GameLoopWindow gameLoopWindow = await _uiFactory.CreateGameLoopWindow();
+                    _openedWindows.Add(windowId, gameLoopWindow);
+                    gameLoopWindow.CloseButtonClicked += CloseWindow;
+                    break;
             }
         }
 
-        public void CloseWindow(WindowBase window)
+        public void CloseWindow(WindowId windowId)
         {
-            window.CloseButtonClicked -= CloseWindow;
-            _openedWindows.Remove(window.WindowId);
-            GameObject.Destroy(window.gameObject);
+            _openedWindows[windowId].CloseButtonClicked -= CloseWindow;
+            GameObject.Destroy(_openedWindows[windowId].gameObject);
+            _openedWindows.Remove(windowId);
         }
 
         public void CloseAllWindows() 
         {
             foreach (WindowBase window in _openedWindows.Values)
             {
-                CloseWindow(window);
+                window.CloseButtonClicked -= CloseWindow;
+                GameObject.Destroy(window.gameObject);
             }
+            _openedWindows.Clear();
         }
     }
 }

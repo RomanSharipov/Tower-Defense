@@ -34,9 +34,18 @@ namespace CodeBase.Infrastructure.UI.Services
         {
             GameObject mainMenuPrefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.MainMenu]);
             GameObject newGameObject =  GameObject.Instantiate(mainMenuPrefab, _rootCanvas);
-           MainMenu mainMenu = newGameObject.GetComponent<MainMenu>();
+            MainMenu mainMenu = newGameObject.GetComponent<MainMenu>();
             _objectResolver.Inject(mainMenu);
             return mainMenu;
+        }
+
+        public async UniTask<GameLoopWindow> CreateGameLoopWindow()
+        {
+            GameObject gameLoopWindowPrefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.GameLoopWindow]);
+            GameObject newGameObject =  GameObject.Instantiate(gameLoopWindowPrefab, _rootCanvas);
+            GameLoopWindow newMainGameLoopWindow = newGameObject.GetComponent<GameLoopWindow>();
+            _objectResolver.Inject(newMainGameLoopWindow);
+            return newMainGameLoopWindow;
         }
 
         public async UniTask CreateRootCanvas()
@@ -51,7 +60,8 @@ namespace CodeBase.Infrastructure.UI.Services
         None,
         RootCanvas,
         Shop,
-        MainMenu
+        MainMenu,
+        GameLoopWindow
     }
 
     [Serializable]

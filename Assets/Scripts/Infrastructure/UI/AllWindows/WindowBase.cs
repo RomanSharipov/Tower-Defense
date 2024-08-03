@@ -10,7 +10,7 @@ namespace CodeBase.Infrastructure.UI
         [SerializeField] private Button _closeButton;
         [SerializeField] private WindowId _windowId;
 
-        public event Action<WindowBase> CloseButtonClicked;
+        public event Action<WindowId> CloseButtonClicked;
         public WindowId WindowId => _windowId;
 
         private void Awake()
@@ -20,7 +20,7 @@ namespace CodeBase.Infrastructure.UI
 
         protected virtual void OnAwake()
         {
-            _closeButton?.onClick.AddListener(() => CloseButtonClicked?.Invoke(this));
+            _closeButton?.onClick.AddListener(() => CloseButtonClicked?.Invoke(_windowId));
         }
     }
 }
