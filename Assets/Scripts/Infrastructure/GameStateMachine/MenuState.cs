@@ -26,7 +26,7 @@ namespace CodeBase.Infrastructure
 
         public async UniTask Enter()
         {
-            _windowService.Open(WindowId.MainMenu);
+            _windowService.Open(WindowId.MainMenu).Forget();
         }
 
         public UniTask Exit()

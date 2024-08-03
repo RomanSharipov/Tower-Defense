@@ -13,7 +13,8 @@ namespace CodeBase.Infrastructure.UI
         {
             foreach (GoToStateButton button in _buttons)
             {
-                button.Construct(objectResolver.Resolve<GameRoot>().MainGameStatemachine);
+                button.Construct(objectResolver.Resolve<GameRoot>().MainGameStatemachine, 
+                    objectResolver.Resolve<GameRoot>().GameLoopStatemachine);
             }
         }
     }

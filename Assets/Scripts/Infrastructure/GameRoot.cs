@@ -7,9 +7,11 @@ namespace CodeBase.Infrastructure
     public class GameRoot
     {
         private GameStatemachine _mainGameStatemachine;
+        private GameStatemachine _gameLoopStatemachine;
         private IObjectResolver _objectResolver;
 
         public GameStatemachine MainGameStatemachine => _mainGameStatemachine;
+        public GameStatemachine GameLoopStatemachine => _gameLoopStatemachine;
 
         public GameRoot()
         {
@@ -24,12 +26,14 @@ namespace CodeBase.Infrastructure
         public void Start()
         {
             _mainGameStatemachine = new GameStatemachine();
+            GameLoopState gameLoopState = new GameLoopState(_mainGameStatemachine);
+            _gameLoopStatemachine = gameLoopState.SubStatemachine;
 
             Dictionary<Type, IState> states = new Dictionary<Type, IState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(_mainGameStatemachine),
                 [typeof(MenuState)] = new MenuState(_mainGameStatemachine),
-                [typeof(GameLoopState)] = new GameLoopState(_mainGameStatemachine),
+                [typeof(GameLoopState)] = gameLoopState,
             };
 
             _mainGameStatemachine.SetStates(states);

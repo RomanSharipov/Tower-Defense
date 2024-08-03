@@ -9,11 +9,13 @@ namespace CodeBase.Infrastructure.UI.Services
         [SerializeField] private State _targetState;
         [SerializeField] private Button _button;
 
-        private GameStatemachine _gameStatemachine;
+        private GameStatemachine _rootGameStatemachine;
+        private GameStatemachine _gameLoopStatemachine;
 
-        public void Construct(GameStatemachine gameStatemachine)
+        public void Construct(GameStatemachine gameStatemachine,GameStatemachine gameLoopStatemachine)
         {
-            _gameStatemachine = gameStatemachine;
+            _rootGameStatemachine = gameStatemachine;
+            _gameLoopStatemachine = gameLoopStatemachine;
         }
 
         private void Awake()
@@ -25,13 +27,13 @@ namespace CodeBase.Infrastructure.UI.Services
                     case State.None:
                         break;
                     case State.GameLoopState:
-                        _gameStatemachine.Enter<GameLoopState>();
+                        _rootGameStatemachine.Enter<GameLoopState>();
                         break;
                     case State.MenuState:
-                        _gameStatemachine.Enter<MenuState>();
+                        _rootGameStatemachine.Enter<MenuState>();
                         break;
                     case State.PauseState:
-                        _gameStatemachine.Enter<GameLoopState>();
+                        _gameLoopStatemachine.Enter<PauseState>();
                         break;
                 }
             }).AddTo(this);

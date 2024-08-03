@@ -17,6 +17,8 @@ namespace CodeBase.Infrastructure
 
         private GameStatemachine _subStatemachine;
 
+        public GameStatemachine SubStatemachine => _subStatemachine;
+
         public GameLoopState(GameStatemachine mainGameStateMachine)
         {
             _mainGameStateMachine = mainGameStateMachine;
