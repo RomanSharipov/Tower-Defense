@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using CodeBase.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using VContainer;
@@ -16,7 +15,7 @@ namespace CodeBase.Infrastructure.UI.Services
         private readonly IObjectResolver _objectResolver;
 
         private Transform _rootCanvas;
-        
+
         [Inject]
         public UIFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, IObjectResolver objectResolver)
         {
@@ -32,26 +31,27 @@ namespace CodeBase.Infrastructure.UI.Services
 
         public async UniTask<MainMenu> CreateMainMenu()
         {
-            GameObject mainMenuPrefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.MainMenu]);
-            GameObject newGameObject =  GameObject.Instantiate(mainMenuPrefab, _rootCanvas);
-            MainMenu mainMenu = newGameObject.GetComponent<MainMenu>();
-            _objectResolver.Inject(mainMenu);
-            return mainMenu;
+            return await CreateWindow<MainMenu>(WindowType.MainMenu);
         }
 
         public async UniTask<GameLoopWindow> CreateGameLoopWindow()
         {
-            GameObject gameLoopWindowPrefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.GameLoopWindow]);
-            GameObject newGameObject =  GameObject.Instantiate(gameLoopWindowPrefab, _rootCanvas);
-            GameLoopWindow newMainGameLoopWindow = newGameObject.GetComponent<GameLoopWindow>();
-            _objectResolver.Inject(newMainGameLoopWindow);
-            return newMainGameLoopWindow;
+            return await CreateWindow<GameLoopWindow>(WindowType.GameLoopWindow);
         }
 
         public async UniTask CreateRootCanvas()
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowType.RootCanvas]);
             _rootCanvas = GameObject.Instantiate(prefab).transform;
+        }
+
+        private async UniTask<T> CreateWindow<T>(WindowType windowType) where T : Component
+        {
+            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[windowType]);
+            GameObject newGameObject = GameObject.Instantiate(prefab, _rootCanvas);
+            T windowComponent = newGameObject.GetComponent<T>();
+            _objectResolver.Inject(windowComponent);
+            return windowComponent;
         }
     }
 
