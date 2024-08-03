@@ -24,28 +24,12 @@ namespace CodeBase.Infrastructure.UI.Services
             _objectResolver = objectResolver;
         }
 
-        public UniTask CreateShop()
+        public UniTask CreateRootCanvas()
         {
             throw new NotImplementedException();
         }
 
-        public async UniTask<MainMenu> CreateMainMenu()
-        {
-            return await CreateWindow<MainMenu>(WindowId.MainMenu);
-        }
-
-        public async UniTask<GameLoopWindow> CreateGameLoopWindow()
-        {
-            return await CreateWindow<GameLoopWindow>(WindowId.GameLoopWindow);
-        }
-
-        public async UniTask CreateRootCanvas()
-        {
-            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[WindowId.RootCanvas]);
-            _rootCanvas = GameObject.Instantiate(prefab).transform;
-        }
-
-        private async UniTask<T> CreateWindow<T>(WindowId windowType) where T : Component
+        public async UniTask<T> CreateWindow<T>(WindowId windowType) where T : Component
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[windowType]);
             GameObject newGameObject = GameObject.Instantiate(prefab, _rootCanvas);

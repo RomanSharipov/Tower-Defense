@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEditor;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.UI.Services
@@ -30,22 +31,26 @@ namespace CodeBase.Infrastructure.UI.Services
                     break;
 
                 case WindowId.Shop:
-                    _uiFactory.CreateShop();
+                    
                     break;
 
                 case WindowId.MainMenu:
-                    MainMenu menu = await _uiFactory.CreateMainMenu();
-                    _openedWindows.Add(windowId, menu);
-                    menu.CloseButtonClicked += CloseWindow;
+                    CreateWindow<MainMenu>(windowId).Forget();
                     break;
                 case WindowId.GameLoopWindow:
-                    GameLoopWindow gameLoopWindow = await _uiFactory.CreateGameLoopWindow();
-                    _openedWindows.Add(windowId, gameLoopWindow);
-                    gameLoopWindow.CloseButtonClicked += CloseWindow;
+                    CreateWindow<GameLoopWindow>(windowId).Forget();
+                    break;
+                case WindowId.RootCanvas:
                     break;
             }
         }
-
+        private async UniTask<TypeWindow> CreateWindow<TypeWindow>(WindowId windowId) where TypeWindow : WindowBase
+        {
+            TypeWindow window = await _uiFactory.CreateWindow<TypeWindow>(windowId);
+            _openedWindows.Add(windowId, window);
+            window.CloseButtonClicked += CloseWindow;
+            return window;
+        }
         public void CloseWindow(WindowId windowId)
         {
             _openedWindows[windowId].CloseButtonClicked -= CloseWindow;

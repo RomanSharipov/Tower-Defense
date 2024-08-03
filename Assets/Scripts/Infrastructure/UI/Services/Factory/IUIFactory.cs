@@ -1,12 +1,12 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure.UI.Services
 {
     public interface IUIFactory
     {
-        public UniTask<GameLoopWindow> CreateGameLoopWindow();
-        public UniTask<MainMenu> CreateMainMenu();
-        public UniTask CreateRootCanvas();
-        public UniTask CreateShop();
+        UniTask CreateRootCanvas();
+        public UniTask<T> CreateWindow<T>(WindowId windowType) where T : Component;
     }
 }
