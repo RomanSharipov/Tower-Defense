@@ -12,5 +12,8 @@ namespace CodeBase.Configs
 
         [Header("All Scenes")]
         public SceneReference[] SceneReferences;
+
+        [Header("Tiles")]
+        public TileIdAssetReference[] Tiles;
     }
 }
