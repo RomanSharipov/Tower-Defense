@@ -16,6 +16,8 @@ namespace CodeBase.Infrastructure.Installers
                 .As<IWindowService>();
             builder.Register<LevelService>(Lifetime.Singleton)
                 .As<ILevelService>();
+            builder.Register<TileFactory>(Lifetime.Singleton)
+                .As<ITileFactory>();
         }
     }    
 }

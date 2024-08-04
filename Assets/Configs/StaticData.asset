@@ -44,3 +44,16 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  Tiles:
+  - WindowType: 1
+    assetReference:
+      m_AssetGUID: ffed5d134f39b9c499dcccb1f109e08b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - WindowType: 2
+    assetReference:
+      m_AssetGUID: 9def817b0f0ab12459207f56b52ac62d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0

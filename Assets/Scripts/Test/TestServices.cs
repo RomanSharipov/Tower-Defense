@@ -1,4 +1,6 @@
+using Assets.Scripts.CoreGamePlay;
 using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.UI.Services;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using VContainer;
@@ -7,18 +9,18 @@ public class TestServices : MonoBehaviour
 {
     [Inject] private ISceneLoader sceneLoader;
     [Inject] private IObjectResolver IObjectResolver;
-    [SerializeField] private AssetReference TestWindow;
-    [SerializeField] private AssetReference MainMenu;
+    [Inject] private ITileFactory _tileFactory;
+
     
-    [ContextMenu("UnloadLevel_1")]
-    public void UnloadLevel_1()
+    [ContextMenu("CreateTile_Empty")]
+    public void CreateTile_Empty()
     {
-        sceneLoader.Unload("Level_1");
+        _tileFactory.CreateTile(TileId.Empty);
     }
 
-    [ContextMenu("LoadLevel_1")]
-    public void LoadLevel_1()
+    [ContextMenu("CreateTile_Obstacle")]
+    public void CreateTile_Obstacle()
     {
-        sceneLoader.Load("Level_1");
+        _tileFactory.CreateTile(TileId.Obstacle);
     }
 }

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Tiles
+  m_EditorClassIdentifier: 
+  m_GroupName: Tiles
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d94dbe6127f9a234a8ef987d18ed865d
+  m_SerializeEntries:
+  - m_GUID: 9def817b0f0ab12459207f56b52ac62d
+    m_Address: Tile_Obstacle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Tile
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffed5d134f39b9c499dcccb1f109e08b
+    m_Address: Tile_Empty
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Tile
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 241f373533e7b0d44b7e5db601bbe58d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 031195466297b6040a71621df418681a, type: 2}
+    - {fileID: 11400000, guid: 177ff94971ff04e46bbfa914af71f6b4, type: 2}
