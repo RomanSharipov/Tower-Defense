@@ -6,9 +6,15 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class MapGenerator : MonoBehaviour
     {
-        [Header("Size settings")]
+        [Header("Form game board settings")]
+        [Header("Rect GameBoard")]
         [SerializeField, Range(1, 50)] private int _gridWidth = 16;
         [SerializeField, Range(1, 50)] private int _gridDepth = 9;
+
+        [Header("Curved Road GameBoard")]
+        [SerializeField, Range(1, 10)] private int roadThickness = 3;
+        [SerializeField, Range(1, 100)] private int roadLength = 30;
+        [SerializeField, Range(0, 10)] private float roadAmplitude = 3.0f;
 
         [Header("Tiles settings")]
         [SerializeField] private float _offsetObstacleSpawn = 0.2f;
@@ -26,8 +32,28 @@ namespace Assets.Scripts.CoreGamePlay
         public void Generate()
         {
             ClearBoard();
-            CreateEmptyTiles();
+            //CreateRectGameBoard();
+            CreateCurvedRoadGameBoard();
+
+
             CreateObstacleTiles();
+        }
+
+        private void CreateCurvedRoadGameBoard()
+        {
+            for (int i = 0; i < roadLength; i++)
+            {
+                float t = i / (float)roadLength;
+                float x = i;
+                float y = Mathf.Sin(t * Mathf.PI * 2) * roadAmplitude;
+
+                for (int j = -roadThickness / 2; j <= roadThickness / 2; j++)
+                {
+                    Tile tile = Instantiate(_emptyTilePrefabs[Random.Range(0, _emptyTilePrefabs.Length)], _parent);
+                    tile.transform.position = HexCalculator.ToWorldPosition((int)x, (int)y + j, tileSpacing);
+                    _emptyTiles.Add(tile.transform);
+                }
+            }
         }
 
         private void CreateObstacleTiles()
@@ -43,7 +69,7 @@ namespace Assets.Scripts.CoreGamePlay
             }
         }
 
-        private void CreateEmptyTiles()
+        private void CreateRectGameBoard()
         {
             for (int r = 0; r < _gridDepth; r++)
             {
@@ -56,7 +82,6 @@ namespace Assets.Scripts.CoreGamePlay
                 }
             }
         }
-
         private void ClearBoard()
         {
             foreach (Transform item in _emptyTiles)
