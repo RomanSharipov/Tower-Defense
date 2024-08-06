@@ -27,12 +27,15 @@ namespace CodeBase.Infrastructure
         {
             _mainGameStatemachine = new GameStatemachine();
             GameLoopState gameLoopState = new GameLoopState(_mainGameStatemachine);
+            BootstrapState bootstrapState = new BootstrapState(_mainGameStatemachine);
+            MenuState menuState = new MenuState(_mainGameStatemachine);
+
             _gameLoopStatemachine = gameLoopState.SubStatemachine;
 
             Dictionary<Type, IState> states = new Dictionary<Type, IState>()
             {
-                [typeof(BootstrapState)] = new BootstrapState(_mainGameStatemachine),
-                [typeof(MenuState)] = new MenuState(_mainGameStatemachine),
+                [typeof(BootstrapState)] = bootstrapState,
+                [typeof(MenuState)] = menuState,
                 [typeof(GameLoopState)] = gameLoopState,
             };
 

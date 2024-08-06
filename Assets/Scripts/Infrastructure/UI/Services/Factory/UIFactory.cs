@@ -33,7 +33,7 @@ namespace CodeBase.Infrastructure.UI.Services
             _rootCanvas = rootCanvasGameobject.transform;
         }
 
-        public async UniTask<T> CreateWindow<T>(WindowId windowType) where T : Component
+        public async UniTask<T> CreateWindow<T>(WindowId windowType) where T : WindowBase
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[windowType]);
             GameObject newGameObject = GameObject.Instantiate(prefab, _rootCanvas);
