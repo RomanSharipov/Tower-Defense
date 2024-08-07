@@ -3,22 +3,27 @@ using Cysharp.Threading.Tasks;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Transform[] pathPoints;
+    [SerializeField] private Transform[] _pathPoints;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = 360f;
 
     private int currentTargetIndex = 0;
 
-    private void StartMovement()
+    public void Construct(Transform[] pathPoints)
+    {
+        _pathPoints = pathPoints;
+    }
+
+    public void StartMovement()
     {
         MoveAlongPath().Forget();
     }
 
     private async UniTaskVoid MoveAlongPath()
     {
-        while (currentTargetIndex < pathPoints.Length)
+        while (currentTargetIndex < _pathPoints.Length)
         {
-            Transform targetPoint = pathPoints[currentTargetIndex];
+            Transform targetPoint = _pathPoints[currentTargetIndex];
             await MoveToTarget(targetPoint);
             currentTargetIndex++;
         }

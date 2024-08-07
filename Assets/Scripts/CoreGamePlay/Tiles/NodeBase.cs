@@ -13,6 +13,8 @@ public class NodeBase
     private List<Tile> _gameBoardTiles;
     private Tile _tile;
 
+    public Tile Tile => _tile;
+
     public NodeBase(bool walkable, HexCoords coords, List<Tile> gameBoardTiles, Tile tile)
     {
         Walkable = walkable;
