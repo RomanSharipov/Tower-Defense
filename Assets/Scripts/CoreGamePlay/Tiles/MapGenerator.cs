@@ -21,10 +21,12 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField, Range(0.1f, 10f)] private float roadWidth = 1f;
 
         [Header("Tiles storage")]
-        [SerializeField] private List<Tile> _emptyTiles = new List<Tile>();
+        [SerializeField] private List<Tile> _gameBoardTiles = new List<Tile>();
         [SerializeField] private List<Transform> _obstacleTiles = new List<Transform>();
 
         [SerializeField] private Transform[] _points;
+
+        public List<Tile> GameBoardTiles => _gameBoardTiles;
 
         [ContextMenu("Generate")]
         public void Generate()
@@ -43,7 +45,7 @@ namespace Assets.Scripts.CoreGamePlay
 
             foreach (Vector3 bezierPoint in bezierPoints)
             {
-                foreach (Tile tileTransform in _emptyTiles)
+                foreach (Tile tileTransform in _gameBoardTiles)
                 {
                     if (Vector3.Distance(tileTransform.transform.position, bezierPoint) <= roadWidth)
                     {
@@ -55,7 +57,7 @@ namespace Assets.Scripts.CoreGamePlay
                 }
             }
 
-            List<Tile> tilesToRemove = new List<Tile>(_emptyTiles);
+            List<Tile> tilesToRemove = new List<Tile>(_gameBoardTiles);
 
             foreach (Tile roadTile in roadTiles)
             {
@@ -67,7 +69,7 @@ namespace Assets.Scripts.CoreGamePlay
                 DestroyImmediate(tile.gameObject);
             }
 
-            _emptyTiles = roadTiles;
+            _gameBoardTiles = roadTiles;
         }
 
         private List<Vector3> CalculateBezierCurve(Transform[] points, int segmentCount)
@@ -116,15 +118,17 @@ namespace Assets.Scripts.CoreGamePlay
                 for (int q = -rOffset; q < _gridWidth - rOffset; q++)
                 {
                     Tile tile = Instantiate(_emptyTilePrefabs[Random.Range(0, _emptyTilePrefabs.Length)], _parent);
+                    tile.Construct(q,r);
                     tile.transform.position = HexCalculator.ToWorldPosition(q, r, tileSpacing);
-                    _emptyTiles.Add(tile);
+                    _gameBoardTiles.Add(tile);
                 }
             }
         }
 
+        [ContextMenu("ClearBoard")]
         private void ClearBoard()
         {
-            foreach (Tile item in _emptyTiles)
+            foreach (Tile item in _gameBoardTiles)
             {
                 DestroyImmediate(item.gameObject);
             }
@@ -133,13 +137,13 @@ namespace Assets.Scripts.CoreGamePlay
             {
                 DestroyImmediate(item.gameObject);
             }
-            _emptyTiles.Clear();
+            _gameBoardTiles.Clear();
             _obstacleTiles.Clear();
         }
 
         private void CreateObstacleTiles()
         {
-            foreach (Tile tileTransform in _emptyTiles)
+            foreach (Tile tileTransform in _gameBoardTiles)
             {
                 if (Random.Range(0, 100) < obstacleSpawnChance)
                 {

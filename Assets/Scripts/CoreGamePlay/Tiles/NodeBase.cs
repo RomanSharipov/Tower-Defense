@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.CoreGamePlay;
 using TMPro;
 using UnityEngine;
 
@@ -11,31 +12,17 @@ public class NodeBase
     public bool Walkable { get; private set; }
     private bool _selected;
     private Color _defaultColor;
+    private List<Tile> _gameBoardTiles;
+    private Tile _tile;
 
-    public virtual void Init(bool walkable, HexCoords coords)
+    public NodeBase(bool walkable, HexCoords coords, List<Tile> gameBoardTiles, Tile tile)
     {
         Walkable = walkable;
         Coords = coords;
+        _gameBoardTiles = gameBoardTiles;
+        _tile = tile;
     }
-
-    public static event Action<NodeBase> OnHoverTile;
-    private void OnEnable() => OnHoverTile += OnOnHoverTile;
-    private void OnDisable() => OnHoverTile -= OnOnHoverTile;
-    private void OnOnHoverTile(NodeBase selected) => _selected = selected == this;
-
-    protected virtual void OnMouseDown()
-    {
-        if (!Walkable) return;
-        OnHoverTile?.Invoke(this);
-    }
-
-
-
-    [Header("Pathfinding")]
-    [SerializeField]
-    private TextMeshPro _fCostText;
-
-    [SerializeField] private TextMeshPro _gCostText, _hCostText;
+    
     public List<NodeBase> Neighbors { get; protected set; }
     public NodeBase Connection { get; private set; }
     public float G { get; private set; }
@@ -44,7 +31,7 @@ public class NodeBase
 
     public void CacheNeighbors()
     {
-        Neighbors = GridManager.Instance.Tiles.Where(t => Coords.GetDistance(t.Value.Coords) == 1).Select(t => t.Value).ToList();
+        Neighbors = _gameBoardTiles.Where(t => Coords.GetDistance(t.Value.Coords) == 1).Select(t => t.Value).ToList();
     }
 
     public void SetConnection(NodeBase nodeBase)
@@ -55,23 +42,12 @@ public class NodeBase
     public void SetG(float g)
     {
         G = g;
-        SetText();
     }
 
     public void SetH(float h)
     {
         H = h;
-        SetText();
     }
-
-    private void SetText()
-    {
-        if (_selected) return;
-        _gCostText.text = G.ToString();
-        _hCostText.text = H.ToString();
-        _fCostText.text = F.ToString();
-    }
-
 }
 
 [Serializable]
