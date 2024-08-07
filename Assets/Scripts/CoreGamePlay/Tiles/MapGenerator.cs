@@ -21,7 +21,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField, Range(0.1f, 10f)] private float roadWidth = 1f;
 
         [Header("Tiles storage")]
-        [SerializeField] private List<Transform> _emptyTiles = new List<Transform>();
+        [SerializeField] private List<Tile> _emptyTiles = new List<Tile>();
         [SerializeField] private List<Transform> _obstacleTiles = new List<Transform>();
 
         [SerializeField] private Transform[] _points;
@@ -39,13 +39,13 @@ namespace Assets.Scripts.CoreGamePlay
         {
             List<Vector3> bezierPoints = CalculateBezierCurve(_points, 20); // 20 points along the curve
 
-            List<Transform> roadTiles = new List<Transform>();
+            List<Tile> roadTiles = new List<Tile>();
 
             foreach (Vector3 bezierPoint in bezierPoints)
             {
-                foreach (Transform tileTransform in _emptyTiles)
+                foreach (Tile tileTransform in _emptyTiles)
                 {
-                    if (Vector3.Distance(tileTransform.position, bezierPoint) <= roadWidth)
+                    if (Vector3.Distance(tileTransform.transform.position, bezierPoint) <= roadWidth)
                     {
                         if (!roadTiles.Contains(tileTransform))
                         {
@@ -55,14 +55,14 @@ namespace Assets.Scripts.CoreGamePlay
                 }
             }
 
-            List<Transform> tilesToRemove = new List<Transform>(_emptyTiles);
+            List<Tile> tilesToRemove = new List<Tile>(_emptyTiles);
 
-            foreach (Transform roadTile in roadTiles)
+            foreach (Tile roadTile in roadTiles)
             {
                 tilesToRemove.Remove(roadTile);
             }
 
-            foreach (Transform tile in tilesToRemove)
+            foreach (Tile tile in tilesToRemove)
             {
                 DestroyImmediate(tile.gameObject);
             }
@@ -117,14 +117,14 @@ namespace Assets.Scripts.CoreGamePlay
                 {
                     Tile tile = Instantiate(_emptyTilePrefabs[Random.Range(0, _emptyTilePrefabs.Length)], _parent);
                     tile.transform.position = HexCalculator.ToWorldPosition(q, r, tileSpacing);
-                    _emptyTiles.Add(tile.transform);
+                    _emptyTiles.Add(tile);
                 }
             }
         }
 
         private void ClearBoard()
         {
-            foreach (Transform item in _emptyTiles)
+            foreach (Tile item in _emptyTiles)
             {
                 DestroyImmediate(item.gameObject);
             }
@@ -139,13 +139,14 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void CreateObstacleTiles()
         {
-            foreach (Transform tileTransform in _emptyTiles)
+            foreach (Tile tileTransform in _emptyTiles)
             {
                 if (Random.Range(0, 100) < obstacleSpawnChance)
                 {
                     Tile obstacleTile = Instantiate(_obstacleTilePrefabs[Random.Range(0, _obstacleTilePrefabs.Length)], _parent);
-                    obstacleTile.transform.position = new Vector3(tileTransform.position.x, tileTransform.position.y + _offsetObstacleSpawn, tileTransform.position.z);
+                    obstacleTile.transform.position = new Vector3(tileTransform.transform.position.x, tileTransform.transform.position.y + _offsetObstacleSpawn, tileTransform.transform.position.z);
                     _obstacleTiles.Add(obstacleTile.transform);
+                    tileTransform.UpdateWalkable(TileId.Obstacle);
                 }
             }
         }

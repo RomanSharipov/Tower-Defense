@@ -16,5 +16,10 @@ namespace Assets.Scripts.CoreGamePlay
             Q = q;
             R = r;
         }
+
+        public void UpdateWalkable(TileId tileId)
+        {
+            _tileId = tileId;
+        }
     }
 }
