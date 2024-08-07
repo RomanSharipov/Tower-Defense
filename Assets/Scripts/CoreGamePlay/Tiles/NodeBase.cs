@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Assets.Scripts.CoreGamePlay;
-using TMPro;
 using UnityEngine;
 
 public class NodeBase
@@ -29,9 +27,23 @@ public class NodeBase
     public float H { get; private set; }
     public float F => G + H;
 
+    //public void CacheNeighbors()
+    //{
+    //    Neighbors = _gameBoardTiles.Where(t => Coords.GetDistance(t.Value.Coords) == 1).Select(t => t.Value).ToList();
+    //}
+
     public void CacheNeighbors()
     {
-        Neighbors = _gameBoardTiles.Where(t => Coords.GetDistance(t.Value.Coords) == 1).Select(t => t.Value).ToList();
+        Neighbors = new List<NodeBase>();
+
+        foreach (Tile tile in _gameBoardTiles)
+        {
+            NodeBase currentTile = tile.NodeBase;
+            if (Coords.GetDistance(currentTile.Coords) == 1)
+            {
+                Neighbors.Add(currentTile);
+            }
+        }
     }
 
     public void SetConnection(NodeBase nodeBase)
