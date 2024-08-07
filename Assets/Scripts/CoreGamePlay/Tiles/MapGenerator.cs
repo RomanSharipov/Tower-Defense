@@ -11,12 +11,6 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField, Range(1, 50)] private int _gridWidth = 16;
         [SerializeField, Range(1, 50)] private int _gridDepth = 9;
 
-        [Header("Curved Road GameBoard")]
-        [SerializeField, Range(1, 10)] private int roadThickness = 3;
-        [SerializeField, Range(1, 100)] private int roadLength = 30;
-        [SerializeField, Range(0, 10)] private float roadAmplitude = 3.0f;
-
-        [Header("Tiles settings")]
         [SerializeField] private float _offsetObstacleSpawn = 0.2f;
         [SerializeField] private Tile[] _emptyTilePrefabs;
         [SerializeField] private Tile[] _obstacleTilePrefabs;
@@ -24,49 +18,94 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private float tileSpacing = 1.0f;
         [SerializeField, Range(0, 100)] private int obstacleSpawnChance = 20;
 
+        [SerializeField, Range(0.1f, 10f)] private float roadWidth = 1f;
+
         [Header("Tiles storage")]
         [SerializeField] private List<Transform> _emptyTiles = new List<Transform>();
         [SerializeField] private List<Transform> _obstacleTiles = new List<Transform>();
+
+        [SerializeField] private Transform[] _points;
 
         [ContextMenu("Generate")]
         public void Generate()
         {
             ClearBoard();
-            //CreateRectGameBoard();
-            CreateCurvedRoadGameBoard();
-
-
+            CreateRectGameBoard();
+            CreateRoad();
             CreateObstacleTiles();
         }
 
-        private void CreateCurvedRoadGameBoard()
+        private void CreateRoad()
         {
-            for (int i = 0; i < roadLength; i++)
-            {
-                float t = i / (float)roadLength;
-                float x = i;
-                float y = Mathf.Sin(t * Mathf.PI * 2) * roadAmplitude;
+            List<Vector3> bezierPoints = CalculateBezierCurve(_points, 20); // 20 points along the curve
 
-                for (int j = -roadThickness / 2; j <= roadThickness / 2; j++)
+            List<Transform> roadTiles = new List<Transform>();
+
+            foreach (Vector3 bezierPoint in bezierPoints)
+            {
+                foreach (Transform tileTransform in _emptyTiles)
                 {
-                    Tile tile = Instantiate(_emptyTilePrefabs[Random.Range(0, _emptyTilePrefabs.Length)], _parent);
-                    tile.transform.position = HexCalculator.ToWorldPosition((int)x, (int)y + j, tileSpacing);
-                    _emptyTiles.Add(tile.transform);
+                    if (Vector3.Distance(tileTransform.position, bezierPoint) <= roadWidth)
+                    {
+                        if (!roadTiles.Contains(tileTransform))
+                        {
+                            roadTiles.Add(tileTransform);
+                        }
+                    }
                 }
             }
+
+            List<Transform> tilesToRemove = new List<Transform>(_emptyTiles);
+
+            foreach (Transform roadTile in roadTiles)
+            {
+                tilesToRemove.Remove(roadTile);
+            }
+
+            foreach (Transform tile in tilesToRemove)
+            {
+                DestroyImmediate(tile.gameObject);
+            }
+
+            _emptyTiles = roadTiles;
         }
 
-        private void CreateObstacleTiles()
+        private List<Vector3> CalculateBezierCurve(Transform[] points, int segmentCount)
         {
-            foreach (Transform tileTransform in _emptyTiles)
+            List<Vector3> bezierCurve = new List<Vector3>();
+
+            for (int i = 0; i <= segmentCount; i++)
             {
-                if (Random.Range(0, 100) < obstacleSpawnChance)
-                {
-                    Tile obstacleTile = Instantiate(_obstacleTilePrefabs[Random.Range(0, _obstacleTilePrefabs.Length)], _parent);
-                    obstacleTile.transform.position = new Vector3(tileTransform.position.x, tileTransform.position.y + _offsetObstacleSpawn, tileTransform.position.z);
-                    _obstacleTiles.Add(obstacleTile.transform);
-                }
+                float t = i / (float)segmentCount;
+                Vector3 pointOnCurve = CalculateBezierPoint(t, points);
+                bezierCurve.Add(pointOnCurve);
             }
+
+            return bezierCurve;
+        }
+
+        private Vector3 CalculateBezierPoint(float t, Transform[] points)
+        {
+            int n = points.Length - 1;
+            Vector3 point = Vector3.zero;
+
+            for (int i = 0; i <= n; i++)
+            {
+                point += BinomialCoefficient(n, i) * Mathf.Pow(1 - t, n - i) * Mathf.Pow(t, i) * points[i].position;
+            }
+
+            return point;
+        }
+
+        private int BinomialCoefficient(int n, int k)
+        {
+            int result = 1;
+            for (int i = 1; i <= k; i++)
+            {
+                result *= (n - (k - i));
+                result /= i;
+            }
+            return result;
         }
 
         private void CreateRectGameBoard()
@@ -82,6 +121,7 @@ namespace Assets.Scripts.CoreGamePlay
                 }
             }
         }
+
         private void ClearBoard()
         {
             foreach (Transform item in _emptyTiles)
@@ -95,6 +135,19 @@ namespace Assets.Scripts.CoreGamePlay
             }
             _emptyTiles.Clear();
             _obstacleTiles.Clear();
+        }
+
+        private void CreateObstacleTiles()
+        {
+            foreach (Transform tileTransform in _emptyTiles)
+            {
+                if (Random.Range(0, 100) < obstacleSpawnChance)
+                {
+                    Tile obstacleTile = Instantiate(_obstacleTilePrefabs[Random.Range(0, _obstacleTilePrefabs.Length)], _parent);
+                    obstacleTile.transform.position = new Vector3(tileTransform.position.x, tileTransform.position.y + _offsetObstacleSpawn, tileTransform.position.z);
+                    _obstacleTiles.Add(obstacleTile.transform);
+                }
+            }
         }
     }
 }
