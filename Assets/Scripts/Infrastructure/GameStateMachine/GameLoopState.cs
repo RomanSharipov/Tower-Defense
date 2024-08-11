@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.Infrastructure.Services;
+using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace CodeBase.Infrastructure
         private IObjectResolver _resolver;
         private ILevelService _levelService;
         private IWindowService _windowService;
+        private IAssetProvider _assetProvider;
         private GameStatemachine _mainGameStateMachine;
 
         private GameStatemachine _subStatemachine;
@@ -35,11 +37,12 @@ namespace CodeBase.Infrastructure
         }
 
         [Inject]
-        public void Construct(IObjectResolver objectResolver,ILevelService levelService, IWindowService windowService)
+        public void Construct(IObjectResolver objectResolver,ILevelService levelService, IWindowService windowService, IAssetProvider assetProvider)
         {
             _resolver = objectResolver;
             _levelService = levelService;
             _windowService = windowService;
+            _assetProvider = assetProvider;
             foreach (IState state in _subStatemachine.States.Values)
             {
                 _resolver.Inject(state);
@@ -57,6 +60,7 @@ namespace CodeBase.Infrastructure
         {
             _windowService.CloseWindow(WindowId.GameLoopWindow);
             _levelService.UnLoadCurrentLevel();
+            _assetProvider.Cleanup();
             return UniTask.CompletedTask;
         }
     }

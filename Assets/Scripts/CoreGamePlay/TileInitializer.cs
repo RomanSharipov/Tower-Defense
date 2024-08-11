@@ -44,7 +44,7 @@ namespace Assets.Scripts.CoreGamePlay
             }
 
             Array.Reverse(path);
-            _enemy.Construct(path);
+            _enemy.SetPath(path);
             _enemy.StartMovement();
         }
 

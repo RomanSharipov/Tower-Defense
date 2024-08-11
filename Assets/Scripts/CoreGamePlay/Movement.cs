@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
 
     private int currentTargetIndex = 0;
 
-    public void Construct(Transform[] pathPoints)
+    public void SetPath(Transform[] pathPoints)
     {
         _pathPoints = pathPoints;
     }
