@@ -14,10 +14,10 @@ namespace Tarodev_Pathfinding._Scripts
     /// </summary>
     public static class Pathfinding
     {
-        public static List<NodeBase> FindPath(NodeBase startNode, NodeBase targetNode)
+        public static List<TileData> FindPath(TileData startNode, TileData targetNode)
         {
-            var toSearch = new List<NodeBase>() { startNode };
-            var processed = new List<NodeBase>();
+            var toSearch = new List<TileData>() { startNode };
+            var processed = new List<TileData>();
 
             while (toSearch.Any())
             {
@@ -32,20 +32,16 @@ namespace Tarodev_Pathfinding._Scripts
 
                 if (current == targetNode)
                 {
-                    var currentPathTile = targetNode;
-                    var path = new List<NodeBase>();
-                    var count = 100;
+                    TileData currentPathTile = targetNode;
+                    List<TileData> path = new List<TileData>();
+                    int count = 100;
                     while (currentPathTile != startNode)
                     {
                         path.Add(currentPathTile);
                         currentPathTile = currentPathTile.Connection;
                         count--;
                         if (count < 0) throw new Exception();
-                        Debug.Log("sdfsdf");
                     }
-
-
-                    Debug.Log(path.Count);
                     return path;
                 }
 

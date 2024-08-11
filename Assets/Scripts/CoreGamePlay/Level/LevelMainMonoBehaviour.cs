@@ -8,19 +8,19 @@ namespace Assets.Scripts.CoreGamePlay.Level
 {
     public class LevelMainMonoBehaviour : MonoBehaviour, ILevelMain
     {
-        [SerializeField] private Tile[] _tiles;
+        [SerializeField] private TileView[] _tiles;
         [SerializeField] private EnemySpawner _enemySpawner;
-        [SerializeField] private Tile _start;
-        [SerializeField] private Tile _target;
+        [SerializeField] private TileView _start;
+        [SerializeField] private TileView _target;
 
         public void InitializeSceneServices()
         {
-            foreach (Tile tile in _tiles)
+            foreach (TileView tile in _tiles)
             {
                 tile.InitializeNode(_tiles.ToList());
             }
 
-            foreach (Tile tile in _tiles)
+            foreach (TileView tile in _tiles)
             {
                 tile.NodeBase.CacheNeighbors();
             }
@@ -28,15 +28,17 @@ namespace Assets.Scripts.CoreGamePlay.Level
             _enemySpawner.StartSpawnEnemies().Forget();
         }
 
-        private Transform[] GetStartPath()
+        private Vector3[] GetStartPath()
         {
-            List<NodeBase> nodes = Pathfinding.FindPath(_start.NodeBase, _target.NodeBase);
+            float yOffset = 0.41f;
 
-            Transform [] path = new Transform[nodes.Count];
+            List<TileData> nodes = Pathfinding.FindPath(_start.NodeBase, _target.NodeBase);
+
+            Vector3[] path = new Vector3[nodes.Count];
 
             for (int i = 0; i < nodes.Count; i++)
             {
-                path[i] = nodes[i].Tile.transform;
+                path[i] = nodes[i].Tile.transform.position + Vector3.up * yOffset;
             }
 
             Array.Reverse(path);

@@ -23,11 +23,11 @@ namespace CodeBase.Infrastructure.UI.Services
             _objectResolver = objectResolver;
         }
         
-        public async UniTask<Tile> CreateTile(TileId TileId) 
+        public async UniTask<TileView> CreateTile(TileId TileId) 
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[TileId]);
             GameObject newGameObject = GameObject.Instantiate(prefab);
-            Tile tile = newGameObject.GetComponent<Tile>();
+            TileView tile = newGameObject.GetComponent<TileView>();
             return tile;
         }
 

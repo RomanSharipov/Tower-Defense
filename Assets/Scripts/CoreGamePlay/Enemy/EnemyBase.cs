@@ -6,7 +6,7 @@ namespace Assets.Scripts.CoreGamePlay.Enemy
     {
         private Movement _movement; 
         
-        public void Init(Transform[] pathPoints)
+        public void Init(Vector3[] pathPoints)
         {
             _movement = new Movement(transform);
             _movement.SetPath(pathPoints);

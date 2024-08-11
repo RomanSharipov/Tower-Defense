@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using Assets.Scripts.CoreGamePlay;
 using UnityEngine;
 
-public class NodeBase
+public class TileData
 {
     public HexCoords Coords;
-    public float GetDistance(NodeBase other) => Coords.GetDistance(other.Coords); // Helper to reduce noise in pathfinding
+    public float GetDistance(TileData other) => Coords.GetDistance(other.Coords); // Helper to reduce noise in pathfinding
     public bool Walkable { get; private set; }
     private bool _selected;
     private Color _defaultColor;
-    private List<Tile> _gameBoardTiles;
-    private Tile _tile;
+    private List<TileView> _gameBoardTiles;
+    private TileView _tile;
 
-    public Tile Tile => _tile;
+    public TileView Tile => _tile;
 
-    public NodeBase(bool walkable, HexCoords coords, List<Tile> gameBoardTiles, Tile tile)
+    public TileData(bool walkable, HexCoords coords, List<TileView> gameBoardTiles, TileView tile)
     {
         Walkable = walkable;
         Coords = coords;
@@ -23,8 +23,8 @@ public class NodeBase
         _tile = tile;
     }
     
-    public List<NodeBase> Neighbors { get; protected set; }
-    public NodeBase Connection { get; private set; }
+    public List<TileData> Neighbors { get; protected set; }
+    public TileData Connection { get; private set; }
     public float G { get; private set; }
     public float H { get; private set; }
     public float F => G + H;
@@ -36,11 +36,11 @@ public class NodeBase
 
     public void CacheNeighbors()
     {
-        Neighbors = new List<NodeBase>();
+        Neighbors = new List<TileData>();
 
-        foreach (Tile tile in _gameBoardTiles)
+        foreach (TileView tile in _gameBoardTiles)
         {
-            NodeBase currentTile = tile.NodeBase;
+            TileData currentTile = tile.NodeBase;
             if (Coords.GetDistance(currentTile.Coords) == 1)
             {
                 Neighbors.Add(currentTile);
@@ -48,7 +48,7 @@ public class NodeBase
         }
     }
 
-    public void SetConnection(NodeBase nodeBase)
+    public void SetConnection(TileData nodeBase)
     {
         Connection = nodeBase;
     }

@@ -12,7 +12,7 @@ namespace Assets.Scripts.CoreGamePlay
     public class EnemySpawner : MonoBehaviour
     {
         [Inject] private IEnemyFactory _enemyFactory;
-        private Transform[] _path;
+        private Vector3[] _path;
         private bool _enabled;
         private CancellationTokenSource _spawningJob;
 
@@ -35,7 +35,7 @@ namespace Assets.Scripts.CoreGamePlay
             _spawningJob?.Cancel();
         }
 
-        public void Init(Transform[] path)
+        public void Init(Vector3[] path)
         {
             _path = path;
         }

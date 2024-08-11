@@ -12,8 +12,8 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField, Range(1, 50)] private int _gridDepth = 9;
 
         [SerializeField] private float _offsetObstacleSpawn = 0.2f;
-        [SerializeField] private Tile[] _emptyTilePrefabs;
-        [SerializeField] private Tile[] _obstacleTilePrefabs;
+        [SerializeField] private TileView[] _emptyTilePrefabs;
+        [SerializeField] private TileView[] _obstacleTilePrefabs;
         [SerializeField] private Transform _parent;
         [SerializeField] private float tileSpacing = 1.0f;
         [SerializeField, Range(0, 100)] private int obstacleSpawnChance = 20;
@@ -21,12 +21,12 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField, Range(0.1f, 10f)] private float roadWidth = 1f;
 
         [Header("Tiles storage")]
-        [SerializeField] private List<Tile> _gameBoardTiles = new List<Tile>();
+        [SerializeField] private List<TileView> _gameBoardTiles = new List<TileView>();
         [SerializeField] private List<Transform> _obstacleTiles = new List<Transform>();
 
         [SerializeField] private Transform[] _points;
 
-        public List<Tile> GameBoardTiles => _gameBoardTiles;
+        public List<TileView> GameBoardTiles => _gameBoardTiles;
 
         [ContextMenu("Generate")]
         public void Generate()
@@ -41,11 +41,11 @@ namespace Assets.Scripts.CoreGamePlay
         {
             List<Vector3> bezierPoints = CalculateBezierCurve(_points, 20); // 20 points along the curve
 
-            List<Tile> roadTiles = new List<Tile>();
+            List<TileView> roadTiles = new List<TileView>();
 
             foreach (Vector3 bezierPoint in bezierPoints)
             {
-                foreach (Tile tileTransform in _gameBoardTiles)
+                foreach (TileView tileTransform in _gameBoardTiles)
                 {
                     if (Vector3.Distance(tileTransform.transform.position, bezierPoint) <= roadWidth)
                     {
@@ -57,14 +57,14 @@ namespace Assets.Scripts.CoreGamePlay
                 }
             }
 
-            List<Tile> tilesToRemove = new List<Tile>(_gameBoardTiles);
+            List<TileView> tilesToRemove = new List<TileView>(_gameBoardTiles);
 
-            foreach (Tile roadTile in roadTiles)
+            foreach (TileView roadTile in roadTiles)
             {
                 tilesToRemove.Remove(roadTile);
             }
 
-            foreach (Tile tile in tilesToRemove)
+            foreach (TileView tile in tilesToRemove)
             {
                 DestroyImmediate(tile.gameObject);
             }
@@ -117,7 +117,7 @@ namespace Assets.Scripts.CoreGamePlay
                 int rOffset = r / 2;
                 for (int q = -rOffset; q < _gridWidth - rOffset; q++)
                 {
-                    Tile tile = Instantiate(_emptyTilePrefabs[Random.Range(0, _emptyTilePrefabs.Length)], _parent);
+                    TileView tile = Instantiate(_emptyTilePrefabs[Random.Range(0, _emptyTilePrefabs.Length)], _parent);
                     tile.Construct(q,r);
                     tile.transform.position = HexCalculator.ToWorldPosition(q, r, tileSpacing);
                     _gameBoardTiles.Add(tile);
@@ -128,7 +128,7 @@ namespace Assets.Scripts.CoreGamePlay
         [ContextMenu("ClearBoard")]
         private void ClearBoard()
         {
-            foreach (Tile item in _gameBoardTiles)
+            foreach (TileView item in _gameBoardTiles)
             {
                 DestroyImmediate(item.gameObject);
             }
@@ -143,11 +143,11 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void CreateObstacleTiles()
         {
-            foreach (Tile tileTransform in _gameBoardTiles)
+            foreach (TileView tileTransform in _gameBoardTiles)
             {
                 if (Random.Range(0, 100) < obstacleSpawnChance)
                 {
-                    Tile obstacleTile = Instantiate(_obstacleTilePrefabs[Random.Range(0, _obstacleTilePrefabs.Length)], _parent);
+                    TileView obstacleTile = Instantiate(_obstacleTilePrefabs[Random.Range(0, _obstacleTilePrefabs.Length)], _parent);
                     obstacleTile.transform.position = new Vector3(tileTransform.transform.position.x, tileTransform.transform.position.y + _offsetObstacleSpawn, tileTransform.transform.position.z);
                     _obstacleTiles.Add(obstacleTile.transform);
                     tileTransform.UpdateWalkable(TileId.Obstacle);
