@@ -11,7 +11,7 @@ namespace Assets.Scripts.CoreGamePlay
     public class TileInitializer : MonoBehaviour
     {
         [SerializeField] private MapGenerator _mapGenerator;
-        [SerializeField] private Movement _enemy;
+        private Movement _enemy;
         
         [SerializeField] private Tile _start;
         [SerializeField] private Tile _target;
@@ -46,12 +46,6 @@ namespace Assets.Scripts.CoreGamePlay
             Array.Reverse(path);
             _enemy.SetPath(path);
             _enemy.StartMovement();
-        }
-
-        [ContextMenu("SetStartPosition()")]
-        private void SetStartPosition()
-        {
-            _enemy.transform.position = _start.transform.position;
         }
     }
 }

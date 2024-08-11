@@ -18689,6 +18689,9 @@ MonoBehaviour:
   - {fileID: 715862635}
   - {fileID: 2058410423}
   - {fileID: 869312605}
+  _enemySpawner: {fileID: 1390109156}
+  _start: {fileID: 37876749}
+  _target: {fileID: 2072372937}
 --- !u!1 &818754153
 GameObject:
   m_ObjectHideFlags: 0
@@ -32531,7 +32534,7 @@ GameObject:
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -32556,7 +32559,7 @@ Transform:
   m_GameObject: {fileID: 1390109155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 35.21, y: 0, z: 61.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43831,7 +43834,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapGenerator: {fileID: 786793669}
-  _enemy: {fileID: 0}
   _start: {fileID: 678145753}
   _target: {fileID: 193492418}
   path: []

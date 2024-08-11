@@ -2,6 +2,6 @@
 {
     public interface ILevelMain
     {
-        public void InitializeTiles();
+        public void InitializeSceneServices();
     }
 }

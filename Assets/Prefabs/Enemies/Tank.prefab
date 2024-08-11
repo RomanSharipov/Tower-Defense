@@ -356,7 +356,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1702855815546897740}
-  - component: {fileID: 3645958789112965142}
   - component: {fileID: 6220063375332215828}
   m_Layer: 0
   m_Name: Tank
@@ -381,21 +380,6 @@ Transform:
   - {fileID: 6931219419229404510}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3645958789112965142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8663796036230590911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ee730e4595d84f4f86f287052b66c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pathPoints: []
-  moveSpeed: 5
-  rotateSpeed: 360
 --- !u!114 &6220063375332215828
 MonoBehaviour:
   m_ObjectHideFlags: 0

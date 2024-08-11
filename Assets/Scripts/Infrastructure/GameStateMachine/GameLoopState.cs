@@ -55,7 +55,7 @@ namespace CodeBase.Infrastructure
             _windowService.Open(WindowId.GameLoopWindow).Forget();
 
             ILevelMain levelMain = await _levelService.LoadCurrentLevel();
-            levelMain.InitializeTiles();
+            levelMain.InitializeSceneServices();
         }
 
         public UniTask Exit()

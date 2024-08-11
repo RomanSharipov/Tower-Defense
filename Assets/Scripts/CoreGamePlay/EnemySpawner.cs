@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Assets.Scripts.CoreGamePlay.Enemy;
 using Assets.Scripts.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
@@ -10,17 +12,40 @@ namespace Assets.Scripts.CoreGamePlay
     public class EnemySpawner : MonoBehaviour
     {
         [Inject] private IEnemyFactory _enemyFactory;
+        private Transform[] _path;
+        private bool _enabled;
+        private CancellationTokenSource _spawningJob;
 
-        [ContextMenu("CreateEnemy")]
-        public void CreateEnemy()
+        [ContextMenu("StartSpawnEnemies")]
+        public async UniTaskVoid StartSpawnEnemies()
         {
-            CreateEnemyAsync().Forget();
+            _enabled = true;
+
+            while (_enabled)
+            {
+                CreateEnemyAsync().Forget();
+                _spawningJob = new CancellationTokenSource();
+                await UniTask.Delay(TimeSpan.FromSeconds(1.0f),cancellationToken: _spawningJob.Token);
+            }
+        }        
+        [ContextMenu("StopSpawn")]
+        public void StopSpawn()
+        {
+            _enabled = false;
+            _spawningJob?.Cancel();
+        }
+
+        public void Init(Transform[] path)
+        {
+            _path = path;
         }
 
         private async UniTaskVoid CreateEnemyAsync()
         {
             Tank newEnemy = await _enemyFactory.CreateEnemy<Tank>(EnemyType.Tank);
             newEnemy.transform.SetParent(transform);
+            newEnemy.transform.localPosition = Vector3.zero;
+            newEnemy.Init(_path);
         }
     }
 }
