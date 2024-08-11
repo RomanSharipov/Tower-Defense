@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Assets.Scripts.CoreGamePlay;
+using Assets.Scripts.CoreGamePlay.Enemy;
 using CodeBase.Configs;
 using CodeBase.Infrastructure.UI.Services;
 using UnityEngine.AddressableAssets;
@@ -25,5 +26,8 @@ namespace CodeBase.Infrastructure.Services
         
         public IReadOnlyDictionary<TileId, AssetReference> Tiles =>
             _mainStaticData.Tiles.ToDictionary<TileId, AssetReference>();
+
+        public IReadOnlyDictionary<EnemyType, AssetReference> Enemies =>
+            _mainStaticData.Enemies.ToDictionary<EnemyType, AssetReference>();
     }
 }   

@@ -1,3 +1,4 @@
+using Assets.Scripts.Infrastructure.Services;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.UI.Services;
 using UnityEngine;
@@ -15,5 +16,8 @@ namespace CodeBase.Configs
 
         [Header("Tiles")]
         public TileIdAssetReference[] Tiles;
+
+        [Header("Tiles")]
+        public EnemyAssetReference[] Enemies;
     }
 }

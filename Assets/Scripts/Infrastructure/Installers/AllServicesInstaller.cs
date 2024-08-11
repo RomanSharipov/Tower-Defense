@@ -18,6 +18,8 @@ namespace CodeBase.Infrastructure.Installers
                 .As<ILevelService>();
             builder.Register<TileFactory>(Lifetime.Singleton)
                 .As<ITileFactory>();
+            builder.Register<EnemyFactory>(Lifetime.Singleton)
+                .As<IEnemyFactory>();
         }
     }    
 }

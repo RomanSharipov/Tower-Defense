@@ -57,3 +57,10 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  Enemies:
+  - enemyType: 1
+    AssetReference:
+      m_AssetGUID: d325e46e9392002429b844fa4643f5ee
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0

@@ -48,6 +48,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6d2d9acc355f13a498c593a29d39f3f6, type: 2}
   - {fileID: 11400000, guid: 2f8bbc4adc94bc24b8f3e9ed5d69282f, type: 2}
   - {fileID: 11400000, guid: 0e221ca80c8f5c24db7a8f21d8162ddb, type: 2}
+  - {fileID: 11400000, guid: 1cc6ae757eff9d145b4ff2f299c99992, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -91,6 +92,7 @@ MonoBehaviour:
     - Scenes
     - Windows
     - Tile
+    - Enemies
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: e077e05a6ea91fc4cab5943f0ec14301, type: 2}
