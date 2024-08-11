@@ -1,4 +1,9 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using Assets.Scripts.CoreGamePlay.Level;
+using Assets.Scripts.Extension;
+using CodeBase.Infrastructure.Services;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using VContainer;
 
 namespace Assets.Scripts.Infrastructure.Services
@@ -13,9 +18,20 @@ namespace Assets.Scripts.Infrastructure.Services
             _sceneLoader = sceneLoader;
         }
 
-        public void LoadCurrentLevel()
+        public async UniTask<ILevelMain> LoadCurrentLevel()
         {
-            _sceneLoader.Load("Level_1");
+            Scene scene = await _sceneLoader.Load("Level_1");
+            
+            if (scene.TryGetRoot(out ILevelMain result))
+            {
+                return result;
+            }
+            else 
+            {
+                Debug.LogError($"ILevelMain dont found in {scene.name} scene. Add {nameof(LevelMainMonoBehaviour)} object to {scene.name} scene");
+                return null; 
+            }
+            
         }
 
         public void UnLoadCurrentLevel()

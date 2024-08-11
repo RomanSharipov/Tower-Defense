@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.CoreGamePlay.Level;
 using Assets.Scripts.Infrastructure.Services;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.UI.Services;
@@ -49,11 +50,12 @@ namespace CodeBase.Infrastructure
             }
         }
 
-        public UniTask Enter()
+        public async UniTask Enter()
         {
-            _levelService.LoadCurrentLevel();
-            _windowService.Open(WindowId.GameLoopWindow);
-            return UniTask.CompletedTask;
+            _windowService.Open(WindowId.GameLoopWindow).Forget();
+
+            ILevelMain levelMain = await _levelService.LoadCurrentLevel();
+            levelMain.InitializeTiles();
         }
 
         public UniTask Exit()

@@ -7,18 +7,15 @@ using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay.Level
 {
-    public class LevelMainMonoBehaviour : MonoBehaviour
+    public class LevelMainMonoBehaviour : MonoBehaviour ,ILevelMain
     {
         [SerializeField] private Tile[] _tiles;
         [SerializeField] private EnemySpawner _enemySpawner;
-
-        private void Awake()
+        
+        public void InitializeTiles()
         {
-            InitializeTiles();
-        }
+            Debug.Log("InitializeTiles");
 
-        private void InitializeTiles()
-        {
             foreach (Tile tile in _tiles)
             {
                 tile.InitializeNode(_tiles.ToList());

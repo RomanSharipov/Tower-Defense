@@ -1,8 +1,11 @@
-﻿namespace Assets.Scripts.Infrastructure.Services
+﻿using Assets.Scripts.CoreGamePlay.Level;
+using Cysharp.Threading.Tasks;
+
+namespace Assets.Scripts.Infrastructure.Services
 {
     public interface ILevelService
     {
-        public void LoadCurrentLevel();
+        public UniTask<ILevelMain> LoadCurrentLevel();
         public void UnLoadCurrentLevel();
     }
 }
