@@ -333,6 +333,7 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 5089391288073444642}
+  _camera: {fileID: 906142386}
   _mainInstallers:
   - {fileID: 11400000, guid: dd6e9a7242d48fe4db85d4f4e0eaea77, type: 2}
   - {fileID: 11400000, guid: 763bcd2528a2af54cbf16a5d4875f11e, type: 2}

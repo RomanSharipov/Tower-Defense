@@ -9,6 +9,8 @@ namespace CodeBase.Infrastructure
 {
     public class BootstrapInstaller : LifetimeScope
     {
+        [SerializeField] private Camera _camera;
+
         [Header("Scriptable Installers")]
         [SerializeField]
         private List<AScriptableInstaller> _mainInstallers;
@@ -32,6 +34,7 @@ namespace CodeBase.Infrastructure
             {
                 installer.Install(builder);
             }
+            builder.RegisterInstance(_camera);
         }
     }
 }
