@@ -45,6 +45,6 @@ namespace CodeBase.Infrastructure.UI.Services
         None,
         GameLoopState,
         MenuState,
-        PauseState
+        PauseState,
     }
 }
