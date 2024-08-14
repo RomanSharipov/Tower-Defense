@@ -12,5 +12,10 @@ namespace Assets.Scripts.CoreGamePlay
             _movement.SetPath(pathPoints);
             _movement.StartMovement();
         }
+
+        private void OnDestroy()
+        {
+            _movement.StopMovement();
+        }
     }
 }
