@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
@@ -22,7 +23,7 @@ namespace CodeBase.Infrastructure
             _activeState = state;
             
             setupBeforeEnter?.Invoke((TState)state);
-
+            Debug.Log($"Enter to {state.GetType()}");
             state.Enter();
         }
     }

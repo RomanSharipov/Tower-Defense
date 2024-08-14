@@ -18,7 +18,6 @@ namespace CodeBase.Infrastructure
 
         public UniTask Enter()
         {
-            
             return UniTask.CompletedTask;
         }
 

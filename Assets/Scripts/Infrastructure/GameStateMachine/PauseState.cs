@@ -8,7 +8,6 @@ namespace CodeBase.Infrastructure
     {
         public UniTask Enter()
         {
-            Debug.Log($"PauseState Enter");
             return UniTask.CompletedTask;
         }
 
