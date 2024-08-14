@@ -1,13 +1,14 @@
 ﻿using System;
 using UniRx;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace CodeBase.Infrastructure.UI.Services
 {
     public class BuildButton : MonoBehaviour
     {
-        [SerializeField] private Button _button;
+        [SerializeField] private EventTrigger _buildButton;
         
         private GameStatemachine _gameLoopStatemachine;
 
@@ -16,15 +17,22 @@ namespace CodeBase.Infrastructure.UI.Services
             _gameLoopStatemachine = gameLoopStatemachine;
         }
 
-        private void Awake()
+        private void OnBuildingButtonClick(BaseEventData arg0)
         {
-            _button.OnClickAsObservable().Subscribe(_ =>
+            _gameLoopStatemachine.Enter<BuildingState>(buildingState =>
             {
-                _gameLoopStatemachine.Enter<BuildingState>(buildingState =>
-                {
 
-                });
-            }).AddTo(this);
+            });
+        }
+        
+        private void OnEnable()
+        {
+            _buildButton.AddListener(EventTriggerType.PointerDown,OnBuildingButtonClick);
+        }
+        
+        private void OnDisable()
+        {
+            _buildButton.RemoveListener(EventTriggerType.PointerDown, OnBuildingButtonClick);
         }
     }
 }
