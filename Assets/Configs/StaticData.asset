@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: StaticData
   m_EditorClassIdentifier: 
   WindowsData:
+    rootCanvas:
+      m_AssetGUID: 33b67f947d8defd42b1fc6fd90ce5e7b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     WindowAssetReference:
     - WindowType: 2
       assetReference:
@@ -26,11 +31,6 @@ MonoBehaviour:
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
-    rootCanvas:
-      m_AssetGUID: 33b67f947d8defd42b1fc6fd90ce5e7b
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
   SceneReferences:
   - SceneName: Menu
     Reference:
@@ -61,6 +61,13 @@ MonoBehaviour:
   - enemyType: 1
     AssetReference:
       m_AssetGUID: d325e46e9392002429b844fa4643f5ee
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  Turrets:
+  - turretType: 1
+    AssetReference:
+      m_AssetGUID: 8e42bfee16ffdee4c971449ec11ea6b6
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0

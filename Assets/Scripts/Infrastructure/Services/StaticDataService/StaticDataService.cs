@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Assets.Scripts.CoreGamePlay;
-using Assets.Scripts.CoreGamePlay.Enemy;
 using CodeBase.Configs;
 using CodeBase.Infrastructure.UI.Services;
 using UnityEngine.AddressableAssets;
@@ -29,5 +28,8 @@ namespace CodeBase.Infrastructure.Services
 
         public IReadOnlyDictionary<EnemyType, AssetReference> Enemies =>
             _mainStaticData.Enemies.ToDictionary<EnemyType, AssetReference>();
+
+        public IReadOnlyDictionary<TurretId, AssetReference> Turrets =>
+            _mainStaticData.Turrets.ToDictionary<TurretId, AssetReference>();
     }
 }   

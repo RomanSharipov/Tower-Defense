@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.CoreGamePlay.Enemy;
-using CodeBase.Infrastructure.UI;
+﻿using Assets.Scripts.CoreGamePlay;
 using Cysharp.Threading.Tasks;
 
 namespace Assets.Scripts.Infrastructure.Services

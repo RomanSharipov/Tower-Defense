@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.Services;
-using CodeBase.Infrastructure.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 using UnityEngine.AddressableAssets;
-using Assets.Scripts.CoreGamePlay.Enemy;
+using Assets.Scripts.CoreGamePlay;
 
 namespace Assets.Scripts.Infrastructure.Services
 {
@@ -25,9 +24,18 @@ namespace Assets.Scripts.Infrastructure.Services
             _assetReferenceData = staticDataService.Enemies;
         }
 
-        public async UniTask<T> CreateEnemy<T>(EnemyType windowType) where T : EnemyBase
+        //public async UniTask<T> CreateEnemy<T>(EnemyType windowType) where T : EnemyBase
+        //{
+        //    GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[windowType]);
+        //    GameObject newGameObject = GameObject.Instantiate(prefab);
+        //    T windowComponent = newGameObject.GetComponent<T>();
+        //    _objectResolver.Inject(windowComponent);
+        //    return windowComponent;
+        //}
+
+        public async UniTask<T> CreateEnemy<T>(EnemyType enemyType) where T : EnemyBase
         {
-            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[windowType]);
+            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[enemyType]);
             GameObject newGameObject = GameObject.Instantiate(prefab);
             T windowComponent = newGameObject.GetComponent<T>();
             _objectResolver.Inject(windowComponent);

@@ -91,7 +91,7 @@ MonoBehaviour:
     m_LabelNames:
     - Scenes
     - Windows
-    - Tile
+    - Turrets
     - Enemies
   m_SchemaTemplates: []
   m_GroupTemplateObjects:

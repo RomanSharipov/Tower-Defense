@@ -1,5 +1,4 @@
 using Assets.Scripts.CoreGamePlay;
-using Assets.Scripts.CoreGamePlay.Enemy;
 using Assets.Scripts.Infrastructure.Services;
 using CodeBase.Infrastructure.Services;
 using UnityEngine;

@@ -9,14 +9,16 @@ namespace CodeBase.Infrastructure
     {
         private GameStatemachine _mainGameStatemachine;
         private ISceneLoader _sceneLoader;
+        private IAssetProvider _assetProvider;
         
         private IWindowService _windowService;
 
         [Inject]
-        public void Construct(ISceneLoader sceneLoader,IWindowService windowService)
+        public void Construct(ISceneLoader sceneLoader,IWindowService windowService, IAssetProvider assetProvider)
         {
             _sceneLoader = sceneLoader;
             _windowService = windowService;
+            _assetProvider = assetProvider;
         }
 
         public MenuState(GameStatemachine mainGameStatemachine)
@@ -32,6 +34,7 @@ namespace CodeBase.Infrastructure
         public UniTask Exit()
         {
             _windowService.CloseAllWindows();
+            _assetProvider.Cleanup();
             return UniTask.CompletedTask;
         }
     }

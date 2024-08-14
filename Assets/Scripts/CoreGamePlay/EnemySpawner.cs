@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
-using Assets.Scripts.CoreGamePlay.Enemy;
 using Assets.Scripts.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -46,6 +44,11 @@ namespace Assets.Scripts.CoreGamePlay
             newEnemy.transform.SetParent(transform);
             newEnemy.transform.localPosition = Vector3.zero;
             newEnemy.Init(_path);
+        }
+
+        private void OnDestroy()
+        {
+            StopSpawn();
         }
     }
 }

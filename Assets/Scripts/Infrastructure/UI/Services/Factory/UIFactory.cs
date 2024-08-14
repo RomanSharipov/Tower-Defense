@@ -53,7 +53,7 @@ namespace CodeBase.Infrastructure.UI.Services
     [Serializable]
     public class WindowsData
     {
-        public WindowAssetReference[] WindowAssetReference;
         public AssetReference rootCanvas;
+        public WindowAssetReference[] WindowAssetReference;
     }
 }
