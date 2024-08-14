@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Infrastructure.UI.Services
 {
-    public interface ITileFactory
+    public interface ITurretFactory
     {
         public UniTask<TileView> CreateTile(TileId TileId);
     }

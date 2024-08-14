@@ -9,14 +9,14 @@ using VContainer;
 
 namespace CodeBase.Infrastructure.UI.Services
 {
-    public class TileFactory : ITileFactory
+    public class TurretFactory : ITurretFactory
     {
         private readonly IAssetProvider _assetProvider;
         private readonly IReadOnlyDictionary<TileId, AssetReference> _assetReferenceData;
         private readonly IObjectResolver _objectResolver;
         
         [Inject]
-        public TileFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, IObjectResolver objectResolver)
+        public TurretFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, IObjectResolver objectResolver)
         {
             _assetProvider = assetProvider;
             _assetReferenceData = staticDataService.Tiles;

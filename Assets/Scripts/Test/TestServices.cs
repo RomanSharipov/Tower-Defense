@@ -10,7 +10,7 @@ public class TestServices : MonoBehaviour
 {
     [Inject] private ISceneLoader sceneLoader;
     [Inject] private IObjectResolver IObjectResolver;
-    [Inject] private ITileFactory _tileFactory;
+    [Inject] private ITurretFactory _tileFactory;
     [Inject] private IEnemyFactory _enemyFactory;
 
     
