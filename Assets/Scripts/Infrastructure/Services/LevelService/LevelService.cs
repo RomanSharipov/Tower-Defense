@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.CoreGamePlay.Level;
+﻿using Assets.Scripts.CoreGamePlay;
 using Assets.Scripts.Extension;
 using CodeBase.Infrastructure.Services;
 using Cysharp.Threading.Tasks;

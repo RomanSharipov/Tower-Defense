@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.CoreGamePlay.Level
+﻿namespace Assets.Scripts.CoreGamePlay
 {
     public interface ILevelMain
     {

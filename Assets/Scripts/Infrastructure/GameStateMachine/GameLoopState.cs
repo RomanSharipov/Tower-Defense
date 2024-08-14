@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Scripts.CoreGamePlay.Level;
+using Assets.Scripts.CoreGamePlay;
 using Assets.Scripts.Infrastructure.Services;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.UI.Services;

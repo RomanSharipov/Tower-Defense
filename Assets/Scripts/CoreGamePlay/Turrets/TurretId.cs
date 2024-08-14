@@ -1,7 +1,8 @@
 ﻿namespace Assets.Scripts.CoreGamePlay
 {
-    public class Tank : EnemyBase
+    public enum TurretId
     {
-
+        None,
+        Simple
     }
 }

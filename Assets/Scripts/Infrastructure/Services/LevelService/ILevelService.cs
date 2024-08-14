@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.CoreGamePlay.Level;
+﻿using Assets.Scripts.CoreGamePlay;
 using Cysharp.Threading.Tasks;
 
 namespace Assets.Scripts.Infrastructure.Services

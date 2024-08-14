@@ -4,7 +4,7 @@ using System.Linq;
 using Tarodev_Pathfinding._Scripts;
 using UnityEngine;
 
-namespace Assets.Scripts.CoreGamePlay.Level
+namespace Assets.Scripts.CoreGamePlay
 {
     public class LevelMainMonoBehaviour : MonoBehaviour, ILevelMain
     {
