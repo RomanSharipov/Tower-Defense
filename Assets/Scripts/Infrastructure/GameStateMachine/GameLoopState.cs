@@ -31,7 +31,7 @@ namespace CodeBase.Infrastructure
             Dictionary<Type, IState> states = new Dictionary<Type, IState>()
             {
                 [typeof(PauseState)] = new PauseState(),
-                [typeof(BuildingState)] = new BuildingState()
+                [typeof(BuildingTurretState)] = new BuildingTurretState()
             };
 
             _subStatemachine.SetStates(states);

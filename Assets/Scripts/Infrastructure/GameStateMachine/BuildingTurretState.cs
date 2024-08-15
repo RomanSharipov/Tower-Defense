@@ -4,7 +4,7 @@ using VContainer;
 
 namespace CodeBase.Infrastructure
 {
-    public class BuildingState : IState
+    public class BuildingTurretState : IState
     {
         GameObject _turretTemplate;
         Camera _camera;

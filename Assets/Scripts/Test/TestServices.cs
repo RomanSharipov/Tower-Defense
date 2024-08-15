@@ -1,4 +1,5 @@
 using Assets.Scripts.CoreGamePlay;
+using Assets.Scripts.CoreGamePlay.Turrets;
 using Assets.Scripts.Infrastructure.Services;
 using CodeBase.Infrastructure.Services;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class TestServices : MonoBehaviour
     [Inject] private IObjectResolver IObjectResolver;
     [Inject] private ITurretFactory _tileFactory;
     [Inject] private IEnemyFactory _enemyFactory;
+    [Inject] private ITurretFactory _turretFactory;
 
     
     [ContextMenu("CreateTile_Empty")]
@@ -28,5 +30,11 @@ public class TestServices : MonoBehaviour
     public void CreateEnemy()
     {
         _enemyFactory.CreateEnemy<Tank>(EnemyType.Tank);
+    }
+
+    [ContextMenu("CreateTurret")]
+    public void CreateTurret()
+    {
+        _turretFactory.CreateTurret<SimpleTurret>(TurretId.Simple);
     }
 }

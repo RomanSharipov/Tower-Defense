@@ -19,7 +19,7 @@ namespace CodeBase.Infrastructure.UI.Services
 
         private void OnBuildingButtonClick(BaseEventData arg0)
         {
-            _gameLoopStatemachine.Enter<BuildingState>(buildingState =>
+            _gameLoopStatemachine.Enter<BuildingTurretState>(buildingState =>
             {
 
             });

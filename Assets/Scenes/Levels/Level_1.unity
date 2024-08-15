@@ -18363,6 +18363,7 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 1390109155}
+  - {fileID: 809222460}
   _mainInstallers: []
 --- !u!114 &809222463
 MonoBehaviour:
@@ -18689,6 +18690,7 @@ MonoBehaviour:
   - {fileID: 715862635}
   - {fileID: 2058410423}
   - {fileID: 869312605}
+  _turretsParrent: {fileID: 33170795}
   _enemySpawner: {fileID: 1390109156}
   _start: {fileID: 37876749}
   _target: {fileID: 2072372937}
