@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Assets.Scripts.Infrastructure.Services;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 
@@ -6,26 +7,26 @@ namespace CodeBase.Infrastructure
 {
     public class BuildingTurretState : IState
     {
-        GameObject _turretTemplate;
-        Camera _camera;
+        private IBuildingService _buildingService;
+        private readonly GameStatemachine _gameStatemachine;
 
+        public BuildingTurretState(GameStatemachine gameStatemachine)
+        {
+            _gameStatemachine = gameStatemachine;
+        }
 
         [Inject]
-        public void Construct(Camera camera)
+        public void Construct(IBuildingService buildingService)
         {
-            _camera = camera;
+            _buildingService = buildingService;
         }
 
-        public UniTask Enter()
+        public async UniTask Enter()
         {
-            return UniTask.CompletedTask;
+            await _buildingService.StartBuilding();
+            _gameStatemachine.Enter<IdleState>();
         }
-
-        public void Costruct(GameObject turretTemplate)
-        {
-            _turretTemplate = turretTemplate;
-        }
-
+        
         public UniTask Exit()
         {
             return UniTask.CompletedTask;

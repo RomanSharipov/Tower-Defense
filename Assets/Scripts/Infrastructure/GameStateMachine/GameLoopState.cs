@@ -27,15 +27,21 @@ namespace CodeBase.Infrastructure
             _mainGameStateMachine = mainGameStateMachine;
 
             _subStatemachine = new GameStatemachine();
+
+            PauseState pauseState = new PauseState();
+            BuildingTurretState buildingTurretState = new BuildingTurretState(_subStatemachine);
+            IdleState idleState = new IdleState();
             
             Dictionary<Type, IState> states = new Dictionary<Type, IState>()
             {
-                [typeof(PauseState)] = new PauseState(),
-                [typeof(BuildingTurretState)] = new BuildingTurretState()
+                [typeof(PauseState)] = pauseState,
+                [typeof(BuildingTurretState)] = buildingTurretState,
+                [typeof(IdleState)] = idleState
             };
 
             _subStatemachine.SetStates(states);
-            
+
+            _subStatemachine.Enter<IdleState>();
         }
 
         [Inject]

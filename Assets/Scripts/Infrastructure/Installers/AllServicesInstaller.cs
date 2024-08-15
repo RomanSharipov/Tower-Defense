@@ -21,6 +21,8 @@ namespace CodeBase.Infrastructure.Installers
                 .As<ITurretFactory>();
             builder.Register<EnemyFactory>(Lifetime.Singleton)
                 .As<IEnemyFactory>();
+            builder.Register<BuildingService>(Lifetime.Singleton)
+                .As<IBuildingService>();
         }
     }    
 }

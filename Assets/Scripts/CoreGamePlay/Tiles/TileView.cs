@@ -34,6 +34,8 @@ namespace Assets.Scripts.CoreGamePlay
         public void UpdateWalkable(TileId tileId)
         {
             _tileId = tileId;
+            bool walkable = _tileId == TileId.Empty;
+            _nodeBase.SetWalkable(walkable);
         }
     }
 }

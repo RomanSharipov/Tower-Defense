@@ -8,8 +8,7 @@ public class TileData
     public HexCoords Coords;
     public float GetDistance(TileData other) => Coords.GetDistance(other.Coords); // Helper to reduce noise in pathfinding
     public bool Walkable { get; private set; }
-    private bool _selected;
-    private Color _defaultColor;
+
     private List<TileView> _gameBoardTiles;
     private TileView _tile;
 
@@ -29,10 +28,10 @@ public class TileData
     public float H { get; private set; }
     public float F => G + H;
 
-    //public void CacheNeighbors()
-    //{
-    //    Neighbors = _gameBoardTiles.Where(t => Coords.GetDistance(t.Value.Coords) == 1).Select(t => t.Value).ToList();
-    //}
+    public void SetWalkable(bool walkable)
+    {
+        Walkable = walkable;
+    }
 
     public void CacheNeighbors()
     {
