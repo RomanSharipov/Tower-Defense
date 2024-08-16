@@ -11,8 +11,9 @@ namespace Assets.Scripts.Infrastructure.Services
     {
         private readonly ITurretFactory _turretFactory;
         private readonly Camera _camera;
-        
+
         private readonly Dictionary<Collider, TileView> _tileViewCache = new Dictionary<Collider, TileView>();
+        private float _lastValidDistance = 0f; 
 
         [Inject]
         public BuildingService(ITurretFactory turretFactory, Camera camera)
@@ -24,10 +25,12 @@ namespace Assets.Scripts.Infrastructure.Services
         public async UniTask StartBuilding()
         {
             TurretBase turretBase = await _turretFactory.CreateTurret<SimpleTurret>(TurretId.Simple);
-            
+            Ray ray;
+
             while (true)
             {
-                bool cursorOnTile = TryGetTileUnderCursor(out TileView tile);
+                ray = _camera.ScreenPointToRay(Input.mousePosition);
+                bool cursorOnTile = TryGetTileUnderCursor(ray, out TileView tile);
 
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -42,28 +45,34 @@ namespace Assets.Scripts.Infrastructure.Services
                     }
                     break;
                 }
+
                 if (cursorOnTile)
                 {
                     turretBase.transform.position = tile.transform.position;
                 }
+                else
+                {
+                    turretBase.transform.position = ray.GetPoint(_lastValidDistance);
+                }
+
                 await UniTask.Yield();
             }
         }
 
-        private bool TryGetTileUnderCursor(out TileView tileView)
+        private bool TryGetTileUnderCursor(Ray ray, out TileView tileView)
         {
             tileView = null;
 
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hitInternal))
             {
-                Collider hitCollider = hit.collider;
+                Collider hitCollider = hitInternal.collider;
+                _lastValidDistance = hitInternal.distance;
                 if (_tileViewCache.TryGetValue(hitCollider, out tileView))
                 {
                     return true;
                 }
                 tileView = hitCollider.GetComponent<TileView>();
-                
+
                 if (tileView != null)
                 {
                     _tileViewCache[hitCollider] = tileView;
