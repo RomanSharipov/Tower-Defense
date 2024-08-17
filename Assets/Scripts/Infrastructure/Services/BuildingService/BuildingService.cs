@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.CoreGamePlay;
 using Assets.Scripts.CoreGamePlay.Turrets;
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
@@ -13,7 +14,10 @@ namespace Assets.Scripts.Infrastructure.Services
         private readonly Camera _camera;
 
         private readonly Dictionary<Collider, TileView> _tileViewCache = new Dictionary<Collider, TileView>();
-        private float _lastValidDistance = 0f; 
+        private float _lastValidDistance = 0f;
+
+        public event Action<TurretBase> TurretIsBuilded;
+
 
         [Inject]
         public BuildingService(ITurretFactory turretFactory, Camera camera)
@@ -38,6 +42,7 @@ namespace Assets.Scripts.Infrastructure.Services
                     {
                         turretBase.transform.position = tile.transform.position;
                         tile.UpdateWalkable(TileId.Obstacle);
+                        TurretIsBuilded?.Invoke(turretBase);
                     }
                     else
                     {
