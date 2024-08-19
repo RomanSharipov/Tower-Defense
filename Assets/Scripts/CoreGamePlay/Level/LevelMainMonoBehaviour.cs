@@ -4,18 +4,32 @@ using System.Linq;
 using Tarodev_Pathfinding._Scripts;
 using UnityEngine;
 using VContainer;
+using Assets.Scripts.Infrastructure.Services;
 
 namespace Assets.Scripts.CoreGamePlay
 {
     public class LevelMainMonoBehaviour : MonoBehaviour, ILevelMain
     {
         [Inject] private ITurretFactory _turretFactory;
+        [Inject] private IBuildingService _buildingService;
 
         [SerializeField] private TileView[] _tiles;
         [SerializeField] private Transform _turretsParrent;
         [SerializeField] private EnemySpawner _enemySpawner;
         [SerializeField] private TileView _start;
         [SerializeField] private TileView _target;
+
+        private void Awake()
+        {
+            _buildingService.TurretIsBuilded += OnTurretIsBuilded;
+        }
+
+        private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
+        {
+            _enemySpawner.StopSpawn();
+            _enemySpawner.Init(GetStartPath());
+            _enemySpawner.StartSpawnEnemies().Forget();
+        }
 
         public void InitializeSceneServices()
         {

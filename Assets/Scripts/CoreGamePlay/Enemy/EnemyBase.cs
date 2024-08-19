@@ -12,10 +12,15 @@ namespace Assets.Scripts.CoreGamePlay
             _movement.SetPath(pathPoints);
             _movement.StartMovement();
         }
+        public void UpdatePathIfNeeded(TileData newUnwalkableTile)
+        {
+            _movement.UpdatePathIfNeeded(newUnwalkableTile);
+        }
 
         private void OnDestroy()
         {
             _movement.StopMovement();
         }
+
     }
 }

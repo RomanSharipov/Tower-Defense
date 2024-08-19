@@ -2,6 +2,9 @@
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using Assets.Scripts.Helpers;
+using System.Collections.Generic;
+using Tarodev_Pathfinding._Scripts;
+using System;
 
 public class Movement
 {
@@ -14,6 +17,7 @@ public class Movement
     private bool _isMoving = false;
     private CancellationTokenSource _cancellationTokenSource;
     private float _yOffset = 0.41f;
+    private HashSet<TileData> _remaingsPath = new HashSet<TileData>();
 
     public Movement(Transform myTranstorm)
     {
@@ -23,6 +27,11 @@ public class Movement
     public void SetPath(TileData[] pathPoints)
     {
         _path = pathPoints;
+        _remaingsPath.Clear();
+        foreach (TileData pathPoint in _path)
+        {
+            _remaingsPath.Add(pathPoint);
+        }
     }
 
     public void StartMovement()
@@ -45,12 +54,25 @@ public class Movement
         _isMoving = false;
     }
 
-    private async UniTaskVoid MoveAlongPath()
+    public void UpdatePathIfNeeded(TileData newUnwalkableTile)
+    {
+        StopMovement();
+        if (_remaingsPath.Contains(newUnwalkableTile))
+        {
+            TileData[] newPath = Pathfinding.FindPath(_path[_currentTargetIndex], _path[_path.Length - 1]).ToArray();
+            Array.Reverse(newPath);
+            SetPath (newPath);
+        }
+        StartMovement();
+    }
+
+    private async UniTaskVoid MoveAlongPath() 
     {
         while (_isMoving && _currentTargetIndex < _path.Length)
         {
             Vector3 targetPoint = HexCalculator.ToWorldPosition(_path[_currentTargetIndex].Coords.Q, _path[_currentTargetIndex].Coords.R,1.7f);
             await MoveToTarget(targetPoint + Vector3.up * _yOffset);
+            _remaingsPath.Remove(_path[_currentTargetIndex]);
             _currentTargetIndex++;
         }
     }
