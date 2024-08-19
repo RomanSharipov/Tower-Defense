@@ -5,23 +5,31 @@ using Assets.Scripts.Helpers;
 using System.Collections.Generic;
 using Tarodev_Pathfinding._Scripts;
 using System;
+using Assets.Scripts.CoreGamePlay;
 
-public class Movement
+[Serializable]
+public class Movement : MonoBehaviour
 {
-    private TileData[] _path;
-    private readonly Transform _myTranstorm;
-    private float _moveSpeed = 5f;
+    [SerializeField] private TileData[] _path;
+    [SerializeField] private List<TileView> _pathTileView = new List<TileView>();
+    private TileData _currentTarget;
+    [SerializeField] private TileView _currentTileData;
+    private Transform _myTranstorm;
+    private string _name;
+    private float _moveSpeed = 2.3f;
     private float _rotateSpeed = 360f;
+    
 
-    private int _currentTargetIndex = 0;
+    [SerializeField] private int _currentTargetIndex = 0;
     private bool _isMoving = false;
     private CancellationTokenSource _cancellationTokenSource;
     private float _yOffset = 0.41f;
     private HashSet<TileData> _remaingsPath = new HashSet<TileData>();
 
-    public Movement(Transform myTranstorm)
+    public void NewMovement(Transform myTranstorm, string name)
     {
         _myTranstorm = myTranstorm;
+        _name = name;
     }
 
     public void SetPath(TileData[] pathPoints)
@@ -54,26 +62,58 @@ public class Movement
         _isMoving = false;
     }
 
-    public void UpdatePathIfNeeded(TileData newUnwalkableTile)
+    public async UniTask UpdatePathIfNeeded(TileData newUnwalkableTile)
     {
-        StopMovement();
-        if (_remaingsPath.Contains(newUnwalkableTile))
+        bool contains = _remaingsPath.Contains(newUnwalkableTile);
+
+        Debug.Log($"contains {_name}= {contains}");
+        if (contains)
         {
-            TileData[] newPath = Pathfinding.FindPath(_path[_currentTargetIndex], _path[_path.Length - 1]).ToArray();
-            Array.Reverse(newPath);
+            StopMovement();
+
+            //if (_currentTargetIndex > 0)
+            //{
+            //    _currentTargetIndex--;
+            //}
+            //_currentTarget = _path[_currentTargetIndex];
+            //_currentTileData = _currentTarget.Tile;
+
+
+
+            Vector3 targetPoint = HexCalculator.ToWorldPosition(_currentTarget.Coords.Q, _currentTarget.Coords.R, 1.7f);
+            await MoveToTarget(targetPoint + Vector3.up * _yOffset);
+            StopMovement();
+
+
+            //TileData[] newPath = Pathfinding.FindPath(_currentTarget, _path[_path.Length - 1]).ToArray();
+            TileData[] newPath;
+            List<TileData> newListPath = Pathfinding.FindPath(_currentTarget, _path[_path.Length - 1]);
+            newListPath.Add(_currentTarget);
+            newListPath.Reverse();
+            newPath = newListPath.ToArray();
+            
+            
             SetPath (newPath);
+            _currentTargetIndex = 0;
+            
+            
+            StartMovement();
+            return;
         }
-        StartMovement();
     }
 
     private async UniTaskVoid MoveAlongPath() 
     {
         while (_isMoving && _currentTargetIndex < _path.Length)
         {
-            Vector3 targetPoint = HexCalculator.ToWorldPosition(_path[_currentTargetIndex].Coords.Q, _path[_currentTargetIndex].Coords.R,1.7f);
+            _currentTarget = _path[_currentTargetIndex];
+            _currentTileData = _currentTarget.Tile;
+            Vector3 targetPoint = HexCalculator.ToWorldPosition(_currentTarget.Coords.Q, _currentTarget.Coords.R,1.7f);
             await MoveToTarget(targetPoint + Vector3.up * _yOffset);
-            _remaingsPath.Remove(_path[_currentTargetIndex]);
+            _remaingsPath.Remove(_currentTarget);
             _currentTargetIndex++;
+            _currentTarget = _path[_currentTargetIndex];
+            _currentTileData = _currentTarget.Tile;
         }
     }
 
@@ -98,5 +138,44 @@ public class Movement
         Vector3 direction = (target - _myTranstorm.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         _myTranstorm.rotation = Quaternion.RotateTowards(_myTranstorm.rotation, lookRotation, _rotateSpeed * Time.deltaTime);
+    }
+
+    public void PrintRemainingTiles()
+    {
+        foreach (TileData item in _remaingsPath)
+        {
+            Debug.Log($"RemainingTiles = {item.Coords.Q}|{item.Coords.R}");
+        }
+    }
+
+    public void PrintAllTiles()
+    {
+        foreach (TileData item in _path)
+        {
+            Debug.Log($"AllTiles = {item.Coords.Q}|{item.Coords.R}");
+        }
+    }
+    public void Contains(TileData tileData)
+    {
+        Debug.Log($"_remaingsPath.Contains(tileData); = {_remaingsPath.Contains(tileData)}");
+    }
+
+    [ContextMenu("SetRemainingPath()")]
+    public void SetRemainingPath()
+    {
+        _pathTileView.Clear();
+        foreach (TileData item in _remaingsPath)
+        {
+            _pathTileView.Add(item.Tile);
+        }
+    }
+    [ContextMenu("SetAllPath()")]
+    public void SetAllPath()
+    {
+        _pathTileView.Clear();
+        foreach (TileData item in _path)
+        {
+            _pathTileView.Add(item.Tile);
+        }
     }
 }

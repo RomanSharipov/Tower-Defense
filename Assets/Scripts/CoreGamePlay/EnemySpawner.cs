@@ -14,8 +14,9 @@ namespace Assets.Scripts.CoreGamePlay
         [Inject] private IBuildingService _buildingService;
         private TileData[] _path;
         private bool _enabled;
+        private int _count=0;
         private CancellationTokenSource _spawningJob;
-        private List<EnemyBase> _enemiesOnBoard = new List<EnemyBase>();
+        [SerializeField] private List<EnemyBase> _enemiesOnBoard = new List<EnemyBase>();
 
         [ContextMenu("StartSpawnEnemies")]
         public async UniTaskVoid StartSpawnEnemies()
@@ -26,7 +27,7 @@ namespace Assets.Scripts.CoreGamePlay
             {
                 CreateEnemyAsync().Forget();
                 _spawningJob = new CancellationTokenSource();
-                await UniTask.Delay(TimeSpan.FromSeconds(3.0f),cancellationToken: _spawningJob.Token);
+                await UniTask.Delay(TimeSpan.FromSeconds(10.0f),cancellationToken: _spawningJob.Token);
             }
         }        
         [ContextMenu("StopSpawn")]
@@ -46,7 +47,9 @@ namespace Assets.Scripts.CoreGamePlay
             Tank newEnemy = await _enemyFactory.CreateEnemy<Tank>(EnemyType.Tank);
             newEnemy.transform.SetParent(transform);
             newEnemy.transform.localPosition = Vector3.zero;
-            newEnemy.Init(_path);
+            _count++;
+            newEnemy.name = $"{_count}.{newEnemy.name}";
+            newEnemy.Init(_path, newEnemy.name);
             _enemiesOnBoard.Add(newEnemy);
         }
 

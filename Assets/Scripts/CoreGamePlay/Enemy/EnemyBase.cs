@@ -4,11 +4,12 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public abstract class EnemyBase : MonoBehaviour
     {
-        private Movement _movement; 
+        [SerializeField] public Movement _movement; 
+        [SerializeField] public TileView _testTile; 
         
-        public void Init(TileData[] pathPoints)
+        public void Init(TileData[] pathPoints, string name)
         {
-            _movement = new Movement(transform);
+            _movement.NewMovement(transform, name);
             _movement.SetPath(pathPoints);
             _movement.StartMovement();
         }
@@ -20,6 +21,23 @@ namespace Assets.Scripts.CoreGamePlay
         private void OnDestroy()
         {
             _movement.StopMovement();
+        }
+
+        [ContextMenu("PrintRemainingTiles()")]
+        private void Print()
+        {
+            _movement.PrintRemainingTiles();
+        }
+        [ContextMenu("PrintAllTiles()")]
+        private void PrintAllTiles()
+        {
+            _movement.PrintAllTiles();
+        }
+
+        [ContextMenu("Contains()")]
+        private void Contains()
+        {
+            _movement.Contains(_testTile.NodeBase);
         }
 
     }
