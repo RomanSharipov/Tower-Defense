@@ -15,7 +15,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private TileView[] _emptyTilePrefabs;
         [SerializeField] private TileView[] _obstacleTilePrefabs;
         [SerializeField] private Transform _parent;
-        [SerializeField] private float tileSpacing = 1.0f;
+        [SerializeField] private float tileSpacing = 1.7f;
         [SerializeField, Range(0, 100)] private int obstacleSpawnChance = 20;
 
         [SerializeField, Range(0.1f, 10f)] private float roadWidth = 1f;

@@ -81,6 +81,8 @@ public struct HexCoords
     private static readonly float Sqrt3 = Mathf.Sqrt(3);
 
     public Vector2 Pos { get; set; }
+    public int Q => _q;
+    public int R => _r;
 
     private int AxialLength()
     {

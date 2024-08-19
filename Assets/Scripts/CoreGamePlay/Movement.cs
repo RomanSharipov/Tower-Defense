@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using Assets.Scripts.Helpers;
 
 public class Movement
 {
-    private Vector3[] _pathPoints;
+    private TileData[] _path;
     private readonly Transform _myTranstorm;
     private float _moveSpeed = 5f;
     private float _rotateSpeed = 360f;
@@ -12,15 +13,16 @@ public class Movement
     private int _currentTargetIndex = 0;
     private bool _isMoving = false;
     private CancellationTokenSource _cancellationTokenSource;
+    private float _yOffset = 0.41f;
 
     public Movement(Transform myTranstorm)
     {
         _myTranstorm = myTranstorm;
     }
 
-    public void SetPath(Vector3[] pathPoints)
+    public void SetPath(TileData[] pathPoints)
     {
-        _pathPoints = pathPoints;
+        _path = pathPoints;
     }
 
     public void StartMovement()
@@ -45,10 +47,10 @@ public class Movement
 
     private async UniTaskVoid MoveAlongPath()
     {
-        while (_isMoving && _currentTargetIndex < _pathPoints.Length)
+        while (_isMoving && _currentTargetIndex < _path.Length)
         {
-            Vector3 targetPoint = _pathPoints[_currentTargetIndex];
-            await MoveToTarget(targetPoint);
+            Vector3 targetPoint = HexCalculator.ToWorldPosition(_path[_currentTargetIndex].Coords.Q, _path[_currentTargetIndex].Coords.R,1.7f);
+            await MoveToTarget(targetPoint + Vector3.up * _yOffset);
             _currentTargetIndex++;
         }
     }

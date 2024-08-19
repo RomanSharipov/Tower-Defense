@@ -33,22 +33,14 @@ namespace Assets.Scripts.CoreGamePlay
             _turretFactory.SetParrentTurret(_turretsParrent);
         }
 
-        private Vector3[] GetStartPath()
+        private TileData[] GetStartPath()
         {
-            float yOffset = 0.41f;
-
             List<TileData> nodes = Pathfinding.FindPath(_start.NodeBase, _target.NodeBase);
+            TileData[] nodesArray = nodes.ToArray();
+            
+            Array.Reverse(nodesArray);
 
-            Vector3[] path = new Vector3[nodes.Count];
-
-            for (int i = 0; i < nodes.Count; i++)
-            {
-                path[i] = nodes[i].Tile.transform.position + Vector3.up * yOffset;
-            }
-
-            Array.Reverse(path);
-
-            return path;
+            return nodesArray;
         }
     }
 }
