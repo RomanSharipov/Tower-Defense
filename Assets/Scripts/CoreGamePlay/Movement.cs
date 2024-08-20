@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Tarodev_Pathfinding._Scripts;
 using System;
 using Assets.Scripts.CoreGamePlay;
+using System.Threading.Tasks;
 
 [Serializable]
 public class Movement : MonoBehaviour
@@ -16,7 +17,7 @@ public class Movement : MonoBehaviour
     
     private Transform _myTranstorm;
     private string _name;
-    private float _moveSpeed = 2.0f;
+    private float _moveSpeed = 2.1f;
     private float _rotateSpeed = 360f;
     
 
@@ -67,35 +68,40 @@ public class Movement : MonoBehaviour
         if (_remaingsPath.Contains(newUnwalkableTile))
         {
             StopMovement();
-            
-            Vector3 targetPoint = HexCalculator.ToWorldPosition(_currentTarget.Coords.Q, _currentTarget.Coords.R, 1.7f);
-            await MoveToTarget(targetPoint + Vector3.up * _yOffset);
+            if (newUnwalkableTile == _currentTarget)
+            {
+                _currentTargetIndex--;
+                _currentTarget = _path[_currentTargetIndex];
+            }
+
+            await MoveToTarget(_currentTarget);
+
             StopMovement();
-            
+
             TileData[] newPath;
             List<TileData> newListPath = Pathfinding.FindPath(_currentTarget, _path[_path.Length - 1]);
             newListPath.Add(_currentTarget);
             newListPath.Reverse();
             newPath = newListPath.ToArray();
-            
-            
-            SetPath (newPath);
+
+
+            SetPath(newPath);
             _currentTargetIndex = 0;
-            
-            
+
+
             StartMovement();
             return;
         }
     }
-
+    
     private async UniTaskVoid MoveAlongPath() 
     {
         while (_isMoving && _currentTargetIndex < _path.Length)
         {
             _currentTarget = _path[_currentTargetIndex];
             
-            Vector3 targetPoint = HexCalculator.ToWorldPosition(_currentTarget.Coords.Q, _currentTarget.Coords.R,1.7f);
-            await MoveToTarget(targetPoint + Vector3.up * _yOffset);
+            
+            await MoveToTarget(_currentTarget);
             _remaingsPath.Remove(_currentTarget);
             
             if (_currentTargetIndex + 1 >= _path.Length)
@@ -109,8 +115,12 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private async UniTask MoveToTarget(Vector3 target)
+    private async UniTask MoveToTarget(TileData targetTile)
     {
+        Vector3 target = HexCalculator.ToWorldPosition(targetTile.Coords.Q, targetTile.Coords.R, 1.7f);
+
+        target += Vector3.up * _yOffset;
+
         while (_isMoving && Vector3.Distance(_myTranstorm.position, target) > 0.1f)
         {
             MoveTowardsTarget(target);

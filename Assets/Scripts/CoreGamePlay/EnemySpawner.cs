@@ -27,7 +27,7 @@ namespace Assets.Scripts.CoreGamePlay
             {
                 CreateEnemyAsync().Forget();
                 _spawningJob = new CancellationTokenSource();
-                await UniTask.Delay(TimeSpan.FromSeconds(1.0f),cancellationToken: _spawningJob.Token);
+                await UniTask.Delay(TimeSpan.FromSeconds(3.0f),cancellationToken: _spawningJob.Token);
             }
         }        
         [ContextMenu("StopSpawn")]
