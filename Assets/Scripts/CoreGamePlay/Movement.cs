@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private TileView _currentTileData;
     private Transform _myTranstorm;
     private string _name;
-    private float _moveSpeed = 2.3f;
+    private float _moveSpeed = 2.0f;
     private float _rotateSpeed = 360f;
     
 
