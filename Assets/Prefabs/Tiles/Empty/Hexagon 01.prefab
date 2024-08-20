@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -3841693944225662771}
   - component: {fileID: 8085994354087112838}
   - component: {fileID: 6328628743862338636}
-  - component: {fileID: 4616853646634604750}
+  - component: {fileID: 4684392649051807275}
   m_Layer: 0
   m_Name: Hexagon 01
   m_TagString: Untagged
@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _q: 0
+  _r: 0
 --- !u!33 &8085994354087112838
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -98,8 +100,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4616853646634604750
-MeshCollider:
+--- !u!135 &4684392649051807275
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,7 +118,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7759005676771344608, guid: 000f92bbee441114bbbe3a920f3d9683, type: 3}
+  serializedVersion: 3
+  m_Radius: 1.6171727
+  m_Center: {x: 0.000000059604645, y: 0.19712105, z: 0}
