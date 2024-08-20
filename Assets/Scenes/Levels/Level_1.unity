@@ -18696,7 +18696,7 @@ MonoBehaviour:
   _turretsParrent: {fileID: 33170795}
   _enemySpawner: {fileID: 1390109156}
   _start: {fileID: 1747071826}
-  _target: {fileID: 1861977969}
+  _target: {fileID: 1278473689}
 --- !u!1 &809593515
 GameObject:
   m_ObjectHideFlags: 0

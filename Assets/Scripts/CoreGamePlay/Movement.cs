@@ -65,21 +65,11 @@ public class Movement : MonoBehaviour
     public async UniTask UpdatePathIfNeeded(TileData newUnwalkableTile)
     {
         bool contains = _remaingsPath.Contains(newUnwalkableTile);
-
-        Debug.Log($"contains {_name}= {contains}");
+        
         if (contains)
         {
             StopMovement();
-
-            //if (_currentTargetIndex > 0)
-            //{
-            //    _currentTargetIndex--;
-            //}
-            //_currentTarget = _path[_currentTargetIndex];
-            //_currentTileData = _currentTarget.Tile;
-
-
-
+            
             Vector3 targetPoint = HexCalculator.ToWorldPosition(_currentTarget.Coords.Q, _currentTarget.Coords.R, 1.7f);
             await MoveToTarget(targetPoint + Vector3.up * _yOffset);
             StopMovement();
@@ -111,6 +101,13 @@ public class Movement : MonoBehaviour
             Vector3 targetPoint = HexCalculator.ToWorldPosition(_currentTarget.Coords.Q, _currentTarget.Coords.R,1.7f);
             await MoveToTarget(targetPoint + Vector3.up * _yOffset);
             _remaingsPath.Remove(_currentTarget);
+            
+            if (_currentTargetIndex + 1 >= _path.Length)
+            {
+                StopMovement();
+                return;
+            }
+            
             _currentTargetIndex++;
             _currentTarget = _path[_currentTargetIndex];
             _currentTileData = _currentTarget.Tile;
@@ -177,5 +174,11 @@ public class Movement : MonoBehaviour
         {
             _pathTileView.Add(item.Tile);
         }
+    }
+
+    [ContextMenu("Set_currentTarget()")]
+    public void Set_currentTarget()
+    {
+        _currentTarget = _path[_currentTargetIndex];
     }
 }

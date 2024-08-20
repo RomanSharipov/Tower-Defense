@@ -23,7 +23,7 @@ namespace CodeBase.Infrastructure
             _activeState = state;
             
             setupBeforeEnter?.Invoke((TState)state);
-            Debug.Log($"Enter to {state.GetType()}");
+            
             state.Enter();
         }
     }

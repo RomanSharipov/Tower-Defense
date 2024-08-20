@@ -22,12 +22,12 @@ namespace Assets.Scripts.CoreGamePlay
         public async UniTaskVoid StartSpawnEnemies()
         {
             _enabled = true;
-
+            _spawningJob?.Cancel();
             while (_enabled)
             {
                 CreateEnemyAsync().Forget();
                 _spawningJob = new CancellationTokenSource();
-                await UniTask.Delay(TimeSpan.FromSeconds(10.0f),cancellationToken: _spawningJob.Token);
+                await UniTask.Delay(TimeSpan.FromSeconds(1.0f),cancellationToken: _spawningJob.Token);
             }
         }        
         [ContextMenu("StopSpawn")]
@@ -45,10 +45,11 @@ namespace Assets.Scripts.CoreGamePlay
         private async UniTaskVoid CreateEnemyAsync()
         {
             Tank newEnemy = await _enemyFactory.CreateEnemy<Tank>(EnemyType.Tank);
-            newEnemy.transform.SetParent(transform);
+            
+            newEnemy.transform.parent = transform;
             newEnemy.transform.localPosition = Vector3.zero;
             _count++;
-            newEnemy.name = $"{_count}.{newEnemy.name}";
+            
             newEnemy.Init(_path, newEnemy.name);
             _enemiesOnBoard.Add(newEnemy);
         }
@@ -56,11 +57,17 @@ namespace Assets.Scripts.CoreGamePlay
         private void OnDestroy()
         {
             StopSpawn();
+            _spawningJob?.Dispose();
+            _spawningJob = null;
         }
-
-        private void Awake()
+        
+        private void OnEnable()
         {
             _buildingService.TurretIsBuilded += UpdateEnemiesPath;
+        }
+        private void OnDisable()
+        {
+            _buildingService.TurretIsBuilded -= UpdateEnemiesPath;
         }
 
         private void UpdateEnemiesPath(TurretBase turret, TileData tileData)

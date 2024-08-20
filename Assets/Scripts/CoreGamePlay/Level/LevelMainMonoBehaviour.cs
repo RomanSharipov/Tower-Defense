@@ -18,10 +18,15 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private EnemySpawner _enemySpawner;
         [SerializeField] private TileView _start;
         [SerializeField] private TileView _target;
-
-        private void Awake()
+        
+        private void OnEnable()
         {
             _buildingService.TurretIsBuilded += OnTurretIsBuilded;
+        }
+
+        private void OnDisable()
+        {
+            _buildingService.TurretIsBuilded -= OnTurretIsBuilded;
         }
 
         private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
