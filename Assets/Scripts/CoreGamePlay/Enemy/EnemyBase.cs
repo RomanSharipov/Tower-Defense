@@ -22,23 +22,5 @@ namespace Assets.Scripts.CoreGamePlay
         {
             _movement.StopMovement();
         }
-
-        [ContextMenu("PrintRemainingTiles()")]
-        private void Print()
-        {
-            _movement.PrintRemainingTiles();
-        }
-        [ContextMenu("PrintAllTiles()")]
-        private void PrintAllTiles()
-        {
-            _movement.PrintAllTiles();
-        }
-
-        [ContextMenu("Contains()")]
-        private void Contains()
-        {
-            _movement.Contains(_testTile.NodeBase);
-        }
-
     }
 }
