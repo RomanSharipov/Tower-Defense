@@ -35,6 +35,7 @@ namespace Assets.Scripts.Infrastructure.Services
             {
                 ray = _camera.ScreenPointToRay(Input.mousePosition);
                 bool cursorOnTile = TryGetTileUnderCursor(ray, out TileView tile);
+                bool cursorOnEnemy = EnemyUnderCursor(ray);
 
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -51,7 +52,7 @@ namespace Assets.Scripts.Infrastructure.Services
                     break;
                 }
 
-                if (cursorOnTile)
+                if (cursorOnTile && !cursorOnEnemy)
                 {
                     turretBase.transform.position = tile.transform.position;
                 }
@@ -85,6 +86,27 @@ namespace Assets.Scripts.Infrastructure.Services
                 }
             }
 
+            return false;
+        }
+
+        private bool EnemyUnderCursor(Ray ray)
+        {
+            RaycastHit hit;
+
+            
+            if (Physics.Raycast(ray, out hit))
+            {
+                // Получаем объект, на который указывает луч
+                GameObject hitObject = hit.collider.gameObject;
+
+                // Проверяем, находится ли объект на слое "Enemy"
+                if (hitObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    return true; // Луч попал на врага
+                }
+            }
+
+            // Если луч не попал на врага, возвращаем false
             return false;
         }
     }

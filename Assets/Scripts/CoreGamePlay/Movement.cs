@@ -11,17 +11,16 @@ using System.Threading.Tasks;
 [Serializable]
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private TileData[] _path;
-    [SerializeField] private List<TileView> _pathTileView = new List<TileView>();
+    private TileData[] _path;
     private TileData _currentTarget;
     
     private Transform _myTranstorm;
-    private string _name;
+    
     private float _moveSpeed = 2.1f;
     private float _rotateSpeed = 360f;
     
 
-    [SerializeField] private int _currentTargetIndex = 0;
+    private int _currentTargetIndex = 0;
     private bool _isMoving = false;
     private CancellationTokenSource _cancellationTokenSource;
     private float _yOffset = 0.41f;
@@ -30,7 +29,6 @@ public class Movement : MonoBehaviour
     public void NewMovement(Transform myTranstorm, string name)
     {
         _myTranstorm = myTranstorm;
-        _name = name;
     }
 
     public void SetPath(TileData[] pathPoints)
