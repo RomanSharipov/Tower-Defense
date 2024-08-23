@@ -2,24 +2,54 @@
 
 public class CollisionAvoidance : MonoBehaviour
 {
-    public LayerMask enemyLayer;
-    public float detectionDistance = 1.0f;
-    public float scale = 1.0f;
+    [SerializeField] private EnemyMovement myMovement;
+    [SerializeField] private int count;
     
-    private EnemyMovement myMovement;
-    
-
-    private void Awake()
-    {
-        myMovement = GetComponent<EnemyMovement>();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.TryGetComponent(out Movement otherMovement)) 
-        //{
-        //    myMovement.StopMovement();
-        //    otherMovement.StopMovement();
-        //}
+        if (other.TryGetComponent(out EnemyMovement otherMovement))
+        {
+            count++;
+            if (FurtherFromTheTargetThan(otherMovement))
+            {
+                myMovement.StopMovement();
+                return;
+            }
+            if (SameDistanceWith(otherMovement))
+            {
+                if (FurtherFromCurrentTileThan(otherMovement))
+                {
+                    myMovement.StopMovement();
+                    return;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out EnemyMovement otherMovement))
+        {
+            count--;
+            if (count == 0)
+            {
+                myMovement.StartMovement();
+            }
+        }
+    }
+
+    private bool FurtherFromTheTargetThan(EnemyMovement otherEnemy)
+    {
+        return myMovement.RemaningTiles > otherEnemy.RemaningTiles;
+    }
+    
+    private bool SameDistanceWith(EnemyMovement otherEnemy)
+    {
+        return myMovement.RemaningTiles == otherEnemy.RemaningTiles;
+    }
+
+    private bool FurtherFromCurrentTileThan(EnemyMovement otherEnemy)
+    {
+        return myMovement.DistanceOfClosestTargetTile > otherEnemy.DistanceOfClosestTargetTile;
     }
 }

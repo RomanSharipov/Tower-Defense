@@ -25,6 +25,7 @@ public class EnemyMovement : MonoBehaviour
     private HashSet<TileData> _remaingsPath = new HashSet<TileData>();
 
     public float DistanceOfClosestTargetTile => _distanceOfClosestTargetTile;
+    public int RemaningTiles => _remaingsPath.Count;
 
     public void NewMovement(Transform myTranstorm, string name)
     {
@@ -156,4 +157,6 @@ public class EnemyMovement : MonoBehaviour
     {
         Debug.Log($"_remaingsPath.Count = {_remaingsPath.Count}");
     }
+
+    
 }
