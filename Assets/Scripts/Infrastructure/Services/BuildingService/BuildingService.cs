@@ -100,7 +100,7 @@ namespace Assets.Scripts.Infrastructure.Services
                 GameObject hitObject = hit.collider.gameObject;
 
                 // Проверяем, находится ли объект на слое "Enemy"
-                if (hitObject.layer == LayerMask.NameToLayer("Enemy"))
+                if (hitObject.layer == LayerMask.NameToLayer("BlockBuilding"))
                 {
                     return true; // Луч попал на врага
                 }

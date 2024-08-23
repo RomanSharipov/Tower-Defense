@@ -5,26 +5,26 @@ using Assets.Scripts.Helpers;
 using System.Collections.Generic;
 using Tarodev_Pathfinding._Scripts;
 using System;
-using Assets.Scripts.CoreGamePlay;
-using System.Threading.Tasks;
 
 [Serializable]
-public class Movement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     private TileData[] _path;
     private TileData _currentTarget;
     
     private Transform _myTranstorm;
     
-    private float _moveSpeed = 2.1f;
+    [SerializeField] private float _moveSpeed = 2.1f;
     private float _rotateSpeed = 360f;
     
-
     private int _currentTargetIndex = 0;
     private bool _isMoving = false;
     private CancellationTokenSource _cancellationTokenSource;
     private float _yOffset = 0.41f;
+    private float _distanceOfClosestTargetTile;
     private HashSet<TileData> _remaingsPath = new HashSet<TileData>();
+
+    public float DistanceOfClosestTargetTile => _distanceOfClosestTargetTile;
 
     public void NewMovement(Transform myTranstorm, string name)
     {
@@ -63,35 +63,45 @@ public class Movement : MonoBehaviour
 
     public async UniTask UpdatePathIfNeeded(TileData newUnwalkableTile)
     {
-        if (_remaingsPath.Contains(newUnwalkableTile))
+        if (PathContainsTile(newUnwalkableTile))
         {
-            StopMovement();
-            if (newUnwalkableTile == _currentTarget)
-            {
-                _currentTargetIndex--;
-                _currentTarget = _path[_currentTargetIndex];
-            }
-
-            await MoveToTarget(_currentTarget);
-
-            StopMovement();
-
-            TileData[] newPath;
-            List<TileData> newListPath = Pathfinding.FindPath(_currentTarget, _path[_path.Length - 1]);
-            newListPath.Add(_currentTarget);
-            newListPath.Reverse();
-            newPath = newListPath.ToArray();
-
-
-            SetPath(newPath);
-            _currentTargetIndex = 0;
-
-
-            StartMovement();
-            return;
+            await UpdatePath(newUnwalkableTile);
         }
     }
-    
+
+    public bool PathContainsTile(TileData newUnwalkableTile)
+    {
+        return _remaingsPath.Contains(newUnwalkableTile);
+    }
+
+    public async UniTask UpdatePath(TileData newUnwalkableTile)
+    {
+        StopMovement();
+        if (newUnwalkableTile == _currentTarget)
+        {
+            _currentTargetIndex--;
+            _currentTarget = _path[_currentTargetIndex];
+        }
+
+        await MoveToTarget(_currentTarget);
+
+        StopMovement();
+
+        TileData[] newPath;
+        List<TileData> newListPath = Pathfinding.FindPath(_currentTarget, _path[_path.Length - 1]);
+        newListPath.Add(_currentTarget);
+        newListPath.Reverse();
+        newPath = newListPath.ToArray();
+
+
+        SetPath(newPath);
+        _currentTargetIndex = 0;
+
+
+        StartMovement();
+        return;
+    }
+
     private async UniTaskVoid MoveAlongPath() 
     {
         while (_isMoving && _currentTargetIndex < _path.Length)
@@ -118,9 +128,10 @@ public class Movement : MonoBehaviour
         Vector3 target = HexCalculator.ToWorldPosition(targetTile.Coords.Q, targetTile.Coords.R, 1.7f);
 
         target += Vector3.up * _yOffset;
-
-        while (_isMoving && Vector3.Distance(_myTranstorm.position, target) > 0.1f)
+        _distanceOfClosestTargetTile = Vector3.Distance(_myTranstorm.position, target);
+        while (_isMoving && _distanceOfClosestTargetTile > 0.1f)
         {
+            _distanceOfClosestTargetTile = Vector3.Distance(_myTranstorm.position, target);
             MoveTowardsTarget(target);
             RotateTowardsTarget(target);
             await UniTask.Yield(_cancellationTokenSource.Token);
@@ -138,5 +149,11 @@ public class Movement : MonoBehaviour
         Vector3 direction = (target - _myTranstorm.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         _myTranstorm.rotation = Quaternion.RotateTowards(_myTranstorm.rotation, lookRotation, _rotateSpeed * Time.deltaTime);
+    }
+
+    [ContextMenu("Print()")]
+    public void Print()
+    {
+        Debug.Log($"_remaingsPath.Count = {_remaingsPath.Count}");
     }
 }

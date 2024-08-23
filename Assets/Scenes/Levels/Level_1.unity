@@ -30279,6 +30279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemiesOnBoard: []
+  _interval: 4
 --- !u!4 &1390109157
 Transform:
   m_ObjectHideFlags: 0

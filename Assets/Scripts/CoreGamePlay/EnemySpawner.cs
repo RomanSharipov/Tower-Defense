@@ -16,7 +16,8 @@ namespace Assets.Scripts.CoreGamePlay
         private bool _enabled;
         private int _count=0;
         private CancellationTokenSource _spawningJob;
-        [SerializeField] private List<EnemyBase> _enemiesOnBoard = new List<EnemyBase>();
+        [SerializeField] private List<EnemyMovement> _enemiesOnBoard = new List<EnemyMovement>();
+        [SerializeField] private float _interval = 2.0f;
 
         [ContextMenu("StartSpawnEnemies")]
         public async UniTaskVoid StartSpawnEnemies()
@@ -27,7 +28,7 @@ namespace Assets.Scripts.CoreGamePlay
             {
                 CreateEnemyAsync().Forget();
                 _spawningJob = new CancellationTokenSource();
-                await UniTask.Delay(TimeSpan.FromSeconds(3.0f),cancellationToken: _spawningJob.Token);
+                await UniTask.Delay(TimeSpan.FromSeconds(_interval),cancellationToken: _spawningJob.Token);
             }
         }        
         [ContextMenu("StopSpawn")]
@@ -51,7 +52,7 @@ namespace Assets.Scripts.CoreGamePlay
             _count++;
             
             newEnemy.Init(_path, newEnemy.name);
-            _enemiesOnBoard.Add(newEnemy);
+            _enemiesOnBoard.Add(newEnemy.Movement);
         }
 
         private void OnDestroy()
@@ -72,7 +73,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void UpdateEnemiesPath(TurretBase turret, TileData tileData)
         {
-            foreach (EnemyBase enemy in _enemiesOnBoard)
+            foreach (EnemyMovement enemy in _enemiesOnBoard)
             {
                 enemy.UpdatePathIfNeeded(tileData);
             }
