@@ -31,9 +31,9 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
         {
-            _enemySpawner.StopSpawn();
+            _enemySpawner.enabled = false;
             _enemySpawner.Init(GetStartPath());
-            _enemySpawner.StartSpawnEnemies().Forget();
+            _enemySpawner.enabled = true;
         }
 
         public void InitializeSceneServices()
@@ -48,7 +48,7 @@ namespace Assets.Scripts.CoreGamePlay
                 tile.NodeBase.CacheNeighbors();
             }
             _enemySpawner.Init(GetStartPath());
-            _enemySpawner.StartSpawnEnemies().Forget();
+            _enemySpawner.StartSpawnEnemies();
             _turretFactory.SetParrentTurret(_turretsParrent);
         }
 

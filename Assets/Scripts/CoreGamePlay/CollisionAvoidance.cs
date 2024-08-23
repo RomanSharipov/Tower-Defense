@@ -12,14 +12,14 @@ public class CollisionAvoidance : MonoBehaviour
             count++;
             if (FurtherFromTheTargetThan(otherMovement))
             {
-                myMovement.StopMovement();
+                myMovement.Pause();
                 return;
             }
             if (SameDistanceWith(otherMovement))
             {
                 if (FurtherFromCurrentTileThan(otherMovement))
                 {
-                    myMovement.StopMovement();
+                    myMovement.Pause();
                     return;
                 }
             }
@@ -33,7 +33,7 @@ public class CollisionAvoidance : MonoBehaviour
             count--;
             if (count == 0)
             {
-                myMovement.StartMovement();
+                myMovement.UnPause();
             }
         }
     }
