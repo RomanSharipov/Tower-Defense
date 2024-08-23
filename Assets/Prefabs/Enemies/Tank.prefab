@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMovement: {fileID: 146876697847153402}
+  count: 0
+  _blockControl: 0
 --- !u!135 &8096367573457365382
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -531,7 +533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee730e4595d84f4f86f287052b66c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 2
+  _startSpeed: 3
+  _collisionAvoidance: {fileID: 7251969907051248856}
 --- !u!65 &5006645408848359789
 BoxCollider:
   m_ObjectHideFlags: 0

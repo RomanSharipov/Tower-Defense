@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public class CollisionAvoidance : MonoBehaviour
 {
     [SerializeField] private EnemyMovement myMovement;
     [SerializeField] private int count;
+    [SerializeField] private bool _blockControl;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -17,13 +20,31 @@ public class CollisionAvoidance : MonoBehaviour
             }
             if (SameDistanceWith(otherMovement))
             {
+                if (_blockControl)
+                    return;
+
+                otherMovement.BlockTriggerOnCollisionAvoidance();
+
                 if (FurtherFromCurrentTileThan(otherMovement))
                 {
                     myMovement.Pause();
-                    return;
+                    otherMovement.UnPause();
                 }
+                else 
+                {
+                    myMovement.UnPause();
+                    otherMovement.Pause();
+                }
+
             }
         }
+    }
+
+    public async UniTask BlockTrigger()
+    {
+        _blockControl = true;
+        await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
+        _blockControl = false;
     }
 
     private void OnTriggerExit(Collider other)

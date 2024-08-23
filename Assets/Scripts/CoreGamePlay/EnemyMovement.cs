@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Tarodev_Pathfinding._Scripts;
 using System;
 using Assets.Scripts.Helpers;
+using DG.Tweening;
+using Cysharp.Threading.Tasks;
 
 [Serializable]
 public class EnemyMovement : MonoBehaviour
@@ -13,6 +15,7 @@ public class EnemyMovement : MonoBehaviour
     private Transform _myTranstorm;
 
     [SerializeField] private float _startSpeed = 2.1f;
+    [SerializeField] private CollisionAvoidance _collisionAvoidance;
     private float _currentSpeed;
     private float _rotateSpeed = 360f;
 
@@ -36,6 +39,11 @@ public class EnemyMovement : MonoBehaviour
     public void NewMovement(Transform myTranstorm, string name)
     {
         _myTranstorm = myTranstorm;
+    }
+
+    public void BlockTriggerOnCollisionAvoidance()
+    {
+        _collisionAvoidance.BlockTrigger().Forget();
     }
 
     public void SetPath(TileData[] pathPoints)
@@ -157,15 +165,15 @@ public class EnemyMovement : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         _myTranstorm.rotation = Quaternion.RotateTowards(_myTranstorm.rotation, lookRotation, _rotateSpeed * Time.deltaTime);
     }
-
+    
     public void UnPause()
     {
-        _currentSpeed = _startSpeed;
+        DOTween.To(() => _currentSpeed, x => _currentSpeed = x, _startSpeed, 0.5f);
     }
-
+    
     public void Pause()
     {
-        _currentSpeed = 0;
+        DOTween.To(() => _currentSpeed, x => _currentSpeed = x, 0f, 0.5f);
     }
 
     public void UpdatePathIfNeeded(TileData tileData)
