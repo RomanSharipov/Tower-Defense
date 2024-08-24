@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using UnityEditor;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.UI.Services

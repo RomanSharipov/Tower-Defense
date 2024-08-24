@@ -34,12 +34,12 @@ namespace Assets.Scripts.Infrastructure.Services
             while (true)
             {
                 ray = _camera.ScreenPointToRay(Input.mousePosition);
-                bool cursorOnTile = TryGetTileUnderCursor(ray, out TileView tile);
+                bool cursorOnFreeTile = TryGetFreeTileUnderCursor(ray, out TileView tile);
                 bool cursorOnEnemy = EnemyUnderCursor(ray);
 
                 if (Input.GetMouseButtonUp(0))
                 {
-                    if (cursorOnTile)
+                    if (cursorOnFreeTile)
                     {
                         turretBase.transform.position = tile.transform.position;
                         tile.UpdateWalkable(TileId.Obstacle);
@@ -52,7 +52,7 @@ namespace Assets.Scripts.Infrastructure.Services
                     break;
                 }
 
-                if (cursorOnTile && !cursorOnEnemy)
+                if (cursorOnFreeTile && !cursorOnEnemy)
                 {
                     turretBase.transform.position = tile.transform.position;
                 }
@@ -65,7 +65,7 @@ namespace Assets.Scripts.Infrastructure.Services
             }
         }
 
-        private bool TryGetTileUnderCursor(Ray ray, out TileView tileView)
+        private bool TryGetFreeTileUnderCursor(Ray ray, out TileView tileView)
         {
             tileView = null;
 
@@ -75,14 +75,21 @@ namespace Assets.Scripts.Infrastructure.Services
                 _lastValidDistance = hitInternal.distance;
                 if (_tileViewCache.TryGetValue(hitCollider, out tileView))
                 {
-                    return true;
+                    if (tileView.NodeBase.Walkable)
+                    {
+                        return true;
+                    }
                 }
                 tileView = hitCollider.GetComponent<TileView>();
 
                 if (tileView != null)
                 {
                     _tileViewCache[hitCollider] = tileView;
-                    return true;
+                    
+                    if (tileView.NodeBase.Walkable)
+                    {
+                        return true;
+                    }
                 }
             }
 
