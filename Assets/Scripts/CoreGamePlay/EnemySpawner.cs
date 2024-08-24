@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.Scripts.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
+using Tarodev_Pathfinding._Scripts;
 using UnityEngine;
 using VContainer;
 
@@ -11,6 +12,9 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [Inject] private IEnemyFactory _enemyFactory;
         [Inject] private IBuildingService _buildingService;
+
+        [SerializeField] private TileView _start;
+        [SerializeField] private TileView _target;
 
         private TileData[] _path;
         private bool _isSpawningEnabled;
@@ -35,10 +39,21 @@ namespace Assets.Scripts.CoreGamePlay
             _isSpawningEnabled = false;
         }
 
-        // Метод инициализации пути
-        public void Init(TileData[] path)
+        private TileData[] GetStartPath()
         {
-            _path = path;
+            List<TileData> nodes = Pathfinding.FindPath(_start.NodeBase, _target.NodeBase);
+            TileData[] nodesArray = nodes.ToArray();
+
+            Array.Reverse(nodesArray);
+
+            return nodesArray;
+        }
+
+        // Метод инициализации пути
+        public void UpdateSpawnerPath()
+        {
+            _path = GetStartPath();
+            
         }
 
         // Основной метод Update, который будет проверять время и спавнить врагов
@@ -79,13 +94,21 @@ namespace Assets.Scripts.CoreGamePlay
         // Подписка на события при включении объекта
         private void OnEnable()
         {
-            _buildingService.TurretIsBuilded += UpdateEnemiesPath;
+            _buildingService.TurretIsBuilded += OnTurretIsBuilded;
         }
 
         // Отписка от событий при отключении объекта
         private void OnDisable()
         {
-            _buildingService.TurretIsBuilded -= UpdateEnemiesPath;
+            _buildingService.TurretIsBuilded -= OnTurretIsBuilded;
+        }
+
+        private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
+        {
+            enabled = false;
+            UpdateEnemiesPath(turret, tileData);
+            UpdateSpawnerPath();
+            enabled = true;
         }
 
         // Метод для обновления пути врагов при постройке башни

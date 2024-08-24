@@ -15,9 +15,8 @@ namespace Assets.Scripts.CoreGamePlay
 
         [SerializeField] private TileView[] _tiles;
         [SerializeField] private Transform _turretsParrent;
-        [SerializeField] private EnemySpawner _enemySpawner;
-        [SerializeField] private TileView _start;
-        [SerializeField] private TileView _target;
+        [SerializeField] private EnemySpawner[] _enemySpawners;
+
         
         private void OnEnable()
         {
@@ -31,9 +30,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
         {
-            _enemySpawner.enabled = false;
-            _enemySpawner.Init(GetStartPath());
-            _enemySpawner.enabled = true;
+
         }
 
         public void InitializeSceneServices()
@@ -47,19 +44,13 @@ namespace Assets.Scripts.CoreGamePlay
             {
                 tile.NodeBase.CacheNeighbors();
             }
-            _enemySpawner.Init(GetStartPath());
-            _enemySpawner.StartSpawnEnemies();
+
             _turretFactory.SetParrentTurret(_turretsParrent);
-        }
-
-        private TileData[] GetStartPath()
-        {
-            List<TileData> nodes = Pathfinding.FindPath(_start.NodeBase, _target.NodeBase);
-            TileData[] nodesArray = nodes.ToArray();
-            
-            Array.Reverse(nodesArray);
-
-            return nodesArray;
+            foreach (EnemySpawner enemySpawner in _enemySpawners)
+            {
+                enemySpawner.UpdateSpawnerPath();
+                enemySpawner.StartSpawnEnemies();
+            }
         }
     }
 }
