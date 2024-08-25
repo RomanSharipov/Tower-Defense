@@ -11,6 +11,7 @@ namespace Assets.Scripts.Infrastructure.Services
     public class BuildingService : IBuildingService
     {
         private readonly ITurretFactory _turretFactory;
+        private readonly ICacherOfPath _cacherOfPath;
         private readonly Camera _camera;
 
         private readonly Dictionary<Collider, TileView> _tileViewCache = new Dictionary<Collider, TileView>();
@@ -20,10 +21,11 @@ namespace Assets.Scripts.Infrastructure.Services
 
 
         [Inject]
-        public BuildingService(ITurretFactory turretFactory, Camera camera)
+        public BuildingService(ITurretFactory turretFactory, Camera camera, ICacherOfPath cacherOfPath)
         {
             _turretFactory = turretFactory;
             _camera = camera;
+            _cacherOfPath = cacherOfPath;
         }
 
         public async UniTask StartBuilding()
@@ -39,7 +41,7 @@ namespace Assets.Scripts.Infrastructure.Services
 
                 if (Input.GetMouseButtonUp(0))
                 {
-                    if (cursorOnFreeTile)
+                    if (cursorOnFreeTile && _cacherOfPath.PathsIsExist)
                     {
                         turretBase.transform.position = tile.transform.position;
                         tile.UpdateWalkable(TileId.Obstacle);
@@ -55,6 +57,16 @@ namespace Assets.Scripts.Infrastructure.Services
                 if (cursorOnFreeTile && !cursorOnEnemy)
                 {
                     turretBase.transform.position = tile.transform.position;
+                    tile.NodeBase.SetWalkable(false);
+                    if (_cacherOfPath.TrySetPath())
+                    {
+                        turretBase.SetColor(Color.DefaultColor);
+                    }
+                    else
+                    {
+                        turretBase.SetColor(Color.BlockBuildColor);
+                    }
+                    tile.NodeBase.SetWalkable(true);
                 }
                 else
                 {

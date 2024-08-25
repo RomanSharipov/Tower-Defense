@@ -5,6 +5,7 @@ using System;
 using Assets.Scripts.Helpers;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
+using Assets.Scripts.CoreGamePlay;
 
 [Serializable]
 public class EnemyMovement : MonoBehaviour
@@ -13,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     private TileData _currentTarget;
 
     private Transform _myTranstorm;
+    
 
     [SerializeField] private float _startSpeed = 2.1f;
     [SerializeField] private CollisionAvoidance _collisionAvoidance;
@@ -24,6 +26,7 @@ public class EnemyMovement : MonoBehaviour
     private float _yOffset = 0.41f;
     private float _distanceOfClosestTargetTile;
     private HashSet<TileData> _remaingsPath = new HashSet<TileData>();
+    private EnemySpawner _enemySpawner;
 
     public float DistanceOfClosestTargetTile => _distanceOfClosestTargetTile;
     public int RemainingTiles => _remaingsPath.Count;
@@ -36,9 +39,9 @@ public class EnemyMovement : MonoBehaviour
         _currentSpeed = _startSpeed;// Initialize _myTranstorm to the current transform
     }
 
-    public void NewMovement(Transform myTranstorm, string name)
+    public void Construct(ICacherOfPath cacherOfPath,EnemySpawner enemySpawner)
     {
-        _myTranstorm = myTranstorm;
+        _enemySpawner = enemySpawner;
     }
 
     public void BlockTriggerOnCollisionAvoidance()
@@ -74,11 +77,11 @@ public class EnemyMovement : MonoBehaviour
         return _remaingsPath.Contains(newUnwalkableTile);
     }
 
-    public void UpdatePath(TileData newUnwalkableTile)
+    public void UpdatePath(TileData newObstacleTile)
     {
         StopMovement();
 
-        if (newUnwalkableTile == _currentTarget)
+        if (newObstacleTile == _currentTarget)
         {
             _currentTargetIndex--;
             if (_currentTargetIndex >= 0)
@@ -91,6 +94,7 @@ public class EnemyMovement : MonoBehaviour
         newListPath.Add(_currentTarget);
         newListPath.Reverse();
         _path = newListPath.ToArray();
+
 
         SetPath(_path);
         StartMovement();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Assets.Scripts.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
-using Tarodev_Pathfinding._Scripts;
+//using Tarodev_Pathfinding._Scripts;
 using UnityEngine;
 using VContainer;
 
@@ -12,6 +12,7 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [Inject] private IEnemyFactory _enemyFactory;
         [Inject] private IBuildingService _buildingService;
+        [Inject] private ICacherOfPath _cacherOfPath;
 
         [SerializeField] private TileView _start;
         [SerializeField] private TileView _target;
@@ -23,6 +24,9 @@ namespace Assets.Scripts.CoreGamePlay
 
         [SerializeField] private List<EnemyMovement> _enemiesOnBoard = new List<EnemyMovement>();
         [SerializeField] private float _interval = 2.0f; // Время между спавнами врагов в секундах
+
+        public TileView StartTile => _start;
+        public TileView TargetTile => _target;
 
         // Метод для начала спавна врагов
         [ContextMenu("StartSpawnEnemies")]
@@ -39,21 +43,23 @@ namespace Assets.Scripts.CoreGamePlay
             _isSpawningEnabled = false;
         }
 
-        private TileData[] GetStartPath()
-        {
-            List<TileData> nodes = Pathfinding.FindPath(_start.NodeBase, _target.NodeBase);
-            TileData[] nodesArray = nodes.ToArray();
+        //private TileData[] GetStartPath()
+        //{
+        //    _cacherOfPath.TrySetPath();
+        //    List<TileData> nodes = Pathfinding.FindPath(_start.NodeBase, _target.NodeBase);
+        //    TileData[] nodesArray = nodes.ToArray();
 
-            Array.Reverse(nodesArray);
+        //    Array.Reverse(nodesArray);
 
-            return nodesArray;
-        }
+        //    return nodesArray;
+        //}
 
         // Метод инициализации пути
         public void UpdateSpawnerPath()
         {
-            _path = GetStartPath();
-            
+            _cacherOfPath.TrySetPath();
+            _path = _cacherOfPath.Paths[this];
+
         }
 
         // Основной метод Update, который будет проверять время и спавнить врагов
@@ -81,7 +87,7 @@ namespace Assets.Scripts.CoreGamePlay
             _count++;
             Debug.Log("CreateEnemy");
 
-            newEnemy.Init(_path, newEnemy.name);
+            newEnemy.Init(_path, _cacherOfPath,this);
             _enemiesOnBoard.Add(newEnemy.Movement);
         }
 

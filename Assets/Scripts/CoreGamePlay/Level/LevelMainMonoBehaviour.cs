@@ -12,6 +12,8 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [Inject] private ITurretFactory _turretFactory;
         [Inject] private IBuildingService _buildingService;
+        [Inject] private ICacherOfPath _cacherOfPath;
+        [Inject] private ITilesStorage _tilesStorage;
 
         [SerializeField] private TileView[] _tiles;
         [SerializeField] private Transform _turretsParrent;
@@ -35,6 +37,15 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void InitializeSceneServices()
         {
+            TileData[] tilesData = new TileData[_tiles.Length];
+
+            for (int i = 0; i < _tiles.Length; i++)
+            {
+                tilesData[i] = _tiles[i].NodeBase;
+            }
+            _tilesStorage.SetTiles(tilesData);
+
+            _cacherOfPath.SetSpawnersOnCurrentLevel(_enemySpawners);
             foreach (TileView tile in _tiles)
             {
                 tile.InitializeNode(_tiles.ToList());
@@ -51,6 +62,7 @@ namespace Assets.Scripts.CoreGamePlay
                 enemySpawner.UpdateSpawnerPath();
                 enemySpawner.StartSpawnEnemies();
             }
+            _cacherOfPath.TrySetPath();
         }
     }
 }

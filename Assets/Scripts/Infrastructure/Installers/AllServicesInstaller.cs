@@ -23,6 +23,10 @@ namespace CodeBase.Infrastructure.Installers
                 .As<IEnemyFactory>();
             builder.Register<BuildingService>(Lifetime.Singleton)
                 .As<IBuildingService>();
+            builder.Register<CacherOfPath>(Lifetime.Singleton)
+                .As<ICacherOfPath>();
+            builder.Register<TilesStorage>(Lifetime.Singleton)
+                .As<ITilesStorage>();
         }
     }    
 }

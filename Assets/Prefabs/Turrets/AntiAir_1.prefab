@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52811b1bd52f76443bb72565c057c1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _colorTurret: {fileID: 3269287075069093070}
 --- !u!114 &3269287075069093070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +153,7 @@ MonoBehaviour:
   - {fileID: 3464090133517379234}
   - {fileID: 5741146420200955222}
   _red: {fileID: 2100000, guid: fc4bd166c160d014fbcc985e750df952, type: 2}
-  _transparent: {fileID: 0}
+  _transparent: {fileID: 2100000, guid: 62bd9f4c983a6fb4782824aaaaa8d739, type: 2}
 --- !u!1 &3007122474091799504
 GameObject:
   m_ObjectHideFlags: 0

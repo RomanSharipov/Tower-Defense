@@ -9,9 +9,9 @@ namespace Assets.Scripts.CoreGamePlay
         
         public EnemyMovement Movement => _movement;
 
-        public void Init(TileData[] pathPoints, string name)
+        public void Init(TileData[] pathPoints, ICacherOfPath cacherOfPath,EnemySpawner enemySpawner)
         {
-            _movement.NewMovement(transform, name);
+            _movement.Construct(cacherOfPath, enemySpawner);
             _movement.SetPath(pathPoints);
             _movement.StartMovement();
         }

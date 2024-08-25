@@ -8,18 +8,35 @@ public class ColorTurret : MonoBehaviour
     [SerializeField] private Material _red;
     [SerializeField] private Material _transparent;
 
-    public void SetTransparent()
+
+
+    public void SetColor(Color color)
     {
-        foreach (MeshRenderer renderer in _renderers) 
+        switch (color)
         {
-            renderer.material = _transparent;
+            case Color.None:
+                break;
+            case Color.BlockBuildColor:
+                SetMaterial(_red);
+                break;
+            case Color.DefaultColor:
+                SetMaterial(_transparent);
+                break;
         }
     }
-    public void SetRed()
+
+    private void SetMaterial(Material material)
     {
         foreach (MeshRenderer renderer in _renderers)
         {
-            renderer.material = _red;
+            renderer.material = material;
         }
     }
+}
+
+public enum Color
+{
+    None,
+    BlockBuildColor,
+    DefaultColor,
 }
