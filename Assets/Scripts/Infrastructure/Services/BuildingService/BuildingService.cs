@@ -45,6 +45,7 @@ namespace Assets.Scripts.Infrastructure.Services
                     {
                         turretBase.transform.position = tile.transform.position;
                         tile.UpdateWalkable(TileId.Obstacle);
+                        turretBase.SetColor(Color.DefaultColor);
                         TurretIsBuilded?.Invoke(turretBase, tile.NodeBase);
                     }
                     else
@@ -58,22 +59,28 @@ namespace Assets.Scripts.Infrastructure.Services
                 {
                     turretBase.transform.position = tile.transform.position;
                     tile.NodeBase.SetWalkable(false);
-                    if (_cacherOfPath.TrySetPath())
-                    {
-                        turretBase.SetColor(Color.DefaultColor);
-                    }
-                    else
-                    {
-                        turretBase.SetColor(Color.BlockBuildColor);
-                    }
+                    UpdateTurretColor(turretBase);
                     tile.NodeBase.SetWalkable(true);
                 }
                 else
                 {
                     turretBase.transform.position = ray.GetPoint(_lastValidDistance);
+                    turretBase.SetColor(Color.BlockBuildColor);
                 }
 
                 await UniTask.Yield();
+            }
+        }
+
+        private void UpdateTurretColor(TurretBase turretBase)
+        {
+            if (_cacherOfPath.TrySetPath())
+            {
+                turretBase.SetColor(Color.TransparentColor);
+            }
+            else
+            {
+                turretBase.SetColor(Color.BlockBuildColor);
             }
         }
 
