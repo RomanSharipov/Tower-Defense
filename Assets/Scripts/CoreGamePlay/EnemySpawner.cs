@@ -17,7 +17,6 @@ namespace Assets.Scripts.CoreGamePlay
 
         private TileData[] _path;
         private bool _isSpawningEnabled;
-        private int _count = 0;
         private float _spawnTimer;
 
         [SerializeField] private List<EnemyMovement> _enemiesOnBoard = new List<EnemyMovement>();
