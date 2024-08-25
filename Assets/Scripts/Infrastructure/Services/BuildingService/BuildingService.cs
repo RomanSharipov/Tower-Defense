@@ -111,7 +111,6 @@ namespace Assets.Scripts.Infrastructure.Services
         private bool EnemyUnderCursor(Ray ray)
         {
             RaycastHit hit;
-
             
             if (Physics.Raycast(ray, out hit))
             {
