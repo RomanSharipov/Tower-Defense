@@ -115,17 +115,13 @@ namespace Assets.Scripts.Infrastructure.Services
             
             if (Physics.Raycast(ray, out hit))
             {
-                // Получаем объект, на который указывает луч
                 GameObject hitObject = hit.collider.gameObject;
-
-                // Проверяем, находится ли объект на слое "Enemy"
+                
                 if (hitObject.layer == LayerMask.NameToLayer("BlockBuilding"))
                 {
-                    return true; // Луч попал на врага
+                    return true; 
                 }
             }
-
-            // Если луч не попал на врага, возвращаем false
             return false;
         }
     }
