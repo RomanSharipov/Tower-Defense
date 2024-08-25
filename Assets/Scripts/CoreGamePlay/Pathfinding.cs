@@ -16,13 +16,13 @@ namespace Tarodev_Pathfinding._Scripts
     {
         public static List<TileData> FindPath(TileData startNode, TileData targetNode)
         {
-            var toSearch = new List<TileData>() { startNode };
-            var processed = new List<TileData>();
+            List<TileData> toSearch = new List<TileData>() { startNode };
+            HashSet<TileData> processed = new HashSet<TileData>();
 
             while (toSearch.Any())
             {
-                var current = toSearch[0];
-                foreach (var t in toSearch)
+                TileData current = toSearch[0];
+                foreach (TileData t in toSearch)
                     if (t.F < current.F || t.F == current.F && t.H < current.H) current = t;
 
                 processed.Add(current);
@@ -45,11 +45,11 @@ namespace Tarodev_Pathfinding._Scripts
                     return path;
                 }
 
-                foreach (var neighbor in current.Neighbors.Where(t => t.Walkable && !processed.Contains(t)))
+                foreach (TileData neighbor in current.Neighbors.Where(t => t.Walkable && !processed.Contains(t)))
                 {
-                    var inSearch = toSearch.Contains(neighbor);
+                    bool inSearch = toSearch.Contains(neighbor);
 
-                    var costToNeighbor = current.G + current.GetDistance(neighbor);
+                    float costToNeighbor = current.G + current.GetDistance(neighbor);
 
                     if (!inSearch || costToNeighbor < neighbor.G)
                     {
