@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
     private float _yOffset = 0.41f;
     private float _distanceOfClosestTargetTile;
     private HashSet<TileData> _remaingsPath = new HashSet<TileData>();
-    private EnemySpawner _enemySpawner;
+    
 
     public float DistanceOfClosestTargetTile => _distanceOfClosestTargetTile;
     public int RemainingTiles => _remaingsPath.Count;
@@ -36,14 +36,9 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         _myTranstorm = transform;
-        _currentSpeed = _startSpeed;// Initialize _myTranstorm to the current transform
+        _currentSpeed = _startSpeed;
     }
-
-    public void Construct(ICacherOfPath cacherOfPath,EnemySpawner enemySpawner)
-    {
-        _enemySpawner = enemySpawner;
-    }
-
+    
     public void BlockTriggerOnCollisionAvoidance()
     {
         _collisionAvoidance.BlockTrigger().Forget();
