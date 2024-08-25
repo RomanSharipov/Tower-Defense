@@ -63,7 +63,6 @@ namespace Assets.Scripts.CoreGamePlay
 
             newEnemy.transform.parent = transform;
             newEnemy.transform.localPosition = Vector3.zero;
-            _count++;
             
             newEnemy.Init(_path, _cacherOfPath,this);
             _enemiesOnBoard.Add(newEnemy.Movement);
