@@ -12,31 +12,32 @@ public class CollisionAvoidance : MonoBehaviour
     {
         if (other.TryGetComponent(out EnemyMovement otherMovement))
         {
+            if (_blockControl)
+                return;
+
+            otherMovement.BlockTriggerOnCollisionAvoidance();
             count++;
+
             if (FurtherFromTheTargetThan(otherMovement))
             {
                 myMovement.Pause();
                 return;
             }
-            if (SameDistanceWith(otherMovement))
-            {
-                if (_blockControl)
-                    return;
+            ResolveByDistanceToClosestTile(otherMovement);
+        }
+    }
 
-                otherMovement.BlockTriggerOnCollisionAvoidance();
-
-                if (FurtherFromCurrentTileThan(otherMovement))
-                {
-                    myMovement.Pause();
-                    otherMovement.UnPause();
-                }
-                else 
-                {
-                    myMovement.UnPause();
-                    otherMovement.Pause();
-                }
-
-            }
+    private void ResolveByDistanceToClosestTile(EnemyMovement otherMovement)
+    {
+        if (FurtherFromCurrentTileThan(otherMovement))
+        {
+            myMovement.Pause();
+            otherMovement.UnPause();
+        }
+        else
+        {
+            myMovement.UnPause();
+            otherMovement.Pause();
         }
     }
 
@@ -52,6 +53,8 @@ public class CollisionAvoidance : MonoBehaviour
         if (other.TryGetComponent(out EnemyMovement otherMovement))
         {
             count--;
+            count = Math.Max(count, 0);
+
             if (count == 0)
             {
                 myMovement.UnPause();
@@ -63,12 +66,6 @@ public class CollisionAvoidance : MonoBehaviour
     {
         return myMovement.RemaningTiles > otherEnemy.RemaningTiles;
     }
-    
-    private bool SameDistanceWith(EnemyMovement otherEnemy)
-    {
-        return myMovement.RemaningTiles == otherEnemy.RemaningTiles;
-    }
-
     private bool FurtherFromCurrentTileThan(EnemyMovement otherEnemy)
     {
         return myMovement.DistanceOfClosestTargetTile > otherEnemy.DistanceOfClosestTargetTile;

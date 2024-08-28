@@ -6,12 +6,15 @@ using Assets.Scripts.Helpers;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
 using Assets.Scripts.CoreGamePlay;
+using UnityEngine.Assertions.Must;
 
 [Serializable]
 public class EnemyMovement : MonoBehaviour
 {
     private TileData[] _path;
+    [SerializeField] private TileView[] _pathView;
     private TileData _currentTarget;
+    [SerializeField] private TileView _currentTileView;
 
     private Transform _myTranstorm;
     
@@ -21,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
     private float _currentSpeed;
     private float _rotateSpeed = 360f;
 
-    private int _currentTargetIndex = 0;
+    [SerializeField] private int _currentTargetIndex = 0;
     private bool _isMoving = false;
     private float _yOffset = 0.41f;
     private float _distanceOfClosestTargetTile;
@@ -44,9 +47,19 @@ public class EnemyMovement : MonoBehaviour
         _collisionAvoidance.BlockTrigger().Forget();
     }
 
+    void CopyToView()
+    {
+        _pathView = new TileView[_path.Length];
+        for (int i = 0; i < _path.Length; i++)
+        {
+            _pathView[i] = _path[i].Tile;
+        }
+    }
+
     public void SetPath(TileData[] pathPoints)
     {
         _path = pathPoints;
+        CopyToView();
         _remaingsPath.Clear();
         foreach (TileData pathPoint in _path)
         {
@@ -75,28 +88,72 @@ public class EnemyMovement : MonoBehaviour
     public void UpdatePath(TileData newObstacleTile)
     {
         StopMovement();
-
-        if (newObstacleTile == _currentTarget)
-        {
-            _currentTargetIndex--;
-            if (_currentTargetIndex >= 0)
-            {
-                _currentTarget = _path[_currentTargetIndex];
-            }
-        }
-
         List<TileData> newListPath = Pathfinding.FindPath(_currentTarget, _path[_path.Length - 1]);
-        newListPath.Add(_currentTarget);
-        newListPath.Reverse();
-        _path = newListPath.ToArray();
 
 
+        TileData previousTileData = null;
+        TileData firstTileNewPath = newListPath[0];
+
+        if (_currentTargetIndex > 0)
+        {
+            previousTileData = _path[_currentTargetIndex - 1];
+        } 
+
+        bool buildedRightInFrontOfUs = newObstacleTile == _currentTarget;
+        bool newPathOppositeDirection = previousTileData == firstTileNewPath;
+
+        if (buildedRightInFrontOfUs)
+        {
+            _path = PathPlusTargetTile(newListPath);
+        }
+        else if (newPathOppositeDirection)
+        {
+            _path = PathOppositeDirection(newListPath);
+        }
+        else
+        {
+            _path = PathDefault(newListPath);
+        }
+        
         SetPath(_path);
         StartMovement();
+        CopyToView();
+    }
+
+    private TileData[] PathDefault(List<TileData> newListPath)
+    {
+        newListPath.Add(_currentTarget);
+        newListPath.Reverse();
+        return newListPath.ToArray();
+    }
+
+    private TileData[] PathOppositeDirection(List<TileData> newListPath)
+    {
+        _currentTargetIndex--;
+        if (_currentTargetIndex >= 0)
+        {
+            _currentTarget = _path[_currentTargetIndex];
+        }
+        newListPath.Add(_currentTarget);
+        newListPath.Reverse();
+        return newListPath.ToArray();
+    }
+
+    private TileData[] PathPlusTargetTile(List<TileData> newListPath)
+    {
+        _currentTargetIndex--;
+        if (_currentTargetIndex >= 0)
+        {
+            _currentTarget = _path[_currentTargetIndex];
+        }
+        newListPath.Add(_currentTarget);
+        newListPath.Reverse();
+        return newListPath.ToArray();
     }
 
     private void Update()
     {
+        _currentTileView = _currentTarget.Tile;
         if (_isMoving)
         {
             MoveAlongPath();
