@@ -41,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3789455658232109566}
   - component: {fileID: 5010453974851035918}
-  - component: {fileID: 2723342770801904362}
   m_Layer: 0
   m_Name: Pillar 04
   m_TagString: Untagged
@@ -119,29 +118,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.19988175, y: -0.08731449, z: -0.00000023841858}
     m_Extent: {x: 0.64307743, y: 1.3765936, z: 1.3752595}
   m_DirtyAABB: 0
---- !u!136 &2723342770801904362
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304522109900088161}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.3752595
-  m_Height: 2.7531877
-  m_Direction: 1
-  m_Center: {x: 0.00000023841864, y: 0.08731621, z: 0.6430774}
 --- !u!1 &5986887432975269708
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _q: 0
+  _r: 0
 --- !u!1 &8610976387904387232
 GameObject:
   m_ObjectHideFlags: 0
