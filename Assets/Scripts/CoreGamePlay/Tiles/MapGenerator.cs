@@ -6,6 +6,8 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class MapGenerator : MonoBehaviour
     {
+        [SerializeField] private LevelMainMonoBehaviour _levelMainMonoBehaviour;
+
         [Header("Form game board settings")]
         [Header("Rect GameBoard")]
         [SerializeField, Range(1, 50)] private int _gridWidth = 16;
@@ -25,9 +27,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private List<Transform> _obstacleTiles = new List<Transform>();
 
         [SerializeField] private Transform[] _points;
-
-        public List<TileView> GameBoardTiles => _gameBoardTiles;
-
+        
         [ContextMenu("Generate")]
         public void Generate()
         {
@@ -35,6 +35,7 @@ namespace Assets.Scripts.CoreGamePlay
             CreateRectGameBoard();
             CreateRoad();
             CreateObstacleTiles();
+            _levelMainMonoBehaviour.SetTiles(_gameBoardTiles.ToArray());
         }
 
         private void CreateRoad()
@@ -112,6 +113,8 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void CreateRectGameBoard()
         {
+            int i = 0;
+
             for (int r = 0; r < _gridDepth; r++)
             {
                 int rOffset = r / 2;
@@ -120,6 +123,8 @@ namespace Assets.Scripts.CoreGamePlay
                     TileView tile = Instantiate(_emptyTilePrefabs[Random.Range(0, _emptyTilePrefabs.Length)], _parent);
                     tile.Construct(q,r);
                     tile.transform.position = HexCalculator.ToWorldPosition(q, r, tileSpacing);
+                    i++;
+                    tile.name = $"{i}.TileView";
                     _gameBoardTiles.Add(tile);
                 }
             }
@@ -150,7 +155,7 @@ namespace Assets.Scripts.CoreGamePlay
                     TileView obstacleTile = Instantiate(_obstacleTilePrefabs[Random.Range(0, _obstacleTilePrefabs.Length)], _parent);
                     obstacleTile.transform.position = new Vector3(tileTransform.transform.position.x, tileTransform.transform.position.y + _offsetObstacleSpawn, tileTransform.transform.position.z);
                     _obstacleTiles.Add(obstacleTile.transform);
-                    tileTransform.UpdateWalkable(TileId.Obstacle);
+                    tileTransform.SetWalkable(TileId.Obstacle);
                 }
             }
         }

@@ -66,5 +66,55 @@ namespace Tarodev_Pathfinding._Scripts
             }
             return null;
         }
+        
+        public static bool CanBuildPath(TileData startNode, TileData targetNode)
+        {
+            if (startNode == null || targetNode == null || !startNode.Walkable || !targetNode.Walkable)
+            {
+                return false;
+            }
+
+            List<TileData> toSearch = new List<TileData> { startNode };
+            HashSet<TileData> processed = new HashSet<TileData>();
+
+            while (toSearch.Any())
+            {
+                TileData current = toSearch[0];
+                foreach (TileData t in toSearch)
+                {
+                    if (t.F < current.F || (t.F == current.F && t.H < current.H))
+                    {
+                        current = t;
+                    }
+                }
+
+                processed.Add(current);
+                toSearch.Remove(current);
+
+                if (current == targetNode)
+                {
+                    return true;
+                }
+
+                foreach (TileData neighbor in current.Neighbors.Where(t => t.Walkable && !processed.Contains(t)))
+                {
+                    bool inSearch = toSearch.Contains(neighbor);
+                    float costToNeighbor = current.G + current.GetDistance(neighbor);
+
+                    if (!inSearch || costToNeighbor < neighbor.G)
+                    {
+                        neighbor.SetG(costToNeighbor);
+                        neighbor.SetConnection(current);
+
+                        if (!inSearch)
+                        {
+                            neighbor.SetH(neighbor.GetDistance(targetNode));
+                            toSearch.Add(neighbor);
+                        }
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

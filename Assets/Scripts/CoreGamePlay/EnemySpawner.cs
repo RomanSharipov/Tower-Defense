@@ -3,6 +3,7 @@ using Assets.Scripts.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -18,6 +19,7 @@ namespace Assets.Scripts.CoreGamePlay
         private TileData[] _path;
         private bool _isSpawningEnabled;
         private float _spawnTimer;
+        private int _counter;
 
         [SerializeField] private List<EnemyMovement> _enemiesOnBoard = new List<EnemyMovement>();
         [SerializeField] private float _interval = 2.0f; 
@@ -60,10 +62,10 @@ namespace Assets.Scripts.CoreGamePlay
         private async UniTask CreateEnemy()
         {
             Tank newEnemy = await _enemyFactory.CreateEnemy<Tank>(EnemyType.Tank);
-
+            _counter++;
             newEnemy.transform.parent = transform;
             newEnemy.transform.localPosition = Vector3.zero;
-            
+            newEnemy.transform.gameObject.name = $"{_counter}.{gameObject.name}";
             newEnemy.Init(_path, _cacherOfPath,this);
             _enemiesOnBoard.Add(newEnemy.Movement);
         }
@@ -95,7 +97,7 @@ namespace Assets.Scripts.CoreGamePlay
         {
             foreach (EnemyMovement enemy in _enemiesOnBoard)
             {
-                enemy.UpdatePathIfNeeded(tileData); 
+                enemy.UpdatePath(tileData); 
             }
         }
     }

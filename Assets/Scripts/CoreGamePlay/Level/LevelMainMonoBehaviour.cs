@@ -64,5 +64,10 @@ namespace Assets.Scripts.CoreGamePlay
             }
             _cacherOfPath.TrySetPath();
         }
+
+        public void SetTiles(TileView[] tiles)
+        {
+            _tiles = tiles;
+        }
     }
 }

@@ -533,8 +533,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee730e4595d84f4f86f287052b66c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pathView: []
+  _currentTileView: {fileID: 0}
   _startSpeed: 3
   _collisionAvoidance: {fileID: 7251969907051248856}
+  _currentTargetIndex: 0
+  _isMoving: 0
+  _pathBuilder:
+    _pathView: []
+    _newPathOppositeDirection: 0
+    _buildedRightInFrontOfUs: 0
 --- !u!65 &5006645408848359789
 BoxCollider:
   m_ObjectHideFlags: 0

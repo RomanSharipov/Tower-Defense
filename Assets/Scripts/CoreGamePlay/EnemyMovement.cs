@@ -1,19 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using Tarodev_Pathfinding._Scripts;
 using System;
 using Assets.Scripts.Helpers;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
 using Assets.Scripts.CoreGamePlay;
-using UnityEngine.Assertions.Must;
 
 [Serializable]
 public class EnemyMovement : MonoBehaviour
 {
     private TileData[] _path;
     [SerializeField] private TileView[] _pathView;
-    private TileData _currentTarget;
+    [SerializeField] private TileData _currentTarget;
     [SerializeField] private TileView _currentTileView;
 
     private Transform _myTranstorm;
@@ -25,48 +22,33 @@ public class EnemyMovement : MonoBehaviour
     private float _rotateSpeed = 360f;
 
     [SerializeField] private int _currentTargetIndex = 0;
-    private bool _isMoving = false;
+    [SerializeField] private bool _isMoving = false;
     private float _yOffset = 0.41f;
     private float _distanceOfClosestTargetTile;
-    private HashSet<TileData> _remaingsPath = new HashSet<TileData>();
+    
+    [SerializeField] private PathBuilder _pathBuilder;
     
 
     public float DistanceOfClosestTargetTile => _distanceOfClosestTargetTile;
-    public int RemainingTiles => _remaingsPath.Count;
 
-    public int RemaningTiles => _remaingsPath.Count;
 
     private void Awake()
     {
         _myTranstorm = transform;
         _currentSpeed = _startSpeed;
+        _pathBuilder = new PathBuilder();
     }
     
     public void BlockTriggerOnCollisionAvoidance()
     {
         _collisionAvoidance.BlockTrigger().Forget();
     }
-
-    void CopyToView()
-    {
-        _pathView = new TileView[_path.Length];
-        for (int i = 0; i < _path.Length; i++)
-        {
-            _pathView[i] = _path[i].Tile;
-        }
-    }
-
+    
     public void SetPath(TileData[] pathPoints)
     {
         _path = pathPoints;
-        CopyToView();
-        _remaingsPath.Clear();
-        foreach (TileData pathPoint in _path)
-        {
-            _remaingsPath.Add(pathPoint);
-        }
+        _pathBuilder.SetPath(pathPoints);
         _currentTargetIndex = 0;
-        _isMoving = true;
         _currentTarget = _path[_currentTargetIndex];
     }
 
@@ -80,77 +62,18 @@ public class EnemyMovement : MonoBehaviour
         _isMoving = false;
     }
 
-    public bool PathContainsTile(TileData newUnwalkableTile)
-    {
-        return _remaingsPath.Contains(newUnwalkableTile);
-    }
-
-    public void UpdatePath(TileData newObstacleTile)
+    public void UpdatePath(TileData tileData)
     {
         StopMovement();
-        List<TileData> newListPath = Pathfinding.FindPath(_currentTarget, _path[_path.Length - 1]);
-
-
-        TileData previousTileData = null;
-        TileData firstTileNewPath = newListPath[0];
-
-        if (_currentTargetIndex > 0)
-        {
-            previousTileData = _path[_currentTargetIndex - 1];
-        } 
-
-        bool buildedRightInFrontOfUs = newObstacleTile == _currentTarget;
-        bool newPathOppositeDirection = previousTileData == firstTileNewPath;
-
-        if (buildedRightInFrontOfUs)
-        {
-            _path = PathPlusTargetTile(newListPath);
-        }
-        else if (newPathOppositeDirection)
-        {
-            _path = PathOppositeDirection(newListPath);
-        }
-        else
-        {
-            _path = PathDefault(newListPath);
-        }
         
-        SetPath(_path);
+        if (_pathBuilder.TryUpdatePath(tileData, _currentTargetIndex))
+        {
+            SetPath(_pathBuilder.Path);
+        }
+
         StartMovement();
-        CopyToView();
     }
-
-    private TileData[] PathDefault(List<TileData> newListPath)
-    {
-        newListPath.Add(_currentTarget);
-        newListPath.Reverse();
-        return newListPath.ToArray();
-    }
-
-    private TileData[] PathOppositeDirection(List<TileData> newListPath)
-    {
-        _currentTargetIndex--;
-        if (_currentTargetIndex >= 0)
-        {
-            _currentTarget = _path[_currentTargetIndex];
-        }
-        newListPath.Add(_currentTarget);
-        newListPath.Reverse();
-        return newListPath.ToArray();
-    }
-
-    private TileData[] PathPlusTargetTile(List<TileData> newListPath)
-    {
-        _currentTargetIndex--;
-        if (_currentTargetIndex >= 0)
-        {
-            _currentTarget = _path[_currentTargetIndex];
-        }
-        newListPath.Add(_currentTarget);
-        newListPath.Reverse();
-        return newListPath.ToArray();
-    }
-
+    
     private void Update()
     {
         _currentTileView = _currentTarget.Tile;
@@ -171,8 +94,7 @@ public class EnemyMovement : MonoBehaviour
 
             if (_distanceOfClosestTargetTile <= 0.1f)
             {
-                _remaingsPath.Remove(_currentTarget);
-
+                _pathBuilder.RemoveCompletedTile(_currentTarget);
                 if (_currentTargetIndex + 1 >= _path.Length)
                 {
                     StopMovement();
@@ -230,13 +152,5 @@ public class EnemyMovement : MonoBehaviour
     public void Pause()
     {
         DOTween.To(() => _currentSpeed, x => _currentSpeed = x, 0f, 0.5f);
-    }
-
-    public void UpdatePathIfNeeded(TileData tileData)
-    {
-        if (PathContainsTile(tileData))
-        {
-            UpdatePath(tileData);
-        }
     }
 }

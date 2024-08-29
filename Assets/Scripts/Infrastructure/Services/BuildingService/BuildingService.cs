@@ -44,7 +44,8 @@ namespace Assets.Scripts.Infrastructure.Services
                     if (cursorOnFreeTile && _cacherOfPath.PathsIsExist)
                     {
                         turretBase.transform.position = tile.transform.position;
-                        tile.UpdateWalkable(TileId.Obstacle);
+                        tile.SetWalkable(TileId.Obstacle);
+                        tile.UpdateTileData();
                         turretBase.SetColor(Color.DefaultColor);
                         TurretIsBuilded?.Invoke(turretBase, tile.NodeBase);
                     }

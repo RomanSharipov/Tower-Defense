@@ -31,9 +31,13 @@ namespace Assets.Scripts.CoreGamePlay
             _nodeBase = new TileData(walkable, hexCoords, gameBoardTiles,this);
         }
 
-        public void UpdateWalkable(TileId tileId)
+        public void SetWalkable(TileId tileId)
         {
             _tileId = tileId;
+        }
+
+        public void UpdateTileData()
+        {
             bool walkable = _tileId == TileId.Empty;
             _nodeBase.SetWalkable(walkable);
         }
