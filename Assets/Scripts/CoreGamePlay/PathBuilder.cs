@@ -11,10 +11,12 @@ public class PathBuilder
     [SerializeField] private TileView[] _pathView;
     [SerializeField] private bool _newPathOppositeDirection;
     [SerializeField] private bool _buildedRightInFrontOfUs;
+    
     private HashSet<TileData> _remaingsPath = new HashSet<TileData>();
     public bool NewPathOppositeDirection => _newPathOppositeDirection;
     public bool BuildedRightInFrontOfUs => _buildedRightInFrontOfUs;
     public TileData[] Path => _path;
+
 
     public bool TryUpdatePath(TileData newObstacleTile,int currentTargetIndex)
     {
@@ -24,8 +26,8 @@ public class PathBuilder
             List<TileData> newListPath = Pathfinding.FindPath(currentTarget, _path[_path.Length - 1]);
 
             TileData previousTileData = null;
-            TileData firstTileNewPath = newListPath[0];
-
+            TileData firstTileNewPath = newListPath[newListPath.Count - 1];
+            
             if (currentTargetIndex > 0)
             {
                 previousTileData = _path[currentTargetIndex - 1];
@@ -64,8 +66,6 @@ public class PathBuilder
         {
             _remaingsPath.Add(pathPoint);
         }
-        //_currentTargetIndex = 0;                          Потом перекинуть это в EnemyMovement
-        //_currentTarget = _path[_currentTargetIndex];      Потом перекинуть это в EnemyMovement
     }
 
     public void RemoveCompletedTile(TileData completedTile)
