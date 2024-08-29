@@ -6,10 +6,10 @@ using Unity.VisualScripting;
 public class CacherOfPath : ICacherOfPath
 {
     private EnemySpawner[] _spawnersOnCurrentLevel;
-    private Dictionary<EnemySpawner, TileData[]> _paths = new Dictionary<EnemySpawner, TileData[]>();
+    private Dictionary<EnemySpawner, List<TileData>> _paths = new Dictionary<EnemySpawner, List<TileData>>();
     private bool _pathsIsExist;
 
-    public IReadOnlyDictionary<EnemySpawner, TileData[]> Paths => _paths;
+    public IReadOnlyDictionary<EnemySpawner, List<TileData>> Paths => _paths;
     public bool PathsIsExist => _pathsIsExist;
 
     public void SetSpawnersOnCurrentLevel(EnemySpawner[] enemySpawners)
@@ -32,7 +32,7 @@ public class CacherOfPath : ICacherOfPath
             {
                 newPath.Add(enemySpawner.StartTile.NodeBase);
                 newPath.Reverse();
-                _paths[enemySpawner] = newPath.ToArray();
+                _paths[enemySpawner] = newPath;
             }
         }
         _pathsIsExist = true;

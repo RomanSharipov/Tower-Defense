@@ -16,7 +16,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private TileView _start;
         [SerializeField] private TileView _target;
 
-        private TileData[] _path;
+        private List<TileData> _path;
         private bool _isSpawningEnabled;
         private float _spawnTimer;
         private int _counter;

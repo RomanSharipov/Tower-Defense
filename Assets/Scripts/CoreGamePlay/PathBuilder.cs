@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class PathBuilder
 {
-    private TileData[] _path;
+    private List<TileData> _path;
     [SerializeField] private TileView[] _pathView;
     [SerializeField] private bool _newPathOppositeDirection;
     [SerializeField] private bool _buildedRightInFrontOfUs;
@@ -15,7 +15,7 @@ public class PathBuilder
     private HashSet<TileData> _remaingsPath = new HashSet<TileData>();
     public bool NewPathOppositeDirection => _newPathOppositeDirection;
     public bool BuildedRightInFrontOfUs => _buildedRightInFrontOfUs;
-    public TileData[] Path => _path;
+    public List<TileData> Path => _path;
 
 
     public bool TryUpdatePath(TileData newObstacleTile,int currentTargetIndex)
@@ -23,7 +23,7 @@ public class PathBuilder
         if (_remaingsPath.Contains(newObstacleTile))
         {
             TileData currentTarget = _path[currentTargetIndex];
-            List<TileData> newListPath = Pathfinding.FindPath(currentTarget, _path[_path.Length - 1]);
+            List<TileData> newListPath = Pathfinding.FindPath(currentTarget, _path[_path.Count - 1]);
 
             TileData previousTileData = null;
             TileData firstTileNewPath = newListPath[newListPath.Count - 1];
@@ -40,7 +40,7 @@ public class PathBuilder
 
             newListPath.Add(currentTarget);
             newListPath.Reverse();
-            SetPath(newListPath.ToArray());
+            SetPath(newListPath);
             return true;
         }
         return false;
@@ -50,14 +50,14 @@ public class PathBuilder
 
     void CopyToView()
     {
-        _pathView = new TileView[_path.Length];
-        for (int i = 0; i < _path.Length; i++)
+        _pathView = new TileView[_path.Count];
+        for (int i = 0; i < _path.Count; i++)
         {
             _pathView[i] = _path[i].Tile;
         }
     }
 
-    public void SetPath(TileData[] pathPoints)
+    public void SetPath(List<TileData> pathPoints)
     {
         _path = pathPoints;
         CopyToView();

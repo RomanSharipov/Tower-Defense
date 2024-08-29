@@ -4,11 +4,12 @@ using Assets.Scripts.Helpers;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
 using Assets.Scripts.CoreGamePlay;
+using System.Collections.Generic;
 
 [Serializable]
 public class EnemyMovement : MonoBehaviour
 {
-    private TileData[] _path;
+    private List<TileData> _path;
     [SerializeField] private TileView[] _pathView;
     [SerializeField] private TileData _currentTarget;
     [SerializeField] private TileView _currentTileView;
@@ -44,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
         _collisionAvoidance.BlockTrigger().Forget();
     }
     
-    public void SetPath(TileData[] pathPoints)
+    public void SetPath(List<TileData> pathPoints)
     {
         _path = pathPoints;
         _pathBuilder.SetPath(pathPoints);
@@ -93,7 +94,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void MoveAlongPath()
     {
-        if (_currentTargetIndex < _path.Length)
+        if (_currentTargetIndex < _path.Count)
         {
             _currentTarget = _path[_currentTargetIndex];
             MoveToTarget(_currentTarget);
@@ -103,7 +104,7 @@ public class EnemyMovement : MonoBehaviour
             if (_distanceOfClosestTargetTile <= 0.1f)
             {
                 _pathBuilder.RemoveCompletedTile(_currentTarget);
-                if (_currentTargetIndex + 1 >= _path.Length)
+                if (_currentTargetIndex + 1 >= _path.Count)
                 {
                     StopMovement();
                 }

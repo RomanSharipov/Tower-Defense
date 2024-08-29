@@ -5,6 +5,6 @@ public interface ICacherOfPath
 {
     public void SetSpawnersOnCurrentLevel(EnemySpawner[] enemySpawners);
     public bool TrySetPath();
-    public IReadOnlyDictionary<EnemySpawner, TileData[]> Paths { get; }
+    public IReadOnlyDictionary<EnemySpawner, List<TileData>> Paths { get; }
     public bool PathsIsExist { get; }
 }
