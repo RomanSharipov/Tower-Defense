@@ -48,7 +48,11 @@ public class EnemyMovement : MonoBehaviour
     {
         _path = pathPoints;
         _pathBuilder.SetPath(pathPoints);
-        _currentTargetIndex = 0;
+    }
+
+    public void SetCurrentTarget(int tileIndex)
+    {
+        _currentTargetIndex = tileIndex;
         _currentTarget = _path[_currentTargetIndex];
     }
 
@@ -69,6 +73,10 @@ public class EnemyMovement : MonoBehaviour
         if (_pathBuilder.TryUpdatePath(tileData, _currentTargetIndex))
         {
             SetPath(_pathBuilder.Path);
+
+
+            SetCurrentTarget(0);
+
         }
 
         StartMovement();

@@ -12,6 +12,7 @@ namespace Assets.Scripts.CoreGamePlay
         public void Init(TileData[] pathPoints, ICacherOfPath cacherOfPath,EnemySpawner enemySpawner)
         {
             _movement.SetPath(pathPoints);
+            _movement.SetCurrentTarget(0);
             _movement.StartMovement();
         }
         
