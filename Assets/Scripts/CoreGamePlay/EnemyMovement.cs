@@ -22,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     private float _currentSpeed;
     private float _rotateSpeed = 360f;
 
+    [SerializeField] private int _pathCount;
     [SerializeField] private int _currentTargetIndex = 0;
     [SerializeField] private bool _isMoving = false;
     private float _yOffset = 0.41f;
@@ -98,6 +99,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void MoveAlongPath()
     {
+        _pathCount = _path.Count;
         if (_currentTargetIndex < _path.Count)
         {
             _currentTarget = _path[_currentTargetIndex];
@@ -115,7 +117,16 @@ public class EnemyMovement : MonoBehaviour
                 else
                 {
                     _currentTargetIndex++;
-                    _currentTarget = _path[_currentTargetIndex];
+
+                    if (_currentTargetIndex >= _path.Count - 1)
+                    {
+                        StopMovement();
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        _currentTarget = _path[_currentTargetIndex];
+                    }
                 }
             }
         }
