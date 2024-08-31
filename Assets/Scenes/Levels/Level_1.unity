@@ -27375,7 +27375,7 @@ MonoBehaviour:
   _start: {fileID: 2013473075}
   _target: {fileID: 720513160}
   _enemiesOnBoard: []
-  _interval: 3
+  _interval: 1
 --- !u!4 &1390109157
 Transform:
   m_ObjectHideFlags: 0

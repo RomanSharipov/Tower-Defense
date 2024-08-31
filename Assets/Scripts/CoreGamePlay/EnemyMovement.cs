@@ -71,13 +71,17 @@ public class EnemyMovement : MonoBehaviour
     {
         StopMovement();
         
-        if (_pathBuilder.TryUpdatePath(tileData, _currentTargetIndex))
+        if (_pathBuilder.TryUpdatePath(tileData, _currentTargetIndex,out bool buildedRightInFrontOfUs,out bool newPathOppositeDirection))
         {
+            if (buildedRightInFrontOfUs || newPathOppositeDirection)
+            {
+                _currentTargetIndex--;
+                _currentTarget = _path[_currentTargetIndex];    
+                _pathBuilder.UpdatePath(_currentTarget);
+
+            }
             SetPath(_pathBuilder.Path);
-
-
             SetCurrentTarget(0);
-
         }
 
         StartMovement();
