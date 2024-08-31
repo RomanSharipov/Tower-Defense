@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 161031074028233961}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.22}
+  m_LocalPosition: {x: 0, y: 0.481, z: 0.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -541,8 +541,6 @@ MonoBehaviour:
   _isMoving: 0
   _pathBuilder:
     _pathView: []
-    _newPathOppositeDirection: 0
-    _buildedRightInFrontOfUs: 0
 --- !u!65 &5006645408848359789
 BoxCollider:
   m_ObjectHideFlags: 0

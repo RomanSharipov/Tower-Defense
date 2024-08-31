@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     private List<TileData> _path;
     [SerializeField] private TileView[] _pathView;
     [SerializeField] private TileData _currentTarget;
-    [SerializeField] private TileView _currentTileView;
+    
 
     private Transform _myTranstorm;
     
@@ -31,6 +31,7 @@ public class EnemyMovement : MonoBehaviour
     
 
     public float DistanceOfClosestTargetTile => _distanceOfClosestTargetTile;
+    public TileData CurrentTarget => _currentTarget;
 
 
     private void Awake()
@@ -89,7 +90,6 @@ public class EnemyMovement : MonoBehaviour
     
     private void Update()
     {
-        _currentTileView = _currentTarget.Tile;
         if (_isMoving)
         {
             MoveAlongPath();
