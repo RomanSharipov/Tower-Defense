@@ -6,10 +6,10 @@ using UnityEngine.AddressableAssets;
 
 namespace CodeBase.Infrastructure.Services
 {
-    public class StaticDataService : IStaticDataService
+    public class AddressablesAssetReferencesService : IAddressablesAssetReferencesService
     {
-        private readonly MainStaticData _mainStaticData;
-        public StaticDataService(MainStaticData mainStaticData)
+        private readonly AddressablesAssetReferencesData _mainStaticData;
+        public AddressablesAssetReferencesService(AddressablesAssetReferencesData mainStaticData)
         {
             _mainStaticData = mainStaticData;
         }

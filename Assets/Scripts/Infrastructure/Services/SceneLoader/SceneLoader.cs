@@ -15,7 +15,7 @@ namespace CodeBase.Infrastructure.Services
         private readonly IReadOnlyDictionary<string, AssetReference> _sceneReferences;
 
         [Inject]
-        public SceneLoader(IStaticDataService staticDataService, IAssetProvider assetProvider)
+        public SceneLoader(IAddressablesAssetReferencesService staticDataService, IAssetProvider assetProvider)
         {
             _sceneReferences = staticDataService.SceneAssetReferences;
             _assetProvider = assetProvider;

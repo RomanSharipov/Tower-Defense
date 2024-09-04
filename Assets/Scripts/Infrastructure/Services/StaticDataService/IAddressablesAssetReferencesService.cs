@@ -5,7 +5,7 @@ using UnityEngine.AddressableAssets;
 
 namespace CodeBase.Infrastructure.Services
 {
-    public interface IStaticDataService
+    public interface IAddressablesAssetReferencesService
     {
         public IReadOnlyDictionary<WindowId, AssetReference> Windows { get; }
 

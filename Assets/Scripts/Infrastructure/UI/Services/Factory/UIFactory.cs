@@ -18,7 +18,7 @@ namespace CodeBase.Infrastructure.UI.Services
         private Transform _rootCanvas;
 
         [Inject]
-        public UIFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, IObjectResolver objectResolver)
+        public UIFactory(IAssetProvider assetProvider, IAddressablesAssetReferencesService staticDataService, IObjectResolver objectResolver)
         {
             _assetProvider = assetProvider;
             _assetReferenceData = staticDataService.Windows;

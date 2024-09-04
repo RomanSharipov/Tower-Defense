@@ -17,7 +17,7 @@ namespace Assets.Scripts.Infrastructure.Services
         private readonly IReadOnlyDictionary<EnemyType, AssetReference> _assetReferenceData;
 
         [Inject]
-        public EnemyFactory(IAssetProvider assetProvider, IObjectResolver objectResolver, IStaticDataService staticDataService)
+        public EnemyFactory(IAssetProvider assetProvider, IObjectResolver objectResolver, IAddressablesAssetReferencesService staticDataService)
         {
             _assetProvider = assetProvider;
             _objectResolver = objectResolver;

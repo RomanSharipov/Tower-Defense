@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace CodeBase.Configs
 {
-    [CreateAssetMenu(fileName = "StaticData",menuName = "StaticData/MainStaticData")]
-    public class MainStaticData : ScriptableObject
+    [CreateAssetMenu(fileName = "StaticData",menuName = "StaticData/AddressablesAssetReferencesData")]
+    public class AddressablesAssetReferencesData : ScriptableObject
     {
         
         public WindowsData WindowsData;

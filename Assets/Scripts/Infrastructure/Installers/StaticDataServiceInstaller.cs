@@ -10,13 +10,13 @@ namespace CodeBase.Infrastructure.Installers
     
     public class StaticDataServiceInstaller : AScriptableInstaller
     {
-        [SerializeField] private MainStaticData _mainStaticData;
+        [SerializeField] private AddressablesAssetReferencesData _mainStaticData;
 
         public override void Install(IContainerBuilder builder)
         {
-            builder.Register<StaticDataService>(Lifetime.Singleton)
+            builder.Register<AddressablesAssetReferencesService>(Lifetime.Singleton)
                 .WithParameter("mainStaticData", _mainStaticData)
-                .As<IStaticDataService>();
+                .As<IAddressablesAssetReferencesService>();
         }
     }    
 }

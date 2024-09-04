@@ -17,7 +17,7 @@ namespace Assets.Scripts.CoreGamePlay
         private Transform _turrentParrent;
 
         [Inject]
-        public TurretFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, IObjectResolver objectResolver)
+        public TurretFactory(IAssetProvider assetProvider, IAddressablesAssetReferencesService staticDataService, IObjectResolver objectResolver)
         {
             _assetProvider = assetProvider;
             _assetReferenceTileData = staticDataService.Tiles;

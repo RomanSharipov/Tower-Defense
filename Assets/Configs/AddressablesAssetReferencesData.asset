@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 922a0b966c2dd0f468b64509b06c57a0, type: 3}
-  m_Name: StaticData
+  m_Script: {fileID: 11500000, guid: 1f3885e3f17301d43b6b13a329992304, type: 3}
+  m_Name: AddressablesAssetReferencesData
   m_EditorClassIdentifier: 
   WindowsData:
     rootCanvas:
@@ -30,7 +30,7 @@ MonoBehaviour:
         m_AssetGUID: 2cb029ef8cf0560489aba0ce89c17b26
         m_SubObjectName: 
         m_SubObjectType: 
-        m_EditorAssetChanged: 0
+        m_EditorAssetChanged: 1
   SceneReferences:
   - SceneName: Menu
     Reference:
@@ -43,17 +43,17 @@ MonoBehaviour:
       m_AssetGUID: 214f17350d03b254c98e31d65425ba0e
       m_SubObjectName: 
       m_SubObjectType: 
-      m_EditorAssetChanged: 0
+      m_EditorAssetChanged: 1
   Tiles:
   - WindowType: 1
     assetReference:
-      m_AssetGUID: ffed5d134f39b9c499dcccb1f109e08b
+      m_AssetGUID: 
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
   - WindowType: 2
     assetReference:
-      m_AssetGUID: 9def817b0f0ab12459207f56b52ac62d
+      m_AssetGUID: 
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
