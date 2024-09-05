@@ -23,7 +23,7 @@ namespace CodeBase.Infrastructure
             _objectResolver = objectResolver;
         }
         
-        public void Start()
+        public void CreateStatemachine()
         {
             _mainGameStatemachine = new GameStatemachine();
             GameLoopState gameLoopState = new GameLoopState(_mainGameStatemachine);
@@ -45,7 +45,10 @@ namespace CodeBase.Infrastructure
             {
                 _objectResolver.Inject(state);
             }
+        }
 
+        public void StartGame()
+        {
             _mainGameStatemachine.Enter<BootstrapState>();
         }
     }

@@ -19,7 +19,8 @@ namespace CodeBase.Infrastructure.Installers
             builder.RegisterBuildCallback(resolver =>
             {
                 _gameRoot.Construct(resolver);
-                _gameRoot.Start();
+                _gameRoot.CreateStatemachine();
+                _gameRoot.StartGame();
             });
 
         }
