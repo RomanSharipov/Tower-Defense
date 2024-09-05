@@ -10,7 +10,7 @@ namespace Assets.Scripts.CoreGamePlay
         
         public EnemyMovement Movement => _movement;
 
-        public void Init(List<TileData> pathPoints, ICacherOfPath cacherOfPath,EnemySpawner enemySpawner)
+        public void Init(List<TileData> pathPoints)
         {
             _movement.SetPath(pathPoints);
             _movement.SetCurrentTarget(0);

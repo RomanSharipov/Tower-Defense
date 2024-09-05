@@ -27,6 +27,8 @@ namespace CodeBase.Infrastructure.Installers
                 .As<ICacherOfPath>();
             builder.Register<TilesStorage>(Lifetime.Singleton)
                 .As<ITilesStorage>();
+            builder.Register<WavesService>(Lifetime.Singleton)
+                .As<IWavesService>();
         }
     }    
 }

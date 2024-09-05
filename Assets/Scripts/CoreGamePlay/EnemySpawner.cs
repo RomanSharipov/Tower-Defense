@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Infrastructure.Services;
+using CodeBase.Configs;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -12,9 +12,11 @@ namespace Assets.Scripts.CoreGamePlay
         [Inject] private IEnemyFactory _enemyFactory;
         [Inject] private IBuildingService _buildingService;
         [Inject] private ICacherOfPath _cacherOfPath;
+        [Inject] private IWavesService _wavesService;
 
         [SerializeField] private TileView _start;
         [SerializeField] private TileView _target;
+        [SerializeField] private WavesOnLevelData _wavesOnLevelData;
 
         private List<TileData> _path;
         private bool _isSpawningEnabled;
@@ -27,6 +29,10 @@ namespace Assets.Scripts.CoreGamePlay
         public TileView StartTile => _start;
         public TileView TargetTile => _target;
 
+        private void Awake()
+        {
+            _wavesService.SetCurrentData(_wavesOnLevelData);
+        }
 
         public void StartSpawnEnemies()
         {
@@ -66,7 +72,7 @@ namespace Assets.Scripts.CoreGamePlay
             newEnemy.transform.parent = transform;
             newEnemy.transform.localPosition = Vector3.zero;
             newEnemy.transform.gameObject.name = $"{_counter}.{gameObject.name}";
-            newEnemy.Init(_path, _cacherOfPath,this);
+            newEnemy.Init(_path);
             _enemiesOnBoard.Add(newEnemy.Movement);
         }
         

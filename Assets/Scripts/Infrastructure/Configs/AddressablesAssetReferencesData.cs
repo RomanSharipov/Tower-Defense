@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CodeBase.Configs
 {
-    [CreateAssetMenu(fileName = "StaticData",menuName = "StaticData/AddressablesAssetReferencesData")]
+    [CreateAssetMenu(fileName = "AddressablesAssetReferencesData", menuName = "StaticData/AddressablesAssetReferencesData")]
     public class AddressablesAssetReferencesData : ScriptableObject
     {
         
