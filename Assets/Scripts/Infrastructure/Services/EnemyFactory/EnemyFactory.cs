@@ -33,13 +33,13 @@ namespace Assets.Scripts.Infrastructure.Services
         //    return windowComponent;
         //}
 
-        public async UniTask<T> CreateEnemy<T>(EnemyType enemyType) where T : EnemyBase
+        public async UniTask<EnemyBase> CreateEnemy(EnemyType enemyType) 
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[enemyType]);
             GameObject newGameObject = GameObject.Instantiate(prefab);
-            T windowComponent = newGameObject.GetComponent<T>();
-            _objectResolver.Inject(windowComponent);
-            return windowComponent;
+            EnemyBase enemyComponent = newGameObject.GetComponent<EnemyBase>();
+            _objectResolver.Inject(enemyComponent);
+            return enemyComponent;
         }
     }
 

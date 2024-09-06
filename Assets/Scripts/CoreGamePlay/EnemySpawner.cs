@@ -24,14 +24,14 @@ namespace Assets.Scripts.CoreGamePlay
         private int _counter;
 
         [SerializeField] private List<EnemyMovement> _enemiesOnBoard = new List<EnemyMovement>();
-        [SerializeField] private float _interval = 2.0f; 
+        
 
         public TileView StartTile => _start;
         public TileView TargetTile => _target;
 
         private void Awake()
         {
-            _wavesService.SetCurrentData(_wavesOnLevelData);
+            _wavesService.SetNewWavesData(_wavesOnLevelData);
         }
 
         public void StartSpawnEnemies()
@@ -53,27 +53,33 @@ namespace Assets.Scripts.CoreGamePlay
         
         private void Update()
         {
-            if (_isSpawningEnabled)
-            {
-                _spawnTimer += Time.deltaTime;
+            //if (_isSpawningEnabled)
+            //{
+            //    _spawnTimer += Time.deltaTime;
 
-                if (_spawnTimer >= _interval)
-                {
-                    _spawnTimer = 0f;  
-                    CreateEnemy().Forget();  
-                }
-            }
+            //    if (_spawnTimer >= _wavesService.CurrentWave.DelayBetweenSpawn)
+            //    {
+            //        _spawnTimer = 0f;  
+            //        CreateEnemy().Forget();  
+            //    }
+            //}
         }
         
         private async UniTask CreateEnemy()
         {
-            Tank newEnemy = await _enemyFactory.CreateEnemy<Tank>(EnemyType.Tank);
-            _counter++;
-            newEnemy.transform.parent = transform;
-            newEnemy.transform.localPosition = Vector3.zero;
-            newEnemy.transform.gameObject.name = $"{_counter}.{gameObject.name}";
-            newEnemy.Init(_path);
-            _enemiesOnBoard.Add(newEnemy.Movement);
+            if (_wavesService.TryGetEnemy(out EnemyType enemyType))
+            {
+                EnemyBase newEnemy = await _enemyFactory.CreateEnemy(enemyType);
+            }
+
+
+            
+            //_counter++;
+            //newEnemy.transform.parent = transform;
+            //newEnemy.transform.localPosition = Vector3.zero;
+            //newEnemy.transform.gameObject.name = $"{_counter}.{gameObject.name}";
+            //newEnemy.Init(_path);
+            //_enemiesOnBoard.Add(newEnemy.Movement);
         }
         
         private void OnDestroy()

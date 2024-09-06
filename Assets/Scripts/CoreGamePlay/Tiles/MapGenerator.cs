@@ -27,13 +27,17 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private List<Transform> _obstacleTiles = new List<Transform>();
 
         [SerializeField] private Transform[] _points;
+        [SerializeField] private bool _createRoad;
         
         [ContextMenu("Generate")]
         public void Generate()
         {
             ClearBoard();
             CreateRectGameBoard();
-            CreateRoad();
+            if (_createRoad)
+            {
+                CreateRoad();
+            }
             CreateObstacleTiles();
             _levelMainMonoBehaviour.SetTiles(_gameBoardTiles.ToArray());
         }

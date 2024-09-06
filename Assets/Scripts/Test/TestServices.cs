@@ -29,7 +29,7 @@ public class TestServices : MonoBehaviour
     [ContextMenu("CreateEnemy")]
     public void CreateEnemy()
     {
-        _enemyFactory.CreateEnemy<Tank>(EnemyType.Tank);
+        _enemyFactory.CreateEnemy(EnemyType.Tank);
     }
 
     [ContextMenu("CreateTurret")]

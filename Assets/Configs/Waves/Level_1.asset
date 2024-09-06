@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Level_1
   m_EditorClassIdentifier: 
   WaveDatas:
-  - EnemyType: 1
-    Count: 20
-    DelayBetweenSpawn: 3
+  - _enemyType: 1
+    _countEnemy: 5
+    _delayBetweenSpawn: 0
+  - _enemyType: 2
+    _countEnemy: 2
+    _delayBetweenSpawn: 0
+  - _enemyType: 1
+    _countEnemy: 4
+    _delayBetweenSpawn: 0
