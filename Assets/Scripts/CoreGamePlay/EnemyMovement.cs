@@ -30,10 +30,31 @@ public class EnemyMovement : MonoBehaviour
     
     [SerializeField] private PathBuilder _pathBuilder;
     
-
     public float DistanceOfClosestTargetTile => _distanceOfClosestTargetTile;
     public TileData CurrentTarget => _currentTarget;
+    public void UnPause()
+    {
+        DOTween.To(() => _currentSpeed, x => _currentSpeed = x, _startSpeed, 0.5f);
+    }
 
+    public void Pause()
+    {
+        DOTween.To(() => _currentSpeed, x => _currentSpeed = x, 0f, 0.5f);
+    }
+    public void BlockTriggerOnCollisionAvoidance()
+    {
+        _collisionAvoidance.BlockTrigger().Forget();
+    }
+    public void SetPath(List<TileData> pathPoints)
+    {
+        _path = pathPoints;
+        _pathBuilder.SetPath(pathPoints);
+    }
+    public void SetCurrentTarget(int tileIndex)
+    {
+        _currentTargetIndex = tileIndex;
+        _currentTarget = _path[_currentTargetIndex];
+    }
 
     private void Awake()
     {
@@ -42,23 +63,6 @@ public class EnemyMovement : MonoBehaviour
         _pathBuilder = new PathBuilder();
     }
     
-    public void BlockTriggerOnCollisionAvoidance()
-    {
-        _collisionAvoidance.BlockTrigger().Forget();
-    }
-    
-    public void SetPath(List<TileData> pathPoints)
-    {
-        _path = pathPoints;
-        _pathBuilder.SetPath(pathPoints);
-    }
-
-    public void SetCurrentTarget(int tileIndex)
-    {
-        _currentTargetIndex = tileIndex;
-        _currentTarget = _path[_currentTargetIndex];
-    }
-
     public void StartMovement()
     {
         _isMoving = true;
@@ -166,15 +170,5 @@ public class EnemyMovement : MonoBehaviour
         Vector3 direction = (target - _myTranstorm.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         _myTranstorm.rotation = Quaternion.RotateTowards(_myTranstorm.rotation, lookRotation, _rotateSpeed * Time.deltaTime);
-    }
-    
-    public void UnPause()
-    {
-        DOTween.To(() => _currentSpeed, x => _currentSpeed = x, _startSpeed, 0.5f);
-    }
-    
-    public void Pause()
-    {
-        DOTween.To(() => _currentSpeed, x => _currentSpeed = x, 0f, 0.5f);
     }
 }
