@@ -4,6 +4,9 @@
     {
         None,
         Tank,
-        Car
+        Hummer,
+        Truck,
+        Stryker,
+        GroundDrone
     }
 }

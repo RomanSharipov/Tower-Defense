@@ -15,10 +15,21 @@ MonoBehaviour:
   WaveDatas:
   - _enemyType: 1
     _countEnemy: 5
-    _delayBetweenSpawn: 0
+    _delayBetweenSpawn: 2
+    _enemyConfig: {fileID: 11400000, guid: 79c96d52230c6c947b97335a95728f32, type: 2}
   - _enemyType: 2
-    _countEnemy: 2
-    _delayBetweenSpawn: 0
-  - _enemyType: 1
-    _countEnemy: 4
-    _delayBetweenSpawn: 0
+    _countEnemy: 5
+    _delayBetweenSpawn: 2
+    _enemyConfig: {fileID: 11400000, guid: 79c96d52230c6c947b97335a95728f32, type: 2}
+  - _enemyType: 3
+    _countEnemy: 5
+    _delayBetweenSpawn: 2
+    _enemyConfig: {fileID: 11400000, guid: 79c96d52230c6c947b97335a95728f32, type: 2}
+  - _enemyType: 4
+    _countEnemy: 5
+    _delayBetweenSpawn: 2
+    _enemyConfig: {fileID: 11400000, guid: 79c96d52230c6c947b97335a95728f32, type: 2}
+  - _enemyType: 5
+    _countEnemy: 5
+    _delayBetweenSpawn: 2
+    _enemyConfig: {fileID: 11400000, guid: 79c96d52230c6c947b97335a95728f32, type: 2}

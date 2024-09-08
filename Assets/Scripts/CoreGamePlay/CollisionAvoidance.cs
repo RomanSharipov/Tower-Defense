@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Scripts.CoreGamePlay;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ public class CollisionAvoidance : MonoBehaviour
                 if (_blockControl)
                     return;
 
+                Debug.Log($"otherMovement.BlockTriggerOnCollisionAvoidance() {myMovement.gameObject.name}");
                 otherMovement.BlockTriggerOnCollisionAvoidance();
                 ResolveByDistanceToClosestTile(otherMovement);
             }
@@ -34,9 +36,11 @@ public class CollisionAvoidance : MonoBehaviour
         {
             myMovement.Pause();
             otherMovement.UnPause();
+            Debug.Log($"otherMovement if {myMovement.gameObject.name}");
         }
         else
         {
+            Debug.Log($"otherMovement else {myMovement.gameObject.name}");
             myMovement.UnPause();
             otherMovement.Pause();
         }
@@ -45,7 +49,7 @@ public class CollisionAvoidance : MonoBehaviour
     public async UniTask BlockTrigger()
     {
         _blockControl = true;
-        await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
+        await UniTask.Delay(TimeSpan.FromSeconds(5.2f));
         _blockControl = false;
     }
 

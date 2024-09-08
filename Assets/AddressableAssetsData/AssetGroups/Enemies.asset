@@ -23,6 +23,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - Enemies
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8d3f28d4ca1a4741a5c28274b7486d4
+    m_Address: Truck
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemies
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93877c21a725f584ea3ffff9e596b3aa
+    m_Address: Hummer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemies
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0720651e72d982043a1ed0af5bdff8f5
+    m_Address: Stryker
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemies
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 241f373533e7b0d44b7e5db601bbe58d, type: 2}
   m_SchemaSet:

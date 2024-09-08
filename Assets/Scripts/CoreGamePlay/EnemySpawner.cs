@@ -53,33 +53,30 @@ namespace Assets.Scripts.CoreGamePlay
         
         private void Update()
         {
-            //if (_isSpawningEnabled)
-            //{
-            //    _spawnTimer += Time.deltaTime;
+            if (_isSpawningEnabled)
+            {
+                _spawnTimer += Time.deltaTime;
 
-            //    if (_spawnTimer >= _wavesService.CurrentWave.DelayBetweenSpawn)
-            //    {
-            //        _spawnTimer = 0f;  
-            //        CreateEnemy().Forget();  
-            //    }
-            //}
+                if (_spawnTimer >= _wavesService.CurrentWave.DelayBetweenSpawn)
+                {
+                    _spawnTimer = 0f;
+                    CreateEnemyIfNeeded().Forget();
+                }
+            }
         }
         
-        private async UniTask CreateEnemy()
+        private async UniTask CreateEnemyIfNeeded()
         {
             if (_wavesService.TryGetEnemy(out EnemyType enemyType))
             {
                 EnemyBase newEnemy = await _enemyFactory.CreateEnemy(enemyType);
+                _counter++;
+                newEnemy.transform.parent = transform;
+                newEnemy.transform.localPosition = Vector3.zero;
+                newEnemy.transform.gameObject.name = $"{_counter}.{newEnemy.name}";
+                newEnemy.Init(_path,_wavesService.CurrentWave.EnemyConfig);
+                _enemiesOnBoard.Add(newEnemy.Movement);
             }
-
-
-            
-            //_counter++;
-            //newEnemy.transform.parent = transform;
-            //newEnemy.transform.localPosition = Vector3.zero;
-            //newEnemy.transform.gameObject.name = $"{_counter}.{gameObject.name}";
-            //newEnemy.Init(_path);
-            //_enemiesOnBoard.Add(newEnemy.Movement);
         }
         
         private void OnDestroy()

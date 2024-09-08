@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CodeBase.Configs;
 using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
@@ -7,11 +8,13 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [SerializeField] public EnemyMovement _movement; 
         [SerializeField] public TileView _testTile; 
+        [SerializeField] public EnemyConfig _enemyConfig; 
         
         public EnemyMovement Movement => _movement;
 
-        public void Init(List<TileData> pathPoints)
+        public void Init(List<TileData> pathPoints, EnemyConfig enemyConfig)
         {
+            _enemyConfig = enemyConfig;
             _movement.SetPath(pathPoints);
             _movement.SetCurrentTarget(0);
             _movement.StartMovement();

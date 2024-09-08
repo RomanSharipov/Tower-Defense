@@ -64,6 +64,30 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  - enemyType: 2
+    AssetReference:
+      m_AssetGUID: 93877c21a725f584ea3ffff9e596b3aa
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - enemyType: 3
+    AssetReference:
+      m_AssetGUID: e8d3f28d4ca1a4741a5c28274b7486d4
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - enemyType: 4
+    AssetReference:
+      m_AssetGUID: 0720651e72d982043a1ed0af5bdff8f5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - enemyType: 5
+    AssetReference:
+      m_AssetGUID: 0720651e72d982043a1ed0af5bdff8f5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
   Turrets:
   - turretType: 1
     AssetReference:
