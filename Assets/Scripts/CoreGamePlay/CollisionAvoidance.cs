@@ -18,8 +18,7 @@ public class CollisionAvoidance : MonoBehaviour
             {
                 if (_blockControl)
                     return;
-
-                Debug.Log($"otherMovement.BlockTriggerOnCollisionAvoidance() {myMovement.gameObject.name}");
+                
                 otherMovement.BlockTriggerOnCollisionAvoidance();
                 ResolveByDistanceToClosestTile(otherMovement);
             }
@@ -36,11 +35,9 @@ public class CollisionAvoidance : MonoBehaviour
         {
             myMovement.Pause();
             otherMovement.UnPause();
-            Debug.Log($"otherMovement if {myMovement.gameObject.name}");
         }
         else
         {
-            Debug.Log($"otherMovement else {myMovement.gameObject.name}");
             myMovement.UnPause();
             otherMovement.Pause();
         }

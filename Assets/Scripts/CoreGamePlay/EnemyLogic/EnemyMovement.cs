@@ -57,9 +57,10 @@ namespace Assets.Scripts.CoreGamePlay
             _currentTarget = _path[_currentTargetIndex];
         }
 
-        private void Awake()
+        public void Init(float startSpeed)
         {
             _myTranstorm = transform;
+            _startSpeed = startSpeed;
             _currentSpeed = _startSpeed;
             _pathBuilder = new PathBuilder();
         }

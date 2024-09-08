@@ -15,6 +15,8 @@ namespace Assets.Scripts.CoreGamePlay
         public void Init(List<TileData> pathPoints, EnemyConfig enemyConfig)
         {
             _enemyConfig = enemyConfig;
+            
+            _movement.Init(enemyConfig.MovementSpeed);
             _movement.SetPath(pathPoints);
             _movement.SetCurrentTarget(0);
             _movement.StartMovement();
