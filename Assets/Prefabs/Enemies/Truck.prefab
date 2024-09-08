@@ -69,6 +69,7 @@ MonoBehaviour:
   _pathView: []
   _startSpeed: 2.1
   _collisionAvoidance: {fileID: 3290432594560947805}
+  _currentSpeed: 0
   _pathCount: 0
   _currentTargetIndex: 0
   _isMoving: 0
@@ -466,6 +467,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2005689218858274675}
     m_Modifications:
+    - target: {fileID: 113504087517418389, guid: 4a3a73a5848c97d4b8cb0e3c572746ea, type: 3}
+      propertyPath: m_Radius
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 1543327304089962187, guid: 4a3a73a5848c97d4b8cb0e3c572746ea, type: 3}
       propertyPath: myMovement
       value: 
@@ -480,7 +485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5181344806541639069, guid: 4a3a73a5848c97d4b8cb0e3c572746ea, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.22
+      value: -0.051
       objectReference: {fileID: 0}
     - target: {fileID: 5181344806541639069, guid: 4a3a73a5848c97d4b8cb0e3c572746ea, type: 3}
       propertyPath: m_LocalRotation.w

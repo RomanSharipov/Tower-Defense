@@ -84,7 +84,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
   - enemyType: 5
     AssetReference:
-      m_AssetGUID: 0720651e72d982043a1ed0af5bdff8f5
+      m_AssetGUID: 7350fab9227d9d64f8a4d32172177433
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0

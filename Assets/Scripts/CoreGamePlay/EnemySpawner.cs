@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.Infrastructure.Services;
 using CodeBase.Configs;
 using Cysharp.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private List<TileData> _path;
         private bool _isSpawningEnabled;
-        private float _spawnTimer;
+        [SerializeField] private float _spawnTimer;
         private int _counter;
 
         [SerializeField] private List<EnemyMovement> _enemiesOnBoard = new List<EnemyMovement>();
@@ -32,7 +33,10 @@ namespace Assets.Scripts.CoreGamePlay
         private void Awake()
         {
             _wavesService.SetNewWavesData(_wavesOnLevelData);
+            _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
         }
+
+        
 
         public void StartSpawnEnemies()
         {
@@ -55,11 +59,11 @@ namespace Assets.Scripts.CoreGamePlay
         {
             if (_isSpawningEnabled)
             {
-                _spawnTimer += Time.deltaTime;
+                _spawnTimer -= Time.deltaTime;
 
-                if (_spawnTimer >= _wavesService.CurrentWave.DelayBetweenSpawn)
+                if (_spawnTimer <= 0f)
                 {
-                    _spawnTimer = 0f;
+                    _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
                     CreateEnemyIfNeeded().Forget();
                 }
             }
@@ -87,11 +91,18 @@ namespace Assets.Scripts.CoreGamePlay
         private void OnEnable()
         {
             _buildingService.TurretIsBuilded += OnTurretIsBuilded;
+            _wavesService.WaveIsOver += OnWaveIsOver;
         }
         
         private void OnDisable()
         {
             _buildingService.TurretIsBuilded -= OnTurretIsBuilded;
+            _wavesService.WaveIsOver -= OnWaveIsOver;
+        }
+
+        private void OnWaveIsOver(WaveData data)
+        {
+            _spawnTimer += 3.0f;
         }
 
         private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
