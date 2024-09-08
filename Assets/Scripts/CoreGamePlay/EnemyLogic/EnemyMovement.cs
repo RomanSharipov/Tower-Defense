@@ -1,70 +1,60 @@
 ﻿using UnityEngine;
-using System;
 using Assets.Scripts.Helpers;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    [Serializable]
     public class EnemyMovement : MonoBehaviour
     {
-        private List<TileData> _path;
-        [SerializeField] private TileView[] _pathView;
-        [SerializeField] private TileData _currentTarget;
-
-
-        private Transform _myTranstorm;
-
-
-        [SerializeField] private float _startSpeed = 2.1f;
         [SerializeField] private CollisionAvoidance _collisionAvoidance;
-        [SerializeField] private float _currentSpeed;
-        private float _rotateSpeed = 360f;
 
-        [SerializeField] private int _pathCount;
-        [SerializeField] private int _currentTargetIndex = 0;
-        [SerializeField] private bool _isMoving = false;
+        private Transform _transtorm;
+        
+        private float _startSpeed = 2.1f;
+        private float _currentSpeed;
+        private float _rotateSpeed = 360f;
+        
+        private bool _isMoving = false;
         private float _yOffset = 0.41f;
         private float _distanceOfClosestTargetTile;
 
-        [SerializeField] private PathBuilder _pathBuilder;
+        private PathBuilder _pathBuilder;
+        private TileData _currentTarget;
+        private int _currentTargetIndex = 0;
+        private List<TileData> _path;
 
         public float DistanceOfClosestTargetTile => _distanceOfClosestTargetTile;
         public TileData CurrentTarget => _currentTarget;
-        public void UnPause()
-        {
-            DOTween.To(() => _currentSpeed, x => _currentSpeed = x, _startSpeed, 0.5f);
-        }
+        public event Action GoalIsReached;
 
-        public void Pause()
+        public void Init(float startSpeed)
         {
-            DOTween.To(() => _currentSpeed, x => _currentSpeed = x, 0f, 0.5f);
+            _transtorm = transform;
+            _startSpeed = startSpeed;
+            _currentSpeed = _startSpeed;
+            _pathBuilder = new PathBuilder();
         }
+        
         public void BlockTriggerOnCollisionAvoidance()
         {
             _collisionAvoidance.BlockTrigger().Forget();
         }
+
         public void SetPath(List<TileData> pathPoints)
         {
             _path = pathPoints;
             _pathBuilder.SetPath(pathPoints);
         }
+
         public void SetCurrentTarget(int tileIndex)
         {
             _currentTargetIndex = tileIndex;
             _currentTarget = _path[_currentTargetIndex];
         }
-
-        public void Init(float startSpeed)
-        {
-            _myTranstorm = transform;
-            _startSpeed = startSpeed;
-            _currentSpeed = _startSpeed;
-            _pathBuilder = new PathBuilder();
-        }
-
+        
         public void StartMovement()
         {
             _isMoving = true;
@@ -95,6 +85,16 @@ namespace Assets.Scripts.CoreGamePlay
             StartMovement();
         }
 
+        public void UnPause()
+        {
+            DOTween.To(() => _currentSpeed, x => _currentSpeed = x, _startSpeed, 0.5f);
+        }
+
+        public void Pause()
+        {
+            DOTween.To(() => _currentSpeed, x => _currentSpeed = x, 0f, 0.5f);
+        }
+
         private void Update()
         {
             if (_isMoving)
@@ -105,48 +105,66 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void MoveAlongPath()
         {
-            _pathCount = _path.Count;
-            if (_currentTargetIndex < _path.Count)
+            if (_currentTargetIndex >= _path.Count)
             {
-                _currentTarget = _path[_currentTargetIndex];
-                MoveToTarget(_currentTarget);
+                StopMovement();
+                return;
+            }
 
-                _distanceOfClosestTargetTile = Vector3.Distance(_myTranstorm.position, GetTargetPosition(_currentTarget));
+            _currentTarget = _path[_currentTargetIndex];
+            MoveToTarget(_currentTarget);
 
-                if (_distanceOfClosestTargetTile <= 0.1f)
-                {
-                    _pathBuilder.RemoveCompletedTile(_currentTarget);
-                    if (_currentTargetIndex + 1 >= _path.Count)
-                    {
-                        StopMovement();
-                    }
-                    else
-                    {
-                        _currentTargetIndex++;
+            _distanceOfClosestTargetTile = Vector3.Distance(_transtorm.position, GetTargetPosition(_currentTarget));
 
-                        if (_currentTargetIndex >= _path.Count - 1)
-                        {
-                            StopMovement();
-                            Destroy(gameObject);
-                        }
-                        else
-                        {
-                            _currentTarget = _path[_currentTargetIndex];
-                        }
-                    }
-                }
+            if (_distanceOfClosestTargetTile > 0.1f)
+            {
+                return;
+            }
+
+            HandleTileReached();
+        }
+
+        private bool IsLastTile()
+        {
+            return _currentTargetIndex + 1 >= _path.Count;
+        }
+
+        private void HandleTileReached()
+        {
+            _pathBuilder.RemoveCompletedTile(_currentTarget);
+
+            if (IsLastTile())
+            {
+                CompletePathAndStop();
             }
             else
             {
-                StopMovement();
+                MoveToNextTile();
             }
+        }
+
+        private void MoveToNextTile()
+        {
+            _currentTargetIndex++;
+            _currentTarget = _path[_currentTargetIndex];
+
+            if (_currentTargetIndex >= _path.Count - 1)
+            {
+                CompletePathAndStop();
+            }
+        }
+
+        private void CompletePathAndStop()
+        {
+            StopMovement();
+            GoalIsReached?.Invoke();
         }
 
         private void MoveToTarget(TileData targetTile)
         {
             Vector3 target = GetTargetPosition(targetTile);
 
-            _distanceOfClosestTargetTile = Vector3.Distance(_myTranstorm.position, target);
+            _distanceOfClosestTargetTile = Vector3.Distance(_transtorm.position, target);
             if (_distanceOfClosestTargetTile > 0.1f)
             {
                 MoveTowardsTarget(target);
@@ -163,20 +181,15 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void MoveTowardsTarget(Vector3 target)
         {
-            Vector3 direction = (target - _myTranstorm.position).normalized;
-            _myTranstorm.position += direction * _currentSpeed * Time.deltaTime;
+            Vector3 direction = (target - _transtorm.position).normalized;
+            _transtorm.position += direction * _currentSpeed * Time.deltaTime;
         }
 
         private void RotateTowardsTarget(Vector3 target)
         {
-            Vector3 direction = (target - _myTranstorm.position).normalized;
+            Vector3 direction = (target - _transtorm.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(direction);
-            _myTranstorm.rotation = Quaternion.RotateTowards(_myTranstorm.rotation, lookRotation, _rotateSpeed * Time.deltaTime);
-        }
-
-        public void SetSpeed(float speed)
-        {
-            _startSpeed = speed;
+            _transtorm.rotation = Quaternion.RotateTowards(_transtorm.rotation, lookRotation, _rotateSpeed * Time.deltaTime);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private float _spawnTimer;
         private int _counter;
 
-        [SerializeField] private List<EnemyMovement> _enemiesOnBoard = new List<EnemyMovement>();
+        [SerializeField] private List<EnemyBase> _enemiesOnBoard = new List<EnemyBase>();
         
 
         public TileView StartTile => _start;
@@ -79,10 +79,18 @@ namespace Assets.Scripts.CoreGamePlay
                 newEnemy.transform.localPosition = Vector3.zero;
                 newEnemy.transform.gameObject.name = $"{_counter}.{newEnemy.name}";
                 newEnemy.Init(_path,_wavesService.CurrentWave.EnemyConfig);
-                _enemiesOnBoard.Add(newEnemy.Movement);
+                newEnemy.GoalIsReached += OnGoalIsReached;
+                _enemiesOnBoard.Add(newEnemy);
             }
         }
-        
+
+        private void OnGoalIsReached(EnemyBase enemy)
+        {
+            enemy.GoalIsReached -= OnGoalIsReached;
+            _enemiesOnBoard.Remove(enemy);
+            Destroy(enemy.gameObject);
+        }
+
         private void OnDestroy()
         {
             StopSpawn();
@@ -115,9 +123,9 @@ namespace Assets.Scripts.CoreGamePlay
         
         private void UpdateEnemiesPath(TurretBase turret, TileData tileData)
         {
-            foreach (EnemyMovement enemy in _enemiesOnBoard)
+            foreach (EnemyBase enemy in _enemiesOnBoard)
             {
-                enemy.UpdatePath(tileData); 
+                enemy.Movement.UpdatePath(tileData); 
             }
         }
     }

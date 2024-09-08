@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CodeBase.Configs;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ namespace Assets.Scripts.CoreGamePlay
         
         public EnemyMovement Movement => _movement;
 
+        public event Action<EnemyBase> GoalIsReached;
+
         public void Init(List<TileData> pathPoints, EnemyConfig enemyConfig)
         {
             _enemyConfig = enemyConfig;
@@ -20,11 +23,18 @@ namespace Assets.Scripts.CoreGamePlay
             _movement.SetPath(pathPoints);
             _movement.SetCurrentTarget(0);
             _movement.StartMovement();
+            _movement.GoalIsReached += OnGoalIsReached;
         }
-        
+
+        private void OnGoalIsReached()
+        {
+            GoalIsReached?.Invoke(this);
+        }
+
         private void OnDestroy()
         {
             _movement.StopMovement();
+            _movement.GoalIsReached -= OnGoalIsReached;
         }
     }
 }
