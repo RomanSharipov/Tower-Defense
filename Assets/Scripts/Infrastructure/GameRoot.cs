@@ -12,12 +12,7 @@ namespace CodeBase.Infrastructure
 
         public GameStatemachine MainGameStatemachine => _mainGameStatemachine;
         public GameStatemachine GameLoopStatemachine => _gameLoopStatemachine;
-
-        public GameRoot()
-        {
-            
-        }
-
+        
         public void Construct(IObjectResolver objectResolver)
         {
             _objectResolver = objectResolver;

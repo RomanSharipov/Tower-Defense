@@ -18,22 +18,13 @@ namespace Assets.Scripts.Infrastructure.Services
         private readonly IReadOnlyDictionary<EnemyType, AssetReference> _assetReferenceData;
 
         [Inject]
-        public EnemyFactory(IAssetProvider assetProvider, IObjectResolver objectResolver, IAddressablesAssetReferencesService staticDataService)
+        public EnemyFactory(IAssetProvider assetProvider, IObjectResolver objectResolver, IAddressablesAssetReferencesService assetReferenceData)
         {
             _assetProvider = assetProvider;
             _objectResolver = objectResolver;
-            _assetReferenceData = staticDataService.Enemies;
+            _assetReferenceData = assetReferenceData.Enemies;
         }
-
-        //public async UniTask<T> CreateEnemy<T>(EnemyType windowType) where T : EnemyBase
-        //{
-        //    GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[windowType]);
-        //    GameObject newGameObject = GameObject.Instantiate(prefab);
-        //    T windowComponent = newGameObject.GetComponent<T>();
-        //    _objectResolver.Inject(windowComponent);
-        //    return windowComponent;
-        //}
-
+        
         public async UniTask<EnemyBase> CreateEnemy(EnemyType enemyType) 
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[enemyType]);

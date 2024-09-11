@@ -7,7 +7,7 @@ using System;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class EnemyMovement : MonoBehaviour
+    public class EnemyMovement : MonoBehaviour 
     {
         [SerializeField] private CollisionAvoidance _collisionAvoidance;
 
