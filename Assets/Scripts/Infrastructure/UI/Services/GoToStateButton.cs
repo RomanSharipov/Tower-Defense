@@ -1,6 +1,7 @@
 ﻿using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
 namespace CodeBase.Infrastructure.UI.Services
 {
@@ -12,10 +13,11 @@ namespace CodeBase.Infrastructure.UI.Services
         private GameStatemachine _rootGameStatemachine;
         private GameStatemachine _gameLoopStatemachine;
 
-        public void Construct(GameStatemachine gameStatemachine,GameStatemachine gameLoopStatemachine)
+        [Inject]
+        public void Construct(GameRoot gameRoot)
         {
-            _rootGameStatemachine = gameStatemachine;
-            _gameLoopStatemachine = gameLoopStatemachine;
+            _rootGameStatemachine = gameRoot.MainGameStatemachine;
+            _gameLoopStatemachine = gameRoot.GameLoopStatemachine;
         }
 
         private void Awake()

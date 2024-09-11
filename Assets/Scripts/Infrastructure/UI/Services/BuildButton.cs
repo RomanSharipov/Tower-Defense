@@ -3,6 +3,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using VContainer;
 
 namespace CodeBase.Infrastructure.UI.Services
 {
@@ -12,9 +13,10 @@ namespace CodeBase.Infrastructure.UI.Services
         
         private GameStatemachine _gameLoopStatemachine;
 
-        public void Construct(GameStatemachine gameLoopStatemachine)
+        [Inject]
+        public void Construct(GameRoot gameRoot)
         {
-            _gameLoopStatemachine = gameLoopStatemachine;
+            _gameLoopStatemachine = gameRoot.GameLoopStatemachine;
         }
 
         private void OnBuildingButtonClick(BaseEventData arg0)

@@ -6,6 +6,7 @@ using UnityEngine;
 using VContainer;
 using UnityEngine.AddressableAssets;
 using Assets.Scripts.CoreGamePlay;
+using VContainer.Unity;
 
 namespace Assets.Scripts.Infrastructure.Services
 {
@@ -37,8 +38,8 @@ namespace Assets.Scripts.Infrastructure.Services
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[enemyType]);
             GameObject newGameObject = GameObject.Instantiate(prefab);
+            _objectResolver.InjectGameObject(newGameObject);
             EnemyBase enemyComponent = newGameObject.GetComponent<EnemyBase>();
-            _objectResolver.Inject(enemyComponent);
             return enemyComponent;
         }
     }

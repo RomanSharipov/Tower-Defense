@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public abstract class EnemyBase : MonoBehaviour
+    public abstract class EnemyBase : MonoBehaviour 
     {
         [SerializeField] public EnemyMovement _movement; 
         [SerializeField] public TileView _testTile; 
