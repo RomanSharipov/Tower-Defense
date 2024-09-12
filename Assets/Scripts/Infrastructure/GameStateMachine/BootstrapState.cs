@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Infrastructure.Services;
-using CodeBase.Infrastructure.Services;
+﻿using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
 using VContainer;

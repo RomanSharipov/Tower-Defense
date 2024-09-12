@@ -1,12 +1,11 @@
 ﻿using Assets.Scripts.CoreGamePlay;
-using Assets.Scripts.Extension;
-using CodeBase.Infrastructure.Services;
+using CodeBase.Helpers;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer;
 
-namespace Assets.Scripts.Infrastructure.Services
+namespace CodeBase.Infrastructure.Services
 {
     public class LevelService : ILevelService
     {

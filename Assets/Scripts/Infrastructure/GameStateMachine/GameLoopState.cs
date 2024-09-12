@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Assets.Scripts.CoreGamePlay;
-using Assets.Scripts.Infrastructure.Services;
+﻿using Assets.Scripts.CoreGamePlay;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 using VContainer;
 
 namespace CodeBase.Infrastructure

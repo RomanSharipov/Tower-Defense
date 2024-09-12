@@ -1,5 +1,4 @@
 using Assets.Scripts.CoreGamePlay;
-using Assets.Scripts.Infrastructure.Services;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.UI.Services;
 using UnityEngine;

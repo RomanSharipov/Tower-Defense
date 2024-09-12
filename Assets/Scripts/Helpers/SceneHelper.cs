@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Assets.Scripts.Extension
+namespace CodeBase.Helpers
 {
     public static class SceneHelper
     {

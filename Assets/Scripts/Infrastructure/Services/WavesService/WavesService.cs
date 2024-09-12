@@ -2,7 +2,7 @@
 using Assets.Scripts.CoreGamePlay;
 using CodeBase.Configs;
 
-namespace Assets.Scripts.Infrastructure.Services
+namespace CodeBase.Infrastructure.Services
 {
     public class WavesService : IWavesService
     {
@@ -72,16 +72,5 @@ namespace Assets.Scripts.Infrastructure.Services
                 _currentWave = _wavesOnLevelData.WaveDatas[_currentWaveIndex];
             }
         }
-    }
-
-    public interface IWavesService
-    {
-        public WaveData CurrentWave { get; }
-
-        public event Action<WaveData> WaveIsOver;
-        public event Action AllWavesIsOver;
-
-        public void SetNewWavesData(WavesOnLevelData wavesOnLevelData);
-        public bool TryGetEnemy(out EnemyType enemyType);
     }
 }

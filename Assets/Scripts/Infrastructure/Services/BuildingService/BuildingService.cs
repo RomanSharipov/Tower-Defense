@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
-namespace Assets.Scripts.Infrastructure.Services
+namespace CodeBase.Infrastructure.Services
 {
     public class BuildingService : IBuildingService
     {

@@ -2,7 +2,7 @@
 using CodeBase.Infrastructure;
 using UniRx;
 
-namespace Assets.Scripts.Infrastructure.Services
+namespace CodeBase.Infrastructure.Services
 {
     public interface IAppStateService
     {

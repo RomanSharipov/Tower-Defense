@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.CoreGamePlay;
 using Cysharp.Threading.Tasks;
 
-namespace Assets.Scripts.Infrastructure.Services
+namespace CodeBase.Infrastructure.Services
 {
     public interface IEnemyFactory
     {

@@ -1,8 +1,7 @@
 ﻿using System;
-using CodeBase.Infrastructure;
 using UniRx;
 
-namespace Assets.Scripts.Infrastructure.Services
+namespace CodeBase.Infrastructure.Services
 {
     public class AppStateService : IAppStateService
     {
@@ -10,8 +9,9 @@ namespace Assets.Scripts.Infrastructure.Services
         private readonly GameStatemachine _gameLoopStatemachine;
 
         private ReactiveProperty<State> _state = new ReactiveProperty<State>();
+
         public IReadOnlyReactiveProperty<State> State => _state;
-        
+
         public AppStateService(GameStatemachine mainGameStatemachine, GameStatemachine gameLoopStatemachine)
         {
             _mainGameStatemachine = mainGameStatemachine;
@@ -22,24 +22,24 @@ namespace Assets.Scripts.Infrastructure.Services
         {
             switch (state)
             {
-                case CodeBase.Infrastructure.State.None:
+                case Services.State.None:
                     break;
-                case CodeBase.Infrastructure.State.BootstrapState:
+                case Services.State.BootstrapState:
                     _mainGameStatemachine.Enter<BootstrapState>();
                     break;
-                case CodeBase.Infrastructure.State.MenuState:
+                case Services.State.MenuState:
                     _mainGameStatemachine.Enter<MenuState>();
                     break;
-                case CodeBase.Infrastructure.State.GameLoopState:
+                case CodeBase.Infrastructure.Services.State.GameLoopState:
                     _mainGameStatemachine.Enter<GameLoopState>();
                     break;
-                case CodeBase.Infrastructure.State.PlayingIdleState:
+                case Services.State.PlayingIdleState:
                     _gameLoopStatemachine.Enter<PlayingIdleState>();
                     break;
-                case CodeBase.Infrastructure.State.PauseState:
+                case Services.State.PauseState:
                     _gameLoopStatemachine.Enter<PauseState>();
                     break;
-                case CodeBase.Infrastructure.State.BuildingTurretState:
+                case Services.State.BuildingTurretState:
                     _gameLoopStatemachine.Enter<BuildingTurretState>();
                     break;
                 default:
@@ -50,8 +50,8 @@ namespace Assets.Scripts.Infrastructure.Services
 
         public void GoToBuildingTurretState(Action<BuildingTurretState> setupBeforeEnter)
         {
-            _gameLoopStatemachine.Enter<BuildingTurretState>(setupBeforeEnter);
-            _state.Value = CodeBase.Infrastructure.State.BuildingTurretState;
+            _gameLoopStatemachine.Enter(setupBeforeEnter);
+            _state.Value = Services.State.BuildingTurretState;
         }
     }
 }

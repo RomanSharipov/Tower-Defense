@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-public static class ExtensionMethods
+public static class DictionaryExtensionMethods
 {
     public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<object> source) where TKey : Enum
     {

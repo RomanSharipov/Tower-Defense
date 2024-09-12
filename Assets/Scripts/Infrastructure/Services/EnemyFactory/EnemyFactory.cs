@@ -8,7 +8,7 @@ using UnityEngine.AddressableAssets;
 using Assets.Scripts.CoreGamePlay;
 using VContainer.Unity;
 
-namespace Assets.Scripts.Infrastructure.Services
+namespace CodeBase.Infrastructure.Services
 {
 
     public class EnemyFactory : IEnemyFactory

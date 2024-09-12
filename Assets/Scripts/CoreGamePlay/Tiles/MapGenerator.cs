@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Helpers;
+using CodeBase.Helpers;
 using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay

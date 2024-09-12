@@ -1,7 +1,6 @@
 ﻿using VContainer;
 using UnityEngine;
-using CodeBase.Infrastructure.UI.Services;
-using Assets.Scripts.Infrastructure.Services;
+using CodeBase.Infrastructure.Services;
 
 namespace CodeBase.Infrastructure.UI
 {

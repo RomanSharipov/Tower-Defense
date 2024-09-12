@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Helpers
+namespace CodeBase.Helpers
 {
     public static class HexCalculator
     {

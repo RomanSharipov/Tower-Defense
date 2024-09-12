@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Assets.Scripts.Infrastructure.Services;
+﻿using System.Collections.Generic;
 using CodeBase.Configs;
+using CodeBase.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;

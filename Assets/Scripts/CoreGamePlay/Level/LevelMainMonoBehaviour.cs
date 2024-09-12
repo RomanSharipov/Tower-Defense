@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System;
-using System.Linq;
-using Tarodev_Pathfinding._Scripts;
+﻿using System.Linq;
 using UnityEngine;
 using VContainer;
-using Assets.Scripts.Infrastructure.Services;
+using CodeBase.Infrastructure.Services;
 
 namespace Assets.Scripts.CoreGamePlay
 {
