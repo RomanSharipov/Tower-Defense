@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8805b29fdaa67b4d8373f55e3be5a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetState: 2
+  _targetState: 4
   _button: {fileID: 5467410046951965132}
 --- !u!1 &245521718748632483
 GameObject:
@@ -700,7 +700,6 @@ MonoBehaviour:
   - {fileID: 245521718748632483}
   _closeButton: {fileID: 0}
   _windowId: 3
-  _buildButton: {fileID: 7946557391521498895}
 --- !u!1 &5920228271892378072
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8805b29fdaa67b4d8373f55e3be5a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetState: 3
+  _targetState: 5
   _button: {fileID: 2233420081332761062}
 --- !u!1 &6868742041154662203
 GameObject:

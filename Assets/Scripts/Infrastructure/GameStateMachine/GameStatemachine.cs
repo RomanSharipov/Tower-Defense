@@ -6,14 +6,12 @@ namespace CodeBase.Infrastructure
 {
     public class GameStatemachine
     {
-        private Dictionary<Type, IState> _states;
+        private Dictionary<Type, IState> _states = new Dictionary<Type, IState>();
         private IState _activeState;
-
-        public IReadOnlyDictionary<Type, IState> States => _states;
         
-        public void SetStates(Dictionary<Type, IState> states)
+        public void AddState(Type type,IState state)
         {
-            _states = states;
+            _states.Add(type,state);
         }
 
         public void Enter<TState>(Action<TState> setupBeforeEnter = null) where TState : IState
@@ -25,6 +23,7 @@ namespace CodeBase.Infrastructure
             setupBeforeEnter?.Invoke((TState)state);
             
             state.Enter();
+            Debug.Log($"Enter to {typeof(TState)}");
         }
     }
 

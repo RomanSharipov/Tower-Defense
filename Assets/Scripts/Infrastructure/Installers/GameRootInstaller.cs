@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace CodeBase.Infrastructure.Installers
 {
@@ -11,18 +12,19 @@ namespace CodeBase.Infrastructure.Installers
 
         public override void Install(IContainerBuilder builder)
         {
-            _gameRoot = new GameRoot();
+            //_gameRoot = new GameRoot();
 
-            builder.RegisterInstance(_gameRoot)
-                .AsSelf();
 
-            builder.RegisterBuildCallback(resolver =>
-            {
-                _gameRoot.Construct(resolver);
-                _gameRoot.CreateStatemachine();
-                _gameRoot.StartGame();
-            });
 
+            //builder.RegisterBuildCallback(resolver =>
+            //{
+            //    resolver.Inject(_gameRoot);
+
+
+            //    _gameRoot.Construct(resolver);
+            //    _gameRoot.CreateStatemachine();
+            //    _gameRoot.StartGame();
+            //});
         }
     }
 }

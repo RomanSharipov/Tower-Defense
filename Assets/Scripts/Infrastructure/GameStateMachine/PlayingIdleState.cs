@@ -1,11 +1,16 @@
-﻿
-using Cysharp.Threading.Tasks;
-using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using VContainer;
 
 namespace CodeBase.Infrastructure
 {
-    public class IdleState : IState
+    public class PlayingIdleState : IState
     {
+        [Inject]
+        public PlayingIdleState()
+        {
+            
+        }
+
         public UniTask Enter()
         {
             return UniTask.CompletedTask;

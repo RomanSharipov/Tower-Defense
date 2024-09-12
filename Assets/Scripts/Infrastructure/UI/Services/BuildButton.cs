@@ -1,8 +1,6 @@
-﻿using System;
-using UniRx;
+﻿using Assets.Scripts.Infrastructure.Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using VContainer;
 
 namespace CodeBase.Infrastructure.UI.Services
@@ -11,22 +9,18 @@ namespace CodeBase.Infrastructure.UI.Services
     {
         [SerializeField] private EventTrigger _buildButton;
         
-        private GameStatemachine _gameLoopStatemachine;
-
-        [Inject]
-        public void Construct(GameRoot gameRoot)
-        {
-            _gameLoopStatemachine = gameRoot.GameLoopStatemachine;
-        }
-
+        [Inject] private IAppStateService _appStateService;
+        
         private void OnBuildingButtonClick(BaseEventData arg0)
         {
-            _gameLoopStatemachine.Enter<BuildingTurretState>(buildingState =>
-            {
-
-            });
+            _appStateService.GoToBuildingTurretState(SetupBeforeBuilding);
         }
-        
+
+        private void SetupBeforeBuilding(BuildingTurretState state)
+        {
+            
+        }
+
         private void OnEnable()
         {
             _buildButton.AddListener(EventTriggerType.PointerDown,OnBuildingButtonClick);

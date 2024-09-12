@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using Assets.Scripts.Infrastructure.Services;
+using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
 using VContainer;
@@ -7,29 +8,25 @@ namespace CodeBase.Infrastructure
 {
     public class BootstrapState : IState
     {
-        private ISceneLoader _sceneLoader;
-        private IUIFactory _uiFactory;
-        private IAssetProvider _assetProvider;
-        private GameStatemachine _mainGameStatemachine;
+        private readonly ISceneLoader _sceneLoader;
+        private readonly IUIFactory _uiFactory;
+        private readonly IAssetProvider _assetProvider;
+        private readonly IAppStateService _iAppStateService;
         
-        public BootstrapState(GameStatemachine mainGameStatemachine)
-        {
-            _mainGameStatemachine = mainGameStatemachine;
-        }
-
         [Inject]
-        public void Construct(ISceneLoader sceneLoader, IUIFactory uiFactory, IAssetProvider assetProvider)
+        public BootstrapState(ISceneLoader sceneLoader, IUIFactory uiFactory, IAssetProvider assetProvider, IAppStateService iAppStateService)
         {
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
             _assetProvider = assetProvider;
+            _iAppStateService = iAppStateService;
         }
 
         public async UniTask Enter()
         {
             await _assetProvider.Initialize();
             await _uiFactory.CreateRootCanvas();
-            _mainGameStatemachine.Enter<MenuState>();
+            _iAppStateService.GoToState(State.MenuState);
         }
 
         public  UniTask Exit()

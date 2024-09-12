@@ -12,57 +12,31 @@ namespace CodeBase.Infrastructure
 {
     public class GameLoopState : IState
     {
-        private IObjectResolver _resolver;
-        private ILevelService _levelService;
-        private IWindowService _windowService;
-        private IAssetProvider _assetProvider;
-        private GameStatemachine _mainGameStateMachine;
-
-        private GameStatemachine _subStatemachine;
-
-        public GameStatemachine SubStatemachine => _subStatemachine;
-
-        public GameLoopState(GameStatemachine mainGameStateMachine)
-        {
-            _mainGameStateMachine = mainGameStateMachine;
-
-            _subStatemachine = new GameStatemachine();
-
-            PauseState pauseState = new PauseState();
-            BuildingTurretState buildingTurretState = new BuildingTurretState(_subStatemachine);
-            IdleState idleState = new IdleState();
-            
-            Dictionary<Type, IState> states = new Dictionary<Type, IState>()
-            {
-                [typeof(PauseState)] = pauseState,
-                [typeof(BuildingTurretState)] = buildingTurretState,
-                [typeof(IdleState)] = idleState
-            };
-
-            _subStatemachine.SetStates(states);
-
-            _subStatemachine.Enter<IdleState>();
-        }
+        private readonly IObjectResolver _resolver;
+        private readonly ILevelService _levelService;
+        private readonly IWindowService _windowService;
+        private readonly IAssetProvider _assetProvider;
+        private readonly IAppStateService _appStateService;
 
         [Inject]
-        public void Construct(IObjectResolver objectResolver,ILevelService levelService, IWindowService windowService, IAssetProvider assetProvider)
+        public GameLoopState(IObjectResolver resolver, 
+            ILevelService levelService, IWindowService windowService, 
+            IAssetProvider assetProvider, IAppStateService appStateService)
         {
-            _resolver = objectResolver;
+            _resolver = resolver;
             _levelService = levelService;
             _windowService = windowService;
             _assetProvider = assetProvider;
-            foreach (IState state in _subStatemachine.States.Values)
-            {
-                _resolver.Inject(state);
-            }
+            _appStateService = appStateService;
         }
-
+        
         public async UniTask Enter()
         {
             _windowService.Open(WindowId.GameLoopWindow).Forget();
-
+            
             ILevelMain levelMain = await _levelService.LoadCurrentLevel();
             levelMain.InitializeSceneServices();
+            _appStateService.GoToState(State.PlayingIdleState);
         }
 
         public UniTask Exit()

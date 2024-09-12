@@ -7,23 +7,14 @@ namespace CodeBase.Infrastructure
 {
     public class MenuState : IState
     {
-        private GameStatemachine _mainGameStatemachine;
-        private ISceneLoader _sceneLoader;
-        private IAssetProvider _assetProvider;
-        
-        private IWindowService _windowService;
+        private readonly IAssetProvider _assetProvider;
+        private readonly IWindowService _windowService;
 
         [Inject]
-        public void Construct(ISceneLoader sceneLoader,IWindowService windowService, IAssetProvider assetProvider)
+        public MenuState(IAssetProvider assetProvider, IWindowService windowService)
         {
-            _sceneLoader = sceneLoader;
-            _windowService = windowService;
             _assetProvider = assetProvider;
-        }
-
-        public MenuState(GameStatemachine mainGameStatemachine)
-        {
-            _mainGameStatemachine = mainGameStatemachine;
+            _windowService = windowService;
         }
 
         public async UniTask Enter()

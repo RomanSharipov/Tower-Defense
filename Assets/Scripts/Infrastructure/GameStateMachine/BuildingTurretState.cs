@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 using VContainer;
 
 namespace CodeBase.Infrastructure
@@ -8,23 +7,19 @@ namespace CodeBase.Infrastructure
     public class BuildingTurretState : IState
     {
         private IBuildingService _buildingService;
-        private readonly GameStatemachine _gameStatemachine;
-
-        public BuildingTurretState(GameStatemachine gameStatemachine)
-        {
-            _gameStatemachine = gameStatemachine;
-        }
+        private IAppStateService _appStateService;
 
         [Inject]
-        public void Construct(IBuildingService buildingService)
+        public BuildingTurretState(IBuildingService buildingService, IAppStateService appStateService)
         {
             _buildingService = buildingService;
+            _appStateService = appStateService;
         }
 
         public async UniTask Enter()
         {
             await _buildingService.StartBuilding();
-            _gameStatemachine.Enter<IdleState>();
+            _appStateService.GoToState(State.PlayingIdleState);
         }
         
         public UniTask Exit()
