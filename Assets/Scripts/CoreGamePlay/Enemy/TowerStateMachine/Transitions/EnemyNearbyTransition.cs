@@ -1,26 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class EnemyNearbyTransition : ITransition
+    public class EnemyNearbyTransition : TransitionBase
     {
-        private TurretBase _turret;
-        private ITurretState _targetState;
-
-        public EnemyNearbyTransition(TurretBase tower, ITurretState targetState)
-        {
-            _turret = tower;
-            _targetState = targetState;
-        }
+        private const int maxColliders = 10; 
+        private Collider[] hitColliders = new Collider[maxColliders]; 
+        private float detectionRadius = 10f; 
         
-        public ITurretState GetTargetState()
+        public EnemyNearbyTransition(TurretBase turret, ITurretState targetState) : base(turret, targetState)
         {
-            return _targetState;
+            
         }
 
-        public bool ShouldTransition()
+        public override bool ShouldTransition()
         {
-            throw new System.NotImplementedException();
+            return TryFindEnemy();
+        }
+
+        private bool TryFindEnemy()
+        {
+            Vector3 turretPosition = _turret.transform.position;
+            
+            Array.Clear(hitColliders, 0, hitColliders.Length);
+
+            int numberOfHits = Physics.OverlapSphereNonAlloc(turretPosition, detectionRadius, hitColliders, _enemyLayerMask);
+            
+            for (int i = 0; i < numberOfHits; i++)
+            {
+                EnemyBase enemy = hitColliders[i].GetComponent<EnemyBase>();
+                if (enemy != null)
+                {
+                    _turret.CurrentTarget = enemy;
+
+                    return true;
+                }
+            }
+            _turret.CurrentTarget = null;
+            return false;
         }
     }
 }

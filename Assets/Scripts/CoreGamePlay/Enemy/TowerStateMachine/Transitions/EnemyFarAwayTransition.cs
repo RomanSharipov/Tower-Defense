@@ -1,26 +1,18 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class EnemyFarAwayTransition : ITransition
+    public class EnemyFarAwayTransition : TransitionBase
     {
-        private TurretBase _turret;
-        private ITurretState _targetState;
-
-        public EnemyFarAwayTransition(TurretBase turret, ITurretState targetState)
+        public EnemyFarAwayTransition(TurretBase turret, ITurretState targetState) : base(turret, targetState)
         {
-            _turret = turret;
-            _targetState = targetState;
-        }
-        
-        public ITurretState GetTargetState()
-        {
-            return _targetState;
         }
 
-        public bool ShouldTransition()
+        public override bool ShouldTransition()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("EnemyFarAwayTransition ShouldTransition");
+            return false;
         }
     }
 }

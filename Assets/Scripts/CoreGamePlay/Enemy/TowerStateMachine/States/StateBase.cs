@@ -4,7 +4,7 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public abstract class StateBase : ITurretState
     {
-        private List<ITransition> _transitions = new List<ITransition>();
+        private List<ITurretTransition> _transitions = new List<ITurretTransition>();
 
         protected TurretBase _turret;
         
@@ -14,18 +14,18 @@ namespace Assets.Scripts.CoreGamePlay
         }
 
         public abstract void Enter();
-        public abstract void UpdateStateLogic();
+        public abstract void UpdateState();
         public abstract void Exit();
 
         public void Update()
         {
-            UpdateStateLogic();
+            UpdateState();
             HandleTransitions();
         }
         
-        public void AddTransitions(params ITransition[] stateTransitions)
+        public void AddTransitions(params ITurretTransition[] stateTransitions)
         {
-            foreach (ITransition transition in stateTransitions)
+            foreach (ITurretTransition transition in stateTransitions)
             {
                 _transitions.Add(transition);
             }
@@ -33,11 +33,11 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void HandleTransitions()
         {
-            foreach (ITransition transition in _transitions)
+            foreach (ITurretTransition transition in _transitions)
             {
                 if (transition.ShouldTransition())
                 {
-                    _turret.TurretStateMachine.SetState(transition.GetTargetState());
+                    _turret.TurretStateMachine.SetState(transition.TargetState);
                     return;
                 }
             }

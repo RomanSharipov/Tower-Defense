@@ -1,26 +1,18 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class RotationToAttackTransition : ITransition
+    public class RotationToAttackTransition : TransitionBase
     {
-        private TurretBase _turret;
-        private ITurretState _targetState;
-
-        public RotationToAttackTransition(TurretBase tower, ITurretState targetState)
+        public RotationToAttackTransition(TurretBase turret, ITurretState targetState) : base(turret, targetState)
         {
-            _turret = tower;
-            _targetState = targetState;
         }
 
-        public ITurretState GetTargetState()
+        public override bool ShouldTransition()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public bool ShouldTransition()
-        {
-            throw new System.NotImplementedException();
+            Debug.Log("RotationToAttackTransition ShouldTransition");
+            return false;
         }
     }
 }

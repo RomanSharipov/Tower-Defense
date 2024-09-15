@@ -23,7 +23,6 @@ namespace CodeBase.Infrastructure
             setupBeforeEnter?.Invoke((TState)state);
             
             state.Enter();
-            Debug.Log($"Enter to {typeof(TState)}");
         }
     }
 

@@ -2,9 +2,9 @@
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public interface ITransition
+    public interface ITurretTransition
     {
         public bool ShouldTransition();
-        public ITurretState GetTargetState();
+        public ITurretState TargetState { get; }
     }
 }

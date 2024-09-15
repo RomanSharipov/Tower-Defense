@@ -46,7 +46,7 @@ namespace CodeBase.Infrastructure.Services
                         turretBase.transform.position = tile.transform.position;
                         tile.SetWalkable(TileId.Obstacle);
                         tile.UpdateTileData();
-                        turretBase.SetColor(Color.DefaultColor);
+                        turretBase.Init();
                         TurretIsBuilded?.Invoke(turretBase, tile.NodeBase);
                     }
                     else

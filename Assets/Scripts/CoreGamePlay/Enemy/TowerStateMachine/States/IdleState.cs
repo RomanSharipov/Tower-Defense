@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
     public class IdleState : StateBase
     {
-        public IdleState(TurretBase tower) : base(tower) { }
+        public IdleState(TurretBase turret) : base(turret) { }
 
         public override void Enter() { /* Логика входа в Idle состояние */ }
-        public override void UpdateStateLogic() { /* Логика в Idle состоянии */ }
+        public override void UpdateState() { Debug.Log($"IdleState Update"); }
         public override void Exit() { /* Логика выхода из Idle состояния */ }
     }
 }

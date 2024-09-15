@@ -7,6 +7,6 @@ namespace Assets.Scripts.CoreGamePlay
         public void Enter();
         public void Update();
         public void Exit();
-        public void AddTransitions(params ITransition[] stateTransitions);
+        public void AddTransitions(params ITurretTransition[] stateTransitions);
     }
 }

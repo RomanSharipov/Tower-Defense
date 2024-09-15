@@ -1,26 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class TargetIsNullTransition : ITransition
+    public class TargetIsNullTransition : TransitionBase
     {
-        private TurretBase _turret;
-        private ITurretState _targetState;
-
-        public TargetIsNullTransition(TurretBase turret, ITurretState targetState)
+        public TargetIsNullTransition(TurretBase turret, ITurretState targetState) : base(turret, targetState)
         {
-            _turret = turret;
-            _targetState = targetState;
         }
 
-        public ITurretState GetTargetState()
+        public override bool ShouldTransition()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public bool ShouldTransition()
-        {
-            throw new System.NotImplementedException();
+            Debug.Log("TargetIsNullTransition ShouldTransition");
+            return false;
         }
     }
 }
