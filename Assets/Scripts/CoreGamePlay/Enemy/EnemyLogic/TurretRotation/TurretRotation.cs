@@ -6,27 +6,19 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [SerializeField] private RotationX rotationX; 
         [SerializeField] private RotationY rotationY; 
-        [SerializeField] private float rotationSpeed = 5f; 
+        
         [SerializeField] private Transform _centerRotation; 
+
         public TurretBase _turret; 
         
-
-        private void Update()
+        public void RotateTurretTowardsTarget(float rotationSpeed)
         {
-            if (_turret.CurrentTarget != null)
-            {
-                RotateTurretTowardsTarget();
-            }
-        }
+            if (_turret.CurrentTarget == null) 
+                return;
 
-        private void RotateTurretTowardsTarget()
-        {
-            //Vector3 directionToTarget = _turret.CurrentTarget.transform.position - _centerRotation.position;
             Vector3 directionToTarget = _turret.CurrentTarget.Position - _centerRotation.position;
-
             
             directionToTarget.Normalize();
-
             
             rotationY.RotateTowards(directionToTarget, rotationSpeed);
             rotationX.RotateTowards(directionToTarget, rotationSpeed);

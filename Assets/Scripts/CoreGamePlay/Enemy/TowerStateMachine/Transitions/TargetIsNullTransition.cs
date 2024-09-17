@@ -10,6 +10,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override bool ShouldTransition()
         {
+            Debug.Log("TargetIsNullTransition ShouldTransition");
             if (_turret.CurrentTarget == null)
                 return true;
 

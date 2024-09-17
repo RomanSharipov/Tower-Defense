@@ -11,8 +11,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override bool ShouldTransition()
         {
-            Debug.Log("EnemyFarAwayTransition ShouldTransition");
-            return false;
+            return _turret.DetectorEnemies.EnemyFarAway();
         }
     }
 }

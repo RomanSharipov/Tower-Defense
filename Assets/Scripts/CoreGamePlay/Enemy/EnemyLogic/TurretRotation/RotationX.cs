@@ -10,7 +10,7 @@ namespace Assets.Scripts.CoreGamePlay
         {
 
             
-            Quaternion lookRotation = Quaternion.LookRotation(targetDirection); // поворот в направлении точки
+            Quaternion lookRotation = Quaternion.LookRotation(targetDirection); 
             float angleX = lookRotation.eulerAngles.x;
 
 

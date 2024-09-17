@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -6,11 +7,10 @@ namespace Assets.Scripts.CoreGamePlay
     {
         private ITurretState currentState;
 
-        public void SetState(ITurretState newState, Action<ITurretState> setupBeforeEnter = null)
+        public void SetState(ITurretState newState)
         {
             currentState?.Exit();
             currentState = newState;
-            setupBeforeEnter?.Invoke(currentState);
             currentState.Enter();
         }
 

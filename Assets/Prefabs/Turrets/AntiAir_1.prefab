@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorTurret: {fileID: 3269287075069093070}
+  _turretRotation: {fileID: 6313082873611419693}
   CurrentTarget: {fileID: 0}
 --- !u!114 &3269287075069093070
 MonoBehaviour:
@@ -184,7 +185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationX: {fileID: 4281460999850922253}
   rotationY: {fileID: 2597554137743531216}
-  rotationSpeed: 5
   _centerRotation: {fileID: 7856966363349542456}
   _turret: {fileID: 5342645318339667647}
 --- !u!1 &3007122474091799504
