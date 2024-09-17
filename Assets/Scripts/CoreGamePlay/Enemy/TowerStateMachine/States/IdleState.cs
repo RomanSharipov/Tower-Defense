@@ -7,7 +7,7 @@ namespace Assets.Scripts.CoreGamePlay
         public IdleState(TurretBase turret) : base(turret) { }
 
         public override void Enter() { /* Логика входа в Idle состояние */ }
-        public override void UpdateState() { Debug.Log($"IdleState Update"); }
+        public override void UpdateState() {  }
         public override void Exit() { /* Логика выхода из Idle состояния */ }
     }
 }

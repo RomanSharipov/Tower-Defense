@@ -16,7 +16,6 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void UpdateState() 
         {
-            Debug.Log("RotationToEnemyState UpdateState");
             _turretRotation.RotateTurretTowardsTarget(_speed);
         }
         public override void Exit() { /* Логика завершения поворота */ }

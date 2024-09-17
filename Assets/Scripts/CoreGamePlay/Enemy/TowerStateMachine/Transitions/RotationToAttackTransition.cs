@@ -5,14 +5,16 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class RotationToAttackTransition : TransitionBase
     {
-        public RotationToAttackTransition(TurretBase turret, ITurretState targetState) : base(turret, targetState)
+        private TurretRotation _turretRotation;
+
+        public RotationToAttackTransition(TurretBase turret, ITurretState targetState, TurretRotation turretRotation) : base(turret, targetState)
         {
+            _turretRotation = turretRotation;
         }
 
         public override bool ShouldTransition()
         {
-            Debug.Log("RotationToAttackTransition ShouldTransition");
-            return false;
+            return _turretRotation.IsRotationComplete();
         }
     }
 }

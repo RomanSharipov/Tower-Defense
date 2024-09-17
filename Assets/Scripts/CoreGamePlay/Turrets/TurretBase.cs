@@ -51,7 +51,7 @@ namespace Assets.Scripts.CoreGamePlay
             
             ITurretTransition targetIsNullTransition = new TargetIsNullTransition(this, idleState);
             ITurretTransition enemyNearbyTransition = new EnemyNearbyTransition(this, rotationToEnemyState);
-            ITurretTransition rotationToAttackTransition = new RotationToAttackTransition(this, attackState);
+            ITurretTransition rotationToAttackTransition = new RotationToAttackTransition(this, attackState, _turretRotation);
             ITurretTransition enemyFarAwayTransition = new EnemyFarAwayTransition(this, idleState);
             
             idleState.AddTransitions(enemyNearbyTransition);

@@ -9,20 +9,33 @@ namespace Assets.Scripts.CoreGamePlay
         
         [SerializeField] private Transform _centerRotation; 
 
-        public TurretBase _turret; 
+        private Vector3 _directionToTarget;
+        [SerializeField] private TurretBase _turret; 
+        public Vector3 DirectionToTarget => _directionToTarget; 
         
         public void RotateTurretTowardsTarget(float rotationSpeed)
         {
             if (_turret.CurrentTarget == null) 
                 return;
 
-            Vector3 directionToTarget = _turret.CurrentTarget.Position - _centerRotation.position;
+            _directionToTarget = _turret.CurrentTarget.Position - _centerRotation.position;
+
+            _directionToTarget.Normalize();
             
-            directionToTarget.Normalize();
+            rotationY.RotateTowards(_directionToTarget, rotationSpeed);
+            rotationX.RotateTowards(_directionToTarget, rotationSpeed);
+        }
+
+        public bool IsRotationComplete(float thresholdAngle = 1f)
+        {
+            if (_turret.CurrentTarget == null)
+                return false;
             
-            rotationY.RotateTowards(directionToTarget, rotationSpeed);
-            rotationX.RotateTowards(directionToTarget, rotationSpeed);
-        
+            Vector3 normalizedDirectionToTarget = _directionToTarget.normalized;
+            
+            float angleDifference = Vector3.Angle(rotationX.transform.forward, normalizedDirectionToTarget);
+            
+            return angleDifference <= thresholdAngle;
         }
     }
 }
