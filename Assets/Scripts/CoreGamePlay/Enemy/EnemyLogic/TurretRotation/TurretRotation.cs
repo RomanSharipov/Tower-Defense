@@ -21,7 +21,8 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void RotateTurretTowardsTarget()
         {
-            Vector3 directionToTarget = _turret.CurrentTarget.transform.position - _centerRotation.position;
+            //Vector3 directionToTarget = _turret.CurrentTarget.transform.position - _centerRotation.position;
+            Vector3 directionToTarget = _turret.CurrentTarget.Position - _centerRotation.position;
 
             
             directionToTarget.Normalize();

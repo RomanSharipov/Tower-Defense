@@ -368,6 +368,7 @@ MonoBehaviour:
   _movement: {fileID: 5024308002519946322}
   _testTile: {fileID: 0}
   _enemyConfig: {fileID: 0}
+  _collider: {fileID: 5622466031539293950}
 --- !u!114 &5024308002519946322
 MonoBehaviour:
   m_ObjectHideFlags: 0

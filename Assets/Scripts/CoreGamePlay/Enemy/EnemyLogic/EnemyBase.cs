@@ -10,8 +10,10 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] public EnemyMovement _movement; 
         [SerializeField] public TileView _testTile; 
         [SerializeField] public EnemyConfig _enemyConfig; 
+        [SerializeField] public Collider _collider; 
         
         public EnemyMovement Movement => _movement;
+        public Vector3 Position => _collider.bounds.center;
 
         public event Action<EnemyBase> GoalIsReached;
 
