@@ -22,21 +22,35 @@ namespace Assets.Scripts.CoreGamePlay
         private bool TryFindEnemy()
         {
             Vector3 turretPosition = _turret.transform.position;
-            
+
             Array.Clear(hitColliders, 0, hitColliders.Length);
 
             int numberOfHits = Physics.OverlapSphereNonAlloc(turretPosition, detectionRadius, hitColliders, _enemyLayerMask);
-            
+
+            EnemyBase closestEnemy = null;
+            float closestDistance = Mathf.Infinity;
+
             for (int i = 0; i < numberOfHits; i++)
             {
                 EnemyBase enemy = hitColliders[i].GetComponent<EnemyBase>();
                 if (enemy != null)
                 {
-                    _turret.CurrentTarget = enemy;
+                    float distanceToEnemy = Vector3.Distance(turretPosition, enemy.transform.position);
 
-                    return true;
+                    if (distanceToEnemy < closestDistance)
+                    {
+                        closestDistance = distanceToEnemy;
+                        closestEnemy = enemy;
+                    }
                 }
             }
+
+            if (closestEnemy != null)
+            {
+                _turret.CurrentTarget = closestEnemy;
+                return true;
+            }
+
             _turret.CurrentTarget = null;
             return false;
         }
