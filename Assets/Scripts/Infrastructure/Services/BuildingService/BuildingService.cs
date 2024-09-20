@@ -66,7 +66,7 @@ namespace CodeBase.Infrastructure.Services
                 else
                 {
                     turretBase.transform.position = ray.GetPoint(_lastValidDistance);
-                    turretBase.SetColor(Color.BlockBuildColor);
+                    turretBase.SetColor(ColorType.BlockBuildColor);
                 }
 
                 await UniTask.Yield();
@@ -77,11 +77,11 @@ namespace CodeBase.Infrastructure.Services
         {
             if (_cacherOfPath.TrySetPath())
             {
-                turretBase.SetColor(Color.TransparentColor);
+                turretBase.SetColor(ColorType.TransparentColor);
             }
             else
             {
-                turretBase.SetColor(Color.BlockBuildColor);
+                turretBase.SetColor(ColorType.BlockBuildColor);
             }
         }
 

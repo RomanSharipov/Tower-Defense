@@ -9,19 +9,19 @@ public class ColorTurret : MonoBehaviour
     [SerializeField] private Material _transparent;
     [SerializeField] private Material _default;
     
-    public void SetColor(Color color)
+    public void SetColor(ColorType color)
     {
         switch (color)
         {
-            case Color.None:
+            case ColorType.None:
                 break;
-            case Color.BlockBuildColor:
+            case ColorType.BlockBuildColor:
                 SetMaterial(_red);
                 break;
-            case Color.TransparentColor:
+            case ColorType.TransparentColor:
                 SetMaterial(_transparent);
                 break;
-            case Color.DefaultColor:
+            case ColorType.DefaultColor:
                 SetMaterial(_default);
                 break;
         }
@@ -36,7 +36,7 @@ public class ColorTurret : MonoBehaviour
     }
 }
 
-public enum Color
+public enum ColorType
 {
     None,
     BlockBuildColor,

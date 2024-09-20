@@ -19,7 +19,7 @@ namespace Assets.Scripts.CoreGamePlay
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
         public DetectorEnemies DetectorEnemies => _detectorEnemies;
 
-        public void SetColor(Color color)
+        public void SetColor(ColorType color)
         {
             _colorTurret.SetColor(color);
         }
@@ -28,7 +28,7 @@ namespace Assets.Scripts.CoreGamePlay
         {
             _detectorEnemies = new DetectorEnemies(this);
             _detectorEnemies.SetRadius(_detectionRadius);
-            SetColor(Color.DefaultColor);
+            SetColor(ColorType.DefaultColor);
             ConfigureStateMachine();
 
             _enabled = true;
@@ -45,6 +45,7 @@ namespace Assets.Scripts.CoreGamePlay
         private void ConfigureStateMachine()
         {
             _turretStateMachine = new TurretStateMachine();
+
             ITurretState idleState = new IdleState(this);
             ITurretState rotationToEnemyState = new RotationToEnemyState(this, _turretRotation);
             ITurretState attackState = new AttackState(this, _turretRotation);
