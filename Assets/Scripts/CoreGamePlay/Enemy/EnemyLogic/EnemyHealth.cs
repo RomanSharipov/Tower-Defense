@@ -1,27 +1,36 @@
-﻿using System;
+﻿using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class EnemyHealth
+    public class EnemyHealth : MonoBehaviour ,IEnemyHealth
     {
-        private readonly int _maxHealth;
-        private int _currentHealth;
+        [SerializeField] private int _maxHealth;
+        [SerializeField] private ReactiveProperty<int> _currentHealth = new ReactiveProperty<int>();
 
-        public event Action<int,int> HealthChanged;
+        public int MaxHealth => _maxHealth;
 
-        public EnemyHealth(int maxHealth)
+        public IReactiveProperty<int> CurrentHealth => _currentHealth;
+        
+        public void Init(int maxHealth)
         {
             _maxHealth = maxHealth;
-            _currentHealth = _maxHealth;
+            _currentHealth.Value = _maxHealth;
         }
 
         public void ReduceHealth(int value)
         {
             value = Mathf.Max(value, 0);
-            _currentHealth -= value;
-            _currentHealth = Mathf.Max(_currentHealth, 0);
-            HealthChanged?.Invoke(_currentHealth, _maxHealth);
+
+            if (_currentHealth.Value <= value)
+            {
+                _currentHealth.Value = 0;
+            }
+            else
+            {
+                _currentHealth.Value -= value;
+            }
+        
         }
     }
 }

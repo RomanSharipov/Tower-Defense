@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.CoreGamePlay;
+using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 namespace CodeBase.Infrastructure.UI
 {
@@ -9,6 +11,18 @@ namespace CodeBase.Infrastructure.UI
         [SerializeField] private Image _fill;
         [SerializeField] private Color _minValue;
         [SerializeField] private Color _maxValue;
+
+        private IEnemyHealth _health;
+
+        private void Awake()
+        {
+            _health = GetComponent<IEnemyHealth>();
+
+            _health.CurrentHealth.Subscribe(value =>
+            {
+                _slider.value = (float)value / _health.MaxHealth;
+            }).AddTo(this);
+        }
 
         private void OnEnable()
         {

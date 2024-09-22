@@ -5,12 +5,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
+
     public abstract class EnemyBase : MonoBehaviour 
     {
-        [SerializeField] public EnemyMovement _movement; 
-        [SerializeField] public TileView _testTile; 
-        [SerializeField] public EnemyConfig _enemyConfig; 
-        [SerializeField] public Collider _collider; 
+        [SerializeField] private EnemyMovement _movement; 
+        [SerializeField] private TileView _testTile; 
+        [SerializeField] private EnemyConfig _enemyConfig; 
+        [SerializeField] private Collider _collider; 
+        [SerializeField] private EnemyHealth _health; 
         
         public EnemyMovement Movement => _movement;
         public Vector3 Position => _collider.bounds.center;
@@ -19,6 +21,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void Init(List<TileData> pathPoints, EnemyConfig enemyConfig)
         {
+            _health.Init(200);
             _enemyConfig = enemyConfig;
             
             _movement.Init(enemyConfig.MovementSpeed);
@@ -38,5 +41,13 @@ namespace Assets.Scripts.CoreGamePlay
             _movement.StopMovement();
             _movement.GoalIsReached -= OnGoalIsReached;
         }
+
+        [ContextMenu("TakeDamage()")]
+        private void TakeDamage()
+        {
+            _health.ReduceHealth(20);
+        }
+
+
     }
 }
