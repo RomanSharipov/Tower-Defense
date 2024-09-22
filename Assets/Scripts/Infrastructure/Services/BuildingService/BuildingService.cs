@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.CoreGamePlay;
-using Assets.Scripts.CoreGamePlay.Turrets;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
@@ -30,7 +29,7 @@ namespace CodeBase.Infrastructure.Services
 
         public async UniTask StartBuilding()
         {
-            TurretBase turretBase = await _turretFactory.CreateTurret<SimpleTurret>(TurretId.Simple);
+            TurretBase turretBase = await _turretFactory.CreateTurret<Minigun>(TurretId.Minigun);
             Ray ray;
 
             while (true)

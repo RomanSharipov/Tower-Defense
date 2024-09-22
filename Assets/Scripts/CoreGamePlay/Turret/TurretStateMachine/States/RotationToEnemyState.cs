@@ -4,19 +4,19 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class RotationToEnemyState : StateBase
     {
-        private readonly TurretRotation _turretRotation;
+        private readonly TurretUpgrade _turretUpgrade;
         private float _speed = 3.0f;
 
-        public RotationToEnemyState(TurretBase turret, TurretRotation turretRotation) : base(turret)
+        public RotationToEnemyState(TurretBase turret, TurretUpgrade turretUpgrade) : base(turret)
         {
-            _turretRotation = turretRotation;
+            _turretUpgrade = turretUpgrade;
         }
 
         public override void Enter() { /* Логика начала поворота */ }
 
         public override void UpdateState() 
         {
-            _turretRotation.RotateTurretTowardsTarget(_speed);
+            _turretUpgrade.CurrentTurretRotation.RotateTurretTowardsTarget(_speed);
         }
         public override void Exit() { /* Логика завершения поворота */ }
     }

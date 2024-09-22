@@ -1,5 +1,4 @@
 using Assets.Scripts.CoreGamePlay;
-using Assets.Scripts.CoreGamePlay.Turrets;
 using CodeBase.Infrastructure.Services;
 using UnityEngine;
 using VContainer;
@@ -34,6 +33,6 @@ public class TestServices : MonoBehaviour
     [ContextMenu("CreateTurret")]
     public void CreateTurret()
     {
-        _turretFactory.CreateTurret<SimpleTurret>(TurretId.Simple);
+        _turretFactory.CreateTurret<Minigun>(TurretId.Minigun);
     }
 }

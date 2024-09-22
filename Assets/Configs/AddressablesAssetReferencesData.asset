@@ -91,7 +91,7 @@ MonoBehaviour:
   Turrets:
   - turretType: 1
     AssetReference:
-      m_AssetGUID: 8e42bfee16ffdee4c971449ec11ea6b6
+      m_AssetGUID: 48047f1db955ffa4aa4dde0b47914639
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0

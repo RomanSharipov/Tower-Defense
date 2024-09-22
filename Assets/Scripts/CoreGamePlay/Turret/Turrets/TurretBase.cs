@@ -5,7 +5,7 @@ namespace Assets.Scripts.CoreGamePlay
     public abstract class TurretBase : MonoBehaviour
     {
         [SerializeField] private ColorTurret _colorTurret;
-        [SerializeField] private TurretRotation _turretRotation;
+        [SerializeField] private TurretUpgrade _turretUpgrade;
 
         private TurretStateMachine _turretStateMachine;
         private DetectorEnemies _detectorEnemies;
@@ -29,9 +29,15 @@ namespace Assets.Scripts.CoreGamePlay
             _detectorEnemies = new DetectorEnemies(this);
             _detectorEnemies.SetRadius(_detectionRadius);
             SetColor(ColorType.DefaultColor);
+            _turretUpgrade.Init();
             ConfigureStateMachine();
-
             _enabled = true;
+        }
+
+        [ContextMenu("LevelUpTest()")]
+        public void LevelUpTest()
+        {
+            _turretUpgrade.LevelUp();
         }
 
         private void Update()
@@ -47,12 +53,12 @@ namespace Assets.Scripts.CoreGamePlay
             _turretStateMachine = new TurretStateMachine();
 
             ITurretState idleState = new IdleState(this);
-            ITurretState rotationToEnemyState = new RotationToEnemyState(this, _turretRotation);
-            ITurretState attackState = new AttackState(this, _turretRotation);
+            ITurretState rotationToEnemyState = new RotationToEnemyState(this, _turretUpgrade);
+            ITurretState attackState = new AttackState(this, _turretUpgrade);
             
             ITurretTransition targetIsNullTransition = new TargetIsNullTransition(this, idleState);
             ITurretTransition enemyNearbyTransition = new EnemyNearbyTransition(this, rotationToEnemyState);
-            ITurretTransition rotationToAttackTransition = new RotationToAttackTransition(this, attackState, _turretRotation);
+            ITurretTransition rotationToAttackTransition = new RotationToAttackTransition(this, attackState, _turretUpgrade);
             ITurretTransition enemyFarAwayTransition = new EnemyFarAwayTransition(this, idleState);
             
             idleState.AddTransitions(enemyNearbyTransition);

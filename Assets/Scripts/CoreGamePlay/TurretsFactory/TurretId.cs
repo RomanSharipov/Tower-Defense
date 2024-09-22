@@ -2,7 +2,7 @@
 {
     public enum TurretId
     {
-        None,
-        Simple
+        None = 0,
+        Minigun = 1,
     }
 }

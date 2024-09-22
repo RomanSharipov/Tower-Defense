@@ -4,13 +4,11 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class TurretRotation : MonoBehaviour
     {
-        [SerializeField] private RotationX rotationX; 
-        [SerializeField] private RotationY rotationY; 
-        
-        [SerializeField] private Transform _centerRotation; 
-
-        private Vector3 _directionToTarget;
+        [SerializeField] private RotationX _rotationX; 
+        [SerializeField] private RotationY _rotationY; 
         [SerializeField] private TurretBase _turret; 
+        
+        private Vector3 _directionToTarget;
         public Vector3 DirectionToTarget => _directionToTarget; 
         
         public void RotateTurretTowardsTarget(float rotationSpeed)
@@ -18,12 +16,12 @@ namespace Assets.Scripts.CoreGamePlay
             if (_turret.CurrentTarget == null) 
                 return;
 
-            _directionToTarget = _turret.CurrentTarget.Position - _centerRotation.position;
+            _directionToTarget = _turret.CurrentTarget.Position - _rotationX.transform.position;
 
             _directionToTarget.Normalize();
             
-            rotationY.RotateTowards(_directionToTarget, rotationSpeed);
-            rotationX.RotateTowards(_directionToTarget, rotationSpeed);
+            _rotationY.RotateTowards(_directionToTarget, rotationSpeed);
+            _rotationX.RotateTowards(_directionToTarget, rotationSpeed);
         }
 
         public bool IsRotationComplete(float thresholdAngle = 1f)
@@ -33,7 +31,7 @@ namespace Assets.Scripts.CoreGamePlay
             
             Vector3 normalizedDirectionToTarget = _directionToTarget.normalized;
             
-            float angleDifference = Vector3.Angle(rotationX.transform.forward, normalizedDirectionToTarget);
+            float angleDifference = Vector3.Angle(_rotationX.transform.forward, normalizedDirectionToTarget);
             
             return angleDifference <= thresholdAngle;
         }
