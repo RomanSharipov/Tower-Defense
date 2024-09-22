@@ -33,11 +33,11 @@ namespace Assets.Scripts.CoreGamePlay
             return tile;
         }
 
-        public async UniTask<T> CreateTurret<T>(TurretId turretType) where T : TurretBase
+        public async UniTask<TurretBase> CreateTurret(TurretId turretType) 
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceTurretsData[turretType]);
             GameObject newGameObject = GameObject.Instantiate(prefab, _turrentParrent);
-            T turret = newGameObject.GetComponent<T>();
+            TurretBase turret = newGameObject.GetComponent<TurretBase>();
             _objectResolver.Inject(turret);
             return turret;
         }

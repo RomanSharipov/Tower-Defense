@@ -29,7 +29,7 @@ namespace CodeBase.Infrastructure.Services
 
         public async UniTask StartBuilding()
         {
-            TurretBase turretBase = await _turretFactory.CreateTurret<Minigun>(TurretId.Minigun);
+            TurretBase turretBase = await _turretFactory.CreateTurret(TurretId.Minigun);
             Ray ray;
 
             while (true)

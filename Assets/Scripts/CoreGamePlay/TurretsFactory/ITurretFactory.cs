@@ -6,7 +6,7 @@ namespace Assets.Scripts.CoreGamePlay
     public interface ITurretFactory
     {
         public UniTask<TileView> CreateTile(TileId TileId);
-        public UniTask<T> CreateTurret<T>(TurretId turretType) where T : TurretBase;
+        public UniTask<TurretBase> CreateTurret(TurretId turretType);
         public void SetParrentTurret(Transform turrentParrent);
     }
 }

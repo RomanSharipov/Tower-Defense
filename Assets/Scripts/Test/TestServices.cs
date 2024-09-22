@@ -33,6 +33,6 @@ public class TestServices : MonoBehaviour
     [ContextMenu("CreateTurret")]
     public void CreateTurret()
     {
-        _turretFactory.CreateTurret<Minigun>(TurretId.Minigun);
+        _turretFactory.CreateTurret(TurretId.Minigun);
     }
 }
