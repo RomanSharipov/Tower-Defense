@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3752781436908330444}
   m_Layer: 0
-  m_Name: TurretUpgrade
+  m_Name: TurretView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

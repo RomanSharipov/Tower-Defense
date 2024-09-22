@@ -27,9 +27,9 @@ namespace CodeBase.Infrastructure.Services
             _cacherOfPath = cacherOfPath;
         }
 
-        public async UniTask StartBuilding()
+        public async UniTask StartBuilding(TurretId turretId)
         {
-            TurretBase turretBase = await _turretFactory.CreateTurret(TurretId.Minigun);
+            TurretBase turretBase = await _turretFactory.CreateTurret(turretId);
             Ray ray;
 
             while (true)

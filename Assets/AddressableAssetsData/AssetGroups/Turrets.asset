@@ -23,6 +23,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Turrets
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48047f1db955ffa4aa4dde0b47914639
+    m_Address: Minigun
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Turrets
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d53b3000c20ed764ba7369e5dd892e0f
+    m_Address: FlameTurret
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Turrets
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 241f373533e7b0d44b7e5db601bbe58d, type: 2}
   m_SchemaSet:

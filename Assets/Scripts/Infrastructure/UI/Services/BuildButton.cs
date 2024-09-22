@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using Assets.Scripts.CoreGamePlay;
+using CodeBase.Infrastructure.Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using VContainer;
@@ -8,6 +9,7 @@ namespace CodeBase.Infrastructure.UI.Services
     public class BuildButton : MonoBehaviour
     {
         [SerializeField] private EventTrigger _buildButton;
+        [SerializeField] private TurretId _turretId;
         
         [Inject] private IAppStateService _appStateService;
         
@@ -18,7 +20,7 @@ namespace CodeBase.Infrastructure.UI.Services
 
         private void SetupBeforeBuilding(BuildingTurretState state)
         {
-            
+            state.Setup(_turretId);
         }
 
         private void OnEnable()

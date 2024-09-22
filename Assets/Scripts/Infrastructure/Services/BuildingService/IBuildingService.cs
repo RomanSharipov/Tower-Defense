@@ -8,6 +8,6 @@ namespace CodeBase.Infrastructure.Services
     {
         public event Action<TurretBase, TileData> TurretIsBuilded;
 
-        public UniTask StartBuilding();
+        public UniTask StartBuilding(TurretId turretId);
     }
 }

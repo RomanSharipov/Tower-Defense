@@ -324,7 +324,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8635321668010430414}
-  - component: {fileID: 546013172843618030}
   m_Layer: 0
   m_Name: Flame_1
   m_TagString: Untagged
@@ -348,27 +347,6 @@ Transform:
   - {fileID: 980080701418362945}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &546013172843618030
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8979337503463871860}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2906139, y: 1.379674, z: 1.2978737}
-  m_Center: {x: -0.00000035762787, y: 0.6913817, z: 0.00000011920929}
 --- !u!1 &9156881861761739598
 GameObject:
   m_ObjectHideFlags: 0

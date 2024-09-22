@@ -1,4 +1,6 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using System;
+using Assets.Scripts.CoreGamePlay;
+using CodeBase.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
 using VContainer;
 
@@ -8,6 +10,7 @@ namespace CodeBase.Infrastructure
     {
         private IBuildingService _buildingService;
         private IAppStateService _appStateService;
+        private TurretId _turretId;
 
         [Inject]
         public BuildingTurretState(IBuildingService buildingService, IAppStateService appStateService)
@@ -18,13 +21,18 @@ namespace CodeBase.Infrastructure
 
         public async UniTask Enter()
         {
-            await _buildingService.StartBuilding();
+            await _buildingService.StartBuilding(_turretId);
             _appStateService.GoToState(State.PlayingIdleState);
         }
         
         public UniTask Exit()
         {
             return UniTask.CompletedTask;
+        }
+
+        public void Setup(TurretId turretId)
+        {
+            _turretId = turretId;
         }
     }
 }
