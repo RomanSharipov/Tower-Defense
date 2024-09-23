@@ -11,7 +11,7 @@ namespace Assets.Scripts.CoreGamePlay
         private int _currentTurretIndex = 0;
         private TurretRotation _currentTurretRotation;
 
-        public TurretRotation CurrentTurretRotation => _currentTurretRotation;
+        public TurretRotation CurrentUpgradeTurretRotation => _currentTurretRotation;
 
         public bool HasNextUpgrade => _currentTurretIndex < _turretRotations.Length - 1;
 

@@ -15,7 +15,8 @@ namespace Assets.Scripts.CoreGamePlay
         public override void Enter() { }
         public override void UpdateState() 
         {
-            _turretUpgrade.CurrentTurretRotation.RotateTurretTowardsTarget(_speed);
+            _turretUpgrade.CurrentUpgradeTurretRotation.RotateTurretTowardsTarget(_speed);
+            _turret.AttackComponent.TryAttack(_turret.CurrentTarget);
         }
         public override void Exit() { }
     }

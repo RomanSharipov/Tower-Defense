@@ -16,7 +16,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void UpdateState() 
         {
-            _turretUpgrade.CurrentTurretRotation.RotateTurretTowardsTarget(_speed);
+            _turretUpgrade.CurrentUpgradeTurretRotation.RotateTurretTowardsTarget(_speed);
         }
         public override void Exit() { /* Логика завершения поворота */ }
     }

@@ -11,7 +11,7 @@
 
         public override bool ShouldTransition()
         {
-            return _turretUpgrade.CurrentTurretRotation.IsRotationComplete();
+            return _turretUpgrade.CurrentUpgradeTurretRotation.IsRotationComplete();
         }
     }
 }
