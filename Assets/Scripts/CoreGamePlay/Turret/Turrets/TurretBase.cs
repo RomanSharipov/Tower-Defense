@@ -28,12 +28,17 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void Init()
         {
-            _detectorEnemies = new DetectorEnemies(this);
-            _detectorEnemies.SetRadius(_detectionRadius);
-            SetColor(ColorType.DefaultColor);
+            ConfigureDetectorEnemies();
             ConfigureStateMachine();
             ConfigureTurretUpgrade();
+            SetColor(ColorType.DefaultColor);
             _enabled = true;
+        }
+
+        private void ConfigureDetectorEnemies()
+        {
+            _detectorEnemies = new DetectorEnemies(this);
+            _detectorEnemies.SetRadius(_detectionRadius);
         }
 
         private void ConfigureTurretUpgrade()
