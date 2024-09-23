@@ -1,6 +1,8 @@
-﻿namespace Assets.Scripts.CoreGamePlay
+﻿using UnityEngine;
+
+namespace Assets.Scripts.CoreGamePlay
 {
-    public class FlameTurretAttack : IAttackComponent
+    public class FlameTurretAttack :MonoBehaviour, IAttackComponent
     {
         public void TryAttack(EnemyBase enemyBase)
         {
