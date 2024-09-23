@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4503577848364681136}
   - component: {fileID: 2748118621759773881}
   - component: {fileID: 5476368042209709232}
+  - component: {fileID: 8258948700535165602}
   m_Layer: 0
   m_Name: FlameTurret
   m_TagString: Untagged
@@ -47,12 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorTurret: {fileID: 5476368042209709232}
-  _turretUpgrade:
-    _turretRotations:
-    - {fileID: 3660509995197022151}
-    - {fileID: 1819180186053985525}
-    - {fileID: 4066060260118251075}
+  _turretView: {fileID: 1738065373109580809}
   CurrentTarget: {fileID: 0}
+  _flameTurretAttack: {fileID: 8258948700535165602}
 --- !u!114 &5476368042209709232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +76,18 @@ MonoBehaviour:
   _red: {fileID: 2100000, guid: fc4bd166c160d014fbcc985e750df952, type: 2}
   _transparent: {fileID: 2100000, guid: 62bd9f4c983a6fb4782824aaaaa8d739, type: 2}
   _default: {fileID: 2100000, guid: 2e519ff65f723d84ab119c9cc1cef10b, type: 2}
+--- !u!114 &8258948700535165602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442143738563985630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30a5821217173447a9610070afbf2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1951130501793766485
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,6 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2427083275398443112}
+  - component: {fileID: 1738065373109580809}
   m_Layer: 0
   m_Name: Turretview
   m_TagString: Untagged
@@ -112,6 +123,23 @@ Transform:
   - {fileID: 4341779766075909160}
   m_Father: {fileID: 4503577848364681136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1738065373109580809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951130501793766485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17959979e2ff4894fbed8d42652bd84e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _turretRotations:
+  - {fileID: 3660509995197022151}
+  - {fileID: 1819180186053985525}
+  - {fileID: 4066060260118251075}
+  _currentTurretRotation: {fileID: 0}
 --- !u!1001 &3336121223175196706
 PrefabInstance:
   m_ObjectHideFlags: 0

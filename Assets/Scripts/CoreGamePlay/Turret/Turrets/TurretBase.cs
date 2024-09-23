@@ -5,7 +5,8 @@ namespace Assets.Scripts.CoreGamePlay
     public abstract class TurretBase : MonoBehaviour
     {
         [SerializeField] private ColorTurret _colorTurret;
-        [SerializeField] private TurretUpgrade _turretUpgrade;
+        [SerializeField] protected TurretUpgrade _turretUpgrade;
+        [SerializeField] private TurretView _turretView;
 
         private TurretStateMachine _turretStateMachine;
         private DetectorEnemies _detectorEnemies;
@@ -19,6 +20,7 @@ namespace Assets.Scripts.CoreGamePlay
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
         public DetectorEnemies DetectorEnemies => _detectorEnemies;
         public abstract IAttackComponent AttackComponent { get; }
+
         public void SetColor(ColorType color)
         {
             _colorTurret.SetColor(color);
@@ -29,9 +31,17 @@ namespace Assets.Scripts.CoreGamePlay
             _detectorEnemies = new DetectorEnemies(this);
             _detectorEnemies.SetRadius(_detectionRadius);
             SetColor(ColorType.DefaultColor);
-            _turretUpgrade.Init();
             ConfigureStateMachine();
+            ConfigureTurretUpgrade();
             _enabled = true;
+        }
+
+        private void ConfigureTurretUpgrade()
+        {
+            _turretUpgrade = new TurretUpgrade(maxLevel:3);
+            _turretUpgrade.RegisterUpgradeable(AttackComponent);
+            _turretUpgrade.RegisterUpgradeable(_turretView);
+            _turretUpgrade.ResetLevel();
         }
 
         [ContextMenu("LevelUpTest()")]
@@ -53,12 +63,12 @@ namespace Assets.Scripts.CoreGamePlay
             _turretStateMachine = new TurretStateMachine();
 
             ITurretState idleState = new IdleState(this);
-            ITurretState rotationToEnemyState = new RotationToEnemyState(this, _turretUpgrade);
-            ITurretState attackState = new AttackState(this, _turretUpgrade);
+            ITurretState rotationToEnemyState = new RotationToEnemyState(this, _turretView);
+            ITurretState attackState = new AttackState(this, _turretView);
             
             ITurretTransition targetIsNullTransition = new TargetIsNullTransition(this, idleState);
             ITurretTransition enemyNearbyTransition = new EnemyNearbyTransition(this, rotationToEnemyState);
-            ITurretTransition rotationToAttackTransition = new RotationToAttackTransition(this, attackState, _turretUpgrade);
+            ITurretTransition rotationToAttackTransition = new RotationToAttackTransition(this, attackState, _turretView);
             ITurretTransition enemyFarAwayTransition = new EnemyFarAwayTransition(this, idleState);
             
             idleState.AddTransitions(enemyNearbyTransition);

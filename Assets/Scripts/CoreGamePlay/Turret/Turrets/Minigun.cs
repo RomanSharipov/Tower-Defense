@@ -1,7 +1,11 @@
-﻿namespace Assets.Scripts.CoreGamePlay
+﻿using UnityEngine;
+
+namespace Assets.Scripts.CoreGamePlay
 {
     public class Minigun : TurretBase
     {
-        public override IAttackComponent AttackComponent => throw new System.NotImplementedException();
+        [SerializeField] private MinigunAttack _minigunAttack;
+
+        public override IAttackComponent AttackComponent => _minigunAttack;
     }
 }

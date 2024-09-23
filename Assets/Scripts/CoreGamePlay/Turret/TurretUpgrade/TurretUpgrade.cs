@@ -1,46 +1,53 @@
-﻿using System;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    [Serializable]
     public class TurretUpgrade
     {
-        [SerializeField] private TurretRotation[] _turretRotations;
-
-        private int _currentTurretIndex = 0;
-        private TurretRotation _currentTurretRotation;
-
-        public TurretRotation CurrentUpgradeTurretRotation => _currentTurretRotation;
-
-        public bool HasNextUpgrade => _currentTurretIndex < _turretRotations.Length - 1;
-
+        private int _currentLevelIndex;
+        private int _maxLevel;
         
+        public List<IUpgradeable> _upgradeables = new List<IUpgradeable>();
+        
+        public bool HasNextUpgrade => _currentLevelIndex < _maxLevel;
+        
+        public TurretUpgrade(int maxLevel)
+        {
+            _maxLevel = maxLevel;
+        }
+
+        public void RegisterUpgradeable(IUpgradeable upgradeable)
+        {
+            _upgradeables.Add(upgradeable);
+        }
+
         public void LevelUp()
         {
             if (!HasNextUpgrade)
                 return;
             
-            _turretRotations[_currentTurretIndex].gameObject.SetActive(false);
-            
-            _currentTurretIndex++;
-            
-            _currentTurretRotation = _turretRotations[_currentTurretIndex];
-            
-            _currentTurretRotation.gameObject.SetActive(true);
+            _currentLevelIndex++;
+
+            UpdateLevel(_currentLevelIndex);
         }
 
-        public void Init()
+        public void ResetLevel()
         {
-            for (int i = 0; i < _turretRotations.Length; i++)
+            foreach (IUpgradeable upgradeable in _upgradeables)
             {
-                _turretRotations[i].gameObject.SetActive(false);
+                upgradeable.ResetLevel();
             }
 
-            _currentTurretIndex = 0;
-            _currentTurretRotation = _turretRotations[_currentTurretIndex];
-            _currentTurretRotation.gameObject.SetActive(true);
-            
+            _currentLevelIndex = 0;
+            UpdateLevel(_currentLevelIndex);
+        }
+
+        private void UpdateLevel(int index)
+        {
+            foreach (IUpgradeable upgradeable in _upgradeables)
+            {
+                upgradeable.SetLevel(index);
+            }
         }
     }
 }

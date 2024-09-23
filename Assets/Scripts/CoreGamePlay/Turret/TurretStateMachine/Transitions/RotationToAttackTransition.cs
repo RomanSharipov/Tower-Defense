@@ -2,16 +2,16 @@
 {
     public class RotationToAttackTransition : TransitionBase
     {
-        private TurretUpgrade _turretUpgrade;
+        private TurretView _turretView;
 
-        public RotationToAttackTransition(TurretBase turret, ITurretState targetState, TurretUpgrade turretUpgrade) : base(turret, targetState)
+        public RotationToAttackTransition(TurretBase turret, ITurretState targetState, TurretView turretView) : base(turret, targetState)
         {
-            _turretUpgrade = turretUpgrade;
+            _turretView = turretView;
         }
 
         public override bool ShouldTransition()
         {
-            return _turretUpgrade.CurrentUpgradeTurretRotation.IsRotationComplete();
+            return _turretView.CurrentTurretRotation.IsRotationComplete();
         }
     }
 }

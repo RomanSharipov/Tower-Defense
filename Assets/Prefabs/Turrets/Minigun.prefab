@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8334416607088005639}
   - component: {fileID: 6320080715168056397}
   - component: {fileID: 7397822838960268949}
+  - component: {fileID: 6114308797374807073}
   m_Layer: 0
   m_Name: Minigun
   m_TagString: Untagged
@@ -47,12 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorTurret: {fileID: 7397822838960268949}
-  _turretUpgrade:
-    _turretRotations:
-    - {fileID: 3615571994004522055}
-    - {fileID: 1953386101734154197}
-    - {fileID: 7213209237317650740}
+  _turretView: {fileID: 6870912731505624006}
   CurrentTarget: {fileID: 0}
+  _minigunAttack: {fileID: 6114308797374807073}
 --- !u!114 &7397822838960268949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +82,18 @@ MonoBehaviour:
   _red: {fileID: 2100000, guid: fc4bd166c160d014fbcc985e750df952, type: 2}
   _transparent: {fileID: 2100000, guid: 62bd9f4c983a6fb4782824aaaaa8d739, type: 2}
   _default: {fileID: 2100000, guid: 2e519ff65f723d84ab119c9cc1cef10b, type: 2}
+--- !u!114 &6114308797374807073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394962804456676332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20eb8fe8dc5ac6143bcdd8777b62a530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5136746908543340881
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3752781436908330444}
+  - component: {fileID: 6870912731505624006}
   m_Layer: 0
   m_Name: TurretView
   m_TagString: Untagged
@@ -118,6 +129,23 @@ Transform:
   - {fileID: 6010933139640870141}
   m_Father: {fileID: 8334416607088005639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6870912731505624006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136746908543340881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17959979e2ff4894fbed8d42652bd84e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _turretRotations:
+  - {fileID: 3615571994004522055}
+  - {fileID: 1953386101734154197}
+  - {fileID: 7213209237317650740}
+  _currentTurretRotation: {fileID: 0}
 --- !u!1001 &4512672515468978374
 PrefabInstance:
   m_ObjectHideFlags: 0
