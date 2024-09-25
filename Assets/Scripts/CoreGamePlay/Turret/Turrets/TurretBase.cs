@@ -20,6 +20,7 @@ namespace Assets.Scripts.CoreGamePlay
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
         public DetectorEnemies DetectorEnemies => _detectorEnemies;
         public abstract IAttackComponent AttackComponent { get; }
+        public abstract void InitAttackComponent();
 
         public void SetColor(ColorType color)
         {
@@ -32,6 +33,7 @@ namespace Assets.Scripts.CoreGamePlay
             ConfigureStateMachine();
             ConfigureTurretUpgrade();
             SetColor(ColorType.DefaultColor);
+            InitAttackComponent();
             _enabled = true;
         }
 

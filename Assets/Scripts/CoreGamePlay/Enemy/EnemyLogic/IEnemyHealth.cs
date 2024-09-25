@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -6,5 +7,6 @@ namespace Assets.Scripts.CoreGamePlay
     {
         public IReactiveProperty<int> CurrentHealth { get; }
         public int MaxHealth { get; }
+        public event Action HealthIsOver;
     }
 }

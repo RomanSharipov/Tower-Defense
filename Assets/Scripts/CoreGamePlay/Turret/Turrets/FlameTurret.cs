@@ -7,6 +7,10 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private FlameTurretAttack _flameTurretAttack;
 
         public override IAttackComponent AttackComponent => _flameTurretAttack;
-    
+
+        public override void InitAttackComponent()
+        {
+            
+        }
     }
 }

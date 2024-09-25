@@ -12,12 +12,19 @@ namespace Assets.Scripts.CoreGamePlay
             _turretView = turretView;
         }
 
-        public override void Enter() { }
+        public override void Enter() 
+        { 
+            _turret.AttackComponent.OnStartAttack(); 
+        }
+
         public override void UpdateState() 
         {
             _turretView.CurrentTurretRotation.RotateTurretTowardsTarget(_speed);
-            _turret.AttackComponent.TryAttack(_turret.CurrentTarget);
+            _turret.AttackComponent.AttackIfNeeded(_turret.CurrentTarget);
         }
-        public override void Exit() { }
+        public override void Exit() 
+        {
+            _turret.AttackComponent.OnEndAttack();
+        }
     }
 }

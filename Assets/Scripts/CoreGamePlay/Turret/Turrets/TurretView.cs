@@ -11,6 +11,14 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void SetLevel(int level)
         {
+            if (level == 0) 
+            {
+                foreach (TurretRotation turretRotation in _turretRotations)
+                {
+                    turretRotation.gameObject.SetActive(false);
+                }
+            }
+
             _currentTurretRotation?.gameObject.SetActive(false);
             _currentTurretRotation = _turretRotations[level];
             _currentTurretRotation.gameObject.SetActive(true);

@@ -33,11 +33,6 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void ResetLevel()
         {
-            foreach (IUpgradeable upgradeable in _upgradeables)
-            {
-                upgradeable.ResetLevel();
-            }
-
             _currentLevelIndex = 0;
             UpdateLevel(_currentLevelIndex);
         }

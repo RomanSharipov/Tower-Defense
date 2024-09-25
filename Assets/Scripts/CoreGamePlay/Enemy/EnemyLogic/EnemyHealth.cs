@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
@@ -7,10 +8,12 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [SerializeField] private int _maxHealth;
         [SerializeField] private ReactiveProperty<int> _currentHealth = new ReactiveProperty<int>();
-
+        
         public int MaxHealth => _maxHealth;
 
         public IReactiveProperty<int> CurrentHealth => _currentHealth;
+        
+        public event Action HealthIsOver;
         
         public void Init(int maxHealth)
         {
@@ -25,6 +28,7 @@ namespace Assets.Scripts.CoreGamePlay
             if (_currentHealth.Value <= value)
             {
                 _currentHealth.Value = 0;
+                HealthIsOver?.Invoke();
             }
             else
             {

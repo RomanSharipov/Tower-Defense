@@ -2,6 +2,8 @@
 {
     public interface IAttackComponent : IUpgradeable
     {
-        public void TryAttack(EnemyBase enemyBase);
+        public void AttackIfNeeded(EnemyBase enemyBase);
+        public void OnStartAttack();
+        public void OnEndAttack();
     }
 }

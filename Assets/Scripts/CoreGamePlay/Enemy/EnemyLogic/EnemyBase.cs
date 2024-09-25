@@ -21,7 +21,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void Init(List<TileData> pathPoints, EnemyConfig enemyConfig)
         {
-            _health.Init(200);
+            _health.Init(enemyConfig.Health);
             _enemyConfig = enemyConfig;
             
             _movement.Init(enemyConfig.MovementSpeed);
@@ -29,6 +29,13 @@ namespace Assets.Scripts.CoreGamePlay
             _movement.SetCurrentTarget(0);
             _movement.StartMovement();
             _movement.GoalIsReached += OnGoalIsReached;
+            _health.HealthIsOver += OnHealthIsOver;
+
+        }
+
+        private void OnHealthIsOver()
+        {
+            Destroy(gameObject);
         }
 
         private void OnGoalIsReached()
@@ -40,12 +47,13 @@ namespace Assets.Scripts.CoreGamePlay
         {
             _movement.StopMovement();
             _movement.GoalIsReached -= OnGoalIsReached;
+            _health.HealthIsOver -= OnHealthIsOver;
         }
 
         [ContextMenu("TakeDamage()")]
-        private void TakeDamage()
+        public void TakeDamage(int damage)
         {
-            _health.ReduceHealth(20);
+            _health.ReduceHealth(damage);
         }
 
 
