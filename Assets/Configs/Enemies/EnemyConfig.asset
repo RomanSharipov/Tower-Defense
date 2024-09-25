@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnemyConfig
   m_EditorClassIdentifier: 
   _movementSpeed: 2
-  _health: 100
+  _health: 500

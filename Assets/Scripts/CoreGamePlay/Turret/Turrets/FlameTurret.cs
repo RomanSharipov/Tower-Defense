@@ -10,7 +10,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitAttackComponent()
         {
-            
+            _flameTurretAttack.SetConfig(damage: 1);
         }
     }
 }

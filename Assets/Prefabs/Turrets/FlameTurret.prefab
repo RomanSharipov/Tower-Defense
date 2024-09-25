@@ -88,6 +88,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30a5821217173447a9610070afbf2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minigunEffects:
+  - _particleSystems:
+    - {fileID: 8848029488332693831}
+  - _particleSystems:
+    - {fileID: 2015410962563293870}
+    - {fileID: 517178502504210392}
+  - _particleSystems:
+    - {fileID: 2964014085470347724}
+    - {fileID: 1175400165520251333}
+    - {fileID: 6974493028097545967}
 --- !u!1 &1951130501793766485
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,6 +158,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2427083275398443112}
     m_Modifications:
+    - target: {fileID: 535369292167328238, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1300785074841662474, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -192,6 +206,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flame_3
       objectReference: {fileID: 0}
+    - target: {fileID: 4468578715902331367, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658254955896538829, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -206,9 +228,19 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4297599849289564689}
   m_SourcePrefab: {fileID: 100100000, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
+--- !u!198 &1175400165520251333 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4468578715902331367, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
+  m_PrefabInstance: {fileID: 3336121223175196706}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &2907640924940030746 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 438622227883066168, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
+  m_PrefabInstance: {fileID: 3336121223175196706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2964014085470347724 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 535369292167328238, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
   m_PrefabInstance: {fileID: 3336121223175196706}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3077463860936215892 stripped
@@ -280,6 +312,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef8f7b5155f59c4ca5cc44e09e3a6a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &6974493028097545967 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5658254955896538829, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
+  m_PrefabInstance: {fileID: 3336121223175196706}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4483178958331868007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -288,6 +325,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2427083275398443112}
     m_Modifications:
+    - target: {fileID: 2724499747625963977, guid: ccbdf996a99d8084b8742ca9cf69c50e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114619462711979199, guid: ccbdf996a99d8084b8742ca9cf69c50e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4680729738624258852, guid: ccbdf996a99d8084b8742ca9cf69c50e, type: 3}
       propertyPath: m_Name
       value: Flame_2
@@ -349,6 +394,16 @@ PrefabInstance:
 --- !u!23 &69598301736741685 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4521667674721048658, guid: ccbdf996a99d8084b8742ca9cf69c50e, type: 3}
+  m_PrefabInstance: {fileID: 4483178958331868007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &517178502504210392 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4114619462711979199, guid: ccbdf996a99d8084b8742ca9cf69c50e, type: 3}
+  m_PrefabInstance: {fileID: 4483178958331868007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2015410962563293870 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2724499747625963977, guid: ccbdf996a99d8084b8742ca9cf69c50e, type: 3}
   m_PrefabInstance: {fileID: 4483178958331868007}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3015393969764988366 stripped
@@ -428,6 +483,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2427083275398443112}
     m_Modifications:
+    - target: {fileID: 1485596568038773533, guid: 4a2985defeedf29439ce55faf9a1e895, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8635321668010430414, guid: 4a2985defeedf29439ce55faf9a1e895, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -558,5 +617,10 @@ MonoBehaviour:
 --- !u!23 &8176776082077908618 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2246974348253727952, guid: 4a2985defeedf29439ce55faf9a1e895, type: 3}
+  m_PrefabInstance: {fileID: 7950935568009785946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8848029488332693831 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1485596568038773533, guid: 4a2985defeedf29439ce55faf9a1e895, type: 3}
   m_PrefabInstance: {fileID: 7950935568009785946}
   m_PrefabAsset: {fileID: 0}

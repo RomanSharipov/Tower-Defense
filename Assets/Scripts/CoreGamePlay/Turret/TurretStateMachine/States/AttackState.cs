@@ -14,13 +14,13 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void Enter() 
         { 
-            _turret.AttackComponent.OnStartAttack(); 
+            _turret.AttackComponent.OnStartAttack(_turret.CurrentTarget); 
         }
 
         public override void UpdateState() 
         {
             _turretView.CurrentTurretRotation.RotateTurretTowardsTarget(_speed);
-            _turret.AttackComponent.AttackIfNeeded(_turret.CurrentTarget);
+            _turret.AttackComponent.AttackIfNeeded();
         }
         public override void Exit() 
         {

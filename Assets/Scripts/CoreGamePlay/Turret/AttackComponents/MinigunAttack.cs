@@ -11,6 +11,7 @@ namespace Assets.Scripts.CoreGamePlay
         private float _intervalBetweenAttack;
         private int _damage;
         private float _attackTimer;
+        private EnemyBase _currentEnemy;
 
         public void SetConfig(float intervalBetweenAttack, int damage)
         {
@@ -18,8 +19,9 @@ namespace Assets.Scripts.CoreGamePlay
             _damage = damage;
         }
 
-        public void OnStartAttack()
+        public void OnStartAttack(EnemyBase enemyBase)
         {
+            _currentEnemy = enemyBase;
             _currentEffects.Play();
         }
 
@@ -33,14 +35,14 @@ namespace Assets.Scripts.CoreGamePlay
             _currentEffects = _minigunEffects[level];
         }
 
-        public void AttackIfNeeded(EnemyBase enemyBase)
+        public void AttackIfNeeded()
         {
             _attackTimer -= Time.deltaTime;
 
             if (_attackTimer <= 0f)
             {
                 _attackTimer = _intervalBetweenAttack;
-                Attack(enemyBase);
+                Attack(_currentEnemy);
             }
         }
         private void Attack(EnemyBase enemyBase)
