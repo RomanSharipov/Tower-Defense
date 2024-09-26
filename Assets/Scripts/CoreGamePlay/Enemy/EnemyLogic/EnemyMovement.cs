@@ -15,7 +15,7 @@ namespace Assets.Scripts.CoreGamePlay
         
         private float _startSpeed = 2.1f;
         private float _currentSpeed;
-        private float _rotateSpeed = 360f;
+        [SerializeField] private float _rotateSpeed = 360f;
         
         private bool _isMoving = false;
         private float _yOffset = 0.41f;

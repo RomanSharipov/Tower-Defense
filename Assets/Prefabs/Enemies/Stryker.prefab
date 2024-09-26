@@ -971,8 +971,6 @@ MonoBehaviour:
   _testTile: {fileID: 0}
   _enemyConfig: {fileID: 0}
   _collider: {fileID: 7732159839683994109}
-  _healthBar: {fileID: 0}
-  _rotationToCamera: {fileID: 4321619099991915541}
   _health: {fileID: 1080254070923160548}
 --- !u!114 &6571676355223001189
 MonoBehaviour:
@@ -987,6 +985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionAvoidance: {fileID: 4499131265839689893}
+  _rotateSpeed: 100
 --- !u!65 &7732159839683994109
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1189,17 +1188,6 @@ MonoBehaviour:
   _maxHealth: 0
   _currentHealth:
     value: 0
---- !u!114 &4321619099991915541 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1784194076392126241, guid: 69d5d83861beb26458492518eea893f1, type: 3}
-  m_PrefabInstance: {fileID: 2538836822842854196}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e45c8cee861ed64abb85e1527882c9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3106111608582829678
 PrefabInstance:
   m_ObjectHideFlags: 0
