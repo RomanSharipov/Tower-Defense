@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: d94dbe6127f9a234a8ef987d18ed865d
   m_SerializeEntries:
-  - m_GUID: 8e42bfee16ffdee4c971449ec11ea6b6
-    m_Address: AntiAir_1
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Turrets
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 48047f1db955ffa4aa4dde0b47914639
     m_Address: Minigun
     m_ReadOnly: 0
@@ -31,6 +25,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d53b3000c20ed764ba7369e5dd892e0f
     m_Address: FlameTurret
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Turrets
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffa1ef3d8abbbca49947e0b8a9cbfd22
+    m_Address: Cannon
     m_ReadOnly: 0
     m_SerializedLabels:
     - Turrets

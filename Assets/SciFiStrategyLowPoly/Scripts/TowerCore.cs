@@ -21,6 +21,7 @@ namespace LPS
         {
         }
 
+        [ContextMenu("")]
         public void Fire(int gunIndex)
         {
             if (VFX.Length > gunIndex)

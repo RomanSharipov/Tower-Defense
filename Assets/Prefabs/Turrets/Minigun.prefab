@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20eb8fe8dc5ac6143bcdd8777b62a530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minigunEffects:
+  _effects:
   - _particleSystems:
     - {fileID: 6688238600659630149}
     - {fileID: 5213965102572293417}

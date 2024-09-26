@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30a5821217173447a9610070afbf2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minigunEffects:
+  _effects:
   - _particleSystems:
     - {fileID: 8848029488332693831}
   - _particleSystems:

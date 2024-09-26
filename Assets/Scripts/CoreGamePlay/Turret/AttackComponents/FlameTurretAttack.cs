@@ -5,7 +5,7 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class FlameTurretAttack : MonoBehaviour, IAttackComponent
     {
-        [SerializeField] private ParticleSystemCollection[] _minigunEffects;
+        [SerializeField] private ParticleSystemCollection[] _effects;
 
         private ParticleSystemCollection _currentEffects;
         private int _damage;
@@ -18,7 +18,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void SetLevel(int level)
         {
-            _currentEffects = _minigunEffects[level];
+            _currentEffects = _effects[level];
         }
 
         public void AttackIfNeeded()

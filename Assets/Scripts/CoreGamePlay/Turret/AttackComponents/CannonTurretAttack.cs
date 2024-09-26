@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class MinigunAttack : MonoBehaviour, IAttackComponent
+    public class CannonTurretAttack : MonoBehaviour, IAttackComponent
     {
         [SerializeField] private ParticleSystemCollection[] _effects;
 

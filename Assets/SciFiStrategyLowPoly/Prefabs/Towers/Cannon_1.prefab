@@ -92,8 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2838980066668557744}
-  - component: {fileID: 6071856171870746956}
-  - component: {fileID: 5220056781166629125}
   - component: {fileID: 564827908582717229}
   m_Layer: 0
   m_Name: Cannon_1
@@ -118,42 +116,6 @@ Transform:
   - {fileID: 1950991080147698459}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6071856171870746956
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3183418183323348746}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2952124, y: 1.208, z: 1.3076663}
-  m_Center: {x: 0.0018940568, y: 0.5980009, z: 0}
---- !u!114 &5220056781166629125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3183418183323348746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 450224564ddd7344c9487769a48cb7ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCooldown: 1
-  VFX:
-  - {fileID: 2909724062384044951}
 --- !u!95 &564827908582717229
 Animator:
   serializedVersion: 5
@@ -741,6 +703,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8244726595923592839, guid: 87797311d9ffc8844bea85a25e7f65ac, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244726595923592839, guid: 87797311d9ffc8844bea85a25e7f65ac, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 15
       objectReference: {fileID: 0}
@@ -772,7 +738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7762095423467485872, guid: 075ea16487f2755408e140b33de1827a, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7762095423467485872, guid: 075ea16487f2755408e140b33de1827a, type: 3}
       propertyPath: ShapeModule.enabled
@@ -858,11 +824,6 @@ PrefabInstance:
       addedObject: {fileID: 6709017367121913542}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 075ea16487f2755408e140b33de1827a, type: 3}
---- !u!198 &2909724062384044951 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7762095423467485872, guid: 075ea16487f2755408e140b33de1827a, type: 3}
-  m_PrefabInstance: {fileID: 4889196395664785703}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3248689831714894744 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7983826639512564415, guid: 075ea16487f2755408e140b33de1827a, type: 3}
