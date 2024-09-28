@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 948525371700486010}
+  - component: {fileID: 7885650041941992870}
   - component: {fileID: 4217072779509895391}
   - component: {fileID: 2117529723536466965}
-  - component: {fileID: 1023847295630319868}
+  - component: {fileID: 1283170744978654418}
   m_Layer: 0
   m_Name: CannonShell
   m_TagString: Untagged
@@ -34,6 +35,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7885650041941992870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459937122574878144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5305ce191de95534ba33992f7c9bd805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &4217072779509895391
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84,8 +97,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1023847295630319868
-BoxCollider:
+--- !u!135 &1283170744978654418
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,5 +116,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.11086554, y: 0.11086554, z: 0.11999575}
+  m_Radius: 0.059997875
   m_Center: {x: 0, y: 0, z: 0}
