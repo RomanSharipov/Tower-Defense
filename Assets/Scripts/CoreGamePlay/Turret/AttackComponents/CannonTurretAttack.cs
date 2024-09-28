@@ -3,52 +3,26 @@ using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class CannonTurretAttack : MonoBehaviour, IAttackComponent
+    public class CannonTurretAttack : AttackComponent
     {
-        [SerializeField] private ParticleSystemCollection[] _effects;
+        [SerializeField] private Animator[] _animators;
 
-        private ParticleSystemCollection _currentEffects;
+        private Animator _currentAnimator;
 
-        private float _intervalBetweenAttack;
-        private int _damage;
-        private float _attackTimer;
-        private EnemyBase _currentEnemy;
-
-        public void SetConfig(float intervalBetweenAttack, int damage)
+        public override void Attack(EnemyBase enemyBase)
         {
-            _intervalBetweenAttack = intervalBetweenAttack;
-            _damage = damage;
+            _currentAnimator.SetTrigger("Attacking");
+            
+        }
+        public override void SetLevel(int level)
+        {
+            base.SetLevel(level);
+            _currentAnimator = _animators[level];
         }
 
-        public void OnStartAttack(EnemyBase enemyBase)
+        public void AnimationEventFire()
         {
-            _currentEnemy = enemyBase;
             _currentEffects.Play();
-        }
-
-        public void OnEndAttack()
-        {
-            _currentEffects.Stop();
-        }
-        
-        public void SetLevel(int level)
-        {
-            _currentEffects = _effects[level];
-        }
-
-        public void AttackIfNeeded()
-        {
-            _attackTimer -= Time.deltaTime;
-
-            if (_attackTimer <= 0f)
-            {
-                _attackTimer = _intervalBetweenAttack;
-                Attack(_currentEnemy);
-            }
-        }
-        private void Attack(EnemyBase enemyBase)
-        {
-            enemyBase.TakeDamage(_damage);
         }
     }
 }

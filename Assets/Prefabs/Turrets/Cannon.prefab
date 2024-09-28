@@ -107,6 +107,10 @@ MonoBehaviour:
     - {fileID: 4058939064305926554}
     - {fileID: 5318844254121667097}
     - {fileID: 7449528207812871493}
+  _animators:
+  - {fileID: 1578919013450820195}
+  - {fileID: 5029548638139303775}
+  - {fileID: 219695478365823326}
 --- !u!1 &8905294892475320493
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,6 +241,11 @@ MeshRenderer:
 --- !u!23 &1045086190499030559 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2071442376362589009, guid: 18eea166e615d3948b6e83b186dcb55e, type: 3}
+  m_PrefabInstance: {fileID: 1315008793005006158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1578919013450820195 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 564827908582717229, guid: 18eea166e615d3948b6e83b186dcb55e, type: 3}
   m_PrefabInstance: {fileID: 1315008793005006158}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &3810483645748792310 stripped
@@ -392,6 +401,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5141313332150531031}
   m_SourcePrefab: {fileID: 100100000, guid: 7846999340f32e4419734c0600cde552, type: 3}
+--- !u!95 &219695478365823326 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6967658742620792160, guid: 7846999340f32e4419734c0600cde552, type: 3}
+  m_PrefabInstance: {fileID: 7187352936724268094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &1107273018595437854 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7846195909939357984, guid: 7846999340f32e4419734c0600cde552, type: 3}
@@ -633,6 +647,11 @@ MeshRenderer:
 --- !u!23 &4607184250542666322 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6617320760593558186, guid: 7635d5877d9214d4886114407e2e28ea, type: 3}
+  m_PrefabInstance: {fileID: 7216300978228795640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5029548638139303775 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2443757326368661415, guid: 7635d5877d9214d4886114407e2e28ea, type: 3}
   m_PrefabInstance: {fileID: 7216300978228795640}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &6392106952780867728 stripped

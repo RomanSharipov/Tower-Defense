@@ -6,7 +6,7 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [SerializeField] private MinigunAttack _minigunAttack;
 
-        public override IAttackComponent AttackComponent => _minigunAttack;
+        public override AttackComponent AttackComponent => _minigunAttack;
 
         public override void InitAttackComponent()
         {

@@ -6,11 +6,11 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [SerializeField] private CannonTurretAttack _cannonTurretAttack;
 
-        public override IAttackComponent AttackComponent => _cannonTurretAttack;
+        public override AttackComponent AttackComponent => _cannonTurretAttack;
 
         public override void InitAttackComponent()
         {
-            _cannonTurretAttack.SetConfig(intervalBetweenAttack: 0.3f, damage: 1);
+            _cannonTurretAttack.SetConfig(intervalBetweenAttack: 0.3f, damage: 10);
         }
     }
 }

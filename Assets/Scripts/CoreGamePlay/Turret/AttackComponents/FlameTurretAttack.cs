@@ -1,46 +1,22 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
-
-namespace Assets.Scripts.CoreGamePlay
+﻿namespace Assets.Scripts.CoreGamePlay
 {
-    public class FlameTurretAttack : MonoBehaviour, IAttackComponent
+    public class FlameTurretAttack : AttackComponent
     {
-        [SerializeField] private ParticleSystemCollection[] _effects;
-
-        private ParticleSystemCollection _currentEffects;
-        private int _damage;
-        private EnemyBase _currentEnemy;
-
-        public void SetConfig(int damage)
+        public override void OnStartAttack(EnemyBase enemyBase)
         {
-            _damage = damage;
-        }
-
-        public void SetLevel(int level)
-        {
-            _currentEffects = _effects[level];
-        }
-
-        public void AttackIfNeeded()
-        {
-            _currentEnemy.TakeDamage(_damage);
-        }
-
-        public void OnStartAttack(EnemyBase enemyBase)
-        {
-            _currentEnemy = enemyBase;
+            base.OnStartAttack(enemyBase);
             _currentEffects.Play();
         }
 
-        public void OnEndAttack()
+        public override void OnEndAttack()
         {
+            base.OnEndAttack();
             _currentEffects.Stop();
-            _currentEnemy = null;   
         }
 
-        private async UniTaskVoid SetEnemyOnFire(EnemyBase enemyBase)
+        public override void Attack(EnemyBase enemyBase)
         {
-
+            enemyBase.TakeDamage(_damage);
         }
     }
 }

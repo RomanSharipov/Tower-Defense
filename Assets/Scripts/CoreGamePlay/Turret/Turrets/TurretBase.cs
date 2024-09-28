@@ -19,7 +19,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
         public DetectorEnemies DetectorEnemies => _detectorEnemies;
-        public abstract IAttackComponent AttackComponent { get; }
+        public abstract AttackComponent AttackComponent { get; }
         public abstract void InitAttackComponent();
 
         public void SetColor(ColorType color)
