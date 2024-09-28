@@ -5,24 +5,40 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class CannonTurretAttack : AttackComponent
     {
-        [SerializeField] private Animator[] _animators;
+        [SerializeField] private CannonTurretAnimator[] _animators;
 
-        private Animator _currentAnimator;
-
+        private CannonTurretAnimator _currentAnimator;
+        
         public override void Attack(EnemyBase enemyBase)
         {
-            _currentAnimator.SetTrigger("Attacking");
-            
+            _currentAnimator.PlayAttack();
         }
+
         public override void SetLevel(int level)
         {
             base.SetLevel(level);
             _currentAnimator = _animators[level];
         }
 
-        public void AnimationEventFire()
+        public void OnAnimationEventFire(int gunIndex)
         {
-            _currentEffects.Play();
+            _currentEffects.GetParticleSystemByIndex(gunIndex).Play();
+        }
+
+        private void OnEnable()
+        {
+            foreach (CannonTurretAnimator animator in _animators)
+            {
+                animator.OnAnimationEventFire += OnAnimationEventFire;
+            }
+        }
+
+        private void OnDisable()
+        {
+            foreach (CannonTurretAnimator animator in _animators)
+            {
+                animator.OnAnimationEventFire -= OnAnimationEventFire;
+            }
         }
     }
 }
