@@ -10,7 +10,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitAttackComponent()
         {
-            _minigunAttack.SetConfig(intervalBetweenAttack:0.1f, damage:2);
+            _minigunAttack.SetConfig(intervalBetweenAttack:0.1f, damage:2,0);
         }
     }
 }

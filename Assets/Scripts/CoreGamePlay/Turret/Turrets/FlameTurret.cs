@@ -10,7 +10,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitAttackComponent()
         {
-            _flameTurretAttack.SetConfig(intervalBetweenAttack:0, damage: 1);
+            _flameTurretAttack.SetConfig(intervalBetweenAttack:0, damage: 1, 0);
         }
     }
 }

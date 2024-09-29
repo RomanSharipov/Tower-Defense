@@ -6,8 +6,11 @@ namespace Assets.Scripts.CoreGamePlay
     public class CannonTurretAttack : AttackComponent
     {
         [SerializeField] private CannonTurretAnimator[] _animators;
-
+        [SerializeField] private BulletSpawnPoints[] _bulletSpawnPoints;
+        [SerializeField] private CannonShell _bullet;
+        
         private CannonTurretAnimator _currentAnimator;
+        private BulletSpawnPoints _currentBulletSpawnPoint;
         
         public override void Attack(EnemyBase enemyBase)
         {
@@ -18,11 +21,14 @@ namespace Assets.Scripts.CoreGamePlay
         {
             base.SetLevel(level);
             _currentAnimator = _animators[level];
+            _currentBulletSpawnPoint = _bulletSpawnPoints[level];
         }
 
         public void OnAnimationEventFire(int gunIndex)
         {
             _currentEffects.GetParticleSystemByIndex(gunIndex).Play();
+            CannonShell bullet = Instantiate(_bullet, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).position, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).rotation);
+            bullet.Init(_damage, _bulletSpeed);
         }
 
         private void OnEnable()
