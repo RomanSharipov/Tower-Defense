@@ -1,4 +1,5 @@
 ﻿using System;
+using NTC.Pool;
 using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
@@ -27,7 +28,7 @@ namespace Assets.Scripts.CoreGamePlay
         public void OnAnimationEventFire(int gunIndex)
         {
             _currentEffects.GetParticleSystemByIndex(gunIndex).Play();
-            CannonShell bullet = Instantiate(_bullet, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).position, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).rotation);
+            CannonShell bullet = NightPool.Spawn(_bullet, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).position, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).rotation);
             bullet.Init(_damage, _bulletSpeed);
         }
 

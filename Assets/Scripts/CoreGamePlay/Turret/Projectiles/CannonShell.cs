@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NTC.Pool;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -23,7 +24,7 @@ namespace Assets.Scripts.CoreGamePlay
             if (other.TryGetComponent(out EnemyBase enemy))
             {
                 enemy.TakeDamage(_damage);
-                Destroy(gameObject);
+                NightPool.Despawn(gameObject);
             }
         }
     }
