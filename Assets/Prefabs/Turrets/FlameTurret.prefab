@@ -206,6 +206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flame_3
       objectReference: {fileID: 0}
+    - target: {fileID: 1821285548914994864, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4468578715902331367, guid: bd93eb0eb9100d8438b8da8900deb7fc, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -336,6 +340,10 @@ PrefabInstance:
     - target: {fileID: 4680729738624258852, guid: ccbdf996a99d8084b8742ca9cf69c50e, type: 3}
       propertyPath: m_Name
       value: Flame_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680729738624258852, guid: ccbdf996a99d8084b8742ca9cf69c50e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5457969438001072542, guid: ccbdf996a99d8084b8742ca9cf69c50e, type: 3}
       propertyPath: m_LocalPosition.x

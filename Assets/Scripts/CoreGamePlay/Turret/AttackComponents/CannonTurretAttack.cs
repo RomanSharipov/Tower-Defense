@@ -8,7 +8,7 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [SerializeField] private CannonTurretAnimator[] _animators;
         [SerializeField] private BulletSpawnPoints[] _bulletSpawnPoints;
-        [SerializeField] private CannonShell _bullet;
+        [SerializeField] private CannonShell _bulletPrefab;
         
         private CannonTurretAnimator _currentAnimator;
         private BulletSpawnPoints _currentBulletSpawnPoint;
@@ -28,7 +28,7 @@ namespace Assets.Scripts.CoreGamePlay
         public void OnAnimationEventFire(int gunIndex)
         {
             _currentEffects.GetParticleSystemByIndex(gunIndex).Play();
-            CannonShell bullet = NightPool.Spawn(_bullet, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).position, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).rotation);
+            CannonShell bullet = NightPool.Spawn(_bulletPrefab, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).position, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).rotation);
             bullet.Init(_damage, _bulletSpeed);
         }
 

@@ -274,7 +274,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7786501904511913676}
-  - component: {fileID: 7958721668862520813}
   m_Layer: 0
   m_Name: Shock_2
   m_TagString: Untagged
@@ -298,27 +297,6 @@ Transform:
   - {fileID: 2719423717056059070}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7958721668862520813
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7441326019059225718}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.305892, y: 1.3882475, z: 1.305892}
-  m_Center: {x: -0.00000008940697, y: 0.6961007, z: 0}
 --- !u!1 &7614122552725550894
 GameObject:
   m_ObjectHideFlags: 0
