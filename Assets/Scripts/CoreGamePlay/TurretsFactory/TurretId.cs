@@ -6,5 +6,6 @@
         Minigun = 1,
         FlameTurret = 2,
         Cannon = 3,
+        Slow = 4
     }
 }
