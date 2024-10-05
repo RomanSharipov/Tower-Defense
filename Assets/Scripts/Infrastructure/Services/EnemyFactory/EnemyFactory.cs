@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 using UnityEngine.AddressableAssets;
 using Assets.Scripts.CoreGamePlay;
+using NTC.Pool;
 using VContainer.Unity;
 
 namespace CodeBase.Infrastructure.Services
@@ -28,9 +28,14 @@ namespace CodeBase.Infrastructure.Services
         public async UniTask<EnemyBase> CreateEnemy(EnemyType enemyType) 
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[enemyType]);
-            GameObject newGameObject = GameObject.Instantiate(prefab);
-            _objectResolver.InjectGameObject(newGameObject);
+            GameObject newGameObject = NightPool.Spawn(prefab);
             EnemyBase enemyComponent = newGameObject.GetComponent<EnemyBase>();
+
+            if (!enemyComponent.AlreadyConstructed)
+            {
+                _objectResolver.InjectGameObject(newGameObject);
+            }
+            
             return enemyComponent;
         }
     }

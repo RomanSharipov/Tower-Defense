@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using CodeBase.Configs;
 using UnityEngine;
+using NTC.Pool;
+using VContainer;
 
 namespace Assets.Scripts.CoreGamePlay
 {
 
-    public abstract class EnemyBase : MonoBehaviour 
+    public abstract class EnemyBase : MonoBehaviour ,IDespawnable
     {
         [SerializeField] private EnemyMovement _movement; 
         [SerializeField] private TileView _testTile; 
@@ -16,8 +18,15 @@ namespace Assets.Scripts.CoreGamePlay
         
         public EnemyMovement Movement => _movement;
         public Vector3 Position => _collider.bounds.center;
+        public bool AlreadyConstructed { get; private set; }
 
         public event Action<EnemyBase> GoalIsReached;
+
+        [Inject]
+        public void Construct()
+        {
+            AlreadyConstructed = true;
+        }
 
         public void Init(List<TileData> pathPoints, EnemyConfig enemyConfig)
         {
@@ -35,27 +44,25 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnHealthIsOver()
         {
-            Destroy(gameObject);
+            NightPool.Despawn(gameObject);
         }
 
         private void OnGoalIsReached()
         {
             GoalIsReached?.Invoke(this);
         }
-
-        private void OnDestroy()
-        {
-            _movement.StopMovement();
-            _movement.GoalIsReached -= OnGoalIsReached;
-            _health.HealthIsOver -= OnHealthIsOver;
-        }
-
+        
         [ContextMenu("TakeDamage()")]
         public void TakeDamage(int damage)
         {
             _health.ReduceHealth(damage);
         }
-
-
+        
+        public void OnDespawn()
+        {
+            _movement.StopMovement();
+            _movement.GoalIsReached -= OnGoalIsReached;
+            _health.HealthIsOver -= OnHealthIsOver;
+        }
     }
 }

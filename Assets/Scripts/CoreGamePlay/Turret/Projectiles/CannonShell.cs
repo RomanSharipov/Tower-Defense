@@ -7,11 +7,13 @@ namespace Assets.Scripts.CoreGamePlay
     {
         private int _damage;
         private float _speed;
+        private float _maxLifeTime = 10.0f;
 
         public void Init(int damage, float speed)
         {
             _damage = damage;
             _speed = speed;
+            NightPool.Despawn(gameObject, _maxLifeTime);
         }
 
         private void Update()
