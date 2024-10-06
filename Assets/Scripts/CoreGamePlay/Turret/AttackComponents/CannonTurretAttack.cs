@@ -9,10 +9,12 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private CannonTurretAnimator[] _animators;
         [SerializeField] private BulletSpawnPoints[] _bulletSpawnPoints;
         [SerializeField] private CannonShell _bulletPrefab;
+        [SerializeField] private ParticleSystemCollection[] _effects;
         
         private CannonTurretAnimator _currentAnimator;
         private BulletSpawnPoints _currentBulletSpawnPoint;
-        
+        private ParticleSystemCollection _currentEffects;
+
         public override void Attack(EnemyBase enemyBase)
         {
             _currentAnimator.PlayAttack();
@@ -20,7 +22,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void SetLevel(int level)
         {
-            base.SetLevel(level);
+            _currentEffects = _effects[level];
             _currentAnimator = _animators[level];
             _currentBulletSpawnPoint = _bulletSpawnPoints[level];
         }

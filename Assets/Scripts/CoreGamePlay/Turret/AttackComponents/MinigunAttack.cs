@@ -4,6 +4,10 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class MinigunAttack : AttackComponent
     {
+        [SerializeField] private ParticleSystemCollection[] _effects;
+
+        private ParticleSystemCollection _currentEffects;
+
         public override void OnStartAttack(EnemyBase enemyBase)
         {
             base.OnStartAttack(enemyBase);
@@ -19,6 +23,11 @@ namespace Assets.Scripts.CoreGamePlay
         public override void Attack(EnemyBase enemyBase)
         {
             enemyBase.TakeDamage(_damage);
+        }
+
+        public override void SetLevel(int level)
+        {
+            _currentEffects = _effects[level];
         }
     }
 }

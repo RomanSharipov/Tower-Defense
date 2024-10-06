@@ -7,7 +7,9 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [SerializeField] private SlowShell _bulletPrefab;
         [SerializeField] private Transform[] _bulletSpawnPoints;
+        [SerializeField] private ParticleSystemCollection[] _effects;
 
+        private ParticleSystemCollection _currentEffects;
         private Transform _currentBulletSpawnPoint;
 
         public override void OnStartAttack(EnemyBase enemyBase)
@@ -30,7 +32,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void SetLevel(int level)
         {
-            base.SetLevel(level);
+            _currentEffects = _effects[level];
             _currentBulletSpawnPoint = _bulletSpawnPoints[level];
         }
     }

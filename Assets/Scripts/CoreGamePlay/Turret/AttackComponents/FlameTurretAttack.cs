@@ -1,7 +1,13 @@
-﻿namespace Assets.Scripts.CoreGamePlay
+﻿using UnityEngine;
+
+namespace Assets.Scripts.CoreGamePlay
 {
     public class FlameTurretAttack : AttackComponent
     {
+        [SerializeField] private ParticleSystemCollection[] _effects;
+
+        private ParticleSystemCollection _currentEffects;
+
         public override void OnStartAttack(EnemyBase enemyBase)
         {
             base.OnStartAttack(enemyBase);
@@ -17,6 +23,11 @@
         public override void Attack(EnemyBase enemyBase)
         {
             enemyBase.TakeDamage(_damage);
+        }
+
+        public override void SetLevel(int level)
+        {
+            _currentEffects = _effects[level];
         }
     }
 }

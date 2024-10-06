@@ -5,10 +5,6 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public abstract class AttackComponent : MonoBehaviour, IUpgradeable
     {
-        [SerializeField] private ParticleSystemCollection[] _effects;
-
-        protected ParticleSystemCollection _currentEffects;
-
         private float _intervalBetweenAttack;
         protected int _damage;
         protected float _bulletSpeed;
@@ -33,12 +29,9 @@ namespace Assets.Scripts.CoreGamePlay
         {
             _currentEnemy = null;
         }
-        
-        public virtual void SetLevel(int level)
-        {
-            _currentEffects = _effects[level];
-        }
 
+        public abstract void SetLevel(int level);
+        
         public void AttackIfNeeded()
         {
             _attackTimer -= Time.deltaTime;
