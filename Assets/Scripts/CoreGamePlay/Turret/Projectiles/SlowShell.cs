@@ -26,6 +26,7 @@ namespace Assets.Scripts.CoreGamePlay
             if (other.TryGetComponent(out EnemyBase enemy))
             {
                 enemy.TakeDamage(_damage);
+                enemy.Movement.SlowDownMovement(20);
                 NightPool.Despawn(gameObject);
             }
         }

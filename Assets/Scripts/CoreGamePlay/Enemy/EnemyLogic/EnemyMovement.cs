@@ -15,6 +15,8 @@ namespace Assets.Scripts.CoreGamePlay
         
         private float _startSpeed = 2.1f;
         private float _currentSpeed;
+        private float _slowdownСoefficient = 1.0f;
+
         [SerializeField] private float _rotateSpeed = 360f;
         
         private bool _isMoving = false;
@@ -182,7 +184,7 @@ namespace Assets.Scripts.CoreGamePlay
         private void MoveTowardsTarget(Vector3 target)
         {
             Vector3 direction = (target - _transtorm.position).normalized;
-            _transtorm.position += direction * _currentSpeed * Time.deltaTime;
+            _transtorm.position += direction * _currentSpeed * Time.deltaTime * _slowdownСoefficient;
         }
 
         private void RotateTowardsTarget(Vector3 target)
@@ -190,6 +192,13 @@ namespace Assets.Scripts.CoreGamePlay
             Vector3 direction = (target - _transtorm.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             _transtorm.rotation = Quaternion.RotateTowards(_transtorm.rotation, lookRotation, _rotateSpeed * Time.deltaTime);
+        }
+
+        public void SlowDownMovement(int percent)
+        {
+            percent = Math.Clamp(percent, 0, 100);
+
+            _slowdownСoefficient = percent / 100.0f;
         }
     }
 }

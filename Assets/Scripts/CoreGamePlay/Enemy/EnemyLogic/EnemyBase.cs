@@ -21,6 +21,7 @@ namespace Assets.Scripts.CoreGamePlay
         public bool AlreadyConstructed { get; private set; }
 
         public event Action<EnemyBase> GoalIsReached;
+        public event Action<EnemyBase> Died;
 
         [Inject]
         public void Construct()
@@ -60,6 +61,7 @@ namespace Assets.Scripts.CoreGamePlay
         
         public void OnDespawn()
         {
+            Died?.Invoke(this);
             _movement.StopMovement();
             _movement.GoalIsReached -= OnGoalIsReached;
             _health.HealthIsOver -= OnHealthIsOver;

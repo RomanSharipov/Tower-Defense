@@ -11,16 +11,17 @@ public class CollisionAvoidance : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out EnemyMovement otherMovement))
+        if (other.TryGetComponent(out EnemyBase otherEnemy))
         {
             count++;
-            if (otherMovement.CurrentTarget == myMovement.CurrentTarget)
+            otherEnemy.Died += OnTriggerExitHandle;
+            if (otherEnemy.Movement.CurrentTarget == myMovement.CurrentTarget)
             {
                 if (_blockControl)
                     return;
                 
-                otherMovement.BlockTriggerOnCollisionAvoidance();
-                ResolveByDistanceToClosestTile(otherMovement);
+                otherEnemy.Movement.BlockTriggerOnCollisionAvoidance();
+                ResolveByDistanceToClosestTile(otherEnemy.Movement);
             }
             else
             {
@@ -52,18 +53,24 @@ public class CollisionAvoidance : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out EnemyMovement otherMovement))
+        if (other.TryGetComponent(out EnemyBase otherEnemy))
         {
-            count--;
-            count = Math.Max(count, 0);
-
-            if (count == 0)
-            {
-                myMovement.UnPause();
-            }
+            OnTriggerExitHandle(otherEnemy);
         }
     }
-    
+
+    private void OnTriggerExitHandle(EnemyBase otherEnemy)
+    {
+        count--;
+        otherEnemy.Died -= OnTriggerExitHandle;
+        count = Math.Max(count, 0);
+
+        if (count == 0)
+        {
+            myMovement.UnPause();
+        }
+    }
+
     private bool FurtherFromCurrentTileThan(EnemyMovement otherEnemy)
     {
         return myMovement.DistanceOfClosestTargetTile > otherEnemy.DistanceOfClosestTargetTile;
