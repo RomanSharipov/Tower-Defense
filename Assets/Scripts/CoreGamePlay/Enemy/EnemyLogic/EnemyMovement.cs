@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 using CodeBase.Helpers;
+using UniRx;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -194,11 +195,15 @@ namespace Assets.Scripts.CoreGamePlay
             _transtorm.rotation = Quaternion.RotateTowards(_transtorm.rotation, lookRotation, _rotateSpeed * Time.deltaTime);
         }
 
-        public void SlowDownMovement(int percent)
+        public void SlowDownMovement(int percent,float duration)
         {
             percent = Math.Clamp(percent, 0, 100);
 
             _slowdownСoefficient = percent / 100.0f;
+
+            Observable.Timer(TimeSpan.FromSeconds(duration))
+                .Subscribe(_ => _slowdownСoefficient = 1.0f)
+                .AddTo(this);
         }
     }
 }
