@@ -5,16 +5,16 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class DetectorEnemies 
     {
-        private readonly TurretBase _turret;
+        private readonly Vector3 _myPosition;
 
         private const int maxColliders = 10;
         private Collider[] hitColliders = new Collider[maxColliders];
         private float _detectionRadius;
         protected LayerMask _enemyLayerMask = LayerMask.GetMask("Enemy");
 
-        public DetectorEnemies(TurretBase turret)
+        public DetectorEnemies(Vector3 myPosition)
         {
-            _turret = turret;
+            _myPosition = myPosition;
         }
 
         public void SetRadius(float detectionRadius)
@@ -22,23 +22,20 @@ namespace Assets.Scripts.CoreGamePlay
             _detectionRadius = detectionRadius;
         }
 
-        public bool EnemyFarAway()
+        public bool PointFarAway(Vector3 point)
         {
-            if (_turret.CurrentTarget == null)
-                return true;
+            Vector3.Distance(_myPosition, point);
 
-            Vector3.Distance(_turret.transform.position, _turret.CurrentTarget.Position);
-
-            return Vector3.Distance(_turret.transform.position, _turret.CurrentTarget.Position) > _detectionRadius;
+            return Vector3.Distance(_myPosition, point) > _detectionRadius;
         }
 
-        public bool TryFindEnemy()
+        public bool TryFindEnemy(out EnemyBase totalEnemy)
         {
-            Vector3 turretPosition = _turret.transform.position;
-
+            totalEnemy = null;
+            
             Array.Clear(hitColliders, 0, hitColliders.Length);
 
-            int numberOfHits = Physics.OverlapSphereNonAlloc(turretPosition, _detectionRadius, hitColliders, _enemyLayerMask);
+            int numberOfHits = Physics.OverlapSphereNonAlloc(_myPosition, _detectionRadius, hitColliders, _enemyLayerMask);
 
             EnemyBase closestEnemy = null;
             float closestDistance = Mathf.Infinity;
@@ -48,7 +45,7 @@ namespace Assets.Scripts.CoreGamePlay
                 EnemyBase enemy = hitColliders[i].GetComponent<EnemyBase>();
                 if (enemy != null)
                 {
-                    float distanceToEnemy = Vector3.Distance(turretPosition, enemy.transform.position);
+                    float distanceToEnemy = Vector3.Distance(_myPosition, enemy.transform.position);
 
                     if (distanceToEnemy < closestDistance)
                     {
@@ -60,11 +57,9 @@ namespace Assets.Scripts.CoreGamePlay
 
             if (closestEnemy != null)
             {
-                _turret.CurrentTarget = closestEnemy;
+                totalEnemy = closestEnemy;
                 return true;
             }
-
-            _turret.CurrentTarget = null;
             return false;
         }
     }

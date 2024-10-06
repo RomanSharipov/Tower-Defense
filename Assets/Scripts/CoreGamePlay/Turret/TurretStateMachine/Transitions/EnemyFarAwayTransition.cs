@@ -11,7 +11,10 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override bool ShouldTransition()
         {
-            return _turret.DetectorEnemies.EnemyFarAway();
+            if (_turret.CurrentTarget == null)
+                return true;
+            
+            return _turret.DetectorEnemies.PointFarAway(_turret.CurrentTarget.Position);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void ConfigureDetectorEnemies()
         {
-            _detectorEnemies = new DetectorEnemies(this);
+            _detectorEnemies = new DetectorEnemies(transform.position);
             _detectorEnemies.SetRadius(_detectionRadius);
         }
 

@@ -12,7 +12,12 @@ namespace Assets.Scripts.CoreGamePlay
         
         public override bool ShouldTransition()
         {
-            return _turret.DetectorEnemies.TryFindEnemy();
+            if (_turret.DetectorEnemies.TryFindEnemy(out EnemyBase totalEnemy))
+            {
+                _turret.CurrentTarget = totalEnemy;
+                return true;
+            }
+            return false;
         }
     }
 }
