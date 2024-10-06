@@ -10,7 +10,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitAttackComponent()
         {
-            _rocketTurretAttack.SetConfig(intervalBetweenAttack: 0.7f, damage: 30, bulletSpeed: 5f);
+            _rocketTurretAttack.SetConfig(intervalBetweenAttack: 1.7f, damage: 30, bulletSpeed: 5f);
         }
     }
 }

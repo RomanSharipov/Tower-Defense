@@ -1,38 +1,37 @@
-﻿using NTC.Pool;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using NTC.Pool;
+using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
     public class RocketTurretAttack : AttackComponent
     {
-        [SerializeField] private SlowShell _bulletPrefab;
-        [SerializeField] private Transform[] _bulletSpawnPoints;
-        [SerializeField] private ParticleSystemCollection[] _effects;
-
-        private ParticleSystemCollection _currentEffects;
-        private Transform _currentBulletSpawnPoint;
-
-        public override void OnStartAttack(EnemyBase enemyBase)
-        {
-            base.OnStartAttack(enemyBase);
-            _currentEffects.Play();
-        }
-
-        public override void OnEndAttack()
-        {
-            base.OnEndAttack();
-            _currentEffects.Stop();
-        }
+        [SerializeField] private RocketShell _bulletPrefab;
+        [SerializeField] private BulletSpawnPoints[] _bulletSpawnPoints;
+        
+        private BulletSpawnPoints _currentBulletSpawnPoint;
 
         public override void Attack(EnemyBase enemyBase)
         {
-            SlowShell bullet = NightPool.Spawn(_bulletPrefab, _currentBulletSpawnPoint.position, _currentBulletSpawnPoint.rotation);
-            bullet.Init(_damage, _bulletSpeed);
+            int bulletCount = _currentBulletSpawnPoint.SpawnPoints.Length;
+            int bulletIndex = 0;
+            
+            Observable.Interval(TimeSpan.FromSeconds(0.5f))
+                .Take(bulletCount) 
+                .Subscribe(_ =>
+                {
+                    Transform spawnPoint = _currentBulletSpawnPoint.SpawnPoints[bulletIndex];
+                    RocketShell bullet = NightPool.Spawn(_bulletPrefab, spawnPoint.position, spawnPoint.rotation);
+                    bullet.Init(_damage, _bulletSpeed);
+
+                    bulletIndex++; 
+                }).AddTo(this); 
         }
 
         public override void SetLevel(int level)
         {
-            _currentEffects = _effects[level];
             _currentBulletSpawnPoint = _bulletSpawnPoints[level];
         }
     }

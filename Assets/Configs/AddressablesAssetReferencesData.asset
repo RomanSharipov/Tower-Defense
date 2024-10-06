@@ -113,3 +113,9 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  - turretType: 5
+    AssetReference:
+      m_AssetGUID: 0b29e179f10a91640be65eaa93355c7c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0

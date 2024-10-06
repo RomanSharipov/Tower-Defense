@@ -126,7 +126,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3424640444081151318}
-  - component: {fileID: 5890731863158845280}
   m_Layer: 0
   m_Name: Rocket_1
   m_TagString: Untagged
@@ -150,27 +149,6 @@ Transform:
   - {fileID: 2407089866064218619}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5890731863158845280
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2651798821617846252}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.3017375, y: 1.2981877, z: 1.3017373}
-  m_Center: {x: 0.0017749071, y: 0.6496229, z: 0.0017749071}
 --- !u!1 &5260435153342328441
 GameObject:
   m_ObjectHideFlags: 0

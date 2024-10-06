@@ -8,6 +8,8 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [SerializeField] private Transform[] _spawnPoints;
 
+        public Transform[] SpawnPoints => _spawnPoints;
+
         public Transform GetSpawnPointByIndex(int index)
         {
             return _spawnPoints[index];
