@@ -2,6 +2,7 @@
 using CodeBase.Configs;
 using CodeBase.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
+using NTC.Pool;
 using UnityEngine;
 using VContainer;
 
@@ -87,7 +88,7 @@ namespace Assets.Scripts.CoreGamePlay
         {
             enemy.GoalIsReached -= OnGoalIsReached;
             _enemiesOnBoard.Remove(enemy);
-            Destroy(enemy.gameObject);
+            NightPool.Despawn(enemy.gameObject);
         }
 
         private void OnDestroy()

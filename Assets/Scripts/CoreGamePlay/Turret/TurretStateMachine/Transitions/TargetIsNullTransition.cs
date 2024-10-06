@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NTC.Pool;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -10,7 +11,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override bool ShouldTransition()
         {
-            if (_turret.CurrentTarget == null)
+            if (NightPool.GetCloneStatus(_turret.CurrentTarget) == PoolableStatus.Despawned)
                 return true;
 
             return false;
