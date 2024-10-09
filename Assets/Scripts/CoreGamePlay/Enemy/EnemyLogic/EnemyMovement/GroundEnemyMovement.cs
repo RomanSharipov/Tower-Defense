@@ -48,7 +48,7 @@ namespace Assets.Scripts.CoreGamePlay
             _startSpeed = startSpeed;
             _currentSpeed = _startSpeed;
             _pathBuilder = new PathBuilder();
-            SetPath(_cacherOfPath.Paths[_enemySpawner]);
+            SetPath(_cacherOfPath.TilesPaths[_enemySpawner]);
             SetCurrentTarget(0);
         }
         

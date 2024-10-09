@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BezierSolution;
 using CodeBase.Configs;
 using CodeBase.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private TileView _start;
         [SerializeField] private TileView _target;
         [SerializeField] private WavesOnLevelData _wavesOnLevelData;
+        [SerializeField] private BezierSpline _pathFly;
 
         
         private bool _isSpawningEnabled;
@@ -51,7 +53,11 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void UpdateSpawnerPath()
         {
-            _cacherOfPath.TrySetPath();
+            _cacherOfPath.TryBuildPath();
+        }
+        public void UpdateFlyPath()
+        {
+            _cacherOfPath.RegisterFlyPath(this,_pathFly);
         }
 
         private void Update()

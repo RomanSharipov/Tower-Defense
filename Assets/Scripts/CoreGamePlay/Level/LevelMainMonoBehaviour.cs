@@ -57,9 +57,10 @@ namespace Assets.Scripts.CoreGamePlay
             foreach (EnemySpawner enemySpawner in _enemySpawners)
             {
                 enemySpawner.UpdateSpawnerPath();
+                enemySpawner.UpdateFlyPath();
                 enemySpawner.StartSpawnEnemies();
             }
-            _cacherOfPath.TrySetPath();
+            _cacherOfPath.TryBuildPath();
         }
 
         public void SetTiles(TileView[] tiles)

@@ -74,7 +74,7 @@ namespace CodeBase.Infrastructure.Services
 
         private void UpdateTurretColor(TurretBase turretBase)
         {
-            if (_cacherOfPath.TrySetPath())
+            if (_cacherOfPath.TryBuildPath())
             {
                 turretBase.SetColor(ColorType.TransparentColor);
             }
