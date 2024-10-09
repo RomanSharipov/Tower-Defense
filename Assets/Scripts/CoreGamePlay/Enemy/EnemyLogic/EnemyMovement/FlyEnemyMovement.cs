@@ -51,7 +51,6 @@ namespace Assets.Scripts.CoreGamePlay
         {
             StopMovement();
             GoalIsReached?.Invoke();
-            _bezierWalkerWithSpeed.NormalizedT = 0.0f;
         }
 
         public void StartMovement()
@@ -67,6 +66,7 @@ namespace Assets.Scripts.CoreGamePlay
         public void OnDespawn()
         {
             _bezierWalkerWithSpeed.onPathCompleted.RemoveListener(OnPathCompleted);
+            _bezierWalkerWithSpeed.NormalizedT = 0.0f;
         }
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5788077910164811534}
   - component: {fileID: 239553867982867269}
   - component: {fileID: 263869163832688192}
+  - component: {fileID: 3123718403637488327}
   m_Layer: 6
   m_Name: Spaceship
   m_TagString: Untagged
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyConfig: {fileID: 0}
-  _collider: {fileID: 7737416495979061871}
+  _collider: {fileID: 3123718403637488327}
   _health: {fileID: 1080254070923160548}
   _flyEnemyMovement: {fileID: 239553867982867269}
 --- !u!54 &5788077910164811534
@@ -93,6 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bezierWalkerWithSpeed: {fileID: 263869163832688192}
+  _startSpeed: 0
+  "_slowdown\u0421oefficient": 1
 --- !u!114 &263869163832688192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +117,27 @@ MonoBehaviour:
   onPathCompleted:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &3123718403637488327
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629064126622223881}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.776613, y: 1.0472261, z: 2.8051002}
+  m_Center: {x: 0.010494828, y: 0.54835194, z: 0.031484246}
 --- !u!1001 &2538836822842854196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315,7 +339,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5891317402673086197, guid: 35281168bdec327489e394d30c8b7527, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -323,10 +348,5 @@ PrefabInstance:
 --- !u!4 &4940114709853820073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9091688613128128563, guid: 35281168bdec327489e394d30c8b7527, type: 3}
-  m_PrefabInstance: {fileID: 4225215069403978906}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &7737416495979061871 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 5891317402673086197, guid: 35281168bdec327489e394d30c8b7527, type: 3}
   m_PrefabInstance: {fileID: 4225215069403978906}
   m_PrefabAsset: {fileID: 0}
