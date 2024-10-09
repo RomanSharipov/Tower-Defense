@@ -5,12 +5,18 @@ using System.Collections.Generic;
 using System;
 using CodeBase.Helpers;
 using UniRx;
+using VContainer;
+using CodeBase.Infrastructure.Services;
+using NTC.Pool;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class EnemyMovement : MonoBehaviour 
+    public class GroundEnemyMovement : MonoBehaviour , IEnemyMovement,IDespawnable
     {
         [SerializeField] private CollisionAvoidance _collisionAvoidance;
+
+        [Inject] private IBuildingService _buildingService;
+        [Inject] private ICacherOfPath _cacherOfPath;
 
         private Transform _transtorm;
         
@@ -25,6 +31,7 @@ namespace Assets.Scripts.CoreGamePlay
         private float _distanceOfClosestTargetTile;
 
         private PathBuilder _pathBuilder;
+        private EnemySpawner _enemySpawner;
         private TileData _currentTarget;
         private int _currentTargetIndex = 0;
         private List<TileData> _path;
@@ -32,13 +39,17 @@ namespace Assets.Scripts.CoreGamePlay
         public float DistanceOfClosestTargetTile => _distanceOfClosestTargetTile;
         public TileData CurrentTarget => _currentTarget;
         public event Action GoalIsReached;
-
-        public void Init(float startSpeed)
+        
+        public void Init(float startSpeed, EnemySpawner enemySpawner)
         {
+            _buildingService.TurretIsBuilded += OnTurretIsBuilded;
+            _enemySpawner = enemySpawner;
             _transtorm = transform;
             _startSpeed = startSpeed;
             _currentSpeed = _startSpeed;
             _pathBuilder = new PathBuilder();
+            SetPath(_cacherOfPath.Paths[_enemySpawner]);
+            SetCurrentTarget(0);
         }
         
         public void BlockTriggerOnCollisionAvoidance()
@@ -204,6 +215,15 @@ namespace Assets.Scripts.CoreGamePlay
             Observable.Timer(TimeSpan.FromSeconds(duration))
                 .Subscribe(_ => _slowdownСoefficient = 1.0f)
                 .AddTo(this);
+        }
+        
+        private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
+        {
+            UpdatePath(tileData);
+        }
+        public void OnDespawn()
+        {
+            _buildingService.TurretIsBuilded -= OnTurretIsBuilded;
         }
     }
 }

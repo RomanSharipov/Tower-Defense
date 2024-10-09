@@ -5,23 +5,23 @@ using UnityEngine;
 
 public class CollisionAvoidance : MonoBehaviour
 {
-    [SerializeField] private EnemyMovement myMovement;
+    [SerializeField] private GroundEnemyMovement myMovement;
     [SerializeField] private int count;
     [SerializeField] private bool _blockControl;
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out EnemyBase otherEnemy))
+        if (other.TryGetComponent(out GroundEnemy otherEnemy))
         {
             count++;
             otherEnemy.Died += OnTriggerExitHandle;
-            if (otherEnemy.Movement.CurrentTarget == myMovement.CurrentTarget)
+            if (otherEnemy.GroundEnemyMovement.CurrentTarget == myMovement.CurrentTarget)
             {
                 if (_blockControl)
                     return;
                 
-                otherEnemy.Movement.BlockTriggerOnCollisionAvoidance();
-                ResolveByDistanceToClosestTile(otherEnemy.Movement);
+                otherEnemy.GroundEnemyMovement.BlockTriggerOnCollisionAvoidance();
+                ResolveByDistanceToClosestTile(otherEnemy.GroundEnemyMovement);
             }
             else
             {
@@ -30,7 +30,7 @@ public class CollisionAvoidance : MonoBehaviour
         }
     }
 
-    private void ResolveByDistanceToClosestTile(EnemyMovement otherMovement)
+    private void ResolveByDistanceToClosestTile(GroundEnemyMovement otherMovement)
     {
         if (FurtherFromCurrentTileThan(otherMovement))
         {
@@ -71,7 +71,7 @@ public class CollisionAvoidance : MonoBehaviour
         }
     }
 
-    private bool FurtherFromCurrentTileThan(EnemyMovement otherEnemy)
+    private bool FurtherFromCurrentTileThan(GroundEnemyMovement otherEnemy)
     {
         return myMovement.DistanceOfClosestTargetTile > otherEnemy.DistanceOfClosestTargetTile;
     }

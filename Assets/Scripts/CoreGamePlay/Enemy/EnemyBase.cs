@@ -10,13 +10,15 @@ namespace Assets.Scripts.CoreGamePlay
 
     public abstract class EnemyBase : MonoBehaviour ,IDespawnable
     {
-        [SerializeField] private EnemyMovement _movement; 
+        [SerializeField] private IEnemyMovement _movement; 
         [SerializeField] private TileView _testTile; 
         [SerializeField] private EnemyConfig _enemyConfig; 
         [SerializeField] private Collider _collider; 
-        [SerializeField] private EnemyHealth _health; 
+        [SerializeField] private EnemyHealth _health;
         
-        public EnemyMovement Movement => _movement;
+        public abstract IEnemyMovement EnemyMovement { get; }
+
+        //public EnemyMovement Movement => _movement;
         public Vector3 Position => _collider.bounds.center;
         public bool AlreadyConstructed { get; private set; }
 
@@ -29,16 +31,15 @@ namespace Assets.Scripts.CoreGamePlay
             AlreadyConstructed = true;
         }
 
-        public void Init(List<TileData> pathPoints, EnemyConfig enemyConfig)
+        public void Init(EnemySpawner enemySpawner, EnemyConfig enemyConfig)
         {
-            _health.Init(enemyConfig.Health);
             _enemyConfig = enemyConfig;
-            
-            _movement.Init(enemyConfig.MovementSpeed);
-            _movement.SetPath(pathPoints);
-            _movement.SetCurrentTarget(0);
-            _movement.StartMovement();
-            _movement.GoalIsReached += OnGoalIsReached;
+            _health.Init(enemyConfig.Health);
+
+            EnemyMovement.Init(enemyConfig.MovementSpeed, enemySpawner);
+
+            EnemyMovement.StartMovement();
+            EnemyMovement.GoalIsReached += OnGoalIsReached;
             _health.HealthIsOver += OnHealthIsOver;
 
         }
@@ -62,8 +63,8 @@ namespace Assets.Scripts.CoreGamePlay
         public void OnDespawn()
         {
             Died?.Invoke(this);
-            _movement.StopMovement();
-            _movement.GoalIsReached -= OnGoalIsReached;
+            EnemyMovement.StopMovement();
+            EnemyMovement.GoalIsReached -= OnGoalIsReached;
             _health.HealthIsOver -= OnHealthIsOver;
         }
     }

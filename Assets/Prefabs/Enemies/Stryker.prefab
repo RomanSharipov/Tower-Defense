@@ -925,7 +925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5815548034023036083}
   - component: {fileID: 7563273174177490870}
-  - component: {fileID: 6571676355223001189}
+  - component: {fileID: 179025020450098727}
   - component: {fileID: 7732159839683994109}
   - component: {fileID: 705701911019099402}
   - component: {fileID: 5788077910164811534}
@@ -967,12 +967,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7f83a8714dfc7468235d4860a7738b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movement: {fileID: 6571676355223001189}
   _testTile: {fileID: 0}
   _enemyConfig: {fileID: 0}
   _collider: {fileID: 7732159839683994109}
   _health: {fileID: 1080254070923160548}
---- !u!114 &6571676355223001189
+  _groundEnemyMovement: {fileID: 179025020450098727}
+--- !u!114 &179025020450098727
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -981,11 +981,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6629064126622223881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f579745c080410742b2ac320771891f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b6d6d707cd7617408e32bee9b3f3388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionAvoidance: {fileID: 4499131265839689893}
-  _rotateSpeed: 100
+  _rotateSpeed: 360
 --- !u!65 &7732159839683994109
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1203,7 +1203,7 @@ PrefabInstance:
     - target: {fileID: 1543327304089962187, guid: 4a3a73a5848c97d4b8cb0e3c572746ea, type: 3}
       propertyPath: myMovement
       value: 
-      objectReference: {fileID: 6571676355223001189}
+      objectReference: {fileID: 179025020450098727}
     - target: {fileID: 5181344806541639069, guid: 4a3a73a5848c97d4b8cb0e3c572746ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

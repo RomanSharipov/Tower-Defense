@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.CoreGamePlay
 {
-    public class Truck : EnemyBase 
+    public class Truck : GroundEnemy 
     {
 
     }

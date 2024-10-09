@@ -19,13 +19,13 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private TileView _target;
         [SerializeField] private WavesOnLevelData _wavesOnLevelData;
 
-        private List<TileData> _path;
+        
         private bool _isSpawningEnabled;
         [SerializeField] private float _spawnTimer;
         private int _counter;
 
         [SerializeField] private List<EnemyBase> _enemiesOnBoard = new List<EnemyBase>();
-        
+
 
         public TileView StartTile => _start;
         public TileView TargetTile => _target;
@@ -36,25 +36,25 @@ namespace Assets.Scripts.CoreGamePlay
             _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
         }
 
-        
+
 
         public void StartSpawnEnemies()
         {
             _isSpawningEnabled = true;
-            _spawnTimer = 0f;  
+            _spawnTimer = 0f;
         }
-        
+
         public void StopSpawn()
         {
             _isSpawningEnabled = false;
         }
-        
+
         public void UpdateSpawnerPath()
         {
             _cacherOfPath.TrySetPath();
-            _path = _cacherOfPath.Paths[this];
+            //_path = _cacherOfPath.Paths[this];
         }
-        
+
         private void Update()
         {
             if (_isSpawningEnabled)
@@ -68,7 +68,7 @@ namespace Assets.Scripts.CoreGamePlay
                 }
             }
         }
-        
+
         private async UniTask CreateEnemyIfNeeded()
         {
             if (_wavesService.TryGetEnemy(out EnemyType enemyType))
@@ -78,7 +78,7 @@ namespace Assets.Scripts.CoreGamePlay
                 newEnemy.transform.parent = transform;
                 newEnemy.transform.localPosition = Vector3.zero;
                 newEnemy.transform.gameObject.name = $"{_counter}.{newEnemy.name}";
-                newEnemy.Init(_path,_wavesService.CurrentWave.EnemyConfig);
+                newEnemy.Init(this, _wavesService.CurrentWave.EnemyConfig);
                 newEnemy.GoalIsReached += OnGoalIsReached;
                 _enemiesOnBoard.Add(newEnemy);
             }
@@ -95,13 +95,13 @@ namespace Assets.Scripts.CoreGamePlay
         {
             StopSpawn();
         }
-        
+
         private void OnEnable()
         {
             _buildingService.TurretIsBuilded += OnTurretIsBuilded;
             _wavesService.WaveIsOver += OnWaveIsOver;
         }
-        
+
         private void OnDisable()
         {
             _buildingService.TurretIsBuilded -= OnTurretIsBuilded;
@@ -116,17 +116,8 @@ namespace Assets.Scripts.CoreGamePlay
         private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
         {
             enabled = false;
-            UpdateEnemiesPath(turret, tileData);
             UpdateSpawnerPath();
             enabled = true;
-        }
-        
-        private void UpdateEnemiesPath(TurretBase turret, TileData tileData)
-        {
-            foreach (EnemyBase enemy in _enemiesOnBoard)
-            {
-                enemy.Movement.UpdatePath(tileData); 
-            }
         }
     }
 }

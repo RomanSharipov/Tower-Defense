@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.CoreGamePlay
 {
-    public class Tank : EnemyBase  
+    public class Tank : GroundEnemy
     {
 
     }

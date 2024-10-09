@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.CoreGamePlay
 {
-    public class Stryker : EnemyBase 
+    public class Stryker : GroundEnemy
     {
 
     }
