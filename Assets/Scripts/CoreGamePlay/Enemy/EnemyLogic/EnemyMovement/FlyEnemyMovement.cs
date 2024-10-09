@@ -4,22 +4,22 @@ using System;
 using UniRx;
 using VContainer;
 using CodeBase.Infrastructure.Services;
+using BezierSolution;
+using NTC.Pool;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class FlyEnemyMovement : MonoBehaviour , IEnemyMovement
+    public class FlyEnemyMovement : MonoBehaviour , IEnemyMovement,IDespawnable
     {
         [Inject] private ICacherOfPath _cacherOfPath;
+        [SerializeField] private BezierWalkerWithSpeed _bezierWalkerWithSpeed;
 
-        private Transform _transtorm;
+        [SerializeField] private float _startSpeed;
         
-        private float _startSpeed = 2.1f;
-        private float _currentSpeed;
-        private float _slowdownСoefficient = 1.0f;
-        
-        private bool _isMoving = false;
+        [SerializeField] private float _slowdownСoefficient = 1.0f;
         
         private EnemySpawner _enemySpawner;
+        
         public event Action GoalIsReached;
         
         public void SlowDownMovement(int percent, float duration)
@@ -36,29 +36,37 @@ namespace Assets.Scripts.CoreGamePlay
         public void Init(float startSpeed, EnemySpawner enemySpawner)
         {
             _enemySpawner = enemySpawner;
+            _bezierWalkerWithSpeed.onPathCompleted.AddListener(OnPathCompleted);
+            _bezierWalkerWithSpeed.spline = _cacherOfPath.PathFly[_enemySpawner];
+            _startSpeed = startSpeed;
+            _slowdownСoefficient = 1.0f;
+        }
+
+        private void Update()
+        {
+            _bezierWalkerWithSpeed.speed = _startSpeed * _slowdownСoefficient;
+        }
+
+        private void OnPathCompleted()
+        {
+            StopMovement();
+            GoalIsReached?.Invoke();
+            _bezierWalkerWithSpeed.NormalizedT = 0.0f;
         }
 
         public void StartMovement()
         {
-            _isMoving = true;
+            _bezierWalkerWithSpeed.enabled = true;
         }
 
         public void StopMovement()
         {
-            _isMoving = false;
+            _bezierWalkerWithSpeed.enabled = false;
         }
         
-        private void Update()
+        public void OnDespawn()
         {
-            if (_isMoving)
-            {
-                
-            }
-        }
-        private void CompletePathAndStop()
-        {
-            StopMovement();
-            GoalIsReached?.Invoke();
+            _bezierWalkerWithSpeed.onPathCompleted.RemoveListener(OnPathCompleted);
         }
     }
 }

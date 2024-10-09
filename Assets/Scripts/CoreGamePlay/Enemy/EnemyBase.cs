@@ -17,8 +17,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private EnemyHealth _health;
         
         public abstract IEnemyMovement EnemyMovement { get; }
-
-        //public EnemyMovement Movement => _movement;
+        
         public Vector3 Position => _collider.bounds.center;
         public bool AlreadyConstructed { get; private set; }
 
