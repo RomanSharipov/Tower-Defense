@@ -52,7 +52,6 @@ namespace Assets.Scripts.CoreGamePlay
         public void UpdateSpawnerPath()
         {
             _cacherOfPath.TrySetPath();
-            //_path = _cacherOfPath.Paths[this];
         }
 
         private void Update()
