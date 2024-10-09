@@ -15,6 +15,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private TileView[] _tiles;
         [SerializeField] private Transform _turretsParrent;
         [SerializeField] private EnemySpawner[] _enemySpawners;
+        [SerializeField] private PathInitializer _pathInitializer;
 
         
         private void OnEnable()
@@ -34,6 +35,24 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void InitializeSceneServices()
         {
+            _cacherOfPath.SetSpawnersOnCurrentLevel(_enemySpawners);
+            InitGameBoard();
+
+            _turretFactory.SetParrentTurret(_turretsParrent);
+            _pathInitializer.Init();
+            StartSpawnEnemies();
+        }
+        
+        public void StartSpawnEnemies()
+        {
+            foreach (EnemySpawner enemySpawner in _enemySpawners)
+            {
+                enemySpawner.StartSpawnEnemies();
+            }
+        }
+
+        private void InitGameBoard()
+        {
             TileData[] tilesData = new TileData[_tiles.Length];
 
             for (int i = 0; i < _tiles.Length; i++)
@@ -42,7 +61,6 @@ namespace Assets.Scripts.CoreGamePlay
             }
             _tilesStorage.SetTiles(tilesData);
 
-            _cacherOfPath.SetSpawnersOnCurrentLevel(_enemySpawners);
             foreach (TileView tile in _tiles)
             {
                 tile.InitializeNode(_tiles.ToList());
@@ -52,15 +70,6 @@ namespace Assets.Scripts.CoreGamePlay
             {
                 tile.NodeBase.CacheNeighbors();
             }
-
-            _turretFactory.SetParrentTurret(_turretsParrent);
-            foreach (EnemySpawner enemySpawner in _enemySpawners)
-            {
-                enemySpawner.UpdateSpawnerPath();
-                enemySpawner.UpdateFlyPath();
-                enemySpawner.StartSpawnEnemies();
-            }
-            _cacherOfPath.TryBuildPath();
         }
 
         public void SetTiles(TileView[] tiles)

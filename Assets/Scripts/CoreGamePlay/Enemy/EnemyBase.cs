@@ -11,7 +11,7 @@ namespace Assets.Scripts.CoreGamePlay
     public abstract class EnemyBase : MonoBehaviour ,IDespawnable
     {
         [SerializeField] private IEnemyMovement _movement; 
-        [SerializeField] private TileView _testTile; 
+        
         [SerializeField] private EnemyConfig _enemyConfig; 
         [SerializeField] private Collider _collider; 
         [SerializeField] private EnemyHealth _health;

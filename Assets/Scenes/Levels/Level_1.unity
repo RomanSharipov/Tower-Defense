@@ -3086,6 +3086,7 @@ GameObject:
   - component: {fileID: 809222461}
   - component: {fileID: 809222462}
   - component: {fileID: 809222463}
+  - component: {fileID: 809222464}
   m_Layer: 0
   m_Name: LevelInstaller
   m_TagString: Untagged
@@ -3193,6 +3194,20 @@ MonoBehaviour:
   _turretsParrent: {fileID: 33170795}
   _enemySpawners:
   - {fileID: 1390109156}
+  _pathInitializer: {fileID: 809222464}
+--- !u!114 &809222464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809222460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb92c52f454f8ef41ae2a91d88bb57dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pathFlyDatas: []
 --- !u!1 &825440459
 GameObject:
   m_ObjectHideFlags: 0
@@ -5403,6 +5418,7 @@ MonoBehaviour:
   _start: {fileID: 1444059973}
   _target: {fileID: 351913542}
   _wavesOnLevelData: {fileID: 11400000, guid: a01ef079e913e254c9b2c8909c0736ed, type: 2}
+  _spawnTimer: 0
   _enemiesOnBoard: []
 --- !u!4 &1390109157
 Transform:

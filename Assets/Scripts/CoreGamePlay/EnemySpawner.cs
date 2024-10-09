@@ -12,14 +12,14 @@ namespace Assets.Scripts.CoreGamePlay
     public class EnemySpawner : MonoBehaviour
     {
         [Inject] private IEnemyFactory _enemyFactory;
-        [Inject] private IBuildingService _buildingService;
-        [Inject] private ICacherOfPath _cacherOfPath;
+        
+       
         [Inject] private IWavesService _wavesService;
 
         [SerializeField] private TileView _start;
         [SerializeField] private TileView _target;
         [SerializeField] private WavesOnLevelData _wavesOnLevelData;
-        [SerializeField] private BezierSpline _pathFly;
+        
 
         
         private bool _isSpawningEnabled;
@@ -51,15 +51,8 @@ namespace Assets.Scripts.CoreGamePlay
             _isSpawningEnabled = false;
         }
 
-        public void UpdateSpawnerPath()
-        {
-            _cacherOfPath.TryBuildPath();
-        }
-        public void UpdateFlyPath()
-        {
-            _cacherOfPath.RegisterFlyPath(this,_pathFly);
-        }
 
+        
         private void Update()
         {
             if (_isSpawningEnabled)
@@ -103,13 +96,11 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnEnable()
         {
-            _buildingService.TurretIsBuilded += OnTurretIsBuilded;
             _wavesService.WaveIsOver += OnWaveIsOver;
         }
 
         private void OnDisable()
         {
-            _buildingService.TurretIsBuilded -= OnTurretIsBuilded;
             _wavesService.WaveIsOver -= OnWaveIsOver;
         }
 
@@ -121,7 +112,7 @@ namespace Assets.Scripts.CoreGamePlay
         private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
         {
             enabled = false;
-            UpdateSpawnerPath();
+            //UpdateSpawnerPath();
             enabled = true;
         }
     }
