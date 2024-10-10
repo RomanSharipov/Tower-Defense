@@ -4,10 +4,10 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class AntiAirTurretAttack : AttackComponent
     {
-        [SerializeField] private CannonTurretAnimator[] _animators;
+        [SerializeField] private TurretAnimator[] _animators;
         [SerializeField] private ParticleSystemCollection[] _effects;
         
-        private CannonTurretAnimator _currentAnimator;
+        private TurretAnimator _currentAnimator;
         private ParticleSystemCollection _currentEffects;
         private EnemyBase _enemyBase;
 
@@ -31,7 +31,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnEnable()
         {
-            foreach (CannonTurretAnimator animator in _animators)
+            foreach (TurretAnimator animator in _animators)
             {
                 animator.OnAnimationEventFire += OnAnimationEventFire;
             }
@@ -39,7 +39,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnDisable()
         {
-            foreach (CannonTurretAnimator animator in _animators)
+            foreach (TurretAnimator animator in _animators)
             {
                 animator.OnAnimationEventFire -= OnAnimationEventFire;
             }

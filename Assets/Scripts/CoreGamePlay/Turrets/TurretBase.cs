@@ -16,7 +16,7 @@ namespace Assets.Scripts.CoreGamePlay
         public EnemyBase CurrentTarget;
 
         //for config
-        private float _detectionRadius = 5.0f;
+        [SerializeField] private float _detectionRadius = 5.0f;
 
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
         public DetectorEnemies DetectorEnemies => _detectorEnemies;

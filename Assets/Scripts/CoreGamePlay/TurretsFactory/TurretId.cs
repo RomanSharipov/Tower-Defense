@@ -7,6 +7,7 @@
         FlameTurret = 2,
         Cannon = 3,
         Slow = 4,
-        Rocket = 5
+        Rocket = 5,
+        AntiAir = 6
     }
 }

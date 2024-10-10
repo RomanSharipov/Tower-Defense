@@ -6,12 +6,12 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class CannonTurretAttack : AttackComponent
     {
-        [SerializeField] private CannonTurretAnimator[] _animators;
+        [SerializeField] private TurretAnimator[] _animators;
         [SerializeField] private BulletSpawnPoints[] _bulletSpawnPoints;
         [SerializeField] private CannonShell _bulletPrefab;
         [SerializeField] private ParticleSystemCollection[] _effects;
         
-        private CannonTurretAnimator _currentAnimator;
+        private TurretAnimator _currentAnimator;
         private BulletSpawnPoints _currentBulletSpawnPoint;
         private ParticleSystemCollection _currentEffects;
 
@@ -36,7 +36,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnEnable()
         {
-            foreach (CannonTurretAnimator animator in _animators)
+            foreach (TurretAnimator animator in _animators)
             {
                 animator.OnAnimationEventFire += OnAnimationEventFire;
             }
@@ -44,7 +44,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnDisable()
         {
-            foreach (CannonTurretAnimator animator in _animators)
+            foreach (TurretAnimator animator in _animators)
             {
                 animator.OnAnimationEventFire -= OnAnimationEventFire;
             }

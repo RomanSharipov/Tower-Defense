@@ -105,6 +105,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   CurrentTarget: {fileID: 0}
+  _detectionRadius: 20
   _antiAirTurretAttack: {fileID: 3274695918475490120}
 --- !u!114 &393547233137376800
 MonoBehaviour:
@@ -219,6 +220,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 904396700167994346, guid: afb1ae0ad4a4c3a42b1b86dc6f9d8ead, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 04a0f6ba62e8dea4cbdb68a8e0b0c87e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -272,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotationX: {fileID: 1314737495458774579}
   _rotationY: {fileID: 7128107340614638826}
-  _turret: {fileID: 0}
+  _turret: {fileID: 7546783938430527704}
 --- !u!114 &2038843170048763764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +287,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 210520291897204553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af89ddf70ddbb7e4ba4636114fe9fe4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 41f13b78bc6e69543bac70182b6f24ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 871888567101385493}
@@ -414,6 +419,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4686442401754764810, guid: 6a191b1f67dfbd6489823c4e0cc0a96b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: adfa57eb16ca83c47bc53b35242fc9c4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -465,7 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotationX: {fileID: 1119705859262134992}
   _rotationY: {fileID: 460524084650021093}
-  _turret: {fileID: 0}
+  _turret: {fileID: 7546783938430527704}
 --- !u!114 &3378008963820099571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,7 +484,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2612833052037696932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af89ddf70ddbb7e4ba4636114fe9fe4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 41f13b78bc6e69543bac70182b6f24ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 6311598958731367066}
@@ -599,6 +608,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2287721897065992169, guid: 205f05cf15e1a424dbace6c067c8d42f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 88d7aaa7001480f42bc3dc455ed59a83, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -704,7 +717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotationX: {fileID: 45687128115092445}
   _rotationY: {fileID: 7807776835988791200}
-  _turret: {fileID: 0}
+  _turret: {fileID: 7546783938430527704}
 --- !u!114 &7729527713801206137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,7 +727,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9102880749087844511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af89ddf70ddbb7e4ba4636114fe9fe4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 41f13b78bc6e69543bac70182b6f24ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8104243543718503646}

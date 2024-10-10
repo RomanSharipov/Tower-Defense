@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class CannonTurretAnimator : MonoBehaviour
+    public class TurretAnimator : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
 
