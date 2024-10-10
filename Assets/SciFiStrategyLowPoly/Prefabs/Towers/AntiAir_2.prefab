@@ -242,7 +242,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4149977055811359630}
-  - component: {fileID: 5480901672474474374}
   - component: {fileID: 4686442401754764810}
   m_Layer: 0
   m_Name: AntiAir_2
@@ -267,27 +266,6 @@ Transform:
   - {fileID: 4168244950241530420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5480901672474474374
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3664943326183295284}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.2, z: 1}
-  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!95 &4686442401754764810
 Animator:
   serializedVersion: 5
@@ -298,7 +276,7 @@ Animator:
   m_GameObject: {fileID: 3664943326183295284}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a8d062aea7a87e1489468aa5cdb14a0b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
