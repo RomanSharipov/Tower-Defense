@@ -6,15 +6,16 @@ namespace Assets.Scripts.CoreGamePlay
     public class DetectorEnemies 
     {
         private readonly Vector3 _myPosition;
+        private readonly LayerMask _enemyLayerMask;
 
         private const int maxColliders = 10;
         private Collider[] hitColliders = new Collider[maxColliders];
         private float _detectionRadius;
-        protected LayerMask _enemyLayerMask = LayerMask.GetMask("Enemy");
 
-        public DetectorEnemies(Vector3 myPosition)
+        public DetectorEnemies(Vector3 myPosition, LayerMask enemyLayerMask)
         {
             _myPosition = myPosition;
+            _enemyLayerMask = enemyLayerMask;
         }
 
         public void SetRadius(float detectionRadius)

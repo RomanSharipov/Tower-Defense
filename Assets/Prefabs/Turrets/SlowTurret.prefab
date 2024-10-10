@@ -132,6 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colorTurret: {fileID: 8760985490981576977}
   _turretView: {fileID: 6858382904352342386}
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 320
   CurrentTarget: {fileID: 0}
   _slowTurretAttack: {fileID: 8284319619589320682}
 --- !u!114 &8760985490981576977
@@ -171,6 +174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db521c6b9dcaf6446bf9a0bfb67c97f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 5142975636423389065, guid: 967c173329c736c44ac5c4127fc10df6, type: 3}
+  _bulletSpawnPoints:
+  - {fileID: 6077542284091779989}
+  - {fileID: 6394449105390697804}
+  - {fileID: 5544132159960787486}
   _effects:
   - _particleSystems:
     - {fileID: 4088770710148684428}
@@ -178,11 +186,6 @@ MonoBehaviour:
     - {fileID: 2415566506768453563}
   - _particleSystems:
     - {fileID: 4022670706878317011}
-  _bulletPrefab: {fileID: 5142975636423389065, guid: 967c173329c736c44ac5c4127fc10df6, type: 3}
-  _bulletSpawnPoints:
-  - {fileID: 6077542284091779989}
-  - {fileID: 6394449105390697804}
-  - {fileID: 5544132159960787486}
 --- !u!1 &3537750690788508890
 GameObject:
   m_ObjectHideFlags: 0

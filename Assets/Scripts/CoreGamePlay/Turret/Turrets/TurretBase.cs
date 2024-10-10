@@ -7,6 +7,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private ColorTurret _colorTurret;
         [SerializeField] protected TurretUpgrade _turretUpgrade;
         [SerializeField] private TurretView _turretView;
+        [SerializeField] private LayerMask _enemyLayerMask;
 
         private TurretStateMachine _turretStateMachine;
         private DetectorEnemies _detectorEnemies;
@@ -39,7 +40,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void ConfigureDetectorEnemies()
         {
-            _detectorEnemies = new DetectorEnemies(transform.position);
+            _detectorEnemies = new DetectorEnemies(transform.position, _enemyLayerMask);
             _detectorEnemies.SetRadius(_detectionRadius);
         }
 

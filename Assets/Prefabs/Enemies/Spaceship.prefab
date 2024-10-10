@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 239553867982867269}
   - component: {fileID: 263869163832688192}
   - component: {fileID: 3123718403637488327}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colorTurret: {fileID: 7397822838960268949}
   _turretView: {fileID: 6870912731505624006}
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 320
   CurrentTarget: {fileID: 0}
   _minigunAttack: {fileID: 6114308797374807073}
 --- !u!114 &7397822838960268949

@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Enemy
+  - GroundEnemy
   - BlockBuilding
-  - 
+  - FlyEnemy
   - 
   - 
   - 

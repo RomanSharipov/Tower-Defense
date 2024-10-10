@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colorTurret: {fileID: 3081573488155620220}
   _turretView: {fileID: 7388186364758168624}
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   CurrentTarget: {fileID: 0}
   _cannonTurretAttack: {fileID: 5654132667931714789}
 --- !u!114 &3081573488155620220
@@ -97,16 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc2c05feff18084fabc04e04a4d7ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effects:
-  - _particleSystems:
-    - {fileID: 4205996025780545241}
-  - _particleSystems:
-    - {fileID: 6392106952780867728}
-    - {fileID: 3857671521612073107}
-  - _particleSystems:
-    - {fileID: 4058939064305926554}
-    - {fileID: 5318844254121667097}
-    - {fileID: 7449528207812871493}
   _animators:
   - {fileID: 7338009705551508941}
   - {fileID: 2083373303541820328}
@@ -122,6 +115,16 @@ MonoBehaviour:
     - {fileID: 5522701796260717078}
     - {fileID: 7068059596739628362}
   _bulletPrefab: {fileID: 7885650041941992870, guid: 4e93f67f0f6745443ae4e0bd703825c8, type: 3}
+  _effects:
+  - _particleSystems:
+    - {fileID: 4205996025780545241}
+  - _particleSystems:
+    - {fileID: 6392106952780867728}
+    - {fileID: 3857671521612073107}
+  - _particleSystems:
+    - {fileID: 4058939064305926554}
+    - {fileID: 5318844254121667097}
+    - {fileID: 7449528207812871493}
 --- !u!1 &8905294892475320493
 GameObject:
   m_ObjectHideFlags: 0
