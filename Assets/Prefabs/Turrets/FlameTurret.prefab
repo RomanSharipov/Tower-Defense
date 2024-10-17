@@ -49,10 +49,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colorTurret: {fileID: 5476368042209709232}
   _turretView: {fileID: 1738065373109580809}
-  _enemyLayerMask:
+  _groundEnemy:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 64
+  _flyingEnemy:
+    serializedVersion: 2
+    m_Bits: 256
   CurrentTarget: {fileID: 0}
+  _detectionRadius: 5
   _flameTurretAttack: {fileID: 8258948700535165602}
 --- !u!114 &5476368042209709232
 MonoBehaviour:

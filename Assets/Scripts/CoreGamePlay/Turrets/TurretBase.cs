@@ -7,21 +7,23 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private ColorTurret _colorTurret;
         [SerializeField] protected TurretUpgrade _turretUpgrade;
         [SerializeField] private TurretView _turretView;
-        [SerializeField] private LayerMask _enemyLayerMask;
+
+        [SerializeField] protected LayerMask _groundEnemy;
+        [SerializeField] protected LayerMask _flyingEnemy;
 
         private TurretStateMachine _turretStateMachine;
-        private DetectorEnemies _detectorEnemies;
+        private DetectorGroundEnemies _detectorEnemies;
         private bool _enabled;
 
         public EnemyBase CurrentTarget;
 
         //for config
-        [SerializeField] private float _detectionRadius = 5.0f;
+        [SerializeField] protected float _detectionRadius = 5.0f;
 
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
-        public DetectorEnemies DetectorEnemies => _detectorEnemies;
+        public abstract IDetector DetectorEnemies { get; }
         public abstract AttackComponent AttackComponent { get; }
-        public abstract void InitAttackComponent();
+        public abstract void InitIntance();
 
         public void SetColor(ColorType color)
         {
@@ -34,13 +36,13 @@ namespace Assets.Scripts.CoreGamePlay
             ConfigureStateMachine();
             ConfigureTurretUpgrade();
             SetColor(ColorType.DefaultColor);
-            InitAttackComponent();
+            InitIntance();
             _enabled = true;
         }
 
         private void ConfigureDetectorEnemies()
         {
-            _detectorEnemies = new DetectorEnemies(transform.position, _enemyLayerMask);
+            _detectorEnemies = new DetectorGroundEnemies(transform.position, _groundEnemy);
             _detectorEnemies.SetRadius(_detectionRadius);
         }
 

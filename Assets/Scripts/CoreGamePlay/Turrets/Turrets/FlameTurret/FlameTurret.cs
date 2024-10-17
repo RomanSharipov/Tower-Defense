@@ -6,10 +6,16 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [SerializeField] private FlameTurretAttack _flameTurretAttack;
 
+        private DetectorEnyEnemies _detectorEnyEnemies;
+
         public override AttackComponent AttackComponent => _flameTurretAttack;
 
-        public override void InitAttackComponent()
+        public override IDetector DetectorEnemies => _detectorEnyEnemies;
+
+        public override void InitIntance()
         {
+            _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _groundEnemy, _flyingEnemy);
+            _detectorEnyEnemies.SetRadius(_detectionRadius);
             _flameTurretAttack.SetConfig(intervalBetweenAttack:0, damage: 1, 0);
         }
     }

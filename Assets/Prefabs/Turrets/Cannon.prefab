@@ -49,9 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colorTurret: {fileID: 3081573488155620220}
   _turretView: {fileID: 7388186364758168624}
-  _enemyLayerMask:
+  _groundEnemy:
     serializedVersion: 2
     m_Bits: 64
+  _flyingEnemy:
+    serializedVersion: 2
+    m_Bits: 256
   CurrentTarget: {fileID: 0}
   _detectionRadius: 5
   _cannonTurretAttack: {fileID: 5654132667931714789}

@@ -3,40 +3,23 @@ using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class DetectorEnemies 
+    public class DetectorEnemies
     {
-        private readonly Vector3 _myPosition;
-        private readonly LayerMask _enemyLayerMask;
-
-        private const int maxColliders = 10;
-        private Collider[] hitColliders = new Collider[maxColliders];
-        private float _detectionRadius;
-
-        public DetectorEnemies(Vector3 myPosition, LayerMask enemyLayerMask)
+        public bool PointFarAway(Vector3 myPosition,Vector3 point, float detectionRadius)
         {
-            _myPosition = myPosition;
-            _enemyLayerMask = enemyLayerMask;
+            Vector3.Distance(myPosition, point);
+
+            return Vector3.Distance(myPosition, point) > detectionRadius;
         }
 
-        public void SetRadius(float detectionRadius)
+        public bool TryFindEnemy(Vector3 myPosition, LayerMask enemyLayerMask, float detectionRadius, Collider[] hitColliders, out EnemyBase totalEnemy)
         {
-            _detectionRadius = detectionRadius;
-        }
-
-        public bool PointFarAway(Vector3 point)
-        {
-            Vector3.Distance(_myPosition, point);
-
-            return Vector3.Distance(_myPosition, point) > _detectionRadius;
-        }
-
-        public bool TryFindEnemy(out EnemyBase totalEnemy)
-        {
+            Debug.Log("TryFindEnemy");
             totalEnemy = null;
-            
+
             Array.Clear(hitColliders, 0, hitColliders.Length);
 
-            int numberOfHits = Physics.OverlapSphereNonAlloc(_myPosition, _detectionRadius, hitColliders, _enemyLayerMask);
+            int numberOfHits = Physics.OverlapSphereNonAlloc(myPosition, detectionRadius, hitColliders, enemyLayerMask);
 
             EnemyBase closestEnemy = null;
             float closestDistance = Mathf.Infinity;
@@ -46,7 +29,7 @@ namespace Assets.Scripts.CoreGamePlay
                 EnemyBase enemy = hitColliders[i].GetComponent<EnemyBase>();
                 if (enemy != null)
                 {
-                    float distanceToEnemy = Vector3.Distance(_myPosition, enemy.transform.position);
+                    float distanceToEnemy = Vector3.Distance(myPosition, enemy.transform.position);
 
                     if (distanceToEnemy < closestDistance)
                     {
