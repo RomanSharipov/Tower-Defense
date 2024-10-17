@@ -14,7 +14,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _groundEnemy, _flyingEnemy);
+            _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy, _groundEnemy);
             _detectorEnyEnemies.SetRadius(_detectionRadius);
             _minigunAttack.SetConfig(intervalBetweenAttack:0.1f, damage:2,bulletSpeed:0);
         }

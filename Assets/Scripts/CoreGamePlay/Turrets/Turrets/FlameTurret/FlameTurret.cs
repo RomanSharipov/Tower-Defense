@@ -14,7 +14,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _groundEnemy, _flyingEnemy);
+            _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy ,_groundEnemy);
             _detectorEnyEnemies.SetRadius(_detectionRadius);
             _flameTurretAttack.SetConfig(intervalBetweenAttack:0, damage: 1, 0);
         }
