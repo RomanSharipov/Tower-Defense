@@ -7,14 +7,11 @@ namespace Assets.Scripts.CoreGamePlay
     {
         public bool PointFarAway(Vector3 myPosition,Vector3 point, float detectionRadius)
         {
-            Vector3.Distance(myPosition, point);
-
             return Vector3.Distance(myPosition, point) > detectionRadius;
         }
 
         public bool TryFindEnemy(Vector3 myPosition, LayerMask enemyLayerMask, float detectionRadius, Collider[] hitColliders, out EnemyBase totalEnemy)
         {
-            Debug.Log("TryFindEnemy");
             totalEnemy = null;
 
             Array.Clear(hitColliders, 0, hitColliders.Length);
@@ -42,7 +39,7 @@ namespace Assets.Scripts.CoreGamePlay
             if (closestEnemy != null)
             {
                 totalEnemy = closestEnemy;
-                return true;
+                return !PointFarAway(myPosition, closestEnemy.Position, detectionRadius);
             }
             return false;
         }
