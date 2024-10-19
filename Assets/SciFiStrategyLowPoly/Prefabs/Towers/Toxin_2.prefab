@@ -325,7 +325,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4736098737545132387}
-  - component: {fileID: 7373379194843003507}
   m_Layer: 0
   m_Name: Toxin_2
   m_TagString: Untagged
@@ -349,27 +348,6 @@ Transform:
   - {fileID: 8334459024027962201}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7373379194843003507
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5400326237782402009}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.3005846, y: 1.3586516, z: 1.2971684}
-  m_Center: {x: -0.0034157038, y: 0.68485427, z: -0.0017077327}
 --- !u!1 &5748069979031688043
 GameObject:
   m_ObjectHideFlags: 0
