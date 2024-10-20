@@ -5,8 +5,10 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public interface IEnemyHealth
     {
-        public IReactiveProperty<int> CurrentHealth { get; }
+        public event Action<int> HealthChanged;
         public int MaxHealth { get; }
         public event Action HealthIsOver;
+
+        public void ReduceHealth(int value);
     }
 }

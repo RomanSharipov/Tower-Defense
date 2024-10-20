@@ -75,8 +75,11 @@ namespace Assets.Scripts.CoreGamePlay
                 _counter++;
                 newEnemy.transform.parent = transform;
                 newEnemy.transform.localPosition = Vector3.zero;
-                newEnemy.transform.gameObject.name = $"{_counter}.{newEnemy.name}";
-                newEnemy.Init(this, _wavesService.CurrentWave.EnemyConfig);
+
+                IEnemyHealth enemyHealth = new EnemyHealth(_wavesService.CurrentWave.EnemyConfig.Health);
+
+                newEnemy.Init(this, _wavesService.CurrentWave.EnemyConfig, enemyHealth);
+                newEnemy.HealthBar.Init(enemyHealth);
                 newEnemy.GoalIsReached += OnGoalIsReached;
                 _enemiesOnBoard.Add(newEnemy);
             }

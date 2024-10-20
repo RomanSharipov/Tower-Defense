@@ -1,11 +1,11 @@
 ﻿using Assets.Scripts.CoreGamePlay;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
+using NTC.Pool;
 
 namespace CodeBase.Infrastructure.UI
 {
-    public class HealthBar : MonoBehaviour
+    public class HealthBar : MonoBehaviour 
     {
         [SerializeField] private Slider _slider;
         [SerializeField] private Image _fill;
@@ -14,29 +14,36 @@ namespace CodeBase.Infrastructure.UI
 
         private IEnemyHealth _health;
 
-        private void Awake()
+        public void Init(IEnemyHealth health)
         {
-            _health = GetComponent<IEnemyHealth>();
+            _health = health;
+            _health.HealthChanged += OnHealthChanged;
+            OnHealthChanged(_health.MaxHealth);
+        }
 
-            _health.CurrentHealth.Subscribe(value =>
-            {
-                _slider.value = (float)value / _health.MaxHealth;
-            }).AddTo(this);
+        private void OnHealthChanged(int value)
+        {
+            _slider.value = (float)value / _health.MaxHealth;
         }
 
         private void OnEnable()
         {
-            _slider.onValueChanged.AddListener(OnValueChanged);
+            _slider.onValueChanged.AddListener(OnSliderValueChanged);
         }
 
         private void OnDisable()
         {
-            _slider.onValueChanged.RemoveListener(OnValueChanged);
+            _slider.onValueChanged.RemoveListener(OnSliderValueChanged);
         }
 
-        private void OnValueChanged(float value)
+        private void OnSliderValueChanged(float value)
         {
             _fill.color = Color.Lerp(_minValue, _maxValue, value);
+        }
+
+        public void OnDespawn()
+        {
+            _health.HealthChanged -= OnHealthChanged;
         }
     }
 }

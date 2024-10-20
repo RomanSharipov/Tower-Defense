@@ -17,7 +17,7 @@ namespace Assets.Scripts.CoreGamePlay
         private float _height;
         public event Action<EnemyBase> EnemyEntered;
 
-        private Dictionary<Collider, EnemyBase> _enemies = new Dictionary<Collider, EnemyBase>();
+        private Dictionary<Collider, EnemyBase> _enemiesCache = new();
         
         private void Start()
         {
@@ -30,7 +30,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void HandleTriggerStay(Collider other)
         {
-            if (_enemies.TryGetValue(other, out EnemyBase enemy))
+            if (_enemiesCache.TryGetValue(other, out EnemyBase enemy))
             {
                 EnemyEntered?.Invoke(enemy);
             }
@@ -38,7 +38,7 @@ namespace Assets.Scripts.CoreGamePlay
             if (other.TryGetComponent(out EnemyBase enemyBase))
             {
                 EnemyEntered?.Invoke(enemyBase);
-                _enemies[other] = enemyBase;
+                _enemiesCache[other] = enemyBase;
             }
         }
 

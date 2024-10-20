@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using CodeBase.Configs;
 using UnityEngine;
 using NTC.Pool;
 using VContainer;
+using CodeBase.Infrastructure.UI;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -14,11 +14,16 @@ namespace Assets.Scripts.CoreGamePlay
         
         [SerializeField] private EnemyConfig _enemyConfig; 
         [SerializeField] private Collider _collider; 
-        [SerializeField] private EnemyHealth _health;
+        [SerializeField] private HealthBar _healthBar;
+
+        private IEnemyHealth _health;
         
         public abstract IEnemyMovement EnemyMovement { get; }
         
         public Vector3 Position => _collider.bounds.center;
+
+        public HealthBar HealthBar => _healthBar;
+
         public bool AlreadyConstructed { get; private set; }
 
         public event Action<EnemyBase> GoalIsReached;
@@ -30,17 +35,15 @@ namespace Assets.Scripts.CoreGamePlay
             AlreadyConstructed = true;
         }
 
-        public void Init(EnemySpawner enemySpawner, EnemyConfig enemyConfig)
+        public void Init(EnemySpawner enemySpawner, EnemyConfig enemyConfig, IEnemyHealth enemyHealth)
         {
+            _health = enemyHealth;
             _enemyConfig = enemyConfig;
-            _health.Init(enemyConfig.Health);
-
             EnemyMovement.Init(enemyConfig.MovementSpeed, enemySpawner);
 
             EnemyMovement.StartMovement();
             EnemyMovement.GoalIsReached += OnGoalIsReached;
             _health.HealthIsOver += OnHealthIsOver;
-
         }
 
         private void OnHealthIsOver()
@@ -53,7 +56,6 @@ namespace Assets.Scripts.CoreGamePlay
             GoalIsReached?.Invoke(this);
         }
         
-        [ContextMenu("TakeDamage()")]
         public void TakeDamage(int damage)
         {
             _health.ReduceHealth(damage);
@@ -65,6 +67,7 @@ namespace Assets.Scripts.CoreGamePlay
             EnemyMovement.StopMovement();
             EnemyMovement.GoalIsReached -= OnGoalIsReached;
             _health.HealthIsOver -= OnHealthIsOver;
+            _healthBar.OnDespawn();
         }
     }
 }
