@@ -5,7 +5,7 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class DetectorEnemies
     {
-        public bool PointFarAway(Vector3 myPosition,Vector3 point, float detectionRadius)
+        private bool PointFarAway(Vector3 myPosition,Vector3 point, float detectionRadius)
         {
             return Vector3.Distance(myPosition, point) > detectionRadius;
         }
