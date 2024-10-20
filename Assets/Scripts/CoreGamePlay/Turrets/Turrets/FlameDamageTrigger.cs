@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -17,13 +19,21 @@ namespace Assets.Scripts.CoreGamePlay
 
         private Dictionary<Collider, EnemyBase> _enemies = new Dictionary<Collider, EnemyBase>();
         
-        private void OnTriggerStay(Collider other)
+        private void Start()
         {
-            if (_enemies.TryGetValue(other,out EnemyBase enemy))
+            _damageTrigger
+                .OnTriggerStayAsObservable()
+                .Subscribe(other => HandleTriggerStay(other))
+                .AddTo(this); 
+        }
+
+        private void HandleTriggerStay(Collider other)
+        {
+            if (_enemies.TryGetValue(other, out EnemyBase enemy))
             {
                 EnemyEntered?.Invoke(enemy);
             }
-            
+
             if (other.TryGetComponent(out EnemyBase enemyBase))
             {
                 EnemyEntered?.Invoke(enemyBase);
