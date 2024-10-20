@@ -6,9 +6,10 @@ namespace Assets.Scripts.CoreGamePlay
     public class SlowTurret2Attack : AttackComponent
     {
         [SerializeField] private ParticleSystemCollection[] _effects;
-        [SerializeField] private FlameDamageTrigger _flameDamageTrigger;
+        [SerializeField] private FlameDamageTriggerCollection[] _flameDamageTriggerCollections;
 
         private ParticleSystemCollection _currentEffects;
+        private FlameDamageTriggerCollection _currrentFlameDamageTrigger;
         private bool _nowAttack;
         
         public override void OnStartAttack(EnemyBase enemyBase)
@@ -16,7 +17,7 @@ namespace Assets.Scripts.CoreGamePlay
             _nowAttack = true;
             base.OnStartAttack(enemyBase);
             _currentEffects.Play();
-            _flameDamageTrigger.OnStartAttack();
+            _currrentFlameDamageTrigger.OnStartAttack();
         }
         
         public override void OnEndAttack()
@@ -30,7 +31,7 @@ namespace Assets.Scripts.CoreGamePlay
                 {
                     if (!_nowAttack)
                     {
-                        _flameDamageTrigger.ResetTrigger();
+                        _currrentFlameDamageTrigger.ResetTrigger();
                     }
                 })
                 .AddTo(this);
@@ -38,28 +39,41 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void Attack(EnemyBase enemyBase)
         {
-            _flameDamageTrigger.UpdateScaleAndPosition();
+            _currrentFlameDamageTrigger.UpdateScaleAndPosition();
         }
 
         public override void SetLevel(int level)
         {
             _currentEffects = _effects[level];
-        }
-
-        private void OnEnable()
-        {
-            _flameDamageTrigger.EnemyEntered += OnEnemyEntered;
-        }
-
-        private void OnDisable()
-        {
-            _flameDamageTrigger.EnemyEntered -= OnEnemyEntered;
+            _currrentFlameDamageTrigger = _flameDamageTriggerCollections[level];
         }
 
         private void OnEnemyEntered(EnemyBase enemy)
         {
             enemy.TakeDamage(_damage);
             enemy.EnemyMovement.SlowDownMovement(70, 3.0f);
+        }
+
+        private void OnEnable()
+        {
+            foreach (FlameDamageTriggerCollection collections in _flameDamageTriggerCollections)
+            {
+                foreach (FlameDamageTrigger triger in collections.FlameDamageTriggers)
+                {
+                    triger.EnemyEntered += OnEnemyEntered;
+                }
+            }
+        }
+
+        private void OnDisable()
+        {
+            foreach (FlameDamageTriggerCollection collections in _flameDamageTriggerCollections)
+            {
+                foreach (FlameDamageTrigger triger in collections.FlameDamageTriggers)
+                {
+                    triger.EnemyEntered -= OnEnemyEntered;
+                }
+            }
         }
     }
 }
