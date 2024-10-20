@@ -41,9 +41,10 @@ namespace Assets.Scripts.CoreGamePlay
             }
         }
 
-        public void SetStartPosition()
+        public void OnStartAttack()
         {
             _damageTrigger.transform.localPosition = _attackPosition.localPosition;
+            _damageTrigger.enabled = true;
         }
 
         public void ResetTrigger()
@@ -52,6 +53,7 @@ namespace Assets.Scripts.CoreGamePlay
             _height = 0.0f;
             _damageTrigger.height = 1.0f;
             _damageTrigger.center.Set(0, 0, 1);
+            _damageTrigger.enabled = false;
         }
 
         public void UpdateScaleAndPosition()

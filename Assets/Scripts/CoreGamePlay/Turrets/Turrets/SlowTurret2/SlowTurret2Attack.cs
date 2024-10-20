@@ -9,21 +9,30 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private FlameDamageTrigger _flameDamageTrigger;
 
         private ParticleSystemCollection _currentEffects;
+        private bool _nowAttack;
         
         public override void OnStartAttack(EnemyBase enemyBase)
         {
+            _nowAttack = true;
             base.OnStartAttack(enemyBase);
             _currentEffects.Play();
-            _flameDamageTrigger.SetStartPosition();
+            _flameDamageTrigger.OnStartAttack();
         }
         
         public override void OnEndAttack()
         {
             base.OnEndAttack();
             _currentEffects.Stop();
+            _nowAttack = false;
 
             Observable.Timer(System.TimeSpan.FromSeconds(1))
-                .Subscribe(_ => _flameDamageTrigger.ResetTrigger())
+                .Subscribe(_ => 
+                {
+                    if (!_nowAttack)
+                    {
+                        _flameDamageTrigger.ResetTrigger();
+                    }
+                })
                 .AddTo(this);
         }
 
