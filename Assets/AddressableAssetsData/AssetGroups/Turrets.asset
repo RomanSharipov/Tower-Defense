@@ -35,12 +35,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Turrets
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2fcedcfc0befe7940830b41dda5c9745
-    m_Address: SlowTurret
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Turrets
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0b29e179f10a91640be65eaa93355c7c
     m_Address: RocketTurret
     m_ReadOnly: 0

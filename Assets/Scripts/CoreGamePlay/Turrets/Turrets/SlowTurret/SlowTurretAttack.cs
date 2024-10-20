@@ -1,39 +1,79 @@
-﻿using NTC.Pool;
+﻿using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
     public class SlowTurretAttack : AttackComponent
     {
-        [SerializeField] private SlowShell _bulletPrefab;
-        [SerializeField] private Transform[] _bulletSpawnPoints;
         [SerializeField] private ParticleSystemCollection[] _effects;
+        [SerializeField] private FlameDamageTriggerCollection[] _flameDamageTriggerCollections;
 
         private ParticleSystemCollection _currentEffects;
-        private Transform _currentBulletSpawnPoint;
-
+        private FlameDamageTriggerCollection _currrentFlameDamageTrigger;
+        private bool _nowAttack;
+        
         public override void OnStartAttack(EnemyBase enemyBase)
         {
+            _nowAttack = true;
             base.OnStartAttack(enemyBase);
             _currentEffects.Play();
+            _currrentFlameDamageTrigger.OnStartAttack();
         }
-
+        
         public override void OnEndAttack()
         {
             base.OnEndAttack();
             _currentEffects.Stop();
+            _nowAttack = false;
+
+            Observable.Timer(System.TimeSpan.FromSeconds(1))
+                .Subscribe(_ => 
+                {
+                    if (!_nowAttack)
+                    {
+                        _currrentFlameDamageTrigger.ResetTrigger();
+                    }
+                })
+                .AddTo(this);
         }
 
         public override void Attack(EnemyBase enemyBase)
         {
-            SlowShell bullet = NightPool.Spawn(_bulletPrefab, _currentBulletSpawnPoint.position, _currentBulletSpawnPoint.rotation);
-            bullet.Init(_damage, _bulletSpeed);
+            _currrentFlameDamageTrigger.UpdateScaleAndPosition();
         }
 
         public override void SetLevel(int level)
         {
             _currentEffects = _effects[level];
-            _currentBulletSpawnPoint = _bulletSpawnPoints[level];
+            _currrentFlameDamageTrigger = _flameDamageTriggerCollections[level];
+        }
+
+        private void OnEnemyEntered(EnemyBase enemy)
+        {
+            enemy.TakeDamage(_damage);
+            enemy.EnemyMovement.SlowDownMovement(70, 3.0f);
+        }
+
+        private void OnEnable()
+        {
+            foreach (FlameDamageTriggerCollection collections in _flameDamageTriggerCollections)
+            {
+                foreach (FlameDamageTrigger triger in collections.FlameDamageTriggers)
+                {
+                    triger.EnemyEntered += OnEnemyEntered;
+                }
+            }
+        }
+
+        private void OnDisable()
+        {
+            foreach (FlameDamageTriggerCollection collections in _flameDamageTriggerCollections)
+            {
+                foreach (FlameDamageTrigger triger in collections.FlameDamageTriggers)
+                {
+                    triger.EnemyEntered -= OnEnemyEntered;
+                }
+            }
         }
     }
 }

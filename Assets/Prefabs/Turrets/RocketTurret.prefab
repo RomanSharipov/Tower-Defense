@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1936785249807690428}
   - component: {fileID: 3442249432036915529}
   - component: {fileID: 8978573511096077612}
-  - component: {fileID: 3117021740077614354}
   - component: {fileID: 2928451164029677188}
   m_Layer: 0
   m_Name: RocketTurret
@@ -84,30 +83,6 @@ MonoBehaviour:
   _red: {fileID: 2100000, guid: fc4bd166c160d014fbcc985e750df952, type: 2}
   _transparent: {fileID: 2100000, guid: 62bd9f4c983a6fb4782824aaaaa8d739, type: 2}
   _default: {fileID: 2100000, guid: 2e519ff65f723d84ab119c9cc1cef10b, type: 2}
---- !u!114 &3117021740077614354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423334031132177539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db521c6b9dcaf6446bf9a0bfb67c97f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 5142975636423389065, guid: 967c173329c736c44ac5c4127fc10df6, type: 3}
-  _bulletSpawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _effects:
-  - _particleSystems:
-    - {fileID: 0}
-  - _particleSystems:
-    - {fileID: 0}
-  - _particleSystems:
-    - {fileID: 0}
 --- !u!114 &2928451164029677188
 MonoBehaviour:
   m_ObjectHideFlags: 0
