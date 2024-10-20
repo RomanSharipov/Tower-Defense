@@ -10,14 +10,30 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private BulletSpawnPoints[] _bulletSpawnPoints;
         [SerializeField] private CannonShell _bulletPrefab;
         [SerializeField] private ParticleSystemCollection[] _effects;
-        
+
+        private float _intervalBetweenAttack;
+        private float _bulletSpeed;
+        private int _damage;
+
         private TurretAnimator _currentAnimator;
         private BulletSpawnPoints _currentBulletSpawnPoint;
         private ParticleSystemCollection _currentEffects;
+        private Timer _timer;
 
-        public override void Attack(EnemyBase enemyBase)
+        public void Init(float intervalBetweenAttack, int damage, float bulletSpeed)
         {
-            _currentAnimator.PlayAttack();
+            _intervalBetweenAttack = intervalBetweenAttack;
+            _damage = damage;
+            _bulletSpeed = bulletSpeed;
+            _timer = new Timer(_intervalBetweenAttack);
+        }
+
+        public override void AttackOnUpdate()
+        {
+            if (_timer.IsActionTimeReached())
+            {
+                _currentAnimator.PlayAttack();
+            }
         }
 
         public override void SetLevel(int level)

@@ -6,15 +6,28 @@ namespace Assets.Scripts.CoreGamePlay
     {
         [SerializeField] private TurretAnimator[] _animators;
         [SerializeField] private ParticleSystemCollection[] _effects;
+
+        private float _intervalBetweenAttack;
+        private int _damage;
         
         private TurretAnimator _currentAnimator;
         private ParticleSystemCollection _currentEffects;
-        private EnemyBase _enemyBase;
+        
+        private Timer _timer;
 
-        public override void Attack(EnemyBase enemyBase)
+        public void Init(float intervalBetweenAttack, int damage)
         {
-            _currentAnimator.PlayAttack();
-            _enemyBase = enemyBase;
+            _intervalBetweenAttack = intervalBetweenAttack;
+            _damage = damage;
+            _timer = new Timer(_intervalBetweenAttack);
+        }
+        
+        public override void AttackOnUpdate()
+        {
+            if (_timer.IsActionTimeReached())
+            {
+                _currentAnimator.PlayAttack();
+            }
         }
 
         public override void SetLevel(int level)
@@ -26,7 +39,7 @@ namespace Assets.Scripts.CoreGamePlay
         public void OnAnimationEventFire(int gunIndex)
         {
             _currentEffects.GetParticleSystemByIndex(gunIndex).Play();
-            _enemyBase.TakeDamage(_damage);
+            _currentEnemy.TakeDamage(_damage);
         }
 
         private void OnEnable()

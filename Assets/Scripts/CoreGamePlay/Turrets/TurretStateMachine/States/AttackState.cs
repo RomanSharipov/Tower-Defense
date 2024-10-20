@@ -20,7 +20,7 @@ namespace Assets.Scripts.CoreGamePlay
         public override void UpdateState() 
         {
             _turretView.CurrentTurretRotation.RotateTurretTowardsTarget(_speed);
-            _turret.AttackComponent.AttackIfNeeded();
+            _turret.AttackComponent.AttackOnUpdate();
         }
         public override void Exit() 
         {

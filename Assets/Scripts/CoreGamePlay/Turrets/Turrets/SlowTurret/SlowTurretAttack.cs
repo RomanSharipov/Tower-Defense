@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
@@ -11,7 +12,18 @@ namespace Assets.Scripts.CoreGamePlay
         private ParticleSystemCollection _currentEffects;
         private FlameDamageTriggerCollection _currrentFlameDamageTrigger;
         private bool _nowAttack;
-        
+
+        private int _damage;
+        private int _percent;
+        private float _duration;
+
+        public void Init(int damage, int percent, float duration)
+        {
+            _damage = damage;
+            _percent = percent;
+            _duration = duration;
+        }
+
         public override void OnStartAttack(EnemyBase enemyBase)
         {
             _nowAttack = true;
@@ -37,7 +49,7 @@ namespace Assets.Scripts.CoreGamePlay
                 .AddTo(this);
         }
 
-        public override void Attack(EnemyBase enemyBase)
+        public override void AttackOnUpdate()
         {
             _currrentFlameDamageTrigger.UpdateScaleAndPosition();
         }
@@ -51,7 +63,7 @@ namespace Assets.Scripts.CoreGamePlay
         private void OnEnemyEntered(EnemyBase enemy)
         {
             enemy.TakeDamage(_damage);
-            enemy.EnemyMovement.SlowDownMovement(70, 3.0f);
+            enemy.EnemyMovement.SlowDownMovement(_percent, _duration);
         }
 
         private void OnEnable()

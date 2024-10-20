@@ -23,7 +23,7 @@ namespace Assets.Scripts.CoreGamePlay
         {
             _damageTrigger
                 .OnTriggerStayAsObservable()
-                .Sample(TimeSpan.FromSeconds(0.1f))
+                .Sample(TimeSpan.FromSeconds(0.2f))
                 .Subscribe(other => HandleTriggerStay(other))
                 .AddTo(this); 
         }

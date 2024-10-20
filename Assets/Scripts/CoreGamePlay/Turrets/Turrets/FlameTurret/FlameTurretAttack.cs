@@ -12,7 +12,13 @@ namespace Assets.Scripts.CoreGamePlay
         
         private FlameDamageTriggerCollection _currrentFlameDamageTrigger;
         private bool _nowAttack;
+        private int _damage;
         
+        public void Init(int damage)
+        {
+            _damage = damage;
+        }
+
         public override void OnStartAttack(EnemyBase enemyBase)
         {
             _nowAttack = true;
@@ -38,7 +44,7 @@ namespace Assets.Scripts.CoreGamePlay
                 .AddTo(this);
         }
 
-        public override void Attack(EnemyBase enemyBase)
+        public override void AttackOnUpdate()
         {
             _currrentFlameDamageTrigger.UpdateScaleAndPosition();
         }

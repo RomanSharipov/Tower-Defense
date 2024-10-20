@@ -16,7 +16,7 @@ namespace Assets.Scripts.CoreGamePlay
         {
             _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy ,_groundEnemy);
             _detectorEnyEnemies.SetRadius(_detectionRadius);
-            _slowTurretAttack.SetConfig(intervalBetweenAttack:0, damage: 5, 0);
+            _slowTurretAttack.Init(damage: 1,percent:70,duration:3.0f);
         }
     }
 }

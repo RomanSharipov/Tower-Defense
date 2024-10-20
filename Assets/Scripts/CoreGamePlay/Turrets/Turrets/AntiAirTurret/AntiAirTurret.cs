@@ -13,7 +13,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            _antiAirTurretAttack.SetConfig(intervalBetweenAttack: 0.7f, damage: 30,bulletSpeed: 5f);
+            _antiAirTurretAttack.Init(intervalBetweenAttack: 0.7f, damage: 3);
             _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _groundEnemy, _flyingEnemy);
             _detectorEnyEnemies.SetRadius(_detectionRadius);
         }

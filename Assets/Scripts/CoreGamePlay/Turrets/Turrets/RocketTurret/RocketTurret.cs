@@ -16,7 +16,7 @@ namespace Assets.Scripts.CoreGamePlay
         {
             _detectorGroundEnemies = new DetectorGroundEnemies(transform.position, _groundEnemy);
             _detectorGroundEnemies.SetRadius(_detectionRadius);
-            _rocketTurretAttack.SetConfig(intervalBetweenAttack: 1.7f, damage: 30, bulletSpeed: 5f);
+            _rocketTurretAttack.Init(intervalBetweenAttack: 1.7f, damage: 30, bulletSpeed: 5f);
         }
     }
 }
