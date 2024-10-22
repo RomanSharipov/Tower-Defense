@@ -22,6 +22,9 @@ namespace CodeBase.Infrastructure.Services
 
         public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences => 
             _mainStaticData.SceneReferences.ToDictionary<AssetReference>();
+
+        public IReadOnlyList<AssetReference> LevelReferences =>
+            _mainStaticData.LevelReferences;
         
         public IReadOnlyDictionary<TileId, AssetReference> Tiles =>
             _mainStaticData.Tiles.ToDictionary<TileId, AssetReference>();

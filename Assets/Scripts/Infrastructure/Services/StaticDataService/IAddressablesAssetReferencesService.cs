@@ -14,5 +14,6 @@ namespace CodeBase.Infrastructure.Services
         public IReadOnlyDictionary<TileId, AssetReference> Tiles { get; }
         public IReadOnlyDictionary<EnemyType, AssetReference> Enemies { get; }
         public IReadOnlyDictionary<TurretId, AssetReference> Turrets { get; }
+        public IReadOnlyList<AssetReference> LevelReferences { get; }
     }
 }

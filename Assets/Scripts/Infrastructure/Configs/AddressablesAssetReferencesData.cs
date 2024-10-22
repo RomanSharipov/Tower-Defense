@@ -2,6 +2,7 @@ using Assets.Scripts.CoreGamePlay;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.UI.Services;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace CodeBase.Configs
 {
@@ -13,6 +14,9 @@ namespace CodeBase.Configs
 
        
         public SceneReference[] SceneReferences;
+
+
+        public AssetReference[] LevelReferences;
 
        
         public TileIdAssetReference[] Tiles;

@@ -11,6 +11,8 @@ namespace CodeBase.Infrastructure.Services
     {
         private readonly ISceneLoader _sceneLoader;
 
+        private int _currentLevel;
+
         [Inject]
         public LevelService(ISceneLoader sceneLoader)
         {
@@ -19,8 +21,11 @@ namespace CodeBase.Infrastructure.Services
 
         public async UniTask<ILevelMain> LoadCurrentLevel()
         {
-            Scene scene = await _sceneLoader.Load("Level_1");
+            int currentLevel = 0;
             
+            Scene scene = await _sceneLoader.LoadLevel(currentLevel);
+            
+            _currentLevel = currentLevel;
             if (scene.TryGetRoot(out ILevelMain result))
             {
                 return result;
@@ -30,12 +35,11 @@ namespace CodeBase.Infrastructure.Services
                 Debug.LogError($"ILevelMain dont found in {scene.name} scene. Add {nameof(LevelMainMonoBehaviour)} object to {scene.name} scene");
                 return null; 
             }
-            
         }
 
         public void UnLoadCurrentLevel()
         {
-            _sceneLoader.Unload("Level_1");
+            _sceneLoader.UnloadLevel(_currentLevel);
         }
     }
 }

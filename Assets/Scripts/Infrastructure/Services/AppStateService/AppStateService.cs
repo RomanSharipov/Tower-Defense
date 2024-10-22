@@ -30,7 +30,7 @@ namespace CodeBase.Infrastructure.Services
                 case Services.State.MenuState:
                     _mainGameStatemachine.Enter<MenuState>();
                     break;
-                case CodeBase.Infrastructure.Services.State.GameLoopState:
+                case Services.State.GameLoopState:
                     _mainGameStatemachine.Enter<GameLoopState>();
                     break;
                 case Services.State.PlayingIdleState:
