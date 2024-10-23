@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using VContainer;
+using VContainer.Unity;
 
 namespace CodeBase.Infrastructure.UI.Services
 {
@@ -33,12 +34,12 @@ namespace CodeBase.Infrastructure.UI.Services
             _rootCanvas = rootCanvasGameobject.transform;
         }
 
-        public async UniTask<T> CreateWindow<T>(WindowId windowType) where T : WindowBase
+        public async UniTask<WindowBase> CreateWindow(WindowId windowType)
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[windowType]);
             GameObject newGameObject = GameObject.Instantiate(prefab, _rootCanvas);
-            T windowComponent = newGameObject.GetComponent<T>();
-            _objectResolver.Inject(windowComponent);
+            _objectResolver.InjectGameObject(newGameObject);
+            WindowBase windowComponent = newGameObject.GetComponent<WindowBase>();
             return windowComponent;
         }
     }

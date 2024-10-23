@@ -21,30 +21,14 @@ namespace CodeBase.Infrastructure.UI.Services
                 Debug.LogError($"Window with name {windowId} already opened");
                 return;
             }
-
-            switch (windowId)
-            {
-                case WindowId.None:
-                    break;
-
-                case WindowId.Shop:
-                    
-                    break;
-
-                case WindowId.MainMenu:
-                    CreateWindow<MainMenu>(windowId).Forget();
-                    break;
-                case WindowId.GameLoopWindow:
-                    CreateWindow<GameLoopWindow>(windowId).Forget();
-                    break;
-            }
+            CreateWindow(windowId).Forget();
         }
-        private async UniTask<TypeWindow> CreateWindow<TypeWindow>(WindowId windowId) where TypeWindow : WindowBase
+
+        private async UniTask CreateWindow(WindowId windowId) 
         {
-            TypeWindow window = await _uiFactory.CreateWindow<TypeWindow>(windowId);
+            WindowBase window = await _uiFactory.CreateWindow(windowId);
             _openedWindows.Add(windowId, window);
             window.CloseButtonClicked += CloseWindow;
-            return window;
         }
         public void CloseWindow(WindowId windowId)
         {

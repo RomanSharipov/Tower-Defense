@@ -6,7 +6,7 @@ namespace CodeBase.Infrastructure.UI.Services
 {
     public interface IUIFactory
     {
-        UniTask CreateRootCanvas();
-        public UniTask<T> CreateWindow<T>(WindowId windowType) where T : WindowBase;
+        public UniTask CreateRootCanvas();
+        public UniTask<WindowBase> CreateWindow(WindowId windowType);
     }
 }

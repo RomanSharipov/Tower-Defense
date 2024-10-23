@@ -21,7 +21,7 @@ namespace CodeBase.Infrastructure.Services
 
         public async UniTask<ILevelMain> LoadCurrentLevel()
         {
-            int currentLevel = 0;
+            int currentLevel = 1;
             
             Scene scene = await _sceneLoader.LoadLevel(currentLevel);
             

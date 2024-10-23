@@ -44,6 +44,15 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 1
+  LevelReferences:
+  - m_AssetGUID: 214f17350d03b254c98e31d65425ba0e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: b02efc590c9a892438243ffa8f439128
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Tiles:
   - WindowType: 1
     assetReference:
