@@ -29,6 +29,8 @@ namespace CodeBase.Infrastructure.Installers
                 .As<ITilesStorage>();
             builder.Register<WavesService>(Lifetime.Singleton)
                 .As<IWavesService>();
+            builder.Register<PlayerWinTracker>(Lifetime.Singleton)
+                .As<IPlayerWinTracker>();
         }
     }    
 }

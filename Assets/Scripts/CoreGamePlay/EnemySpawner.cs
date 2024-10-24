@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BezierSolution;
 using CodeBase.Configs;
 using CodeBase.Infrastructure.Services;
@@ -12,6 +13,7 @@ namespace Assets.Scripts.CoreGamePlay
     public class EnemySpawner : MonoBehaviour
     {
         [Inject] private IEnemyFactory _enemyFactory;
+        [Inject] private IPlayerWinTracker _playerWinTracker;
         
        
         [Inject] private IWavesService _wavesService;
@@ -75,19 +77,26 @@ namespace Assets.Scripts.CoreGamePlay
                 _counter++;
                 newEnemy.transform.parent = transform;
                 newEnemy.transform.localPosition = Vector3.zero;
+                newEnemy.gameObject.name = $"{_counter}.{newEnemy.gameObject.name}";
 
                 IEnemyHealth enemyHealth = new EnemyHealth(_wavesService.CurrentWave.EnemyConfig.Health);
 
                 newEnemy.Init(this, _wavesService.CurrentWave.EnemyConfig, enemyHealth);
                 newEnemy.HealthBar.Init(enemyHealth);
-                newEnemy.GoalIsReached += OnGoalIsReached;
+                newEnemy.GoalIsReached += RemoveEnemy;
+                newEnemy.Died += RemoveEnemy;
                 _enemiesOnBoard.Add(newEnemy);
             }
+            else
+            {
+                _playerWinTracker.StartTracking(_enemiesOnBoard);
+            }
         }
-
-        private void OnGoalIsReached(EnemyBase enemy)
+        
+        private void RemoveEnemy(EnemyBase enemy)
         {
-            enemy.GoalIsReached -= OnGoalIsReached;
+            enemy.GoalIsReached -= RemoveEnemy;
+            enemy.Died -= RemoveEnemy;
             _enemiesOnBoard.Remove(enemy);
             NightPool.Despawn(enemy.gameObject);
         }

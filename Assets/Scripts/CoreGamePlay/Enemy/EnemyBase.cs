@@ -48,7 +48,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnHealthIsOver()
         {
-            NightPool.Despawn(gameObject);
+            Died?.Invoke(this);
         }
 
         private void OnGoalIsReached()
@@ -63,7 +63,6 @@ namespace Assets.Scripts.CoreGamePlay
         
         public void OnDespawn()
         {
-            Died?.Invoke(this);
             EnemyMovement.StopMovement();
             EnemyMovement.GoalIsReached -= OnGoalIsReached;
             _health.HealthIsOver -= OnHealthIsOver;

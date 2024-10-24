@@ -2,6 +2,7 @@
 using Assets.Scripts.CoreGamePlay;
 using BezierSolution;
 using Tarodev_Pathfinding._Scripts;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure.Services
 {
@@ -9,6 +10,7 @@ namespace CodeBase.Infrastructure.Services
     {
         private EnemySpawner[] _spawnersOnCurrentLevel;
         private Dictionary<EnemySpawner, List<TileData>> _tilesPaths = new Dictionary<EnemySpawner, List<TileData>>();
+        private Dictionary<EnemySpawner, List<TileData>> _tilesPathsTemp = new Dictionary<EnemySpawner, List<TileData>>();
         private Dictionary<EnemySpawner, BezierSpline> _pathFly = new Dictionary<EnemySpawner, BezierSpline>();
         private bool _pathsIsExist;
 
@@ -34,18 +36,28 @@ namespace CodeBase.Infrastructure.Services
                 if (newPath == null)
                 {
                     _pathsIsExist = false;
-                    _tilesPaths.Clear();
+                    _tilesPathsTemp.Clear();
                     return false;
                 }
                 else
                 {
                     newPath.Add(enemySpawner.StartTile.NodeBase);
                     newPath.Reverse();
-                    _tilesPaths[enemySpawner] = newPath;
+                    _tilesPathsTemp[enemySpawner] = newPath;
                 }
             }
             _pathsIsExist = true;
             return true;
+        }
+
+        public void SetNewPath()
+        {
+            _tilesPaths.Clear();
+
+            foreach (EnemySpawner enemySpawner in _tilesPathsTemp.Keys)
+            {
+                _tilesPaths[enemySpawner] = _tilesPathsTemp[enemySpawner];
+            }
         }
     }
 }

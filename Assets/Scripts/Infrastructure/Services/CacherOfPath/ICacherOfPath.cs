@@ -12,5 +12,6 @@ namespace CodeBase.Infrastructure.Services
         public bool PathsIsExist { get; }
         public IReadOnlyDictionary<EnemySpawner, BezierSpline> PathFly { get; }
         public void RegisterFlyPath(EnemySpawner enemySpawner,BezierSpline bezierPoints);
+        public void SetNewPath();
     }
 }

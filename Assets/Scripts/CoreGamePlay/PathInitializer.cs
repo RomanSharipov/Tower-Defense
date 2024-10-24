@@ -36,6 +36,7 @@ public class PathInitializer : MonoBehaviour
     private void UpdateTilePath()
     {
         _cacherOfPath.TryBuildPath();
+        _cacherOfPath.SetNewPath();
     }
 }
 
