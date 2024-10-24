@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.CoreGamePlay;
+﻿using System;
+using Assets.Scripts.CoreGamePlay;
 using CodeBase.Infrastructure.Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,18 +12,13 @@ namespace CodeBase.Infrastructure.UI.Services
         [SerializeField] private EventTrigger _buildButton;
         [SerializeField] private TurretId _turretId;
         
-        [Inject] private IAppStateService _appStateService;
+        public event Action<TurretId> Clicked;
         
         private void OnBuildingButtonClick(BaseEventData arg0)
         {
-            _appStateService.GoToBuildingTurretState(SetupBeforeBuilding);
+            Clicked?.Invoke(_turretId);
         }
-
-        private void SetupBeforeBuilding(BuildingTurretState state)
-        {
-            state.Setup(_turretId);
-        }
-
+        
         private void OnEnable()
         {
             _buildButton.AddListener(EventTriggerType.PointerDown,OnBuildingButtonClick);
