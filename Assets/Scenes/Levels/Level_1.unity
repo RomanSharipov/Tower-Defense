@@ -4100,9 +4100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_position: {x: 3.5178657, y: 1.4964557, z: 5.0901694}
   m_precedingControlPointLocalPosition: {x: -3.4708328, y: -0.95496595, z: -0.11466646}
-  m_precedingControlPointPosition: {x: 0.047032744, y: 0.5414898, z: 4.975503}
+  m_precedingControlPointPosition: {x: 0.047032833, y: 0.5414898, z: 4.975503}
   m_followingControlPointLocalPosition: {x: 3.4708323, y: 0.95496583, z: 0.11466646}
-  m_followingControlPointPosition: {x: 6.9886985, y: 2.4514215, z: 5.204836}
+  m_followingControlPointPosition: {x: 6.988698, y: 2.4514215, z: 5.204836}
   m_handleMode: 2
   m_normal: {x: 0, y: 1, z: 0}
   m_autoCalculatedNormalAngleOffset: 0
@@ -5712,6 +5712,9 @@ MonoBehaviour:
   _start: {fileID: 1444059973}
   _target: {fileID: 351913542}
   _wavesOnLevelData: {fileID: 11400000, guid: a01ef079e913e254c9b2c8909c0736ed, type: 2}
+  _groundEnemy:
+    serializedVersion: 2
+    m_Bits: 64
   _spawnTimer: 0
   _enemiesOnBoard: []
 --- !u!4 &1390109157
@@ -6744,7 +6747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_position: {x: 19.83081, y: 3.2694695, z: 4.5201178}
   m_precedingControlPointLocalPosition: {x: -3.9983559, y: 0.17602205, z: 0.20528078}
-  m_precedingControlPointPosition: {x: 15.832455, y: 3.4454916, z: 4.7253985}
+  m_precedingControlPointPosition: {x: 15.832456, y: 3.4454916, z: 4.7253985}
   m_followingControlPointLocalPosition: {x: 3.9983559, y: -0.17602205, z: -0.20528078}
   m_followingControlPointPosition: {x: 23.829166, y: 3.0934474, z: 4.314837}
   m_handleMode: 2

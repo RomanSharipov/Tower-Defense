@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.CoreGamePlay;
-using CodeBase.Configs;
-using UnityEngine;
 
 namespace CodeBase.Infrastructure.Services
 {
     public class PlayerWinTracker : IPlayerWinTracker
     {
         public List<EnemyBase> _enemies;
+        public event Action PlayerWon;
+
+        public bool TrackingEnabled { get; private set; }
 
         public void StartTracking(List<EnemyBase> enemies)
         {
+            TrackingEnabled = true;
             _enemies = enemies;
 
             foreach (EnemyBase enemy in _enemies)
@@ -23,6 +25,7 @@ namespace CodeBase.Infrastructure.Services
 
         public void EndTracking()
         {
+            TrackingEnabled = false;
             foreach (EnemyBase enemy in _enemies)
             {
                 enemy.Died -= Track;
@@ -33,7 +36,14 @@ namespace CodeBase.Infrastructure.Services
 
         private void Track(EnemyBase enemy)
         {
-            Debug.Log($"_enemies{enemy.gameObject.name} = {_enemies.Count}");
+            if (!TrackingEnabled)
+                return;
+
+            if (_enemies.Count == 0)
+            {
+                EndTracking();
+                PlayerWon?.Invoke();
+            }
         }
     }
 }

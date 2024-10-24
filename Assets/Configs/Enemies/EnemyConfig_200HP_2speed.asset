@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 589ec0800eca8ff45bf1f1d4c06cae73, type: 3}
-  m_Name: EnemyConfig_slow_speed
+  m_Name: EnemyConfig_200HP_2speed
   m_EditorClassIdentifier: 
   _movementSpeed: 2
   _health: 200
