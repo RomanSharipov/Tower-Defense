@@ -9,5 +9,6 @@
         MenuState = 4,
         PauseState = 5,
         PlayingIdleState = 6,
+        TransitToNextLevelState = 7,
     }
 }

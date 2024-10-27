@@ -34,6 +34,8 @@ namespace Assets.Scripts.CoreGamePlay
             _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
             _detectorEnemies = new DetectorGroundEnemies(transform.position, _groundEnemy);
             _detectorEnemies.SetRadius(2.0f);
+
+
         }
         
         public void StartSpawnEnemies()
@@ -87,10 +89,6 @@ namespace Assets.Scripts.CoreGamePlay
                 newEnemy.Died += RemoveEnemy;
                 _enemiesOnBoard.Add(newEnemy);
             }
-            else
-            {
-                _playerWinTracker.StartTracking(_enemiesOnBoard);
-            }
         }
         
         private void RemoveEnemy(EnemyBase enemy)
@@ -99,6 +97,7 @@ namespace Assets.Scripts.CoreGamePlay
             enemy.Died -= RemoveEnemy;
             _enemiesOnBoard.Remove(enemy);
             NightPool.Despawn(enemy.gameObject);
+            _playerWinTracker.CheckWin(_enemiesOnBoard.Count);
         }
 
         private void OnDestroy()

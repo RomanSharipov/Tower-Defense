@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ec0800eca8ff45bf1f1d4c06cae73, type: 3}
   m_Name: EnemyConfig_200HP_5speed
   m_EditorClassIdentifier: 
-  _movementSpeed: 5
+  _movementSpeed: 3
   _health: 200

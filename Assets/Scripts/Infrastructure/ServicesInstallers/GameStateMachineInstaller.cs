@@ -30,6 +30,7 @@ namespace CodeBase.Infrastructure.Installers
                 gameLoopStatemachine.AddState(typeof(PlayingIdleState), resolver.Resolve<PlayingIdleState>());
                 gameLoopStatemachine.AddState(typeof(BuildingTurretState), resolver.Resolve<BuildingTurretState>());
                 gameLoopStatemachine.AddState(typeof(PauseState), resolver.Resolve<PauseState>());
+                gameLoopStatemachine.AddState(typeof(TransitToNextLevelState), resolver.Resolve<TransitToNextLevelState>());
             });
 
         }
@@ -47,6 +48,8 @@ namespace CodeBase.Infrastructure.Installers
             builder.Register<PlayingIdleState>(Lifetime.Singleton)
                 .AsSelf();
             builder.Register<PauseState>(Lifetime.Singleton)
+                .AsSelf();
+            builder.Register<TransitToNextLevelState>(Lifetime.Singleton)
                 .AsSelf();
         }
     }    

@@ -6,8 +6,8 @@ namespace CodeBase.Infrastructure.Services
 {
     public interface IPlayerWinTracker
     {
-        public void EndTracking();
-        public void StartTracking(List<EnemyBase> enemies);
+        public void CheckWin(int amountLivingEnemies);
+
         public event Action PlayerWon;
     }
 }

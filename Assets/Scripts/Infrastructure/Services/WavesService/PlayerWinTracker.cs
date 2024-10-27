@@ -1,49 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using Assets.Scripts.CoreGamePlay;
+using VContainer;
 
 namespace CodeBase.Infrastructure.Services
 {
     public class PlayerWinTracker : IPlayerWinTracker
     {
-        public List<EnemyBase> _enemies;
         public event Action PlayerWon;
 
-        public bool TrackingEnabled { get; private set; }
+        private IWavesService _wavesService;
 
-        public void StartTracking(List<EnemyBase> enemies)
+        [Inject]
+        public PlayerWinTracker(IWavesService wavesService)
         {
-            TrackingEnabled = true;
-            _enemies = enemies;
-
-            foreach (EnemyBase enemy in _enemies)
-            {
-                enemy.Died += Track;
-                enemy.GoalIsReached += Track;
-            }
+            _wavesService = wavesService;
         }
-
-        public void EndTracking()
+        public void CheckWin(int amountLivingEnemies)
         {
-            TrackingEnabled = false;
-            foreach (EnemyBase enemy in _enemies)
-            {
-                enemy.Died -= Track;
-                enemy.GoalIsReached -= Track;
-            }
-            _enemies = null;
-        }
-
-        private void Track(EnemyBase enemy)
-        {
-            if (!TrackingEnabled)
+            if (!_wavesService.AllWavesIsOver)
                 return;
 
-            if (_enemies.Count == 0)
-            {
-                EndTracking();
-                PlayerWon?.Invoke();
-            }
+            if (amountLivingEnemies > 0)
+                return;
+
+            PlayerWon?.Invoke();
         }
     }
 }

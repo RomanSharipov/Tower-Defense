@@ -47,6 +47,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Turrets
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1dcc1bd1889631b4ca5d74a139617834
+    m_Address: SlowTurret2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Turrets
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 241f373533e7b0d44b7e5db601bbe58d, type: 2}
   m_SchemaSet:

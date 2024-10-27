@@ -29,15 +29,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scenes
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1dcc1bd1889631b4ca5d74a139617834
-    m_Address: Assets/Prefabs/Turrets/SlowTurret2.prefab
+  - m_GUID: beb15a6570bcb4a46a434e5ec2c70943
+    m_Address: Level_2
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b02efc590c9a892438243ffa8f439128
-    m_Address: Assets/Scenes/Levels/Level_1 1.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Scenes
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 241f373533e7b0d44b7e5db601bbe58d, type: 2}

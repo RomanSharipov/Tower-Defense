@@ -9,23 +9,19 @@ namespace CodeBase.Infrastructure.Services
 {
     public class LevelService : ILevelService
     {
-        private readonly ISceneLoader _sceneLoader;
+        [Inject] private readonly ISceneLoader _sceneLoader;
 
-        private int _currentLevel;
-
-        [Inject]
-        public LevelService(ISceneLoader sceneLoader)
+        private int _currentLevel = 1;
+        
+        public void IncreaseCurrentLevel()
         {
-            _sceneLoader = sceneLoader;
+            _currentLevel++;
         }
 
         public async UniTask<ILevelMain> LoadCurrentLevel()
         {
-            int currentLevel = 1;
+            Scene scene = await _sceneLoader.LoadLevel(_currentLevel);
             
-            Scene scene = await _sceneLoader.LoadLevel(currentLevel);
-            
-            _currentLevel = currentLevel;
             if (scene.TryGetRoot(out ILevelMain result))
             {
                 return result;

@@ -13,8 +13,11 @@ namespace CodeBase.Infrastructure.Services
         private bool _allWavesIsOver;
 
         public WaveData CurrentWave => _currentWave;
+
+        public bool AllWavesIsOver => _allWavesIsOver;
+
         public event Action<WaveData> WaveIsOver;
-        public event Action AllWavesIsOver;
+        
 
         public void SetNewWavesData(WavesOnLevelData wavesOnLevelData)
         {
@@ -64,7 +67,6 @@ namespace CodeBase.Infrastructure.Services
             if (_currentWaveIndex + 1 >= _wavesOnLevelData.WaveDatas.Length)
             {
                 _allWavesIsOver = true;
-                AllWavesIsOver?.Invoke();
             }
             else
             {

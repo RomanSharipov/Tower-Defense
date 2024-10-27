@@ -42,6 +42,9 @@ namespace CodeBase.Infrastructure.Services
                 case Services.State.BuildingTurretState:
                     _gameLoopStatemachine.Enter<BuildingTurretState>();
                     break;
+                case Services.State.TransitToNextLevelState:
+                    _gameLoopStatemachine.Enter<TransitToNextLevelState>();
+                    break;
                 default:
                     break;
             }

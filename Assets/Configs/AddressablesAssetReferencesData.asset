@@ -31,6 +31,12 @@ MonoBehaviour:
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 1
+    - WindowType: 4
+      assetReference:
+        m_AssetGUID: 9f8a398403a51b74f911c6cb753c710a
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
   SceneReferences:
   - SceneName: Menu
     Reference:
@@ -49,7 +55,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  - m_AssetGUID: b02efc590c9a892438243ffa8f439128
+  - m_AssetGUID: beb15a6570bcb4a46a434e5ec2c70943
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
