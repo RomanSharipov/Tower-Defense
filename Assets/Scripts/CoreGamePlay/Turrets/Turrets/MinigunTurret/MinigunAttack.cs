@@ -33,6 +33,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void AttackOnUpdate()
         {
+            _timer.Tick();
             if (_timer.IsActionTimeReached())
             {
                 _currentEnemy.TakeDamage(_damage);

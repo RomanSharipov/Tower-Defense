@@ -17,7 +17,11 @@ public class Timer
             _lastActionTime = _timeBetweenAction;
             return true;
         }
-        _lastActionTime -= Time.deltaTime;
         return false;
+    }
+
+    public void Tick()
+    {
+        _lastActionTime -= Time.deltaTime;
     }
 }
