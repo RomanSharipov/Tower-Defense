@@ -117,7 +117,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnWaveIsOver(WaveData data)
         {
-            _spawnTimer += 3.0f;
+            _spawnTimer += data.DelayOnEndWave;
         }
     }
 }

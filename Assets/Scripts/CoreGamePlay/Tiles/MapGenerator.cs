@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using CodeBase.Helpers;
 using UnityEngine;
 
@@ -40,6 +41,15 @@ namespace Assets.Scripts.CoreGamePlay
             }
             CreateObstacleTiles();
             _levelMainMonoBehaviour.SetTiles(_gameBoardTiles.ToArray());
+        }
+        [ContextMenu("UpdateTilesInLevelMainMonoBehaviour")]
+        private void UpdateTiles()
+        {
+#if UNITY_EDITOR
+            _gameBoardTiles.RemoveAll(item => item == null);
+            _levelMainMonoBehaviour.SetTiles(_gameBoardTiles.ToArray());
+            UnityEditor.SceneManagement.EditorSceneManager.SaveScene(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
+#endif
         }
 
         private void CreateRoad()

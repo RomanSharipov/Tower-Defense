@@ -10,11 +10,13 @@ namespace CodeBase.Configs
         [SerializeField] private EnemyType _enemyType;
         [SerializeField] private int _countEnemy;
         [SerializeField] private float _delayBetweenSpawn;
+        [SerializeField] private float _delayOnEndWave;
         [SerializeField] private EnemyConfig _enemyConfig;
         
         public EnemyType EnemyType => _enemyType;
         public int CountEnemy => _countEnemy;
         public float DelayBetweenSpawn => _delayBetweenSpawn;
+        public float DelayOnEndWave => _delayOnEndWave;
         public EnemyConfig EnemyConfig => _enemyConfig;
     }
 }
