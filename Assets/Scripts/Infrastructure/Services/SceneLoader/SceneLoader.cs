@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
-using log4net.Core;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
