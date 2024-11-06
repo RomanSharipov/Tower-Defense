@@ -3,6 +3,7 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.UI.Services;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace CodeBase.Infrastructure.Installers
 {
@@ -31,6 +32,12 @@ namespace CodeBase.Infrastructure.Installers
                 .As<IWavesService>();
             builder.Register<PlayerWinTracker>(Lifetime.Singleton)
                 .As<IPlayerWinTracker>();
+            builder.Register<InputService>(Lifetime.Singleton)
+                .As<IInputService>()
+                .As<IInitializable>();
+
+            builder.Register<ClickOnTurretTracker>(Lifetime.Singleton)
+                .As<IClickOnTurretTracker>();
         }
     }    
 }
