@@ -11,6 +11,7 @@ namespace CodeBase.Infrastructure.Services
     {
         private readonly ITurretFactory _turretFactory;
         private readonly ICacherOfPath _cacherOfPath;
+        private readonly ILayerMaskProvider _layerMaskProvider;
         private readonly Camera _camera;
 
         private readonly Dictionary<Collider, TileView> _tileViewCache = new Dictionary<Collider, TileView>();
@@ -20,11 +21,12 @@ namespace CodeBase.Infrastructure.Services
 
 
         [Inject]
-        public BuildingService(ITurretFactory turretFactory, Camera camera, ICacherOfPath cacherOfPath)
+        public BuildingService(ITurretFactory turretFactory, Camera camera, ICacherOfPath cacherOfPath,ILayerMaskProvider layerMaskProvider)
         {
             _turretFactory = turretFactory;
             _camera = camera;
             _cacherOfPath = cacherOfPath;
+            _layerMaskProvider = layerMaskProvider;
         }
 
         public async UniTask StartBuilding(TurretId turretId)
@@ -88,7 +90,7 @@ namespace CodeBase.Infrastructure.Services
         {
             tileView = null;
 
-            if (Physics.Raycast(ray, out RaycastHit hitInternal))
+            if (Physics.Raycast(ray, out RaycastHit hitInternal,100, _layerMaskProvider.Tile))
             {
                 Collider hitCollider = hitInternal.collider;
                 _lastValidDistance = hitInternal.distance;
@@ -119,14 +121,9 @@ namespace CodeBase.Infrastructure.Services
         {
             RaycastHit hit;
             
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,100, _layerMaskProvider.Blockbuilding))
             {
-                GameObject hitObject = hit.collider.gameObject;
-                
-                if (hitObject.layer == LayerMask.NameToLayer("BlockBuilding"))
-                {
-                    return true; 
-                }
+                return true;
             }
             return false;
         }

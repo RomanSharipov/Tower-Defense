@@ -15,8 +15,8 @@ TagManager:
   - BlockBuilding
   - FlyEnemy
   - Damagable
-  - 
-  - 
+  - Turret
+  - Tile
   - 
   - 
   - 

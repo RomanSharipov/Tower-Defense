@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 6367635543308494326}
   - component: {fileID: 7667563686510211318}
   - component: {fileID: 1740518518184545458}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pillar 04C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _q: 0
+  _r: 0
 --- !u!1 &8610976387904387232
 GameObject:
   m_ObjectHideFlags: 0

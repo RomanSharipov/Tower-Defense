@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6320080715168056397}
   - component: {fileID: 7397822838960268949}
   - component: {fileID: 6114308797374807073}
-  m_Layer: 0
+  - component: {fileID: 8104631316294547654}
+  m_Layer: 10
   m_Name: Minigun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,6 +118,27 @@ MonoBehaviour:
     - {fileID: 2398490883459184588}
     - {fileID: 776279129583674074}
     - {fileID: 594071445898475558}
+--- !u!135 &8104631316294547654
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394962804456676332}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.2250863
+  m_Center: {x: 0, y: 1.2487596, z: 0}
 --- !u!1 &5136746908543340881
 GameObject:
   m_ObjectHideFlags: 0

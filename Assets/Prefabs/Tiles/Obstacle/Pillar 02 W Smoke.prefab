@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8021073707035397221}
   - component: {fileID: 8687726993676996835}
   - component: {fileID: 3855646405028653928}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pillar 02 W Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _q: 0
+  _r: 0
 --- !u!1001 &3821635101290863520
 PrefabInstance:
   m_ObjectHideFlags: 0

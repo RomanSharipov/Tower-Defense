@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2748118621759773881}
   - component: {fileID: 5476368042209709232}
   - component: {fileID: 8258948700535165602}
-  m_Layer: 0
+  - component: {fileID: 5634864373209888609}
+  m_Layer: 10
   m_Name: FlameTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,6 +116,27 @@ MonoBehaviour:
     - {fileID: 4208204138828471920}
     - {fileID: 5434739800970856504}
     - {fileID: 859804968406567393}
+--- !u!135 &5634864373209888609
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442143738563985630}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.4089727
+  m_Center: {x: 0, y: 1.3735588, z: 0}
 --- !u!1 &1951130501793766485
 GameObject:
   m_ObjectHideFlags: 0

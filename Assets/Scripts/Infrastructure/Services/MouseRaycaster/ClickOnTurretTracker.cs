@@ -10,6 +10,7 @@ namespace CodeBase.Infrastructure.Services
     {
         [Inject] Camera _camera;
         [Inject] IInputService _inputService;
+        [Inject] ILayerMaskProvider _layerMaskProvider;
 
         private CompositeDisposable _compositeDisposable = new();
         
@@ -44,7 +45,6 @@ namespace CodeBase.Infrastructure.Services
         {
             if (TryGetCollider(ray, out Collider collider))
             {
-                Debug.Log($"TryGetCollider = {collider}");
                 if (collider.TryGetComponent(out TurretBase turret))
                 {
                     _currentCollider = collider;
@@ -53,7 +53,7 @@ namespace CodeBase.Infrastructure.Services
                 }
             }
         }
-
+        
         private void OnKeyUp(Ray ray)
         {
             if (TryGetCollider(ray, out Collider collider))
@@ -72,7 +72,7 @@ namespace CodeBase.Infrastructure.Services
         {
             collider = null;
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100))
+            if (Physics.Raycast(ray, out hit, 100, _layerMaskProvider.Turret))
             {
                 collider = hit.collider;
                 return true;

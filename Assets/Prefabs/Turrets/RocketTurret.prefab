@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3442249432036915529}
   - component: {fileID: 8978573511096077612}
   - component: {fileID: 2928451164029677188}
-  m_Layer: 0
+  - component: {fileID: 7836458673356332448}
+  m_Layer: 10
   m_Name: RocketTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +113,27 @@ MonoBehaviour:
     - {fileID: 4545719072316468541}
     - {fileID: 410647791762725658}
     - {fileID: 3603540355868325543}
+--- !u!135 &7836458673356332448
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423334031132177539}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.3219144
+  m_Center: {x: 0, y: 1.3457718, z: 0}
 --- !u!1 &5360064719665958333
 GameObject:
   m_ObjectHideFlags: 0
