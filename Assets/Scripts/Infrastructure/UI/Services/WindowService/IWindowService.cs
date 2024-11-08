@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Infrastructure.UI.Services
 {
@@ -9,5 +10,6 @@ namespace CodeBase.Infrastructure.UI.Services
         public void CloseWindow(WindowId windowId);
         public bool NowIsOpen(WindowId windowId);
         public void CloseWindowIfOpened(WindowId windowId);
+        public UniTask Open<TWindow>(WindowId windowId, Action<TWindow> setupBeforeOpen) where TWindow : WindowBase;
     }
 }

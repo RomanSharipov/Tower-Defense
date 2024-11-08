@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using VContainer;
 using UniRx;
 using UnityEngine;
+using CodeBase.Infrastructure.UI;
 
 namespace CodeBase.Infrastructure
 {
@@ -38,7 +39,11 @@ namespace CodeBase.Infrastructure
 
         private void OnClickOnTurret(TurretBase turret)
         {
-            _windowService.Open(WindowId.TurretContextMenu).Forget();
+            _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
+            _windowService.Open<TurretContextMenu>(WindowId.TurretContextMenu, window =>
+            {
+                window.Setup(turret);
+            }).Forget();
         }
 
         private void OnPlayerWon()

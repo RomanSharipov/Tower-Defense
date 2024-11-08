@@ -25,6 +25,17 @@ namespace CodeBase.Infrastructure.UI.Services
             CreateWindow(windowId).Forget();
         }
 
+        public async UniTask Open<TWindow>(WindowId windowId,Action<TWindow> setupBeforeOpen) where TWindow : WindowBase
+        {
+            if (_openedWindows.ContainsKey(windowId))
+            {
+                Debug.LogError($"Window with name {windowId} already opened");
+                return;
+            }
+            WindowBase window = await CreateWindow(windowId);
+            setupBeforeOpen.Invoke((TWindow)window);
+        }
+
         public bool NowIsOpen(WindowId windowId)
         {
             return _openedWindows.ContainsKey(windowId);
