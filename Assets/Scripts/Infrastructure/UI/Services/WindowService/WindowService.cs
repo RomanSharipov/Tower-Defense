@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -29,18 +30,37 @@ namespace CodeBase.Infrastructure.UI.Services
             return _openedWindows.ContainsKey(windowId);
         }
 
-        private async UniTask CreateWindow(WindowId windowId) 
+        private async UniTask<WindowBase> CreateWindow(WindowId windowId)
         {
-            WindowBase window = await _uiFactory.CreateWindow(windowId);
-            _openedWindows.Add(windowId, window);
-            window.CloseButtonClicked += CloseWindow;
+            try
+            {
+                WindowBase window = await _uiFactory.CreateWindow(windowId);
+                if (window != null)
+                {
+                    _openedWindows.Add(windowId, window);
+                    window.CloseButtonClicked += CloseWindow;
+                }
+                return window;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Failed to create window with ID {windowId}: {ex.Message}");
+                return null;
+            }
         }
 
         public void CloseWindow(WindowId windowId)
         {
-            _openedWindows[windowId].CloseButtonClicked -= CloseWindow;
-            GameObject.Destroy(_openedWindows[windowId].gameObject);
-            _openedWindows.Remove(windowId);
+            if (_openedWindows.TryGetValue(windowId, out WindowBase window))
+            {
+                window.CloseButtonClicked -= CloseWindow;
+                GameObject.Destroy(window.gameObject);
+                _openedWindows.Remove(windowId);
+            }
+            else
+            {
+                Debug.LogWarning($"Attempted to close a window with ID {windowId} that was not open.");
+            }
         }
 
         public void CloseWindowIfOpened(WindowId windowId)
