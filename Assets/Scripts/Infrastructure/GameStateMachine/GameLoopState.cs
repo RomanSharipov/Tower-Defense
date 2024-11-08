@@ -43,6 +43,7 @@ namespace CodeBase.Infrastructure
 
         private void OnPlayerWon()
         {
+            _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
             _windowService.Open(WindowId.WinWindow);
         }
 
@@ -50,7 +51,6 @@ namespace CodeBase.Infrastructure
         {
             _clickOnTurretTracker.EndTracking();
             _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
-
             _playerWinTracker.PlayerWon -= OnPlayerWon;
             _windowService.CloseWindow(WindowId.GameLoopWindow);
             _levelService.UnLoadCurrentLevel();
