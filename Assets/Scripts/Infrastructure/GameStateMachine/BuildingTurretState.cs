@@ -9,20 +9,21 @@ namespace CodeBase.Infrastructure
     public class BuildingTurretState : IState
     {
         private IBuildingService _buildingService;
-        private IAppStateService _appStateService;
+        
+        private IGameLoopStatesService _gameLoopStatesService;
         private TurretId _turretId;
 
         [Inject]
-        public BuildingTurretState(IBuildingService buildingService, IAppStateService appStateService)
+        public BuildingTurretState(IBuildingService buildingService,IGameLoopStatesService gameLoopStatesService)
         {
             _buildingService = buildingService;
-            _appStateService = appStateService;
+            _gameLoopStatesService = gameLoopStatesService;
         }
 
         public async UniTask Enter()
         {
             await _buildingService.StartBuilding(_turretId);
-            _appStateService.GoToState(State.PlayingIdleState);
+            _gameLoopStatesService.EnterToPlayingIdleState();
         }
         
         public UniTask Exit()

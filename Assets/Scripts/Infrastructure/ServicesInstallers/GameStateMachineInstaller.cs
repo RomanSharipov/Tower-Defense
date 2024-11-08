@@ -13,10 +13,13 @@ namespace CodeBase.Infrastructure.Installers
         {
             GameStatemachine mainGameStatemachine = new GameStatemachine();
             GameStatemachine gameLoopStatemachine = new GameStatemachine();
+            
+            builder.Register<GameLoopStatesService>(Lifetime.Singleton)
+                .WithParameter("gameLoopStatemachine", gameLoopStatemachine)
+                .As<IGameLoopStatesService>();
 
-            AppStateService gameStatusService = new AppStateService(mainGameStatemachine, gameLoopStatemachine);
-
-            builder.RegisterInstance(gameStatusService)
+            builder.Register<AppStateService>(Lifetime.Singleton)
+                .WithParameter("mainGameStatemachine", mainGameStatemachine)
                 .As<IAppStateService>();
 
             RegisterStates(builder);
@@ -31,6 +34,7 @@ namespace CodeBase.Infrastructure.Installers
                 gameLoopStatemachine.AddState(typeof(BuildingTurretState), resolver.Resolve<BuildingTurretState>());
                 gameLoopStatemachine.AddState(typeof(PauseState), resolver.Resolve<PauseState>());
                 gameLoopStatemachine.AddState(typeof(TransitToNextLevelState), resolver.Resolve<TransitToNextLevelState>());
+                gameLoopStatemachine.AddState(typeof(EmptyState), resolver.Resolve<EmptyState>());
             });
 
         }
@@ -50,6 +54,8 @@ namespace CodeBase.Infrastructure.Installers
             builder.Register<PauseState>(Lifetime.Singleton)
                 .AsSelf();
             builder.Register<TransitToNextLevelState>(Lifetime.Singleton)
+                .AsSelf();
+            builder.Register<EmptyState>(Lifetime.Singleton)
                 .AsSelf();
         }
     }    

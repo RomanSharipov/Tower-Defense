@@ -998,6 +998,7 @@ MonoBehaviour:
   _closeButton: {fileID: 0}
   _windowId: 3
   _goToMenuButton: {fileID: 5467410046951965132}
+  _pauseButton: {fileID: 2233420081332761062}
   _buildTurretButtons:
   - {fileID: 7946557391521498895}
   - {fileID: 5250990374666609430}
@@ -1738,7 +1739,6 @@ GameObject:
   - component: {fileID: 5558232676983984101}
   - component: {fileID: 2631462277286356904}
   - component: {fileID: 2233420081332761062}
-  - component: {fileID: 8132263109123009990}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -1848,20 +1848,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8132263109123009990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6289143675492373831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8805b29fdaa67b4d8373f55e3be5a65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetState: 5
-  _button: {fileID: 2233420081332761062}
 --- !u!1 &6868742041154662203
 GameObject:
   m_ObjectHideFlags: 0

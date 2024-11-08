@@ -12,14 +12,16 @@ namespace CodeBase.Infrastructure.UI
     public class GameLoopWindow : WindowBase
     {
         [SerializeField] private Button _goToMenuButton;
+        [SerializeField] private Button _pauseButton;
         [SerializeField] private BuildButton[] _buildTurretButtons;
 
         [Inject] private IAppStateService _appStateService;
+        [Inject] private IGameLoopStatesService _gameLoopStatesService;
 
 
         private void OnBuildButtonClicked(TurretId id)
         {
-            _appStateService.GoToBuildingTurretState(state =>
+            _gameLoopStatesService.EnterToBuildingTurretState(state =>
             {
                 state.Setup(id);
             });
@@ -31,7 +33,12 @@ namespace CodeBase.Infrastructure.UI
 
             _goToMenuButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _appStateService.GoToState(State.MenuState);
+                _appStateService.EnterToMenuState();
+            }).AddTo(this);
+
+            _pauseButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                _gameLoopStatesService.EnterToPauseState();
             }).AddTo(this);
 
             foreach (BuildButton buildButton in _buildTurretButtons)

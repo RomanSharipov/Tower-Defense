@@ -9,7 +9,7 @@ namespace CodeBase.Infrastructure
     public class TransitToNextLevelState : IState
     {
         [Inject] private readonly ILevelService _levelService;
-        [Inject] private readonly IAppStateService _innerStateMachine;
+        [Inject] private readonly IGameLoopStatesService _gameLoopStatesService;
         [Inject] private readonly IWindowService _windowService;
         [Inject] private readonly IAssetProvider _assetProvider;
 
@@ -21,7 +21,7 @@ namespace CodeBase.Infrastructure
             _levelService.IncreaseCurrentLevel();
             ILevelMain levelMain = await _levelService.LoadCurrentLevel();
             levelMain.InitializeSceneServices();
-            _innerStateMachine.GoToState(State.PlayingIdleState);
+            _gameLoopStatesService.EnterToPlayingIdleState();
         }
 
         public UniTask Exit()

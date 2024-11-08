@@ -16,6 +16,11 @@ namespace CodeBase.Infrastructure
 
         public void Enter<TState>(Action<TState> setupBeforeEnter = null) where TState : IState
         {
+            if (_activeState != null && _activeState.GetType() == typeof(TState))
+            {
+                Debug.LogError($"State {typeof(TState).Name} is already active.");
+                return;
+            }
             _activeState?.Exit();
             IState state = _states[typeof(TState)];
             _activeState = state;

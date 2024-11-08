@@ -16,7 +16,7 @@ namespace CodeBase.Infrastructure.UI
             base.OnAwake();
             _startGameButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _appStateService.GoToState(State.GameLoopState);
+                _appStateService.EnterToGameLoopState();
             }).AddTo(this);
         }
     }

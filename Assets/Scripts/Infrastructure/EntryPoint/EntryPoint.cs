@@ -16,7 +16,7 @@ namespace Assets.Scripts.Infrastructure
 
         void IStartable.Start()
         {
-            _appStateService.GoToState(State.BootstrapState);
+            _appStateService.EnterToBootstrapState();
         }
     }
 }

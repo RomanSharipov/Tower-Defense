@@ -12,9 +12,6 @@ public class TestServices : MonoBehaviour
     private void Awake()
     {
 
-        _clickOnTurretTracker.ClickOnTurret
-            .Subscribe(turret => Debug.Log($"turret = {turret}"))
-            .AddTo(this);
-        _clickOnTurretTracker.StartTracking();
+
     }
 }

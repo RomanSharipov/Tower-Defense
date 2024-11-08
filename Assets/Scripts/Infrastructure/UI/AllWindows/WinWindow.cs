@@ -9,7 +9,8 @@ namespace CodeBase.Infrastructure.UI
     public class WinWindow : WindowBase
     {
         [SerializeField] private Button _nextLevelButton;
-        [Inject] private IAppStateService _appStateService;
+        
+        [Inject] private IGameLoopStatesService _gameLoopStatesService;
 
         protected override void OnAwake()
         {
@@ -17,7 +18,7 @@ namespace CodeBase.Infrastructure.UI
 
             _nextLevelButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _appStateService.GoToState(State.TransitToNextLevelState);
+                _gameLoopStatesService.EnterToTransitToNextLevelState();
             }).AddTo(this);
         }
     }
