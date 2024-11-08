@@ -24,17 +24,29 @@ namespace CodeBase.Infrastructure.UI.Services
             CreateWindow(windowId).Forget();
         }
 
+        public bool NowIsOpen(WindowId windowId)
+        {
+            return _openedWindows.ContainsKey(windowId);
+        }
+
         private async UniTask CreateWindow(WindowId windowId) 
         {
             WindowBase window = await _uiFactory.CreateWindow(windowId);
             _openedWindows.Add(windowId, window);
             window.CloseButtonClicked += CloseWindow;
         }
+
         public void CloseWindow(WindowId windowId)
         {
             _openedWindows[windowId].CloseButtonClicked -= CloseWindow;
             GameObject.Destroy(_openedWindows[windowId].gameObject);
             _openedWindows.Remove(windowId);
+        }
+
+        public void CloseWindowIfOpened(WindowId windowId)
+        {
+            if (NowIsOpen(windowId))
+                CloseWindow(windowId);
         }
 
         public void CloseAllWindows() 

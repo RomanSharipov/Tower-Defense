@@ -7,6 +7,7 @@ namespace CodeBase.Infrastructure.UI.Services
         Shop = 1,
         MainMenu = 2,
         GameLoopWindow = 3,
-        WinWindow = 4
+        WinWindow = 4,
+        TurretContextMenu = 5
     }
 }

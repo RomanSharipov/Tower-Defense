@@ -4,6 +4,7 @@ using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
 using VContainer;
 using UniRx;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
@@ -20,6 +21,7 @@ namespace CodeBase.Infrastructure
 
         public async UniTask Enter()
         {
+            _compositeDisposable.Clear();
             _playerWinTracker.PlayerWon += OnPlayerWon;
             
             _clickOnTurretTracker.ClickOnTurret
@@ -36,7 +38,7 @@ namespace CodeBase.Infrastructure
 
         private void OnClickOnTurret(TurretBase turret)
         {
-            
+            _windowService.Open(WindowId.TurretContextMenu).Forget();
         }
 
         private void OnPlayerWon()
@@ -46,11 +48,13 @@ namespace CodeBase.Infrastructure
 
         public UniTask Exit()
         {
+            _clickOnTurretTracker.EndTracking();
+            _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
+
             _playerWinTracker.PlayerWon -= OnPlayerWon;
             _windowService.CloseWindow(WindowId.GameLoopWindow);
             _levelService.UnLoadCurrentLevel();
             _assetProvider.Cleanup();
-            _compositeDisposable.Dispose();
             _gameLoopStatesService.EnterToEmptyState();
             return UniTask.CompletedTask;
         }

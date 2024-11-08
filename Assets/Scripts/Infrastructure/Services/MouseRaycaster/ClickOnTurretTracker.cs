@@ -22,6 +22,8 @@ namespace CodeBase.Infrastructure.Services
 
         public void StartTracking()
         {
+            _compositeDisposable.Clear();
+            
             _inputService.GetKeyDown.Subscribe(_ =>
             {
                 Ray ray = _camera.ScreenPointToRay(_inputService.MousePosition);
@@ -38,7 +40,7 @@ namespace CodeBase.Infrastructure.Services
 
         public void EndTracking()
         {
-            _compositeDisposable.Dispose();
+            _compositeDisposable.Clear();
         }
 
         private void OnKeyDown(Ray ray)
@@ -49,7 +51,6 @@ namespace CodeBase.Infrastructure.Services
                 {
                     _currentCollider = collider;
                     _currentTurret = turret;
-                    
                 }
             }
         }
