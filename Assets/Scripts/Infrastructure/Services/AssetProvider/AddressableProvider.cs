@@ -63,17 +63,7 @@ namespace CodeBase.Infrastructure.Services
 
             return await RunWithCacheOnComplete(Addressables.LoadAssetAsync<T>(assetReference), assetReference.AssetGUID);
         }
-
-        public async UniTask<GameObject> Instantiate(AssetReference assetReference, Vector3 position)
-        {
-            return await Addressables.InstantiateAsync(assetReference, position, Quaternion.identity);
-        }
-
-        public async UniTask<GameObject> Instantiate(AssetReference assetReference)
-        {
-            return await Addressables.InstantiateAsync(assetReference);
-        }
-
+        
         public void Release(string key)
         {
             if (!_handles.ContainsKey(key))

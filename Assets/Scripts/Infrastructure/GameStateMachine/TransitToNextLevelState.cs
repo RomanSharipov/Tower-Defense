@@ -17,7 +17,6 @@ namespace CodeBase.Infrastructure
         {
             _windowService.CloseWindow(WindowId.WinWindow);
             _levelService.UnLoadCurrentLevel();
-            _assetProvider.Cleanup();
             _levelService.IncreaseCurrentLevel();
             ILevelMain levelMain = await _levelService.LoadCurrentLevel();
             levelMain.InitializeSceneServices();
