@@ -14,7 +14,7 @@ namespace Assets.Scripts.CoreGamePlay
         public override void InitIntance()
         {
             _detectorGroundEnemies = new DetectorGroundEnemies(transform.position,_groundEnemy);
-            _cannonTurretAttack.Init(intervalBetweenAttack: 2.7f, damage: 30,bulletSpeed: 5f);
+            _cannonTurretAttack.Init(intervalBetweenAttack: 3.7f, damage: 30,bulletSpeed: 5f);
             _detectorGroundEnemies.SetRadius(_detectionRadius);
         }
     }
