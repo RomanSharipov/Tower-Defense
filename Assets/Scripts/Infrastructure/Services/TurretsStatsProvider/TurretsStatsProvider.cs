@@ -6,6 +6,8 @@ namespace CodeBase.Infrastructure.Services
     {
         private readonly TurretsLevelsConfig _turretsLevelsConfig;
 
+        public CannonLevelData CannonLevelData => _turretsLevelsConfig.CannonLevelData;
+
         [Inject]
         public TurretsStatsProvider(TurretsLevelsConfig turretsLevelsConfig)
         {

@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using VContainer;
+using VContainer.Unity;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -37,8 +38,8 @@ namespace Assets.Scripts.CoreGamePlay
         {
             GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceTurretsData[turretType]);
             GameObject newGameObject = GameObject.Instantiate(prefab, _turrentParrent);
+            _objectResolver.InjectGameObject(newGameObject);
             TurretBase turret = newGameObject.GetComponent<TurretBase>();
-            _objectResolver.Inject(turret);
             return turret;
         }
 

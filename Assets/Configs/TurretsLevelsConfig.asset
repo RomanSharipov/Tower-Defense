@@ -38,7 +38,7 @@ MonoBehaviour:
     ReloadTimeUpgrade: []
   _cannonUpgradeData:
     DetectDistance:
-    - DetectionRadius: 0
+    - DetectionRadius: 3.7
       Price: 0
     - DetectionRadius: 0
       Price: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
     - DetectionRadius: 0
       Price: 0
     DamageUpgrade:
-    - Damage: 0
+    - Damage: 150
       Price: 0
     - Damage: 0
       Price: 0
@@ -60,16 +60,16 @@ MonoBehaviour:
     - Damage: 0
       Price: 0
     ReloadTimeUpgrade:
-    - DetectDistance: []
-      DamageUpgrade: []
-    - DetectDistance: []
-      DamageUpgrade: []
-    - DetectDistance: []
-      DamageUpgrade: []
-    - DetectDistance: []
-      DamageUpgrade: []
-    - DetectDistance: []
-      DamageUpgrade: []
+    - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
   _flameTurretLevelData:
     DetectDistance:
     - DetectionRadius: 0

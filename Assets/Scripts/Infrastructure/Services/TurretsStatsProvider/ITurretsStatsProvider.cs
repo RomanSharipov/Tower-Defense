@@ -6,6 +6,6 @@ namespace CodeBase.Infrastructure.Services
 {
     public interface ITurretsStatsProvider
     {
-
+        CannonLevelData CannonLevelData { get; }
     }
 }

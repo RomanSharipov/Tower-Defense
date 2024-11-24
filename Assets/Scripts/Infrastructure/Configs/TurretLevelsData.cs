@@ -3,8 +3,8 @@ using System;
 [Serializable]
 public class ReloadTimeUpgrade
 {
-    public DetectDistanceUpgrade[] DetectDistance;
-    public DamageUpgrade[] DamageUpgrade;
+    public float IntervalBeetweenAttack;
+    public float Price;
 }
 
 [Serializable]

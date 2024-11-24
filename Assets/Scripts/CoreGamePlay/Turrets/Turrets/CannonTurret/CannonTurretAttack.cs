@@ -1,6 +1,8 @@
 ﻿using System;
+using CodeBase.Infrastructure.Services;
 using NTC.Pool;
 using UnityEngine;
+using VContainer;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -12,19 +14,28 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private ParticleSystemCollection[] _effects;
 
         private float _intervalBetweenAttack;
-        private float _bulletSpeed;
+        [SerializeField] private float _bulletSpeed = 5.0f;
         private int _damage;
 
         private TurretAnimator _currentAnimator;
         private BulletSpawnPoints _currentBulletSpawnPoint;
         private ParticleSystemCollection _currentEffects;
         private Timer _timer;
+        [Inject] private ITurretsStatsProvider _turretsStatsProvider;
 
-        public void Init(float intervalBetweenAttack, int damage, float bulletSpeed)
+        public void Init()
         {
-            _intervalBetweenAttack = intervalBetweenAttack;
-            _damage = damage;
-            _bulletSpeed = bulletSpeed;
+            try
+            {
+            _intervalBetweenAttack = _turretsStatsProvider.CannonLevelData.ReloadTimeUpgrade[0].IntervalBeetweenAttack;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            _damage = _turretsStatsProvider.CannonLevelData.DamageUpgrade[0].Damage;
             _timer = new Timer(_intervalBetweenAttack);
         }
 
