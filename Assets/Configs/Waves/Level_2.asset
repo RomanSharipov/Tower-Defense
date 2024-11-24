@@ -13,19 +13,23 @@ MonoBehaviour:
   m_Name: Level_2
   m_EditorClassIdentifier: 
   WaveDatas:
-  - _enemyType: 2
+  - _enemyType: 5
     _countEnemy: 3
     _delayBetweenSpawn: 2
+    _delayOnEndWave: 0
     _enemyConfig: {fileID: 11400000, guid: 3a745c22c0da9d94f8696ccfa578cef2, type: 2}
   - _enemyType: 1
     _countEnemy: 3
     _delayBetweenSpawn: 2
+    _delayOnEndWave: 0
     _enemyConfig: {fileID: 11400000, guid: 3a745c22c0da9d94f8696ccfa578cef2, type: 2}
   - _enemyType: 3
     _countEnemy: 3
     _delayBetweenSpawn: 2
+    _delayOnEndWave: 0
     _enemyConfig: {fileID: 11400000, guid: 3a745c22c0da9d94f8696ccfa578cef2, type: 2}
   - _enemyType: 3
     _countEnemy: 3
     _delayBetweenSpawn: 2
+    _delayOnEndWave: 0
     _enemyConfig: {fileID: 11400000, guid: 3a745c22c0da9d94f8696ccfa578cef2, type: 2}
