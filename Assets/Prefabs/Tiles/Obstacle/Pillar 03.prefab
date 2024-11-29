@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9159117499353921290}
   - component: {fileID: 5238921409895528623}
   - component: {fileID: 8021073707035397221}
-  - component: {fileID: 8687726993676996835}
   - component: {fileID: -7022728959077596967}
   m_Layer: 11
   m_Name: Pillar 03
@@ -85,29 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8687726993676996835
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381313780666969520}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.37
-  m_Height: 1.3477389
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.6738692, z: 0.0004002452}
 --- !u!114 &-7022728959077596967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,5 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
