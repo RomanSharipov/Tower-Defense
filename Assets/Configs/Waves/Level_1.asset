@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Level_1
   m_EditorClassIdentifier: 
   WaveDatas:
+  - _enemyType: 5
+    _countEnemy: 5
+    _delayBetweenSpawn: 2
+    _delayOnEndWave: 2
+    _enemyConfig: {fileID: 11400000, guid: c6f7516e0ebd2cb4585ee55533f6a76e, type: 2}
   - _enemyType: 2
     _countEnemy: 9
     _delayBetweenSpawn: 3

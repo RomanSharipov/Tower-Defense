@@ -22,20 +22,22 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private List<EnemyBase> _enemiesOnBoard = new List<EnemyBase>();
         
         private DetectorGroundEnemies _detectorEnemies;
-        private bool _isSpawningEnabled;
+        private bool _isSpawningEnabled = false;
         private int _counter;
         
         public TileView StartTile => _start;
         public TileView TargetTile => _target;
 
-        private void Awake()
+        public void Init()
         {
             _wavesService.SetNewWavesData(_wavesOnLevelData);
             _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
             _detectorEnemies = new DetectorGroundEnemies(transform.position, _groundEnemy);
             _detectorEnemies.SetRadius(2.0f);
 
-
+            _start.NodeBase.SetIsFreeStatus(false);
+            _target.NodeBase.SetIsFreeStatus(false);
+            _isSpawningEnabled = true;
         }
         
         public void StartSpawnEnemies()

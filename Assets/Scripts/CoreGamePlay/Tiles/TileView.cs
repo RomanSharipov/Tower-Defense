@@ -6,6 +6,7 @@ namespace Assets.Scripts.CoreGamePlay
     public class TileView : MonoBehaviour
     {
         [SerializeField] private TileId _tileId;
+        [SerializeField] private bool _tileIsFree;
         [SerializeField] private int _q;
         [SerializeField] private int _r;
 
@@ -13,6 +14,7 @@ namespace Assets.Scripts.CoreGamePlay
         
         public TileId TileId => _tileId;
         public TileData NodeBase => _nodeBase;
+        public bool TileIsFree => _tileIsFree;
 
         public int Q => _q;
         public int R => _r;
@@ -26,9 +28,11 @@ namespace Assets.Scripts.CoreGamePlay
         public void InitializeNode(List<TileView> gameBoardTiles)
         {
             bool walkable = _tileId == TileId.Empty;
+            _tileIsFree = _tileId == TileId.Empty;
             HexCoords hexCoords = new HexCoords(_q,_r);
 
             _nodeBase = new TileData(walkable, hexCoords, gameBoardTiles,this);
+            _nodeBase.SetIsFreeStatus(_tileIsFree);
         }
 
         public void SetWalkable(TileId tileId)

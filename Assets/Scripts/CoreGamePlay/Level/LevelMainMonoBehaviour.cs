@@ -40,6 +40,7 @@ namespace Assets.Scripts.CoreGamePlay
 
             _turretFactory.SetParrentTurret(_turretsParrent);
             _pathInitializer.Init();
+            InitSpawners();
             StartSpawnEnemies();
         }
         
@@ -48,6 +49,13 @@ namespace Assets.Scripts.CoreGamePlay
             foreach (EnemySpawner enemySpawner in _enemySpawners)
             {
                 enemySpawner.StartSpawnEnemies();
+            }
+        }
+        private void InitSpawners()
+        {
+            foreach (EnemySpawner enemySpawner in _enemySpawners)
+            {
+                enemySpawner.Init();
             }
         }
 

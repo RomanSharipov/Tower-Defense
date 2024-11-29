@@ -46,6 +46,7 @@ namespace CodeBase.Infrastructure.Services
                     {
                         turretBase.transform.position = tile.transform.position;
                         tile.SetWalkable(TileId.Obstacle);
+                        tile.NodeBase.SetIsFreeStatus(false);
                         tile.UpdateTileData();
                         turretBase.Init();
                         TurretIsBuilded?.Invoke(turretBase, tile.NodeBase);
@@ -96,7 +97,7 @@ namespace CodeBase.Infrastructure.Services
                 _lastValidDistance = hitInternal.distance;
                 if (_tileViewCache.TryGetValue(hitCollider, out tileView))
                 {
-                    if (tileView.NodeBase.Walkable)
+                    if (tileView.NodeBase.TileIsFree)
                     {
                         return true;
                     }
@@ -107,7 +108,7 @@ namespace CodeBase.Infrastructure.Services
                 {
                     _tileViewCache[hitCollider] = tileView;
                     
-                    if (tileView.NodeBase.Walkable)
+                    if (tileView.NodeBase.TileIsFree)
                     {
                         return true;
                     }
