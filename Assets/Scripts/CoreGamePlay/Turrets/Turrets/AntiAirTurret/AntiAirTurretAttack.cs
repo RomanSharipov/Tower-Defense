@@ -40,6 +40,10 @@ namespace Assets.Scripts.CoreGamePlay
         public void OnAnimationEventFire(int gunIndex)
         {
             _currentEffects.GetParticleSystemByIndex(gunIndex).Play();
+
+            if (EnemyIsDead)
+                return;
+
             _currentEnemy.TakeDamage(_damage);
         }
 

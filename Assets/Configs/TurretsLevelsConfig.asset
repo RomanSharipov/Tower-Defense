@@ -173,7 +173,7 @@ MonoBehaviour:
       Price: 0
   _rocketTurretLevelData:
     DetectDistance:
-    - DetectionRadius: 0
+    - DetectionRadius: 5
       Price: 0
     - DetectionRadius: 0
       Price: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
     - DetectionRadius: 0
       Price: 0
     DamageUpgrade:
-    - Damage: 0
+    - Damage: 3
       Price: 0
     - Damage: 0
       Price: 0
@@ -194,4 +194,14 @@ MonoBehaviour:
       Price: 0
     - Damage: 0
       Price: 0
-    ReloadTimeUpgrade: []
+    ReloadTimeUpgrade:
+    - IntervalBeetweenAttack: 1
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
