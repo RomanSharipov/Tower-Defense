@@ -14,7 +14,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] protected LayerMask _flyingEnemy;
 
         private TurretStateMachine _turretStateMachine;
-        private DetectorGroundEnemies _detectorEnemies;
+        
         private bool _enabled;
 
         public EnemyBase CurrentTarget;
@@ -34,20 +34,13 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void Init()
         {
-            ConfigureDetectorEnemies();
             ConfigureStateMachine();
             ConfigureTurretUpgrade();
             SetColor(ColorType.DefaultColor);
             InitIntance();
             _enabled = true;
         }
-
-        private void ConfigureDetectorEnemies()
-        {
-            _detectorEnemies = new DetectorGroundEnemies(transform.position, _groundEnemy);
-            _detectorEnemies.SetRadius(_detectionRadius);
-        }
-
+        
         private void ConfigureTurretUpgrade()
         {
             _turretUpgrade = new TurretUpgrade(maxLevel:3);
