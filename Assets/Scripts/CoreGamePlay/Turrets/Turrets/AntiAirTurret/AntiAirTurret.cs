@@ -13,9 +13,14 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            _antiAirTurretAttack.Init(intervalBetweenAttack: 0.7f, damage: 3);
+            int damage = _turretsStatsProvider.AntiAirLevelData.DamageUpgrade[0].Damage;
+            float reloadTime = _turretsStatsProvider.AntiAirLevelData.ReloadTimeUpgrade[0].IntervalBeetweenAttack;
+            float attackDistance = _turretsStatsProvider.AntiAirLevelData.DetectDistance[0].DetectionRadius;
+
+
+            _antiAirTurretAttack.Init(reloadTime, damage);
             _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _groundEnemy, _flyingEnemy);
-            _detectorEnyEnemies.SetRadius(_detectionRadius);
+            _detectorEnyEnemies.SetRadius(attackDistance);
         }
     }
 }

@@ -8,13 +8,12 @@ namespace Assets.Scripts.CoreGamePlay
 
         private ParticleSystemCollection _currentEffects;
 
-        private float _intervalBetweenAttack;
+        private float _intervalBetweenAttack = 0.1f;
         private int _damage;
         private Timer _timer;
 
-        public void Init(float intervalBetweenAttack, int damage)
+        public void Init(int damage)
         {
-            _intervalBetweenAttack = intervalBetweenAttack;
             _damage = damage;
             _timer = new Timer(_intervalBetweenAttack);
         }

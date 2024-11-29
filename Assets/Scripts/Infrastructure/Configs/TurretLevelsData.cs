@@ -31,7 +31,7 @@ public class SlowDurationUpgrade
 [Serializable]
 public class SlowPercentUpgrade
 {
-    public float Percent;
+    public int Percent;
     public int Price;
 }
 

@@ -6,6 +6,11 @@ namespace CodeBase.Infrastructure.Services
 {
     public interface ITurretsStatsProvider
     {
-        CannonLevelData CannonLevelData { get; }
+        public CannonLevelData CannonLevelData { get; }
+        public MinigunLevelData MinigunLevelData { get; }
+        public AntiAirLevelData AntiAirLevelData { get; }
+        public SlowTurretData SlowTurretData { get; }
+        public RocketTurretLevelData RocketTurretLevelData { get; }
+        public FlameTurretLevelData FlameTurretLevelData { get; }
     }
 }

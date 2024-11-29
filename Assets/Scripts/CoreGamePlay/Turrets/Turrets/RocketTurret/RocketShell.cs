@@ -6,13 +6,12 @@ namespace Assets.Scripts.CoreGamePlay
     public class RocketShell : MonoBehaviour
     {
         private int _damage;
-        private float _speed;
+        private float _speed = 5.0f;
         private float _maxLifeTime = 10.0f;
 
-        public void Init(int damage, float speed)
+        public void Init(int damage)
         {
             _damage = damage;
-            _speed = speed;
             NightPool.Despawn(gameObject,_maxLifeTime);
         }
 

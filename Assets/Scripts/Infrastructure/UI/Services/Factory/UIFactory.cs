@@ -19,12 +19,12 @@ namespace CodeBase.Infrastructure.UI.Services
         private Transform _rootCanvas;
 
         [Inject]
-        public UIFactory(IAssetProvider assetProvider, IAddressablesAssetReferencesService staticDataService, IObjectResolver objectResolver)
+        public UIFactory(IAssetProvider assetProvider, IAddressablesAssetReferencesService _addressablesAssetReferencesService, IObjectResolver objectResolver)
         {
             _assetProvider = assetProvider;
-            _assetReferenceData = staticDataService.Windows;
+            _assetReferenceData = _addressablesAssetReferencesService.Windows;
             _objectResolver = objectResolver;
-            _rootCanvasPrefab = staticDataService.RootCanvas;
+            _rootCanvasPrefab = _addressablesAssetReferencesService.RootCanvas;
         }
 
         public async UniTask CreateRootCanvas()

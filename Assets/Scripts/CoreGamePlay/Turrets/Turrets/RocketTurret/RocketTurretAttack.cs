@@ -12,17 +12,17 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private BulletSpawnPoints[] _bulletSpawnPoints;
 
         private float _intervalBetweenAttack;
-        private float _bulletSpeed;
+        
         private int _damage;
         private Timer _timer;
 
         private BulletSpawnPoints _currentBulletSpawnPoint;
 
-        public void Init(float intervalBetweenAttack, int damage, float bulletSpeed)
+        public void Init(float intervalBetweenAttack, int damage)
         {
             _intervalBetweenAttack = intervalBetweenAttack;
             _damage = damage;
-            _bulletSpeed = bulletSpeed;
+            
             _timer = new Timer(_intervalBetweenAttack);
         }
 
@@ -46,7 +46,7 @@ namespace Assets.Scripts.CoreGamePlay
                 {
                     Transform spawnPoint = _currentBulletSpawnPoint.SpawnPoints[bulletIndex];
                     RocketShell bullet = NightPool.Spawn(_bulletPrefab, spawnPoint.position, spawnPoint.rotation);
-                    bullet.Init(_damage, _bulletSpeed);
+                    bullet.Init(_damage);
 
                     bulletIndex++;
                 }).AddTo(this);

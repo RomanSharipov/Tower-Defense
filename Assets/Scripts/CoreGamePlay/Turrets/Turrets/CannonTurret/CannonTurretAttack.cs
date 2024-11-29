@@ -21,20 +21,11 @@ namespace Assets.Scripts.CoreGamePlay
         private BulletSpawnPoints _currentBulletSpawnPoint;
         private ParticleSystemCollection _currentEffects;
         private Timer _timer;
-        [Inject] private ITurretsStatsProvider _turretsStatsProvider;
+        
 
-        public void Init()
+        public void Init(int damage,float intervalBetweenAttack)
         {
-            try
-            {
             _intervalBetweenAttack = _turretsStatsProvider.CannonLevelData.ReloadTimeUpgrade[0].IntervalBeetweenAttack;
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
             _damage = _turretsStatsProvider.CannonLevelData.DamageUpgrade[0].Damage;
             _timer = new Timer(_intervalBetweenAttack);
         }

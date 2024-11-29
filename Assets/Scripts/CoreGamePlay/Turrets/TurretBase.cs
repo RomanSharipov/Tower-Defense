@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using CodeBase.Infrastructure.Services;
+using UnityEngine;
+using VContainer;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -19,7 +21,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         //for config
         [SerializeField] protected float _detectionRadius = 5.0f;
-
+        [Inject] protected ITurretsStatsProvider _turretsStatsProvider;
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
         public abstract IDetector DetectorEnemies { get; }
         public abstract AttackComponent AttackComponent { get; }

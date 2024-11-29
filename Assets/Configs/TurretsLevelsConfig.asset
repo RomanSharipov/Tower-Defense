@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _antiAirLevelData:
     DetectDistance:
-    - DetectionRadius: 0
+    - DetectionRadius: 5
       Price: 0
     - DetectionRadius: 0
       Price: 0
@@ -25,31 +25,7 @@ MonoBehaviour:
     - DetectionRadius: 0
       Price: 0
     DamageUpgrade:
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    ReloadTimeUpgrade: []
-  _cannonUpgradeData:
-    DetectDistance:
-    - DetectionRadius: 3.7
-      Price: 0
-    - DetectionRadius: 0
-      Price: 0
-    - DetectionRadius: 0
-      Price: 0
-    - DetectionRadius: 0
-      Price: 0
-    - DetectionRadius: 0
-      Price: 0
-    DamageUpgrade:
-    - Damage: 150
+    - Damage: 2
       Price: 0
     - Damage: 0
       Price: 0
@@ -61,6 +37,40 @@ MonoBehaviour:
       Price: 0
     ReloadTimeUpgrade:
     - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
+    - IntervalBeetweenAttack: 0
+      Price: 0
+  _cannonUpgradeData:
+    DetectDistance:
+    - DetectionRadius: 2
+      Price: 0
+    - DetectionRadius: 0
+      Price: 0
+    - DetectionRadius: 0
+      Price: 0
+    - DetectionRadius: 0
+      Price: 0
+    - DetectionRadius: 0
+      Price: 0
+    DamageUpgrade:
+    - Damage: 10
+      Price: 0
+    - Damage: 0
+      Price: 0
+    - Damage: 0
+      Price: 0
+    - Damage: 0
+      Price: 0
+    - Damage: 0
+      Price: 0
+    ReloadTimeUpgrade:
+    - IntervalBeetweenAttack: 0.1
       Price: 0
     - IntervalBeetweenAttack: 0
       Price: 0
