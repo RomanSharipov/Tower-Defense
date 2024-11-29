@@ -18,17 +18,17 @@ namespace CodeBase.Infrastructure.Services
             _currentLevel++;
         }
 
-        public async UniTask<ILevelMain> LoadCurrentLevel()
+        public async UniTask<ISceneInitializer> LoadCurrentLevel()
         {
             Scene scene = await _sceneLoader.LoadLevel(_currentLevel);
             
-            if (scene.TryGetRoot(out ILevelMain result))
+            if (scene.TryGetRoot(out ISceneInitializer result))
             {
                 return result;
             }
             else 
             {
-                Debug.LogError($"ILevelMain dont found in {scene.name} scene. Add {nameof(LevelMainMonoBehaviour)} object to {scene.name} scene");
+                Debug.LogError($"ILevelMain dont found in {scene.name} scene. Add {nameof(SceneInitializer)} object to {scene.name} scene");
                 return null; 
             }
         }

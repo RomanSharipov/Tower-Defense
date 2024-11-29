@@ -5,10 +5,9 @@ using CodeBase.Infrastructure.Services;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class LevelMainMonoBehaviour : MonoBehaviour, ILevelMain
+    public class SceneInitializer : MonoBehaviour, ISceneInitializer
     {
         [Inject] private ITurretFactory _turretFactory;
-        [Inject] private IBuildingService _buildingService;
         [Inject] private ICacherOfPath _cacherOfPath;
         [Inject] private ITilesStorage _tilesStorage;
 
@@ -16,23 +15,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private Transform _turretsParrent;
         [SerializeField] private EnemySpawner[] _enemySpawners;
         [SerializeField] private PathInitializer _pathInitializer;
-
         
-        private void OnEnable()
-        {
-            _buildingService.TurretIsBuilded += OnTurretIsBuilded;
-        }
-
-        private void OnDisable()
-        {
-            _buildingService.TurretIsBuilded -= OnTurretIsBuilded;
-        }
-
-        private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
-        {
-
-        }
-
         public void InitializeSceneServices()
         {
             _cacherOfPath.SetSpawnersOnCurrentLevel(_enemySpawners);
@@ -43,8 +26,8 @@ namespace Assets.Scripts.CoreGamePlay
             InitSpawners();
             StartSpawnEnemies();
         }
-        
-        public void StartSpawnEnemies()
+
+        private void StartSpawnEnemies()
         {
             foreach (EnemySpawner enemySpawner in _enemySpawners)
             {

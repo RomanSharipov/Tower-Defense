@@ -7,7 +7,7 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class MapGenerator : MonoBehaviour
     {
-        [SerializeField] private LevelMainMonoBehaviour _levelMainMonoBehaviour;
+        [SerializeField] private SceneInitializer _levelMainMonoBehaviour;
 
         [Header("Form game board settings")]
         [Header("Rect GameBoard")]

@@ -32,7 +32,7 @@ namespace CodeBase.Infrastructure
             _clickOnTurretTracker.StartTracking();
             _windowService.Open(WindowId.GameLoopWindow).Forget();
             
-            ILevelMain levelMain = await _levelService.LoadCurrentLevel();
+            ISceneInitializer levelMain = await _levelService.LoadCurrentLevel();
             levelMain.InitializeSceneServices();
             _gameLoopStatesService.EnterToPlayingIdleState();
         }

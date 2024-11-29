@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.CoreGamePlay
 {
-    public interface ILevelMain
+    public interface ISceneInitializer
     {
         public void InitializeSceneServices();
     }

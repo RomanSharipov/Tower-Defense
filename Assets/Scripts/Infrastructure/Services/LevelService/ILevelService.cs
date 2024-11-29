@@ -6,7 +6,7 @@ namespace CodeBase.Infrastructure.Services
     public interface ILevelService
     {
         public void IncreaseCurrentLevel();
-        public UniTask<ILevelMain> LoadCurrentLevel();
+        public UniTask<ISceneInitializer> LoadCurrentLevel();
         public void UnLoadCurrentLevel();
     }
 }

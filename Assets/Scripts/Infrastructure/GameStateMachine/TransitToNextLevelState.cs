@@ -18,7 +18,7 @@ namespace CodeBase.Infrastructure
             _windowService.CloseWindow(WindowId.WinWindow);
             _levelService.UnLoadCurrentLevel();
             _levelService.IncreaseCurrentLevel();
-            ILevelMain levelMain = await _levelService.LoadCurrentLevel();
+            ISceneInitializer levelMain = await _levelService.LoadCurrentLevel();
             levelMain.InitializeSceneServices();
             _gameLoopStatesService.EnterToPlayingIdleState();
         }
