@@ -4,12 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TurretsLevelsConfig", menuName = "StaticData/TurretsLevelsConfig")]
 public class TurretsLevelsConfig : ScriptableObject
 {
-    [SerializeField] private AntiAirLevelData _antiAirLevelData;
-    [SerializeField] private CannonLevelData _cannonUpgradeData;
-    [SerializeField] private FlameTurretLevelData _flameTurretLevelData;
     [SerializeField] private MinigunLevelData _minigunLevelData;
+    [SerializeField] private CannonLevelData _cannonUpgradeData;
     [SerializeField] private SlowTurretData _slowTurretData;
     [SerializeField] private RocketTurretLevelData _rocketTurretLevelData;
+    [SerializeField] private FlameTurretLevelData _flameTurretLevelData;
+    [SerializeField] private AntiAirLevelData _antiAirLevelData;
 
     public AntiAirLevelData AntiAirLevelData => _antiAirLevelData;
     public CannonLevelData CannonLevelData => _cannonUpgradeData;

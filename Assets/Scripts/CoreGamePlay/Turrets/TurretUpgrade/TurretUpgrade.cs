@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -9,7 +10,7 @@ namespace Assets.Scripts.CoreGamePlay
         
         public List<IUpgradeable> _upgradeables = new List<IUpgradeable>();
         
-        public bool HasNextUpgrade => _currentLevelIndex < _maxLevel;
+        public bool HasNextUpgrade => _currentLevelIndex < _maxLevel - 1;
         
         public TurretUpgrade(int maxLevel)
         {
