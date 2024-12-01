@@ -9,12 +9,21 @@ namespace Assets.Scripts.CoreGamePlay
         private ParticleSystemCollection _currentEffects;
 
         private float _intervalBetweenAttack = 0.1f;
-        private int _damage;
+        [SerializeField] private int _currentDamage;
+        private int _startDamage;
         private Timer _timer;
+
+        private float[] _levelCoefficient = new float[]
+        {
+            1.0f,
+            1.5f,
+            2.0f
+        };
 
         public void Init(int damage)
         {
-            _damage = damage;
+            _startDamage = damage;
+            _currentDamage = _startDamage;
             _timer = new Timer(_intervalBetweenAttack);
         }
 
@@ -35,14 +44,14 @@ namespace Assets.Scripts.CoreGamePlay
             _timer.Tick();
             if (_timer.IsActionTimeReached())
             {
-                _currentEnemy.TakeDamage(_damage);
+                _currentEnemy.TakeDamage(_currentDamage);
             }
         }
 
         public override void SetLevel(int level)
         {
             _currentEffects = _effects[level];
-            _damage *= (level + 1);
+            _currentDamage = Mathf.RoundToInt(_levelCoefficient[level] * _startDamage);
         }
     }
 }

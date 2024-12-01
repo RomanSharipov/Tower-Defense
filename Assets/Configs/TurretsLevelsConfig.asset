@@ -25,7 +25,7 @@ MonoBehaviour:
     - DetectionRadius: 0
       Price: 0
     DamageUpgrade:
-    - Damage: 1
+    - Damage: 2
       Price: 0
     - Damage: 0
       Price: 0
