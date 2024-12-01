@@ -6,8 +6,8 @@ namespace Assets.Scripts.CoreGamePlay
     {
         public IdleState(TurretBase turret) : base(turret) { }
 
-        public override void Enter() { /* Логика входа в Idle состояние */ }
+        public override void Enter() {  }
         public override void UpdateState() {  }
-        public override void Exit() { /* Логика выхода из Idle состояния */ }
+        public override void Exit() {  }
     }
 }

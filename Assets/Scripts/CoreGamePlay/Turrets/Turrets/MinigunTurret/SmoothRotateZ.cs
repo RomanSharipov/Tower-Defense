@@ -21,9 +21,6 @@ public class SmoothRotateZ : MonoBehaviour
 
     public void StartRotate()
     {
-        if (!enabled)
-            return;
-
         if (_rotationCoroutine != null)
         {
             StopCoroutine(_rotationCoroutine);
