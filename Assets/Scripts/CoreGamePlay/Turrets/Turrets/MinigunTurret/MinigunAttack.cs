@@ -5,8 +5,10 @@ namespace Assets.Scripts.CoreGamePlay
     public class MinigunAttack : AttackComponent
     {
         [SerializeField] private ParticleSystemCollection[] _effects;
+        [SerializeField] private MinigunAnimation[] _minigunAnimation;
 
         private ParticleSystemCollection _currentEffects;
+        private MinigunAnimation _currentMinigunAnimation;
 
         private float _intervalBetweenAttack = 0.1f;
         [SerializeField] private int _currentDamage;
@@ -31,12 +33,15 @@ namespace Assets.Scripts.CoreGamePlay
         {
             base.OnStartAttack(enemyBase);
             _currentEffects.Play();
+            _currentMinigunAnimation.StartAnimation();
+
         }
 
         public override void OnEndAttack()
         {
             base.OnEndAttack();
             _currentEffects.Stop();
+            _currentMinigunAnimation.StopAnimation();
         }
 
         public override void AttackOnUpdate()
@@ -51,6 +56,7 @@ namespace Assets.Scripts.CoreGamePlay
         public override void SetLevel(int level)
         {
             _currentEffects = _effects[level];
+            _currentMinigunAnimation = _minigunAnimation[level];
             _currentDamage = Mathf.RoundToInt(_levelCoefficient[level] * _startDamage);
         }
     }
