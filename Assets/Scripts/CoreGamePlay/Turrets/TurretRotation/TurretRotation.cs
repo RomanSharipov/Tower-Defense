@@ -24,7 +24,7 @@ namespace Assets.Scripts.CoreGamePlay
             _rotationX.RotateTowards(_directionToTarget, rotationSpeed);
         }
 
-        public bool IsRotationComplete(float thresholdAngle = 1f)
+        public bool IsRotationComplete(float thresholdAngle = 15f)
         {
             if (_turret.CurrentTarget == null)
                 return false;

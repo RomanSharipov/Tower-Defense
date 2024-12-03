@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using System;
+using CodeBase.Infrastructure.Services;
 using UnityEngine;
 using VContainer;
 
@@ -16,11 +17,10 @@ namespace Assets.Scripts.CoreGamePlay
         private TurretStateMachine _turretStateMachine;
         
         private bool _enabled;
+        private Action _setIdleState;
 
         public EnemyBase CurrentTarget;
-
-        //for config
-        [SerializeField] protected float _detectionRadius = 5.0f;
+        
         [Inject] protected ITurretsStatsProvider _turretsStatsProvider;
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
         public abstract IDetector DetectorEnemies { get; }
@@ -30,6 +30,14 @@ namespace Assets.Scripts.CoreGamePlay
         public void SetColor(ColorType color)
         {
             _colorTurret.SetColor(color);
+        }
+        
+        private void OnDestroy()
+        {
+            if (!_enabled)
+                return;
+
+            _turretUpgrade.TurretUpgraded -= _setIdleState;
         }
 
         public void Init()
@@ -47,6 +55,7 @@ namespace Assets.Scripts.CoreGamePlay
             _turretUpgrade.RegisterUpgradeable(AttackComponent);
             _turretUpgrade.RegisterUpgradeable(_turretView);
             _turretUpgrade.ResetLevel();
+            _turretUpgrade.TurretUpgraded += _setIdleState;
         }
 
         [ContextMenu("LevelUpTest()")]
@@ -79,8 +88,9 @@ namespace Assets.Scripts.CoreGamePlay
             idleState.AddTransitions(enemyNearbyTransition);
             rotationToEnemyState.AddTransitions(rotationToAttackTransition, targetIsNullTransition, enemyFarAwayTransition);
             attackState.AddTransitions(targetIsNullTransition, enemyFarAwayTransition);
-            
-            _turretStateMachine.SetState(idleState);
+
+            _setIdleState = () => _turretStateMachine.SetState(idleState);
+            _setIdleState();
         }
     }
 }

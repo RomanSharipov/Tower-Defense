@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using CodeBase.Configs;
 using CodeBase.Infrastructure.Services;
 using Cysharp.Threading.Tasks;
@@ -20,11 +22,11 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private LayerMask _groundEnemy;
         [SerializeField] private float _spawnTimer;
         [SerializeField] private List<EnemyBase> _enemiesOnBoard = new List<EnemyBase>();
-        
+
         private DetectorGroundEnemies _detectorEnemies;
         private bool _isSpawningEnabled = false;
         private int _counter;
-        
+
         public TileView StartTile => _start;
         public TileView TargetTile => _target;
 
@@ -39,7 +41,7 @@ namespace Assets.Scripts.CoreGamePlay
             _target.NodeBase.SetIsFreeStatus(false);
             _isSpawningEnabled = true;
         }
-        
+
         public void StartSpawnEnemies()
         {
             _isSpawningEnabled = true;
@@ -52,7 +54,7 @@ namespace Assets.Scripts.CoreGamePlay
         }
 
 
-        
+
         private void Update()
         {
             if (!_isSpawningEnabled)
@@ -77,22 +79,31 @@ namespace Assets.Scripts.CoreGamePlay
         {
             if (_wavesService.TryGetEnemy(out EnemyType enemyType))
             {
-                EnemyBase newEnemy = await _enemyFactory.CreateEnemy(enemyType);
-                _counter++;
-                newEnemy.transform.parent = transform;
-                newEnemy.transform.localPosition = Vector3.zero;
-                newEnemy.gameObject.name = $"{_counter}.{newEnemy.gameObject.name}";
+                CancellationToken cancellationToken = this.GetCancellationTokenOnDestroy();
 
-                IEnemyHealth enemyHealth = new EnemyHealth(_wavesService.CurrentWave.EnemyConfig.Health);
+                try
+                {
+                    EnemyBase newEnemy = await _enemyFactory.CreateEnemy(enemyType, cancellationToken).AttachExternalCancellation(cancellationToken);
+                    _counter++;
+                    newEnemy.transform.parent = transform;
+                    newEnemy.transform.localPosition = Vector3.zero;
+                    newEnemy.gameObject.name = $"{_counter}.{newEnemy.gameObject.name}";
 
-                newEnemy.Init(this, _wavesService.CurrentWave.EnemyConfig, enemyHealth);
-                newEnemy.HealthBar.Init(enemyHealth);
-                newEnemy.GoalIsReached += RemoveEnemy;
-                newEnemy.Died += RemoveEnemy;
-                _enemiesOnBoard.Add(newEnemy);
+                    IEnemyHealth enemyHealth = new EnemyHealth(_wavesService.CurrentWave.EnemyConfig.Health);
+
+                    newEnemy.Init(this, _wavesService.CurrentWave.EnemyConfig, enemyHealth);
+                    newEnemy.HealthBar.Init(enemyHealth);
+                    newEnemy.GoalIsReached += RemoveEnemy;
+                    newEnemy.Died += RemoveEnemy;
+                    _enemiesOnBoard.Add(newEnemy);
+                }
+                catch (OperationCanceledException)
+                {
+                    return;
+                }
             }
         }
-        
+
         private void RemoveEnemy(EnemyBase enemy)
         {
             enemy.GoalIsReached -= RemoveEnemy;

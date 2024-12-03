@@ -57,7 +57,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   CurrentTarget: {fileID: 0}
-  _detectionRadius: 5
   _cannonTurretAttack: {fileID: 5654132667931714789}
 --- !u!114 &3081573488155620220
 MonoBehaviour:
@@ -130,6 +129,7 @@ MonoBehaviour:
     - {fileID: 4058939064305926554}
     - {fileID: 5318844254121667097}
     - {fileID: 7449528207812871493}
+  _bulletSpeed: 9
 --- !u!135 &7101346070284183227
 SphereCollider:
   m_ObjectHideFlags: 0

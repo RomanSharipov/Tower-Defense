@@ -7,6 +7,7 @@ using UnityEngine.AddressableAssets;
 using Assets.Scripts.CoreGamePlay;
 using NTC.Pool;
 using VContainer.Unity;
+using System.Threading;
 
 namespace CodeBase.Infrastructure.Services
 {
@@ -25,9 +26,9 @@ namespace CodeBase.Infrastructure.Services
             _assetReferenceData = assetReferenceData.Enemies;
         }
         
-        public async UniTask<EnemyBase> CreateEnemy(EnemyType enemyType) 
+        public async UniTask<EnemyBase> CreateEnemy(EnemyType enemyType, CancellationToken cancellationToken = default) 
         {
-            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[enemyType]);
+            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[enemyType]).AttachExternalCancellation(cancellationToken);
             GameObject newGameObject = NightPool.Spawn(prefab);
             EnemyBase enemyComponent = newGameObject.GetComponent<EnemyBase>();
 

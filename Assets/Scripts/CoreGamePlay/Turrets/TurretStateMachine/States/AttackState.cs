@@ -5,7 +5,7 @@ namespace Assets.Scripts.CoreGamePlay
     public class AttackState : StateBase
     {
         private readonly TurretView _turretView;
-        private float _speed = 200.0f;
+        private float _speed = 15.0f;
 
         public AttackState(TurretBase turret, TurretView turretView) : base(turret) 
         {
