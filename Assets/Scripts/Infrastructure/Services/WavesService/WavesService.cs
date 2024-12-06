@@ -28,22 +28,18 @@ namespace CodeBase.Infrastructure.Services
             _currentWave = _wavesOnLevelData.WaveDatas[_currentWaveIndex];
         }
 
-        public bool TryGetEnemy(out EnemyType enemyType)
+        public bool TryGetEnemy(out EnemyConfig enemyConfig)
         {
+            enemyConfig = null;
+
             if (_allWavesIsOver)
-            {
-                enemyType = EnemyType.None;
                 return false;
-            }
 
             if (!HasMoreEnemiesInCurrentWave())
             {
                 ProceedToNextWave();
-                enemyType = EnemyType.None;
                 return false;
             }
-
-            enemyType = _currentWave.EnemyType;
             _spawned++;
 
             if (_spawned >= _currentWave.CountEnemy)
@@ -51,7 +47,7 @@ namespace CodeBase.Infrastructure.Services
                 WaveIsOver?.Invoke(_currentWave);
                 ProceedToNextWave();
             }
-
+            enemyConfig = _currentWave.EnemyConfig;
             return true;
         }
 

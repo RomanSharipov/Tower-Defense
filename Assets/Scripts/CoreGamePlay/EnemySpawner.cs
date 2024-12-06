@@ -77,30 +77,23 @@ namespace Assets.Scripts.CoreGamePlay
 
         private async UniTask CreateEnemyIfNeeded()
         {
-            if (_wavesService.TryGetEnemy(out EnemyType enemyType))
+            if (_wavesService.TryGetEnemy(out EnemyConfig enemyConfig))
             {
                 CancellationToken cancellationToken = this.GetCancellationTokenOnDestroy();
 
-                try
-                {
-                    EnemyBase newEnemy = await _enemyFactory.CreateEnemy(enemyType, cancellationToken).AttachExternalCancellation(cancellationToken);
-                    _counter++;
-                    newEnemy.transform.parent = transform;
-                    newEnemy.transform.localPosition = Vector3.zero;
-                    newEnemy.gameObject.name = $"{_counter}.{newEnemy.gameObject.name}";
+                EnemyBase newEnemy = await _enemyFactory.CreateEnemy(enemyConfig.EnemyType, cancellationToken).AttachExternalCancellation(cancellationToken);
+                _counter++;
+                newEnemy.transform.parent = transform;
+                newEnemy.transform.localPosition = Vector3.zero;
+                newEnemy.gameObject.name = $"{_counter}.{newEnemy.gameObject.name}";
 
-                    IEnemyHealth enemyHealth = new EnemyHealth(_wavesService.CurrentWave.EnemyConfig.Health);
+                IEnemyHealth enemyHealth = new EnemyHealth(enemyConfig.Health);
 
-                    newEnemy.Init(this, _wavesService.CurrentWave.EnemyConfig, enemyHealth);
-                    newEnemy.HealthBar.Init(enemyHealth);
-                    newEnemy.GoalIsReached += RemoveEnemy;
-                    newEnemy.Died += RemoveEnemy;
-                    _enemiesOnBoard.Add(newEnemy);
-                }
-                catch (OperationCanceledException)
-                {
-                    return;
-                }
+                newEnemy.Init(this, enemyConfig, enemyHealth);
+                newEnemy.HealthBar.Init(enemyHealth);
+                newEnemy.GoalIsReached += RemoveEnemy;
+                newEnemy.Died += RemoveEnemy;
+                _enemiesOnBoard.Add(newEnemy);
             }
         }
 

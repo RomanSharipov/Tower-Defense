@@ -13,6 +13,6 @@ namespace CodeBase.Infrastructure.Services
         
 
         public void SetNewWavesData(WavesOnLevelData wavesOnLevelData);
-        public bool TryGetEnemy(out EnemyType enemyType);
+        public bool TryGetEnemy(out EnemyConfig enemyConfig);
     }
 }
