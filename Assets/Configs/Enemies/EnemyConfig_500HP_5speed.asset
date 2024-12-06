@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 3
   _health: 500
+  _materials:
+  - {fileID: 2100000, guid: dba4447fab09f1b41a5cc1865ad7d052, type: 2}
+  - {fileID: 2100000, guid: 4cfa3f8b7d041cd4daab8669d1202691, type: 2}
+  - {fileID: 2100000, guid: 47336918c836f59429983edd585766ec, type: 2}

@@ -11,6 +11,7 @@ namespace Assets.Scripts.CoreGamePlay
     public abstract class EnemyBase : MonoBehaviour ,IDespawnable
     {
         [SerializeField] private IEnemyMovement _movement; 
+        [SerializeField] private MeshRenderer[] _meshRenderers; 
         
         [SerializeField] private EnemyConfig _enemyConfig; 
         [SerializeField] private Collider _collider; 
@@ -37,6 +38,13 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void Init(EnemySpawner enemySpawner, EnemyConfig enemyConfig, IEnemyHealth enemyHealth)
         {
+            Material targetMaterial = enemyConfig.Materials[UnityEngine.Random.Range(0, enemyConfig.Materials.Length)];
+
+            foreach (MeshRenderer meshRenderer in _meshRenderers)
+            {
+                meshRenderer.material = targetMaterial;
+            }
+
             _health = enemyHealth;
             _enemyConfig = enemyConfig;
             EnemyMovement.Init(enemyConfig.MovementSpeed, enemySpawner);

@@ -57,7 +57,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   CurrentTarget: {fileID: 0}
-  _detectionRadius: 5
   _minigunAttack: {fileID: 6114308797374807073}
 --- !u!114 &7397822838960268949
 MonoBehaviour:
@@ -89,7 +88,7 @@ MonoBehaviour:
   - {fileID: 2778915062012874967}
   _red: {fileID: 2100000, guid: fc4bd166c160d014fbcc985e750df952, type: 2}
   _transparent: {fileID: 2100000, guid: 62bd9f4c983a6fb4782824aaaaa8d739, type: 2}
-  _default: {fileID: 2100000, guid: 2e519ff65f723d84ab119c9cc1cef10b, type: 2}
+  _default: {fileID: 2100000, guid: ba880065aee191644b349257c598d1a6, type: 2}
 --- !u!114 &6114308797374807073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,9 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dcac2147c0ad04e85b2f201829a521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 1000
-  _accelerationTime: 1
-  _decelerationTime: 1
 --- !u!1 &2060646421675053023 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2465959110092089113, guid: 00dfe6e1281c2b0489aac7f42c4c8a84, type: 3}
@@ -383,9 +379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dcac2147c0ad04e85b2f201829a521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 1000
-  _accelerationTime: 1
-  _decelerationTime: 1
 --- !u!198 &2398490883459184588 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2299401513122569994, guid: 00dfe6e1281c2b0489aac7f42c4c8a84, type: 3}
@@ -428,9 +421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dcac2147c0ad04e85b2f201829a521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 1000
-  _accelerationTime: 1
-  _decelerationTime: 1
 --- !u!198 &6085540599070474032 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 7697801099811641334, guid: 00dfe6e1281c2b0489aac7f42c4c8a84, type: 3}
@@ -668,9 +658,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dcac2147c0ad04e85b2f201829a521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 1000
-  _accelerationTime: 1
-  _decelerationTime: 1
 --- !u!198 &5213965102572293417 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 104222953168954765, guid: 1edfe69617c37974282c5583fc9dea28, type: 3}
@@ -928,9 +915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dcac2147c0ad04e85b2f201829a521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 1000
-  _accelerationTime: 1
-  _decelerationTime: 1
 --- !u!1 &5955931354252361883 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2243411899265916567, guid: b975dfdad79cecd42909269bc3ef699c, type: 3}
@@ -965,9 +949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dcac2147c0ad04e85b2f201829a521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 1000
-  _accelerationTime: 1
-  _decelerationTime: 1
 --- !u!198 &6608620164222301997 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1599624735535655201, guid: b975dfdad79cecd42909269bc3ef699c, type: 3}

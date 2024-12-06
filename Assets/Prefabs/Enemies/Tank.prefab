@@ -398,6 +398,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a6e50707063e04aa5da984497e15e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshRenderers:
+  - {fileID: 5107328726961961042}
+  - {fileID: 3084371532131339175}
+  - {fileID: 645859969822319746}
   _enemyConfig: {fileID: 0}
   _collider: {fileID: 5006645408848359789}
   _healthBar: {fileID: 4409400336763223086}

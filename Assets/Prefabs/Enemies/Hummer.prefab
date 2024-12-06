@@ -664,6 +664,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5707bf504a0f9442b30cce74007107d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshRenderers:
+  - {fileID: 1665426117793771485}
+  - {fileID: 9216297709996128010}
+  - {fileID: 1020805322059525575}
+  - {fileID: 9099581402665862946}
+  - {fileID: 903555537616387978}
+  - {fileID: 5749306879903133}
   _enemyConfig: {fileID: 0}
   _collider: {fileID: 8318514487581250067}
   _healthBar: {fileID: 4257283891883210592}

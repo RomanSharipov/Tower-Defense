@@ -366,6 +366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4b6d94094413c4f95a468e636f0836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshRenderers:
+  - {fileID: 6006182953389222989}
+  - {fileID: 4281888770656055257}
+  - {fileID: 1705430531779829493}
+  - {fileID: 6502604308967144058}
   _enemyConfig: {fileID: 0}
   _collider: {fileID: 5622466031539293950}
   _healthBar: {fileID: 3868623271295762048}

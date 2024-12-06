@@ -91,7 +91,7 @@ MonoBehaviour:
   - {fileID: 3901433287122737995}
   _red: {fileID: 2100000, guid: fc4bd166c160d014fbcc985e750df952, type: 2}
   _transparent: {fileID: 2100000, guid: 62bd9f4c983a6fb4782824aaaaa8d739, type: 2}
-  _default: {fileID: 2100000, guid: 2e519ff65f723d84ab119c9cc1cef10b, type: 2}
+  _default: {fileID: 2100000, guid: ba880065aee191644b349257c598d1a6, type: 2}
 --- !u!114 &5654132667931714789
 MonoBehaviour:
   m_ObjectHideFlags: 0
