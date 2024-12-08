@@ -41,6 +41,8 @@ namespace CodeBase.Infrastructure.Installers
 
             builder.Register<PlayerPrefsSaveService>(Lifetime.Singleton)
                 .As<ISaveService>();
+            builder.Register<TurretsStatsService>(Lifetime.Singleton)
+                .As<TurretsStatsService>();
         }
     }    
 }

@@ -25,8 +25,8 @@ namespace Assets.Scripts.CoreGamePlay
 
         public void Init(int damage,float intervalBetweenAttack)
         {
-            _intervalBetweenAttack = _turretsStatsProvider.CannonLevelData.ReloadTimeUpgrade[0].IntervalBeetweenAttack;
-            _damage = _turretsStatsProvider.CannonLevelData.DamageUpgrade[0].Damage;
+            _intervalBetweenAttack = intervalBetweenAttack;
+            _damage = damage;
             _timer = new Timer(_intervalBetweenAttack);
         }
 

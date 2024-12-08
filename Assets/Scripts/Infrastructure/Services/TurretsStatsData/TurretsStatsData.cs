@@ -2,7 +2,7 @@
 
 namespace CodeBase.Infrastructure.Services
 {
-    public class TurretsStatsProvider : ITurretsStatsProvider
+    public class TurretsStatsData : ITurretsStatsData
     {
         private readonly TurretsLevelsConfig _turretsLevelsConfig;
 
@@ -14,7 +14,7 @@ namespace CodeBase.Infrastructure.Services
         public FlameTurretLevelData FlameTurretLevelData => _turretsLevelsConfig.FlameTurretLevelData;
 
         [Inject]
-        public TurretsStatsProvider(TurretsLevelsConfig turretsLevelsConfig)
+        public TurretsStatsData(TurretsLevelsConfig turretsLevelsConfig)
         {
             _turretsLevelsConfig = turretsLevelsConfig;
         }

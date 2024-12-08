@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 261303a7208165f48a339057d737367b, type: 3}
-  m_Name: TurretsStatsProviderInstaller
+  m_Name: TurretsStatsDataInstaller
   m_EditorClassIdentifier: 
   _turretsLevelsConfig: {fileID: 11400000, guid: 38adf624f31af3a4ba694108e84b7f3c, type: 2}

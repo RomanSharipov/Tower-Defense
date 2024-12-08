@@ -14,8 +14,8 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            int damage = _turretsStatsProvider.FlameTurretLevelData.DamageUpgrade[0].Damage;
-            float attackDistance = _turretsStatsProvider.FlameTurretLevelData.DetectDistance[0].DetectionRadius;
+            int damage = _turretsStatsData.FlameTurretLevelData.DamageUpgrade[0].Damage;
+            float attackDistance = _turretsStatsData.FlameTurretLevelData.DetectDistance[0].DetectionRadius;
             
             _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy ,_groundEnemy);
             _detectorEnyEnemies.SetRadius(attackDistance);

@@ -14,10 +14,10 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            int damage = _turretsStatsProvider.SlowTurretData.DamageUpgrade[0].Damage;
-            int percentSlow = _turretsStatsProvider.SlowTurretData.SlowPercentUpgrade[0].Percent;
-            float durationSlow = _turretsStatsProvider.SlowTurretData.SlowDurationUpgrade[0].Duration;
-            float attackDistance = _turretsStatsProvider.SlowTurretData.DetectDistance[0].DetectionRadius;
+            int damage = _turretsStatsData.SlowTurretData.DamageUpgrade[0].Damage;
+            int percentSlow = _turretsStatsData.SlowTurretData.SlowPercentUpgrade[0].Percent;
+            float durationSlow = _turretsStatsData.SlowTurretData.SlowDurationUpgrade[0].Duration;
+            float attackDistance = _turretsStatsData.SlowTurretData.DetectDistance[0].DetectionRadius;
 
 
             _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy ,_groundEnemy);

@@ -14,9 +14,9 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            int damage = _turretsStatsProvider.RocketTurretLevelData.DamageUpgrade[0].Damage;
-            float reloadTime = _turretsStatsProvider.RocketTurretLevelData.ReloadTimeUpgrade[0].IntervalBeetweenAttack;
-            float attackDistance = _turretsStatsProvider.RocketTurretLevelData.DetectDistance[0].DetectionRadius;
+            int damage = _turretsStatsData.RocketTurretLevelData.DamageUpgrade[0].Damage;
+            float reloadTime = _turretsStatsData.RocketTurretLevelData.ReloadTimeUpgrade[0].IntervalBeetweenAttack;
+            float attackDistance = _turretsStatsData.RocketTurretLevelData.DetectDistance[0].DetectionRadius;
             
             _detectorGroundEnemies = new DetectorGroundEnemies(transform.position, _groundEnemy);
             _detectorGroundEnemies.SetRadius(attackDistance);

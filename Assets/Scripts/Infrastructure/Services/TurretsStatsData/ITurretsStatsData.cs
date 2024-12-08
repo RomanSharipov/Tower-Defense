@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure.Services
 {
-    public interface ITurretsStatsProvider
+    public interface ITurretsStatsData
     {
         public CannonLevelData CannonLevelData { get; }
         public MinigunLevelData MinigunLevelData { get; }

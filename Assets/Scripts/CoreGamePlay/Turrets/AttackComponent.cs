@@ -8,7 +8,7 @@ namespace Assets.Scripts.CoreGamePlay
     public abstract class AttackComponent : MonoBehaviour, IUpgradeable
     {
         protected EnemyBase _currentEnemy;
-        [Inject] protected ITurretsStatsProvider _turretsStatsProvider;
+        [Inject] protected ITurretsStatsData _turretsStatsProvider;
         public abstract void AttackOnUpdate();
         public bool EnemyIsDead { get; private set; }
         

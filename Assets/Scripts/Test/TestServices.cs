@@ -6,12 +6,13 @@ using UniRx;
 
 public class TestServices : MonoBehaviour
 {
-    [Inject] private IClickOnTurretTracker _clickOnTurretTracker;
+    [Inject] private TurretsStatsService TurretsStatsSaveService;
+    [SerializeField] private StatsType StatsType;
 
-
-    private void Awake()
+    [ContextMenu("LevelUp()")]
+    public void LevelUp()
     {
-
+        TurretsStatsSaveService.LevelUpStat(StatsType);
 
     }
 }

@@ -14,8 +14,8 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            int damage = _turretsStatsProvider.MinigunLevelData.DamageUpgrade[0].Damage;
-            float attackDistance = _turretsStatsProvider.MinigunLevelData.DetectDistance[0].DetectionRadius;
+            int damage = _turretsStatsData.MinigunLevelData.DamageUpgrade[0].Damage;
+            float attackDistance = _turretsStatsData.MinigunLevelData.DetectDistance[0].DetectionRadius;
             
             _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy, _groundEnemy);
             _detectorEnyEnemies.SetRadius(attackDistance);

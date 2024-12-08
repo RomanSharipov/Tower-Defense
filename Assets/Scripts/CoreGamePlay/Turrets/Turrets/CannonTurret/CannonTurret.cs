@@ -15,9 +15,9 @@ namespace Assets.Scripts.CoreGamePlay
         {
             _detectorGroundEnemies = new DetectorGroundEnemies(transform.position,_groundEnemy);
 
-            int damage = _turretsStatsProvider.CannonLevelData.DamageUpgrade[0].Damage;
-            float reloadTime = _turretsStatsProvider.CannonLevelData.ReloadTimeUpgrade[0].IntervalBeetweenAttack;
-            float attackDistance = _turretsStatsProvider.CannonLevelData.DetectDistance[0].DetectionRadius;
+            int damage = _turretsStatsData.CannonLevelData.DamageUpgrade[0].Damage;
+            float reloadTime = _turretsStatsData.CannonLevelData.ReloadTimeUpgrade[0].IntervalBeetweenAttack;
+            float attackDistance = _turretsStatsData.CannonLevelData.DetectDistance[0].DetectionRadius;
 
             _cannonTurretAttack.Init(damage, reloadTime);
 

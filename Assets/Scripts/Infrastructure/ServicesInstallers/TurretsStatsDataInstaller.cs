@@ -5,18 +5,18 @@ using VContainer;
 
 namespace CodeBase.Infrastructure.Installers
 {
-    [CreateAssetMenu(fileName = "TurretsStatsProviderInstaller",
-    menuName = "Scriptable Installers/TurretsStatsProviderInstaller")]
+    [CreateAssetMenu(fileName = "TurretsStatsDataInstaller",
+    menuName = "Scriptable Installers/TurretsStatsDataInstaller")]
     
-    public class TurretsStatsProviderInstaller : AScriptableInstaller
+    public class TurretsStatsDataInstaller : AScriptableInstaller
     {
         [SerializeField] private TurretsLevelsConfig _turretsLevelsConfig;
 
         public override void Install(IContainerBuilder builder)
         {
-            builder.Register<TurretsStatsProvider>(Lifetime.Singleton)
+            builder.Register<TurretsStatsData>(Lifetime.Singleton)
                 .WithParameter("turretsLevelsConfig", _turretsLevelsConfig)
-                .As<ITurretsStatsProvider>();
+                .As<ITurretsStatsData>();
         }
     }    
 }
