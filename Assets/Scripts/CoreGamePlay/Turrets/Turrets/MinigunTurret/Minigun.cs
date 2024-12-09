@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CodeBase.Infrastructure.Services;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -14,8 +15,11 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            int damage = _turretsStatsData.MinigunLevelData.DamageUpgrade[0].Damage;
-            float attackDistance = _turretsStatsData.MinigunLevelData.DetectDistance[0].DetectionRadius;
+            int indexDamage = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.MinigunDamage);
+            int indexAttackDistance = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.MinigunAttackDistance);
+            
+            int damage = _turretsStatsData.MinigunLevelData.Damage[indexDamage].Damage;
+            float attackDistance = _turretsStatsData.MinigunLevelData.DetectDistance[indexAttackDistance].DetectionRadius;
             
             _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy, _groundEnemy);
             _detectorEnyEnemies.SetRadius(attackDistance);

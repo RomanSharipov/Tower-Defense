@@ -31,7 +31,7 @@ public class AntiAirLevelData
 public class MinigunLevelData
 {
     public DetectDistanceUpgrade[] DetectDistance;
-    public DamageUpgrade[] DamageUpgrade;
+    public DamageUpgrade[] Damage;
 }
 [Serializable]
 public class CannonLevelData

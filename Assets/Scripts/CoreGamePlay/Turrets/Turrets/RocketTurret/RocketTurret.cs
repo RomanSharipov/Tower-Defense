@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CodeBase.Infrastructure.Services;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -14,9 +15,13 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            int damage = _turretsStatsData.RocketTurretLevelData.DamageUpgrade[0].Damage;
-            float reloadTime = _turretsStatsData.RocketTurretLevelData.ReloadTimeUpgrade[0].IntervalBeetweenAttack;
-            float attackDistance = _turretsStatsData.RocketTurretLevelData.DetectDistance[0].DetectionRadius;
+            int indexDamage = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.RocketDamage);
+            int indexReloadTime = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.RocketReloadTime);
+            int indexAttackDistance = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.RocketAttackDistance);
+            
+            int damage = _turretsStatsData.RocketTurretLevelData.DamageUpgrade[indexDamage].Damage;
+            float reloadTime = _turretsStatsData.RocketTurretLevelData.ReloadTimeUpgrade[indexReloadTime].IntervalBeetweenAttack;
+            float attackDistance = _turretsStatsData.RocketTurretLevelData.DetectDistance[indexAttackDistance].DetectionRadius;
             
             _detectorGroundEnemies = new DetectorGroundEnemies(transform.position, _groundEnemy);
             _detectorGroundEnemies.SetRadius(attackDistance);

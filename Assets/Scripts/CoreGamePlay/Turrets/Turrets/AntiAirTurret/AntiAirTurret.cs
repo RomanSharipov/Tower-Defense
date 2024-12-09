@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CodeBase.Infrastructure.Services;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -13,11 +14,14 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            int damage = _turretsStatsData.AntiAirLevelData.DamageUpgrade[0].Damage;
-            float reloadTime = _turretsStatsData.AntiAirLevelData.ReloadTimeUpgrade[0].IntervalBeetweenAttack;
-            float attackDistance = _turretsStatsData.AntiAirLevelData.DetectDistance[0].DetectionRadius;
-
-
+            int indexDamage = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.AntiAirDamage);
+            int indexReloadTime = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.AntiAirReloadTime);
+            int indexAttackDistance = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.AntiAirAttackDistance);
+            
+            int damage = _turretsStatsData.AntiAirLevelData.DamageUpgrade[indexDamage].Damage;
+            float reloadTime = _turretsStatsData.AntiAirLevelData.ReloadTimeUpgrade[indexReloadTime].IntervalBeetweenAttack;
+            float attackDistance = _turretsStatsData.AntiAirLevelData.DetectDistance[indexAttackDistance].DetectionRadius;
+            
             _antiAirTurretAttack.Init(reloadTime, damage);
             _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _groundEnemy, _flyingEnemy);
             _detectorEnyEnemies.SetRadius(attackDistance);

@@ -22,6 +22,7 @@ namespace Assets.Scripts.CoreGamePlay
         public EnemyBase CurrentTarget;
         
         [Inject] protected ITurretsStatsData _turretsStatsData;
+        [Inject] protected ITurretsStatsLevelIndexService _turretsStatsLevelIndexService;
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
         public abstract IDetector DetectorEnemies { get; }
         public abstract AttackComponent AttackComponent { get; }

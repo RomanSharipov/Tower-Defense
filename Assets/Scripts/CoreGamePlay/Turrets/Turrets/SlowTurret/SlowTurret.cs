@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CodeBase.Infrastructure.Services;
+using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -14,10 +15,16 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override void InitIntance()
         {
-            int damage = _turretsStatsData.SlowTurretData.DamageUpgrade[0].Damage;
-            int percentSlow = _turretsStatsData.SlowTurretData.SlowPercentUpgrade[0].Percent;
-            float durationSlow = _turretsStatsData.SlowTurretData.SlowDurationUpgrade[0].Duration;
-            float attackDistance = _turretsStatsData.SlowTurretData.DetectDistance[0].DetectionRadius;
+            int indexDamage = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.SlowDamage);
+            int indexSlowPercent = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.SlowPercent);
+            int indexSlowDuration = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.SlowDuration);
+            int indexAttackDistance = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.SlowAttackDistance);
+
+
+            int damage = _turretsStatsData.SlowTurretData.DamageUpgrade[indexDamage].Damage;
+            int percentSlow = _turretsStatsData.SlowTurretData.SlowPercentUpgrade[indexSlowPercent].Percent;
+            float durationSlow = _turretsStatsData.SlowTurretData.SlowDurationUpgrade[indexSlowDuration].Duration;
+            float attackDistance = _turretsStatsData.SlowTurretData.DetectDistance[indexAttackDistance].DetectionRadius;
 
 
             _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy ,_groundEnemy);
