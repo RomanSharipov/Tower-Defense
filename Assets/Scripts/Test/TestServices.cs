@@ -6,7 +6,7 @@ using UniRx;
 
 public class TestServices : MonoBehaviour
 {
-    [Inject] private TurretsStatsLevelIndexService TurretsStatsSaveService;
+    [Inject] private ITurretsStatsLevelIndexService TurretsStatsSaveService;
     [SerializeField] private StatsType StatsType;
 
     [ContextMenu("LevelUp()")]

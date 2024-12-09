@@ -10,14 +10,15 @@ namespace CodeBase.Infrastructure.Services
         public string Filename = "TurretsStats";
 
         private ISaveService _saveService;
+        private ITurretsStatsData _turretsStatsData;
 
         private Dictionary<StatsType, int> _stats;
-        private readonly IReadOnlyDictionary<StatsType, int> _statsLimits = new Dictionary<StatsType, int>();
-
+        
         [Inject]
-        public TurretsStatsLevelIndexService(ISaveService saveService)
+        public TurretsStatsLevelIndexService(ISaveService saveService, ITurretsStatsData turretsStatsData)
         {
             _saveService = saveService;
+            _turretsStatsData = turretsStatsData;
         }
 
         public void LevelUpStat(StatsType statsType)
@@ -34,18 +35,33 @@ namespace CodeBase.Infrastructure.Services
             return _stats[statsType];
         }
 
-        public bool LevelIsMax(StatsType statsType)
+        public bool LevelIsMax(StatsType statsType) 
         {
-            if (_statsLimits.TryGetValue(statsType, out int limit))
-            {
-                if (_stats[statsType] >= limit)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+            int currentLevel = GetCurrentValue(statsType) + 1;
 
+            return statsType switch
+            {
+                StatsType.MinigunDamage => currentLevel >= _turretsStatsData.MinigunLevelData.Damage.Length,
+                StatsType.MinigunAttackDistance => currentLevel >= _turretsStatsData.MinigunLevelData.DetectDistance.Length,
+                StatsType.CannonDamage => currentLevel >= _turretsStatsData.CannonLevelData.Damage.Length,
+                StatsType.CannonReloadTime => currentLevel >= _turretsStatsData.CannonLevelData.ReloadTime.Length,
+                StatsType.CannonAttackDistance => currentLevel >= _turretsStatsData.CannonLevelData.DetectDistance.Length,
+                StatsType.AntiAirDamage => currentLevel >= _turretsStatsData.AntiAirLevelData.Damage.Length,
+                StatsType.AntiAirReloadTime => currentLevel >= _turretsStatsData.AntiAirLevelData.ReloadTime.Length,
+                StatsType.AntiAirAttackDistance => currentLevel >= _turretsStatsData.AntiAirLevelData.DetectDistance.Length,
+                StatsType.FlameDamage => currentLevel >= _turretsStatsData.FlameTurretLevelData.Damage.Length,
+                StatsType.FlameAttackDistance => currentLevel >= _turretsStatsData.FlameTurretLevelData.DetectDistance.Length,
+                StatsType.RocketDamage => currentLevel >= _turretsStatsData.RocketTurretLevelData.Damage.Length,
+                StatsType.RocketReloadTime => currentLevel >= _turretsStatsData.RocketTurretLevelData.ReloadTime.Length,
+                StatsType.RocketAttackDistance => currentLevel >= _turretsStatsData.MinigunLevelData.DetectDistance.Length,
+                StatsType.SlowDamage => currentLevel >= _turretsStatsData.SlowTurretData.Damage.Length,
+                StatsType.SlowAttackDistance => currentLevel >= _turretsStatsData.SlowTurretData.DetectDistance.Length,
+                StatsType.SlowPercent => currentLevel >= _turretsStatsData.SlowTurretData.SlowPercent.Length,
+                StatsType.SlowDuration => currentLevel >= _turretsStatsData.SlowTurretData.SlowDuration.Length,
+                StatsType.None => throw new NotImplementedException(),
+                _ => throw new NotImplementedException(),
+            };
+        }
         public void Initialize()
         {
             if (_saveService.HasSaved(Filename))

@@ -19,7 +19,7 @@ namespace Assets.Scripts.CoreGamePlay
             int indexAttackDistance = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.FlameAttackDistance);
 
 
-            int damage = _turretsStatsData.FlameTurretLevelData.DamageUpgrade[indexDamage].Damage;
+            int damage = _turretsStatsData.FlameTurretLevelData.Damage[indexDamage].Damage;
             float attackDistance = _turretsStatsData.FlameTurretLevelData.DetectDistance[indexAttackDistance].DetectionRadius;
             
             _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy ,_groundEnemy);

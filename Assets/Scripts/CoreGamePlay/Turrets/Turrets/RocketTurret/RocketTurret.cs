@@ -19,8 +19,8 @@ namespace Assets.Scripts.CoreGamePlay
             int indexReloadTime = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.RocketReloadTime);
             int indexAttackDistance = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.RocketAttackDistance);
             
-            int damage = _turretsStatsData.RocketTurretLevelData.DamageUpgrade[indexDamage].Damage;
-            float reloadTime = _turretsStatsData.RocketTurretLevelData.ReloadTimeUpgrade[indexReloadTime].IntervalBeetweenAttack;
+            int damage = _turretsStatsData.RocketTurretLevelData.Damage[indexDamage].Damage;
+            float reloadTime = _turretsStatsData.RocketTurretLevelData.ReloadTime[indexReloadTime].IntervalBeetweenAttack;
             float attackDistance = _turretsStatsData.RocketTurretLevelData.DetectDistance[indexAttackDistance].DetectionRadius;
             
             _detectorGroundEnemies = new DetectorGroundEnemies(transform.position, _groundEnemy);

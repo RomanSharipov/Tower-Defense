@@ -20,7 +20,7 @@ namespace Assets.Scripts.CoreGamePlay
         public void Init(int damage, int percent, float duration)
         {
             _damage = damage;
-            _percent = percent;
+            _percent = 100 - percent;
             _duration = duration;
         }
 

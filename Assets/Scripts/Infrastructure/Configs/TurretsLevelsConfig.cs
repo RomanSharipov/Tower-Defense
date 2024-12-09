@@ -23,8 +23,8 @@ public class TurretsLevelsConfig : ScriptableObject
 public class AntiAirLevelData
 {
     public DetectDistanceUpgrade[] DetectDistance;
-    public DamageUpgrade[] DamageUpgrade;
-    public ReloadTimeUpgrade[] ReloadTimeUpgrade;
+    public DamageUpgrade[] Damage;
+    public ReloadTimeUpgrade[] ReloadTime;
 }
 
 [Serializable]
@@ -37,29 +37,29 @@ public class MinigunLevelData
 public class CannonLevelData
 {
     public DetectDistanceUpgrade[] DetectDistance;
-    public DamageUpgrade[] DamageUpgrade;
-    public ReloadTimeUpgrade[] ReloadTimeUpgrade;
+    public DamageUpgrade[] Damage;
+    public ReloadTimeUpgrade[] ReloadTime;
 }
 
 [Serializable]
 public class SlowTurretData
 {
     public DetectDistanceUpgrade[] DetectDistance;
-    public DamageUpgrade[] DamageUpgrade;
-    public SlowDurationUpgrade[] SlowDurationUpgrade;
-    public SlowPercentUpgrade[] SlowPercentUpgrade;
+    public DamageUpgrade[] Damage;
+    public SlowDurationUpgrade[] SlowDuration;
+    public SlowPercentUpgrade[] SlowPercent;
 }
 
 [Serializable]
 public class FlameTurretLevelData
 {
     public DetectDistanceUpgrade[] DetectDistance;
-    public DamageUpgrade[] DamageUpgrade;
+    public DamageUpgrade[] Damage;
 }
 [Serializable]
 public class RocketTurretLevelData
 {
     public DetectDistanceUpgrade[] DetectDistance;
-    public DamageUpgrade[] DamageUpgrade;
-    public ReloadTimeUpgrade[] ReloadTimeUpgrade;
+    public DamageUpgrade[] Damage;
+    public ReloadTimeUpgrade[] ReloadTime;
 }

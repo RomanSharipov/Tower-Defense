@@ -16,103 +16,103 @@ MonoBehaviour:
     DetectDistance:
     - DetectionRadius: 5
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 6
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 7
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 8
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 9
       Price: 0
-    DamageUpgrade:
+    Damage:
     - Damage: 2
       Price: 0
-    - Damage: 0
+    - Damage: 3
       Price: 0
-    - Damage: 0
+    - Damage: 4
       Price: 0
-    - Damage: 0
+    - Damage: 5
       Price: 0
-    - Damage: 0
+    - Damage: 6
       Price: 0
   _cannonUpgradeData:
     DetectDistance:
     - DetectionRadius: 5
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 6
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 7
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 8
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 9
       Price: 0
-    DamageUpgrade:
-    - Damage: 3
+    Damage:
+    - Damage: 16
       Price: 0
-    - Damage: 0
+    - Damage: 20
       Price: 0
-    - Damage: 0
+    - Damage: 25
       Price: 0
-    - Damage: 0
+    - Damage: 30
       Price: 0
-    - Damage: 0
+    - Damage: 35
       Price: 0
-    ReloadTimeUpgrade:
-    - IntervalBeetweenAttack: 2
+    ReloadTime:
+    - IntervalBeetweenAttack: 1.5
       Price: 0
-    - IntervalBeetweenAttack: 0
+    - IntervalBeetweenAttack: 1
       Price: 0
-    - IntervalBeetweenAttack: 0
+    - IntervalBeetweenAttack: 0.6
       Price: 0
-    - IntervalBeetweenAttack: 0
+    - IntervalBeetweenAttack: 0.3
       Price: 0
     - IntervalBeetweenAttack: 0
       Price: 0
   _slowTurretData:
     DetectDistance:
-    - DetectionRadius: 0
+    - DetectionRadius: 5
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 6
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 7
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 8
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 9
       Price: 0
-    DamageUpgrade:
-    - Damage: 0
+    Damage:
+    - Damage: 1
       Price: 0
-    - Damage: 0
+    - Damage: 2
       Price: 0
-    - Damage: 0
+    - Damage: 3
       Price: 0
-    - Damage: 0
+    - Damage: 4
       Price: 0
-    - Damage: 0
+    - Damage: 5
       Price: 0
-    SlowDurationUpgrade:
-    - Duration: 0
+    SlowDuration:
+    - Duration: 2
       Price: 0
-    - Duration: 0
+    - Duration: 3
       Price: 0
-    - Duration: 0
+    - Duration: 4
       Price: 0
-    - Duration: 0
+    - Duration: 5
       Price: 0
-    - Duration: 0
+    - Duration: 6
       Price: 0
-    SlowPercentUpgrade:
-    - Percent: 0
+    SlowPercent:
+    - Percent: 30
       Price: 0
-    - Percent: 0
+    - Percent: 40
       Price: 0
-    - Percent: 0
+    - Percent: 50
       Price: 0
-    - Percent: 0
+    - Percent: 60
       Price: 0
-    - Percent: 0
+    - Percent: 70
       Price: 0
   _rocketTurretLevelData:
     DetectDistance:
@@ -126,28 +126,8 @@ MonoBehaviour:
       Price: 0
     - DetectionRadius: 0
       Price: 0
-    DamageUpgrade:
-    - Damage: 3
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    ReloadTimeUpgrade:
-    - IntervalBeetweenAttack: 1
-      Price: 0
-    - IntervalBeetweenAttack: 0
-      Price: 0
-    - IntervalBeetweenAttack: 0
-      Price: 0
-    - IntervalBeetweenAttack: 0
-      Price: 0
-    - IntervalBeetweenAttack: 0
-      Price: 0
+    Damage: []
+    ReloadTime: []
   _flameTurretLevelData:
     DetectDistance:
     - DetectionRadius: 0
@@ -160,17 +140,7 @@ MonoBehaviour:
       Price: 0
     - DetectionRadius: 0
       Price: 0
-    DamageUpgrade:
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
+    Damage: []
   _antiAirLevelData:
     DetectDistance:
     - DetectionRadius: 5
@@ -183,25 +153,5 @@ MonoBehaviour:
       Price: 0
     - DetectionRadius: 0
       Price: 0
-    DamageUpgrade:
-    - Damage: 2
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    - Damage: 0
-      Price: 0
-    ReloadTimeUpgrade:
-    - IntervalBeetweenAttack: 0
-      Price: 0
-    - IntervalBeetweenAttack: 0
-      Price: 0
-    - IntervalBeetweenAttack: 0
-      Price: 0
-    - IntervalBeetweenAttack: 0
-      Price: 0
-    - IntervalBeetweenAttack: 0
-      Price: 0
+    Damage: []
+    ReloadTime: []

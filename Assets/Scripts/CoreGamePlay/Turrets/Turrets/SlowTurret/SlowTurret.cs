@@ -21,9 +21,9 @@ namespace Assets.Scripts.CoreGamePlay
             int indexAttackDistance = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.SlowAttackDistance);
 
 
-            int damage = _turretsStatsData.SlowTurretData.DamageUpgrade[indexDamage].Damage;
-            int percentSlow = _turretsStatsData.SlowTurretData.SlowPercentUpgrade[indexSlowPercent].Percent;
-            float durationSlow = _turretsStatsData.SlowTurretData.SlowDurationUpgrade[indexSlowDuration].Duration;
+            int damage = _turretsStatsData.SlowTurretData.Damage[indexDamage].Damage;
+            int percentSlow = _turretsStatsData.SlowTurretData.SlowPercent[indexSlowPercent].Percent;
+            float durationSlow = _turretsStatsData.SlowTurretData.SlowDuration[indexSlowDuration].Duration;
             float attackDistance = _turretsStatsData.SlowTurretData.DetectDistance[indexAttackDistance].DetectionRadius;
 
 

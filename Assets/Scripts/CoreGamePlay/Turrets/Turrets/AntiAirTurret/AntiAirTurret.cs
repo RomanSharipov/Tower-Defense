@@ -18,8 +18,8 @@ namespace Assets.Scripts.CoreGamePlay
             int indexReloadTime = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.AntiAirReloadTime);
             int indexAttackDistance = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.AntiAirAttackDistance);
             
-            int damage = _turretsStatsData.AntiAirLevelData.DamageUpgrade[indexDamage].Damage;
-            float reloadTime = _turretsStatsData.AntiAirLevelData.ReloadTimeUpgrade[indexReloadTime].IntervalBeetweenAttack;
+            int damage = _turretsStatsData.AntiAirLevelData.Damage[indexDamage].Damage;
+            float reloadTime = _turretsStatsData.AntiAirLevelData.ReloadTime[indexReloadTime].IntervalBeetweenAttack;
             float attackDistance = _turretsStatsData.AntiAirLevelData.DetectDistance[indexAttackDistance].DetectionRadius;
             
             _antiAirTurretAttack.Init(reloadTime, damage);
