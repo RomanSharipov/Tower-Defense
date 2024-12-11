@@ -46,6 +46,7 @@ namespace CodeBase.Infrastructure.Services
             {
                 WaveIsOver?.Invoke(_currentWave);
                 ProceedToNextWave();
+                return false;
             }
             enemyConfig = _currentWave.EnemyConfig;
             return true;
