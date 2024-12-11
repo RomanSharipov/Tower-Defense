@@ -23,7 +23,7 @@ namespace Assets.Scripts.CoreGamePlay
             float attackDistance = _turretsStatsData.AntiAirLevelData.DetectDistance[indexAttackDistance].DetectionRadius;
             
             _antiAirTurretAttack.Init(reloadTime, damage);
-            _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _groundEnemy, _flyingEnemy);
+            _detectorEnyEnemies = new DetectorEnyEnemies(transform, _groundEnemy, _flyingEnemy);
             _detectorEnyEnemies.SetRadius(attackDistance);
         }
     }

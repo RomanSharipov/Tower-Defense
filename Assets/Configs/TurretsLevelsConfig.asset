@@ -48,8 +48,6 @@ MonoBehaviour:
     - DetectionRadius: 9
       Price: 0
     Damage:
-    - Damage: 16
-      Price: 0
     - Damage: 20
       Price: 0
     - Damage: 25
@@ -57,6 +55,8 @@ MonoBehaviour:
     - Damage: 30
       Price: 0
     - Damage: 35
+      Price: 0
+    - Damage: 40
       Price: 0
     ReloadTime:
     - IntervalBeetweenAttack: 1.5
@@ -130,17 +130,27 @@ MonoBehaviour:
     ReloadTime: []
   _flameTurretLevelData:
     DetectDistance:
-    - DetectionRadius: 0
+    - DetectionRadius: 5
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 6
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 7
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 8
       Price: 0
-    - DetectionRadius: 0
+    - DetectionRadius: 9
       Price: 0
-    Damage: []
+    Damage:
+    - Damage: 4
+      Price: 0
+    - Damage: 6
+      Price: 0
+    - Damage: 8
+      Price: 0
+    - Damage: 10
+      Price: 0
+    - Damage: 12
+      Price: 0
   _antiAirLevelData:
     DetectDistance:
     - DetectionRadius: 5

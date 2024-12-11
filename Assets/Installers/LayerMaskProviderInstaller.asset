@@ -21,3 +21,6 @@ MonoBehaviour:
   _turret:
     serializedVersion: 2
     m_Bits: 1024
+  _groundEnemy:
+    serializedVersion: 2
+    m_Bits: 64

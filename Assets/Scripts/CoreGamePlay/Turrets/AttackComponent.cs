@@ -9,6 +9,7 @@ namespace Assets.Scripts.CoreGamePlay
     {
         protected EnemyBase _currentEnemy;
         [Inject] protected ITurretsStatsData _turretsStatsProvider;
+        [Inject] protected ILayerMaskProvider _layerMaskProvider;
         public abstract void AttackOnUpdate();
         public bool EnemyIsDead { get; private set; }
         

@@ -21,7 +21,7 @@ namespace Assets.Scripts.CoreGamePlay
             int damage = _turretsStatsData.MinigunLevelData.Damage[indexDamage].Damage;
             float attackDistance = _turretsStatsData.MinigunLevelData.DetectDistance[indexAttackDistance].DetectionRadius;
             
-            _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy, _groundEnemy);
+            _detectorEnyEnemies = new DetectorEnyEnemies(transform, _flyingEnemy, _groundEnemy);
             _detectorEnyEnemies.SetRadius(attackDistance);
             _minigunAttack.Init(damage);
         }

@@ -10,5 +10,6 @@ namespace CodeBase.Infrastructure.Services
         public LayerMask Blockbuilding { get; }
         public LayerMask Tile { get; }
         public LayerMask Turret { get; }
+        public LayerMask GroundEnemy { get; }
     }
 }

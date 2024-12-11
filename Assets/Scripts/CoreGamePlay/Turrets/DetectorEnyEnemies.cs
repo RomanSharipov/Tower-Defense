@@ -5,7 +5,7 @@ namespace Assets.Scripts.CoreGamePlay
 {
     public class DetectorEnyEnemies : IDetector
     {
-        private readonly Vector3 _myPosition;
+        private readonly Transform _transform;
         private readonly LayerMask _secondaryTarget;
         private readonly LayerMask _primaryTarget;
 
@@ -16,16 +16,16 @@ namespace Assets.Scripts.CoreGamePlay
         
         public bool TryFindEnemy(out EnemyBase totalEnemy)
         {
-            if (_detectorEnemies.TryFindEnemy(_myPosition, _primaryTarget, _detectionRadius, _hitColliders, out totalEnemy))
+            if (_detectorEnemies.TryFindEnemy(_transform.position, _primaryTarget, _detectionRadius, _hitColliders, out totalEnemy))
             {
                 return true;
             }
-            return _detectorEnemies.TryFindEnemy(_myPosition, _secondaryTarget, _detectionRadius, _hitColliders, out totalEnemy);
+            return _detectorEnemies.TryFindEnemy(_transform.position, _secondaryTarget, _detectionRadius, _hitColliders, out totalEnemy);
         }
 
-        public DetectorEnyEnemies(Vector3 myPosition, LayerMask secondaryTarget, LayerMask primaryTarget)
+        public DetectorEnyEnemies(Transform transform, LayerMask secondaryTarget, LayerMask primaryTarget)
         {
-            _myPosition = myPosition;
+            _transform = transform;
             _secondaryTarget = secondaryTarget;
             _primaryTarget = primaryTarget;
         }
@@ -37,7 +37,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         public bool PointFarAway(Vector3 point)
         {
-            return Vector3.Distance(_myPosition, point) > _detectionRadius;
+            return Vector3.Distance(_transform.position, point) > _detectionRadius;
         }
     }
 }

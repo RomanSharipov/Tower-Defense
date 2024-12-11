@@ -50,7 +50,7 @@ namespace Assets.Scripts.CoreGamePlay
         {
             _currentEffects.GetParticleSystemByIndex(gunIndex).Play();
             CannonShell bullet = NightPool.Spawn(_bulletPrefab, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).position, _currentBulletSpawnPoint.GetSpawnPointByIndex(gunIndex).rotation);
-            bullet.Init(_damage, _bulletSpeed);
+            bullet.Init(_damage, _bulletSpeed, _layerMaskProvider.GroundEnemy);
         }
 
         private void OnEnable()

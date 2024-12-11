@@ -12,6 +12,7 @@ namespace CodeBase.Infrastructure.Installers
         [SerializeField] private LayerMask _blockbuilding;
         [SerializeField] private LayerMask _tile;
         [SerializeField] private LayerMask _turret;
+        [SerializeField] private LayerMask _groundEnemy;
 
         public override void Install(IContainerBuilder builder)
         {
@@ -19,6 +20,7 @@ namespace CodeBase.Infrastructure.Installers
                 .WithParameter("blockbuilding", _blockbuilding)
                 .WithParameter("tile", _tile)
                 .WithParameter("turret", _turret)
+                .WithParameter("groundEnemy", _groundEnemy)
                 .As<ILayerMaskProvider>();
         }
     }    

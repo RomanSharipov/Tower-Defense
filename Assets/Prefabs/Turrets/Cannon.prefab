@@ -129,7 +129,7 @@ MonoBehaviour:
     - {fileID: 4058939064305926554}
     - {fileID: 5318844254121667097}
     - {fileID: 7449528207812871493}
-  _bulletSpeed: 9
+  _bulletSpeed: 20
 --- !u!135 &7101346070284183227
 SphereCollider:
   m_ObjectHideFlags: 0

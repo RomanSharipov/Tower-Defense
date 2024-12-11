@@ -27,7 +27,7 @@ namespace Assets.Scripts.CoreGamePlay
             float attackDistance = _turretsStatsData.SlowTurretData.DetectDistance[indexAttackDistance].DetectionRadius;
 
 
-            _detectorEnyEnemies = new DetectorEnyEnemies(transform.position, _flyingEnemy ,_groundEnemy);
+            _detectorEnyEnemies = new DetectorEnyEnemies(transform, _flyingEnemy ,_groundEnemy);
             _detectorEnyEnemies.SetRadius(attackDistance);
             //_slowTurretAttack.Init(damage: 1,percent:70,duration:3.0f);
             _slowTurretAttack.Init(damage: damage, percent: percentSlow, duration: durationSlow);
