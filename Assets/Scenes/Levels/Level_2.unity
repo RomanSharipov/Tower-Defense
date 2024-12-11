@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 4
   _r: 0
 --- !u!1 &27561574
@@ -395,6 +396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 4
   _r: 1
 --- !u!1 &33170794
@@ -609,6 +611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 2
   _r: 2
 --- !u!1 &36403675
@@ -730,6 +733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 3
   _r: 0
 --- !u!1 &47659912
@@ -851,6 +855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 2
   _r: 0
 --- !u!1 &107913889
@@ -900,6 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!23 &107913892
@@ -1071,6 +1077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 2
   _r: 4
 --- !u!1 &152957079
@@ -1192,6 +1199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 5
   _r: 1
 --- !u!1 &159267038
@@ -1373,6 +1381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: -2
   _r: 4
 --- !u!1 &195091259
@@ -1525,6 +1534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 4
   _r: 2
 --- !u!1 &216901897
@@ -1740,6 +1750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 3
   _r: 4
 --- !u!1 &271359018
@@ -1861,6 +1872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 6
   _r: 2
 --- !u!1 &273791034
@@ -1982,6 +1994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 4
   _r: 3
 --- !u!1 &344130894
@@ -2103,6 +2116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 0
   _r: 2
 --- !u!1 &344154390
@@ -2224,6 +2238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 4
   _r: 4
 --- !u!1 &414746392
@@ -2408,6 +2423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 1
   _r: 2
 --- !u!1 &464544814
@@ -2529,6 +2545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 1
   _r: 1
 --- !u!1 &513698067
@@ -2650,6 +2667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 6
   _r: 3
 --- !u!1 &527234993
@@ -2916,6 +2934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 2
   _r: 3
 --- !u!1 &562379903
@@ -3037,6 +3056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 6
   _r: 4
 --- !u!1 &650236453
@@ -3158,6 +3178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: -1
   _r: 3
 --- !u!1 &664757438
@@ -3279,6 +3300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 7
   _r: 3
 --- !u!1 &670292351
@@ -3400,6 +3422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: -1
   _r: 4
 --- !u!1 &687822376
@@ -3521,6 +3544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 9
   _r: 1
 --- !u!1 &730221338
@@ -3642,6 +3666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 3
   _r: 1
 --- !u!1 &781853875
@@ -3763,6 +3788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 5
   _r: 4
 --- !u!1 &786793667
@@ -4012,6 +4038,7 @@ MonoBehaviour:
   _enemySpawners:
   - {fileID: 1390109156}
   _pathInitializer: {fileID: 809222464}
+  _wavesOnLevelData: {fileID: 11400000, guid: a01ef079e913e254c9b2c8909c0736ed, type: 2}
 --- !u!114 &809222464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4146,6 +4173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: -1
   _r: 2
 --- !u!1 &863472880
@@ -4195,6 +4223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!23 &863472883
@@ -4511,6 +4540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 5
   _r: 2
 --- !u!1 &975012269
@@ -4593,6 +4623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!95 &1027835699
@@ -4735,6 +4766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!1 &1090472853
@@ -4784,6 +4816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!23 &1090472856
@@ -4883,6 +4916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!23 &1096027404
@@ -5054,6 +5088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 7
   _r: 4
 --- !u!1 &1133907390
@@ -5175,6 +5210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 1
   _r: 0
 --- !u!1 &1181262577
@@ -5224,6 +5260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!23 &1181262580
@@ -5323,6 +5360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!23 &1241079235
@@ -5422,6 +5460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!23 &1241841959
@@ -5651,6 +5690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 1
   _r: 3
 --- !u!1 &1277194011
@@ -5700,6 +5740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!23 &1277194014
@@ -5902,6 +5943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 3
   _r: 3
 --- !u!1 &1292363919
@@ -6025,12 +6067,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _start: {fileID: 1030761371}
   _target: {fileID: 687822381}
-  _wavesOnLevelData: {fileID: 11400000, guid: a01ef079e913e254c9b2c8909c0736ed, type: 2}
   _groundEnemy:
     serializedVersion: 2
     m_Bits: 64
   _spawnTimer: 0
-  _enemiesOnBoard: []
 --- !u!4 &1390109157
 Transform:
   m_ObjectHideFlags: 0
@@ -6166,6 +6206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 5
   _r: 3
 --- !u!1 &1445333935
@@ -6287,6 +6328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 0
   _r: 3
 --- !u!1 &1446176346
@@ -6408,6 +6450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 5
   _r: 0
 --- !u!1 &1481881612
@@ -6529,6 +6572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 8
   _r: 3
 --- !u!1 &1526834121
@@ -6650,6 +6694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 6
   _r: 1
 --- !u!1 &1658508121
@@ -6771,6 +6816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 8
   _r: 2
 --- !u!1 &1731446539
@@ -6820,6 +6866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!23 &1731446542
@@ -6921,6 +6968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!95 &1764252360
@@ -7152,6 +7200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 8
   _r: 0
 --- !u!1 &1838846864
@@ -7273,6 +7322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 9
   _r: 0
 --- !u!1 &1863183928
@@ -7394,6 +7444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 6
   _r: 0
 --- !u!1 &1908111199
@@ -7515,6 +7566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 7
   _r: 1
 --- !u!1 &1952303258
@@ -7636,6 +7688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 0
   _r: 1
 --- !u!1 &1954509617
@@ -7687,6 +7740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 0
   _r: 0
 --- !u!95 &1954509620
@@ -7829,6 +7883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 7
   _r: 0
 --- !u!1 &1991346720
@@ -7950,6 +8005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 7
   _r: 2
 --- !u!1 &1991906182
@@ -8071,6 +8127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 3
   _r: 2
 --- !u!1 &1997603932
@@ -8192,6 +8249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 0
   _r: 4
 --- !u!1 &2011794786
@@ -8400,6 +8458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 1
   _r: 4
 --- !u!1 &2099164359
@@ -8521,6 +8580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 1
+  _tileIsFree: 0
   _q: 8
   _r: 1
 --- !u!1 &2110765640
@@ -8642,6 +8702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 2
+  _tileIsFree: 0
   _q: 2
   _r: 1
 --- !u!1 &2130689355

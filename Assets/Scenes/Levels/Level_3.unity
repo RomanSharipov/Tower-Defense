@@ -4526,6 +4526,7 @@ MonoBehaviour:
   _enemySpawners:
   - {fileID: 1390109156}
   _pathInitializer: {fileID: 809222464}
+  _wavesOnLevelData: {fileID: 11400000, guid: a01ef079e913e254c9b2c8909c0736ed, type: 2}
 --- !u!114 &809222464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7545,12 +7546,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _start: {fileID: 1305664232}
   _target: {fileID: 234310868}
-  _wavesOnLevelData: {fileID: 11400000, guid: a01ef079e913e254c9b2c8909c0736ed, type: 2}
   _groundEnemy:
     serializedVersion: 2
     m_Bits: 64
   _spawnTimer: 0
-  _enemiesOnBoard: []
 --- !u!4 &1390109157
 Transform:
   m_ObjectHideFlags: 0

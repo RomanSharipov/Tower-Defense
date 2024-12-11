@@ -8,18 +8,20 @@ namespace CodeBase.Infrastructure.Services
         public event Action PlayerWon;
 
         private IWavesService _wavesService;
+        private IAllEnemyStorage _allEnemyStorage;
 
         [Inject]
-        public PlayerWinTracker(IWavesService wavesService)
+        public PlayerWinTracker(IWavesService wavesService, IAllEnemyStorage allEnemyStorage)
         {
             _wavesService = wavesService;
+            _allEnemyStorage = allEnemyStorage;
         }
-        public void CheckWin(int amountLivingEnemies)
+        public void CheckWin()
         {
             if (!_wavesService.AllWavesIsOver)
                 return;
 
-            if (amountLivingEnemies > 0)
+            if (_allEnemyStorage.Count > 0)
                 return;
 
             PlayerWon?.Invoke();

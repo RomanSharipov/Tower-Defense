@@ -15,24 +15,23 @@ namespace Assets.Scripts.CoreGamePlay
         [Inject] private IEnemyFactory _enemyFactory;
         [Inject] private IPlayerWinTracker _playerWinTracker;
         [Inject] private IWavesService _wavesService;
+        [Inject] private IAllEnemyStorage _allEnemyStorage;
 
         [SerializeField] private TileView _start;
         [SerializeField] private TileView _target;
-        [SerializeField] private WavesOnLevelData _wavesOnLevelData;
+       
         [SerializeField] private LayerMask _groundEnemy;
         [SerializeField] private float _spawnTimer;
-        [SerializeField] private List<EnemyBase> _enemiesOnBoard = new List<EnemyBase>();
-
+        
         private DetectorGroundEnemies _detectorEnemies;
         private bool _isSpawningEnabled = false;
         private int _counter;
 
         public TileView StartTile => _start;
         public TileView TargetTile => _target;
-
+        
         public void Init()
         {
-            _wavesService.SetNewWavesData(_wavesOnLevelData);
             _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
             _detectorEnemies = new DetectorGroundEnemies(transform.position, _groundEnemy);
             _detectorEnemies.SetRadius(2.0f);
@@ -93,7 +92,7 @@ namespace Assets.Scripts.CoreGamePlay
                 newEnemy.HealthBar.Init(enemyHealth);
                 newEnemy.GoalIsReached += RemoveEnemy;
                 newEnemy.Died += RemoveEnemy;
-                _enemiesOnBoard.Add(newEnemy);
+                _allEnemyStorage.Add(newEnemy);
             }
         }
 
@@ -101,9 +100,9 @@ namespace Assets.Scripts.CoreGamePlay
         {
             enemy.GoalIsReached -= RemoveEnemy;
             enemy.Died -= RemoveEnemy;
-            _enemiesOnBoard.Remove(enemy);
+            _allEnemyStorage.Remove(enemy);
             NightPool.Despawn(enemy.gameObject);
-            _playerWinTracker.CheckWin(_enemiesOnBoard.Count);
+            _playerWinTracker.CheckWin();
         }
 
         private void OnDestroy()

@@ -32,6 +32,8 @@ namespace CodeBase.Infrastructure.Installers
                 .As<IWavesService>();
             builder.Register<PlayerWinTracker>(Lifetime.Singleton)
                 .As<IPlayerWinTracker>();
+            builder.Register<AllEnemyStorage>(Lifetime.Singleton)
+                .As<IAllEnemyStorage>();
             builder.Register<InputService>(Lifetime.Singleton)
                 .As<IInputService>()
                 .As<IInitializable>();

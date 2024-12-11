@@ -2,6 +2,7 @@
 using UnityEngine;
 using VContainer;
 using CodeBase.Infrastructure.Services;
+using CodeBase.Configs;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -10,12 +11,14 @@ namespace Assets.Scripts.CoreGamePlay
         [Inject] private ITurretFactory _turretFactory;
         [Inject] private ICacherOfPath _cacherOfPath;
         [Inject] private ITilesStorage _tilesStorage;
+        [Inject] private IWavesService _wavesService;
 
         [SerializeField] private TileView[] _tiles;
         [SerializeField] private Transform _turretsParrent;
         [SerializeField] private EnemySpawner[] _enemySpawners;
         [SerializeField] private PathInitializer _pathInitializer;
-        
+        [SerializeField] private WavesOnLevelData _wavesOnLevelData;
+
         public void InitializeSceneServices()
         {
             _cacherOfPath.SetSpawnersOnCurrentLevel(_enemySpawners);
@@ -23,6 +26,7 @@ namespace Assets.Scripts.CoreGamePlay
 
             _turretFactory.SetParrentTurret(_turretsParrent);
             _pathInitializer.Init();
+            _wavesService.SetNewWavesData(_wavesOnLevelData);
             InitSpawners();
             StartSpawnEnemies();
         }
