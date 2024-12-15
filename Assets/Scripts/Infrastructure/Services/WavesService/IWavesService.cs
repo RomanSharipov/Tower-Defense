@@ -15,6 +15,7 @@ namespace CodeBase.Infrastructure.Services
         public event Action<WaveData> WaveIsOver;
 
         public void ProceedToNextWave();
+        public void ResetWaves();
         public void Initialize(WavesOnLevelData wavesOnLevelData);
         public bool TryGetEnemy(out EnemyConfig enemyConfig);
     }

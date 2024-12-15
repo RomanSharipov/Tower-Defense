@@ -22,7 +22,7 @@ namespace Assets.Scripts.CoreGamePlay
         public void InitializeSceneServices()
         {
             _cacherOfPath.SetSpawnersOnCurrentLevel(_enemySpawners);
-            InitGameBoard();
+            InitHexTiles();
 
             _turretFactory.SetParrentTurret(_turretsParrent);
             _pathInitializer.Init();
@@ -38,7 +38,7 @@ namespace Assets.Scripts.CoreGamePlay
             }
         }
 
-        private void InitGameBoard()
+        private void InitHexTiles()
         {
             TileData[] tilesData = new TileData[_tiles.Length];
 

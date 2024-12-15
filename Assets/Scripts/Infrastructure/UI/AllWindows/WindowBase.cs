@@ -29,5 +29,10 @@ namespace CodeBase.Infrastructure.UI
         {
             
         }
+
+        public void Setup()
+        {
+            
+        }
     }
 }

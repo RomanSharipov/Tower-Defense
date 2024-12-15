@@ -70,5 +70,12 @@ namespace CodeBase.Infrastructure.Services
         {
             return _currentWaveIndex + 1 >= _wavesOnLevelData.WaveDatas.Length;
         }
+
+        public void ResetWaves()
+        {
+            _currentWave = null;
+            _currentWaveIndex = 0;
+            _currentWaveNumber = 0;
+        }
     }
 }

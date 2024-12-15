@@ -12,9 +12,11 @@ namespace CodeBase.Infrastructure
         [Inject] private readonly IGameLoopStatesService _gameLoopStatesService;
         [Inject] private readonly IWindowService _windowService;
         [Inject] private readonly IAssetProvider _assetProvider;
+        [Inject] private readonly IWavesService _wavesService;
 
         public async UniTask Enter()
         {
+            _wavesService.ResetWaves();
             _windowService.CloseWindow(WindowId.WinWindow);
             _levelService.UnLoadCurrentLevel();
             _levelService.IncreaseCurrentLevel();
