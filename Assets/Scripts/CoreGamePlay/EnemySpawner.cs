@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 using NTC.Pool;
 using UnityEngine;
 using VContainer;
+using UniRx;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -32,13 +33,17 @@ namespace Assets.Scripts.CoreGamePlay
         
         public void Init()
         {
-            _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
             _detectorEnemies = new DetectorGroundEnemies(transform.position, _groundEnemy);
             _detectorEnemies.SetRadius(2.0f);
 
             _start.NodeBase.SetIsFreeStatus(false);
             _target.NodeBase.SetIsFreeStatus(false);
-            _isSpawningEnabled = true;
+
+            _wavesService.OnNextWave.Subscribe(waveIndex =>
+            {
+                _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
+                StartSpawnEnemies();
+            }).AddTo(this);
         }
 
         public void StartSpawnEnemies()

@@ -1,6 +1,6 @@
 ﻿using System;
-using Assets.Scripts.CoreGamePlay;
 using CodeBase.Configs;
+using UniRx;
 
 namespace CodeBase.Infrastructure.Services
 {
@@ -8,11 +8,14 @@ namespace CodeBase.Infrastructure.Services
     {
         public WaveData CurrentWave { get; }
         public bool AllWavesIsOver { get; }
+        public IObservable<int> OnNextWave { get; }
+        public int AllWavesCount { get; }
+        public int CurrentWaveNumber { get; }
 
         public event Action<WaveData> WaveIsOver;
-        
 
-        public void SetNewWavesData(WavesOnLevelData wavesOnLevelData);
+        public void ProceedToNextWave();
+        public void Initialize(WavesOnLevelData wavesOnLevelData);
         public bool TryGetEnemy(out EnemyConfig enemyConfig);
     }
 }

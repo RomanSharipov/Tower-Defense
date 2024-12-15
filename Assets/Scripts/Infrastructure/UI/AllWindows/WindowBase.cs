@@ -24,5 +24,10 @@ namespace CodeBase.Infrastructure.UI
         {
             _closeButton?.onClick.AddListener(() => CloseButtonClicked?.Invoke(_windowId));
         }
+
+        public virtual void Initialize()
+        {
+            
+        }
     }
 }

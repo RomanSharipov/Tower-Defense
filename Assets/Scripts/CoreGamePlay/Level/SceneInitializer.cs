@@ -26,9 +26,9 @@ namespace Assets.Scripts.CoreGamePlay
 
             _turretFactory.SetParrentTurret(_turretsParrent);
             _pathInitializer.Init();
-            _wavesService.SetNewWavesData(_wavesOnLevelData);
+            _wavesService.Initialize(_wavesOnLevelData);
             InitSpawners();
-            StartSpawnEnemies();
+            //StartSpawnEnemies();
         }
 
         private void StartSpawnEnemies()

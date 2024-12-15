@@ -6,6 +6,7 @@ using UniRx;
 using CodeBase.Infrastructure.UI.Services;
 using Assets.Scripts.CoreGamePlay;
 using System;
+using TMPro;
 
 namespace CodeBase.Infrastructure.UI
 {
@@ -13,10 +14,13 @@ namespace CodeBase.Infrastructure.UI
     {
         [SerializeField] private Button _goToMenuButton;
         [SerializeField] private Button _pauseButton;
+        [SerializeField] private Button _nextWave;
         [SerializeField] private BuildButton[] _buildTurretButtons;
+        [SerializeField] private TMP_Text _wavesCount;
 
         [Inject] private IAppStateService _appStateService;
         [Inject] private IGameLoopStatesService _gameLoopStatesService;
+        [Inject] private IWavesService _wavesService;
 
 
         private void OnBuildButtonClicked(TurretId id)
@@ -27,13 +31,15 @@ namespace CodeBase.Infrastructure.UI
             });
         }
         
-        protected override void OnAwake()
+        public override void Initialize()
         {
-            base.OnAwake();
-
             _goToMenuButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _appStateService.EnterToMenuState();
+            }).AddTo(this);
+            _nextWave.OnClickAsObservable().Subscribe(_ =>
+            {
+                _wavesService.ProceedToNextWave();
             }).AddTo(this);
 
             _pauseButton.OnClickAsObservable().Subscribe(_ =>
@@ -41,10 +47,22 @@ namespace CodeBase.Infrastructure.UI
                 _gameLoopStatesService.EnterToPauseState();
             }).AddTo(this);
 
+            _wavesService.OnNextWave.Subscribe(waveIndex =>
+            {
+                UpdateCurrentWavesText();
+            }).AddTo(this);
+
+
             foreach (BuildButton buildButton in _buildTurretButtons)
             {
                 buildButton.Clicked += OnBuildButtonClicked;
             }
+            UpdateCurrentWavesText();
+        }
+
+        private void UpdateCurrentWavesText()
+        {
+            _wavesCount.text = $"{_wavesService.CurrentWaveNumber}/{_wavesService.AllWavesCount}";
         }
 
         private void OnDestroy()

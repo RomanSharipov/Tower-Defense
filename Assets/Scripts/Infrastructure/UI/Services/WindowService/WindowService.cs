@@ -49,6 +49,7 @@ namespace CodeBase.Infrastructure.UI.Services
                 if (window != null)
                 {
                     _openedWindows.Add(windowId, window);
+                    window.Initialize();
                     window.CloseButtonClicked += CloseWindow;
                 }
                 return window;
