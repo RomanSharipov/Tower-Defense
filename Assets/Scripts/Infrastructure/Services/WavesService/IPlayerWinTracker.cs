@@ -6,7 +6,7 @@ namespace CodeBase.Infrastructure.Services
 {
     public interface IPlayerWinTracker
     {
-        public void CheckWin();
+        public void TrackWin();
 
         public event Action PlayerWon;
     }

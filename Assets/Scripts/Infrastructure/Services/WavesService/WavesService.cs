@@ -14,12 +14,9 @@ namespace CodeBase.Infrastructure.Services
         private Subject<int> _onNextWave = new();
         private int _currentWaveIndex;
         private int _currentWaveNumber;
-        private bool _allWavesIsOver;
-
+        
         public WaveData CurrentWave => _currentWave;
         public int AllWavesCount => _wavesOnLevelData.WaveDatas.Length;
-
-        public bool AllWavesIsOver => _allWavesIsOver;
         public int CurrentWaveNumber => _currentWaveNumber;
 
         public event Action<WaveData> WaveIsOver;
@@ -29,7 +26,6 @@ namespace CodeBase.Infrastructure.Services
 
         public void Initialize(WavesOnLevelData wavesOnLevelData)
         {
-            _allWavesIsOver = false;
             _wavesOnLevelData = wavesOnLevelData;
             _spawned = 0;
         }
@@ -38,45 +34,41 @@ namespace CodeBase.Infrastructure.Services
         {
             enemyConfig = null;
 
-            if (_allWavesIsOver)
-                return false;
-
-            if (!HasMoreEnemiesInCurrentWave())
-            {
-                return false;
-            }
-            _spawned++;
-
             if (_spawned >= _currentWave.CountEnemy)
             {
                 WaveIsOver?.Invoke(_currentWave);
                 return false;
             }
+
+            if (EnemiesIsOver())
+                return false;
+
+            _spawned++;
+            
             enemyConfig = _currentWave.EnemyConfig;
             return true;
         }
 
-        private bool HasMoreEnemiesInCurrentWave()
+        private bool EnemiesIsOver()
         {
-            return _spawned < _currentWave.CountEnemy;
+            return _spawned >= _currentWave.CountEnemy;
         }
 
         public void ProceedToNextWave()
         {
-            _spawned = 0;
-
-            if (_currentWaveIndex + 1 >= _wavesOnLevelData.WaveDatas.Length)
-            {
-                _allWavesIsOver = true;
+            if (AllWavesIsOver())
                 return;
-            }
-            else
-            {
-                _currentWaveNumber++;
-                _currentWaveIndex = _currentWaveNumber - 1;
-                _currentWave = _wavesOnLevelData.WaveDatas[_currentWaveIndex];
-            }
+
+            _spawned = 0;
+            _currentWaveNumber++;
+            _currentWaveIndex = _currentWaveNumber - 1;
+            _currentWave = _wavesOnLevelData.WaveDatas[_currentWaveIndex];
             _onNextWave.OnNext(_currentWaveNumber);
+        }
+
+        public bool AllWavesIsOver()
+        {
+            return _currentWaveIndex + 1 >= _wavesOnLevelData.WaveDatas.Length;
         }
     }
 }

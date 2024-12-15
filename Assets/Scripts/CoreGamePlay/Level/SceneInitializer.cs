@@ -28,16 +28,8 @@ namespace Assets.Scripts.CoreGamePlay
             _pathInitializer.Init();
             _wavesService.Initialize(_wavesOnLevelData);
             InitSpawners();
-            //StartSpawnEnemies();
         }
 
-        private void StartSpawnEnemies()
-        {
-            foreach (EnemySpawner enemySpawner in _enemySpawners)
-            {
-                enemySpawner.StartSpawnEnemies();
-            }
-        }
         private void InitSpawners()
         {
             foreach (EnemySpawner enemySpawner in _enemySpawners)

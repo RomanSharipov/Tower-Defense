@@ -38,7 +38,7 @@ namespace Assets.Scripts.CoreGamePlay
 
             _start.NodeBase.SetIsFreeStatus(false);
             _target.NodeBase.SetIsFreeStatus(false);
-
+            
             _wavesService.OnNextWave.Subscribe(waveIndex =>
             {
                 _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
@@ -107,7 +107,7 @@ namespace Assets.Scripts.CoreGamePlay
             enemy.Died -= RemoveEnemy;
             _allEnemyStorage.Remove(enemy);
             NightPool.Despawn(enemy.gameObject);
-            _playerWinTracker.CheckWin();
+            _playerWinTracker.TrackWin();
         }
 
         private void OnDestroy()

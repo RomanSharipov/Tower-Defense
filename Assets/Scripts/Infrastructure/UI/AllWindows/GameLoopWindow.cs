@@ -40,19 +40,14 @@ namespace CodeBase.Infrastructure.UI
             _nextWave.OnClickAsObservable().Subscribe(_ =>
             {
                 _wavesService.ProceedToNextWave();
+                UpdateCurrentWavesText();
             }).AddTo(this);
 
             _pauseButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _gameLoopStatesService.EnterToPauseState();
             }).AddTo(this);
-
-            _wavesService.OnNextWave.Subscribe(waveIndex =>
-            {
-                UpdateCurrentWavesText();
-            }).AddTo(this);
-
-
+            
             foreach (BuildButton buildButton in _buildTurretButtons)
             {
                 buildButton.Clicked += OnBuildButtonClicked;

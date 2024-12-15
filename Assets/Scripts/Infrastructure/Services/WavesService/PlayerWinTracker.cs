@@ -16,9 +16,9 @@ namespace CodeBase.Infrastructure.Services
             _wavesService = wavesService;
             _allEnemyStorage = allEnemyStorage;
         }
-        public void CheckWin()
+        public void TrackWin()
         {
-            if (!_wavesService.AllWavesIsOver)
+            if (!_wavesService.AllWavesIsOver())
                 return;
 
             if (_allEnemyStorage.Count > 0)

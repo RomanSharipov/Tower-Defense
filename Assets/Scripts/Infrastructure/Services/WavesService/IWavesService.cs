@@ -7,7 +7,7 @@ namespace CodeBase.Infrastructure.Services
     public interface IWavesService
     {
         public WaveData CurrentWave { get; }
-        public bool AllWavesIsOver { get; }
+        public bool AllWavesIsOver();
         public IObservable<int> OnNextWave { get; }
         public int AllWavesCount { get; }
         public int CurrentWaveNumber { get; }
