@@ -25,6 +25,20 @@ namespace Assets.Scripts.CoreGamePlay
             _r = r;
         }
 
+        public void SetUnFreeStatus()
+        {
+            SetWalkable(TileId.Obstacle);
+            NodeBase.SetIsFreeStatus(false);
+            UpdateTileData();
+        }
+        [ContextMenu("SetFreeStatus()")]
+        public void SetFreeStatus()
+        {
+            SetWalkable(TileId.Empty);
+            NodeBase.SetIsFreeStatus(true);
+            UpdateTileData();
+        }
+
         public void InitializeNode(List<TileView> gameBoardTiles)
         {
             bool walkable = _tileId == TileId.Empty;
@@ -45,5 +59,8 @@ namespace Assets.Scripts.CoreGamePlay
             bool walkable = _tileId == TileId.Empty;
             _nodeBase.SetWalkable(walkable);
         }
+
+
+
     }
 }

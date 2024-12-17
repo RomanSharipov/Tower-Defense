@@ -45,9 +45,7 @@ namespace CodeBase.Infrastructure.Services
                     if (cursorOnFreeTile && _cacherOfPath.PathsIsExist)
                     {
                         turretBase.transform.position = tile.transform.position;
-                        tile.SetWalkable(TileId.Obstacle);
-                        tile.NodeBase.SetIsFreeStatus(false);
-                        tile.UpdateTileData();
+                        tile.SetUnFreeStatus();
                         turretBase.Init();
                         TurretIsBuilded?.Invoke(turretBase, tile.NodeBase);
                     }
