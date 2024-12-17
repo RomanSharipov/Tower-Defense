@@ -40,6 +40,8 @@ namespace CodeBase.Infrastructure.Installers
 
             builder.Register<ClickOnTurretTracker>(Lifetime.Singleton)
                 .As<IClickOnTurretTracker>();
+            builder.Register<TurretRemover>(Lifetime.Singleton)
+                .As<ITurretRemover>();
 
             builder.Register<PlayerPrefsSaveService>(Lifetime.Singleton)
                 .As<ISaveService>();

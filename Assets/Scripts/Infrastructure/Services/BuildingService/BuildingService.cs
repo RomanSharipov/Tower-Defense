@@ -17,7 +17,7 @@ namespace CodeBase.Infrastructure.Services
         private readonly Dictionary<Collider, TileView> _tileViewCache = new Dictionary<Collider, TileView>();
         private float _lastValidDistance = 0f;
 
-        public event Action<TurretBase,TileData> TurretIsBuilded;
+        public event Action<TurretBase> TurretIsBuilded;
 
 
         [Inject]
@@ -46,8 +46,8 @@ namespace CodeBase.Infrastructure.Services
                     {
                         turretBase.transform.position = tile.transform.position;
                         tile.SetUnFreeStatus();
-                        turretBase.Init();
-                        TurretIsBuilded?.Invoke(turretBase, tile.NodeBase);
+                        turretBase.Init(tile);
+                        TurretIsBuilded?.Invoke(turretBase);
                     }
                     else
                     {

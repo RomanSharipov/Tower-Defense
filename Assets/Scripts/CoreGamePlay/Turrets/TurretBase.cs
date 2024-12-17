@@ -15,14 +15,17 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] protected LayerMask _flyingEnemy;
 
         private TurretStateMachine _turretStateMachine;
+        private TileView _tileView;
         
         private bool _enabled;
         private Action _setIdleState;
 
         public EnemyBase CurrentTarget;
+        public TileView TileView => _tileView;
         
         [Inject] protected ITurretsStatsData _turretsStatsData;
         [Inject] protected ITurretsStatsLevelIndexService _turretsStatsLevelIndexService;
+        [Inject] protected ITurretRemover _turretRemover;
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
         public abstract IDetector DetectorEnemies { get; }
         public abstract AttackComponent AttackComponent { get; }
@@ -32,17 +35,16 @@ namespace Assets.Scripts.CoreGamePlay
         {
             _colorTurret.SetColor(color);
         }
-        
-        private void OnDestroy()
-        {
-            if (!_enabled)
-                return;
 
-            _turretUpgrade.TurretUpgraded -= _setIdleState;
+        public void RemoveSelf()
+        {
+            _turretRemover.TurretRemovedInvoke(this);
+            Destroy(gameObject);
         }
-
-        public void Init()
+        
+        public void Init(TileView tileView)
         {
+            _tileView = tileView;
             ConfigureStateMachine();
             ConfigureTurretUpgrade();
             SetColor(ColorType.DefaultColor);
@@ -92,6 +94,15 @@ namespace Assets.Scripts.CoreGamePlay
 
             _setIdleState = () => _turretStateMachine.SetState(idleState);
             _setIdleState();
+        }
+
+
+        private void OnDestroy()
+        {
+            if (!_enabled)
+                return;
+
+            _turretUpgrade.TurretUpgraded -= _setIdleState;
         }
     }
 }

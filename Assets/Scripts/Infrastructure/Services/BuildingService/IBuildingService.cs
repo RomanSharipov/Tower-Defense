@@ -6,7 +6,7 @@ namespace CodeBase.Infrastructure.Services
 {
     public interface IBuildingService
     {
-        public event Action<TurretBase, TileData> TurretIsBuilded;
+        public event Action<TurretBase> TurretIsBuilded;
 
         public UniTask StartBuilding(TurretId turretId);
     }

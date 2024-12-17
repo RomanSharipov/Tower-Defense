@@ -17,6 +17,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         [Inject] private IBuildingService _buildingService;
         [Inject] private ICacherOfPath _cacherOfPath;
+        [Inject] private ITurretRemover _turretRemover;
 
         private Transform _transtorm;
         
@@ -43,6 +44,7 @@ namespace Assets.Scripts.CoreGamePlay
         public void Init(float startSpeed, EnemySpawner enemySpawner)
         {
             _buildingService.TurretIsBuilded += OnTurretIsBuilded;
+            _turretRemover.TurretRemoved += OnTurretRemove;
             _enemySpawner = enemySpawner;
             _transtorm = transform;
             _startSpeed = startSpeed;
@@ -217,13 +219,20 @@ namespace Assets.Scripts.CoreGamePlay
                 .AddTo(this);
         }
         
-        private void OnTurretIsBuilded(TurretBase turret, TileData tileData)
+        private void OnTurretIsBuilded(TurretBase turret)
         {
-            UpdatePath(tileData);
+            UpdatePath(turret.TileView.NodeBase);
         }
+
+        private void OnTurretRemove(TurretBase turret)
+        {
+            UpdatePath(turret.TileView.NodeBase);
+        }
+
         public void OnDespawn()
         {
             _buildingService.TurretIsBuilded -= OnTurretIsBuilded;
+            _turretRemover.TurretRemoved -= OnTurretRemove;
         }
     }
 }

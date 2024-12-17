@@ -9,12 +9,14 @@ public class PathInitializer : MonoBehaviour
 {
     [Inject] private ICacherOfPath _cacherOfPath;
     [Inject] private IBuildingService _buildingService;
+    [Inject] private ITurretRemover _turretRemover;
 
     [SerializeField] private PathFlyData[] _pathFlyDatas;
     
     public void Init()
     {
         _buildingService.TurretIsBuilded += OnTurretIsBuilded;
+        _turretRemover.TurretRemoved += OnTurretRemove;
         UpdateTilePath();
 
         foreach (PathFlyData pathFlyData in _pathFlyDatas)
@@ -22,8 +24,13 @@ public class PathInitializer : MonoBehaviour
             _cacherOfPath.RegisterFlyPath(pathFlyData.EnemySpawner, pathFlyData.PathFly);
         }
     }
-    
-    private void OnTurretIsBuilded(TurretBase turret, TileData data)
+
+    private void OnTurretRemove(TurretBase turret)
+    {
+        UpdateTilePath();
+    }
+
+    private void OnTurretIsBuilded(TurretBase turret)
     {
         UpdateTilePath();
     }
@@ -31,6 +38,7 @@ public class PathInitializer : MonoBehaviour
     private void OnDisable()
     {
         _buildingService.TurretIsBuilded -= OnTurretIsBuilded;
+        _turretRemover.TurretRemoved -= OnTurretRemove;
     }
 
     private void UpdateTilePath()
