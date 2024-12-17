@@ -16,6 +16,7 @@ namespace CodeBase.Infrastructure
 
         public async UniTask Enter()
         {
+            _windowService.CloseWindow(WindowId.GameLoopWindow);
             _wavesService.ResetWaves();
             _windowService.CloseWindow(WindowId.WinWindow);
             _levelService.UnLoadCurrentLevel();
@@ -27,6 +28,7 @@ namespace CodeBase.Infrastructure
 
         public UniTask Exit()
         {
+            _windowService.Open(WindowId.GameLoopWindow);
             return UniTask.CompletedTask;
         }
     }
