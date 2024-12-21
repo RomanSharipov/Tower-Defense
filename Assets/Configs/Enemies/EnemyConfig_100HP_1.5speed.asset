@@ -15,7 +15,5 @@ MonoBehaviour:
   _movementSpeed: 1.5
   _health: 200
   _materials:
-  - {fileID: 2100000, guid: 2e347557a3930e94c89e33f15507be72, type: 2}
-  - {fileID: 2100000, guid: 25deb57a3fb3cab4fbfeec5ca87a1b48, type: 2}
-  - {fileID: 2100000, guid: 3426937f94a14874f9f19994334ad705, type: 2}
+  - {fileID: 2100000, guid: ef048c73ce5ad4340af98bf4e790f26a, type: 2}
   _enemyType: 2

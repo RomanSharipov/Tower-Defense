@@ -16,7 +16,4 @@ MonoBehaviour:
   _health: 60
   _materials:
   - {fileID: 2100000, guid: 2e347557a3930e94c89e33f15507be72, type: 2}
-  - {fileID: 2100000, guid: ef048c73ce5ad4340af98bf4e790f26a, type: 2}
-  - {fileID: 2100000, guid: 1a51e852f0f554842a787cb48ef8791f, type: 2}
-  - {fileID: 2100000, guid: dba4447fab09f1b41a5cc1865ad7d052, type: 2}
   _enemyType: 5
