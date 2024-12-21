@@ -11,7 +11,7 @@ namespace CodeBase.Infrastructure
         [Inject] private readonly ILevelService _levelService;
         [Inject] private readonly IGameLoopStatesService _gameLoopStatesService;
         [Inject] private readonly IWindowService _windowService;
-        [Inject] private readonly IAssetProvider _assetProvider;
+        [Inject] private readonly IGameStatusService _gameStatusService;
         [Inject] private readonly IWavesService _wavesService;
 
         public async UniTask Enter()
@@ -29,6 +29,7 @@ namespace CodeBase.Infrastructure
         public UniTask Exit()
         {
             _windowService.Open(WindowId.GameLoopWindow);
+            _gameStatusService.ResetStatus();
             return UniTask.CompletedTask;
         }
     }

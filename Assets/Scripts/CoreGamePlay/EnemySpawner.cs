@@ -14,7 +14,7 @@ namespace Assets.Scripts.CoreGamePlay
     public class EnemySpawner : MonoBehaviour
     {
         [Inject] private IEnemyFactory _enemyFactory;
-        [Inject] private IPlayerWinTracker _playerWinTracker;
+        [Inject] private IGameStatusService _gameStatusService;
         [Inject] private IWavesService _wavesService;
         [Inject] private IAllEnemyStorage _allEnemyStorage;
 
@@ -107,7 +107,7 @@ namespace Assets.Scripts.CoreGamePlay
             enemy.Died -= RemoveEnemy;
             _allEnemyStorage.Remove(enemy);
             NightPool.Despawn(enemy.gameObject);
-            _playerWinTracker.TrackWin();
+            _gameStatusService.TrackWin();
         }
 
         private void OnDestroy()

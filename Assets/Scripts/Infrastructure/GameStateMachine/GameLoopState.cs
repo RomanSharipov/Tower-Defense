@@ -15,7 +15,7 @@ namespace CodeBase.Infrastructure
         [Inject] private readonly IWindowService _windowService;
         [Inject] private readonly IAssetProvider _assetProvider;
         [Inject] private readonly IGameLoopStatesService _gameLoopStatesService;
-        [Inject] private readonly IPlayerWinTracker _playerWinTracker;
+        [Inject] private readonly IGameStatusService _gameStatusService;
         [Inject] private readonly IClickOnTurretTracker _clickOnTurretTracker;
 
         private CompositeDisposable _compositeDisposable = new();
@@ -23,7 +23,11 @@ namespace CodeBase.Infrastructure
         public async UniTask Enter()
         {
             _compositeDisposable.Clear();
-            _playerWinTracker.PlayerWon += OnPlayerWon;
+            
+            _gameStatusService.GameStatus
+                .Where(status => status == GameStatus.Win)
+                .Subscribe(_ => OnPlayerWon())
+                .AddTo(_compositeDisposable);
             
             _clickOnTurretTracker.ClickOnTurret
                 .Subscribe(OnClickOnTurret)
@@ -48,6 +52,7 @@ namespace CodeBase.Infrastructure
 
         private void OnPlayerWon()
         {
+            Debug.Log($"OnPlayerWon");
             _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
             _windowService.Open(WindowId.WinWindow);
         }
@@ -56,7 +61,7 @@ namespace CodeBase.Infrastructure
         {
             _clickOnTurretTracker.EndTracking();
             _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
-            _playerWinTracker.PlayerWon -= OnPlayerWon;
+            
             _windowService.CloseWindow(WindowId.GameLoopWindow);
             _levelService.UnLoadCurrentLevel();
             _assetProvider.Cleanup();
