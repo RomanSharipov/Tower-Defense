@@ -25,7 +25,7 @@ namespace CodeBase.Infrastructure
         {
             await _assetProvider.Initialize();
             await _uiFactory.CreateRootCanvas();
-            _iAppStateService.EnterToMenuState();
+            _iAppStateService.Enter<MenuState>();
         }
 
         public  UniTask Exit()

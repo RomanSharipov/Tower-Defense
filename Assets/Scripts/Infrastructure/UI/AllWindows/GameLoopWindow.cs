@@ -21,21 +21,20 @@ namespace CodeBase.Infrastructure.UI
         [Inject] private IAppStateService _appStateService;
         [Inject] private IGameLoopStatesService _gameLoopStatesService;
         [Inject] private IWavesService _wavesService;
+        [Inject] private BuildingTurretState _buildingTurretState;
 
 
         private void OnBuildButtonClicked(TurretId id)
         {
-            _gameLoopStatesService.Enter<BuildingTurretState>(state =>
-            {
-                state.Setup(id);
-            });
+            _buildingTurretState.Setup(id);
+            _gameLoopStatesService.Enter<BuildingTurretState>();
         }
         
         public override void Initialize()
         {
             _goToMenuButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _appStateService.EnterToMenuState();
+                _appStateService.Enter<MenuState>();
             }).AddTo(this);
             _nextWave.OnClickAsObservable().Subscribe(_ =>
             {

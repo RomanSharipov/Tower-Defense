@@ -14,7 +14,7 @@ namespace CodeBase.Infrastructure
             _states.Add(type,state);
         }
 
-        public void Enter<TState>(Action<TState> setupBeforeEnter = null) where TState : IState
+        public void Enter<TState>() where TState : IState
         {
             if (_activeState != null && _activeState.GetType() == typeof(TState))
             {
@@ -24,9 +24,6 @@ namespace CodeBase.Infrastructure
             _activeState?.Exit();
             IState state = _states[typeof(TState)];
             _activeState = state;
-            
-            setupBeforeEnter?.Invoke((TState)state);
-            
             state.Enter();
         }
     }

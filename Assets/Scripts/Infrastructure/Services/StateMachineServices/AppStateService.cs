@@ -11,20 +11,10 @@ namespace CodeBase.Infrastructure.Services
         {
             _mainGameStatemachine = mainGameStatemachine;
         }
-        
-        public void EnterToBootstrapState()
-        {
-            _mainGameStatemachine.Enter<BootstrapState>();
-        }
 
-        public void EnterToMenuState()
+        public void Enter<TState>() where TState : IState
         {
-            _mainGameStatemachine.Enter<MenuState>();
-        }
-
-        public void EnterToGameLoopState()
-        {
-            _mainGameStatemachine.Enter<GameLoopState>();
+            _mainGameStatemachine.Enter<TState>();
         }
     }
 }

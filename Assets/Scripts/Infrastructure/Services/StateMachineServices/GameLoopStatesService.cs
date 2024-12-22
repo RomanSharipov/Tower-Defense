@@ -12,9 +12,9 @@ namespace CodeBase.Infrastructure.Services
             _gameLoopStatemachine = gameLoopStatemachine;
         }
 
-        public void Enter<TState>(Action<TState> setupBeforeEnter = null) where TState : IState 
+        public void Enter<TState>() where TState : IState 
         {
-            _gameLoopStatemachine.Enter<TState>(setupBeforeEnter);
+            _gameLoopStatemachine.Enter<TState>();
         }
 
     }

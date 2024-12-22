@@ -2,8 +2,6 @@
 {
     public interface IAppStateService
     {
-        public void EnterToBootstrapState();
-        public void EnterToGameLoopState();
-        public void EnterToMenuState();
+        public void Enter<TState>() where TState : IState;
     }
 }

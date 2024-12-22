@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using CodeBase.Infrastructure;
+using CodeBase.Infrastructure.Services;
 using VContainer;
 using VContainer.Unity;
 
@@ -16,7 +17,7 @@ namespace Assets.Scripts.Infrastructure
 
         void IStartable.Start()
         {
-            _appStateService.EnterToBootstrapState();
+            _appStateService.Enter<BootstrapState>();
         }
     }
 }
