@@ -25,7 +25,7 @@ namespace CodeBase.Infrastructure.UI
 
         private void OnBuildButtonClicked(TurretId id)
         {
-            _gameLoopStatesService.EnterToBuildingTurretState(state =>
+            _gameLoopStatesService.Enter<BuildingTurretState>(state =>
             {
                 state.Setup(id);
             });
@@ -45,7 +45,7 @@ namespace CodeBase.Infrastructure.UI
 
             _pauseButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _gameLoopStatesService.EnterToPauseState();
+                _gameLoopStatesService.Enter<PauseState>();
             }).AddTo(this);
             
             foreach (BuildButton buildButton in _buildTurretButtons)

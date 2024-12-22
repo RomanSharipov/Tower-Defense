@@ -12,29 +12,10 @@ namespace CodeBase.Infrastructure.Services
             _gameLoopStatemachine = gameLoopStatemachine;
         }
 
-        public void EnterToPauseState()
+        public void Enter<TState>(Action<TState> setupBeforeEnter = null) where TState : IState 
         {
-            _gameLoopStatemachine.Enter<PauseState>();
+            _gameLoopStatemachine.Enter<TState>(setupBeforeEnter);
         }
 
-        public void EnterToTransitToNextLevelState()
-        {
-            _gameLoopStatemachine.Enter<TransitToNextLevelState>();
-        }
-
-        public void EnterToEmptyState()
-        {
-            _gameLoopStatemachine.Enter<EmptyState>();
-        }
-
-        public void EnterToPlayingIdleState()
-        {
-            _gameLoopStatemachine.Enter<PlayingIdleState>();
-        }
-
-        public void EnterToBuildingTurretState(Action<BuildingTurretState> setupBeforeEnter)
-        {
-            _gameLoopStatemachine.Enter(setupBeforeEnter);
-        }
     }
 }

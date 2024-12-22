@@ -38,7 +38,7 @@ namespace CodeBase.Infrastructure
             
             ISceneInitializer levelMain = await _levelService.LoadCurrentLevel();
             levelMain.InitializeSceneServices();
-            _gameLoopStatesService.EnterToPlayingIdleState();
+            _gameLoopStatesService.Enter<PlayingIdleState>();
         }
 
         private void OnClickOnTurret(TurretBase turret)
@@ -65,7 +65,7 @@ namespace CodeBase.Infrastructure
             _windowService.CloseWindow(WindowId.GameLoopWindow);
             _levelService.UnLoadCurrentLevel();
             _assetProvider.Cleanup();
-            _gameLoopStatesService.EnterToEmptyState();
+            _gameLoopStatesService.Enter<EmptyState>();
             return UniTask.CompletedTask;
         }
     }

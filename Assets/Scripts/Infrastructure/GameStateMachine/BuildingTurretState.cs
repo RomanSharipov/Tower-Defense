@@ -23,7 +23,7 @@ namespace CodeBase.Infrastructure
         public async UniTask Enter()
         {
             await _buildingService.StartBuilding(_turretId);
-            _gameLoopStatesService.EnterToPlayingIdleState();
+            _gameLoopStatesService.Enter<PlayingIdleState>();
         }
         
         public UniTask Exit()

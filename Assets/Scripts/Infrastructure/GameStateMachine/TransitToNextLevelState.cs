@@ -23,7 +23,7 @@ namespace CodeBase.Infrastructure
             _levelService.IncreaseCurrentLevel();
             ISceneInitializer levelMain = await _levelService.LoadCurrentLevel();
             levelMain.InitializeSceneServices();
-            _gameLoopStatesService.EnterToPlayingIdleState();
+            _gameLoopStatesService.Enter<PlayingIdleState>();
         }
 
         public UniTask Exit()

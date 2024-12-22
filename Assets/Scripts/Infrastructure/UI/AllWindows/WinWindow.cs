@@ -18,7 +18,8 @@ namespace CodeBase.Infrastructure.UI
 
             _nextLevelButton.OnClickAsObservable().Subscribe(_ =>
             {
-                _gameLoopStatesService.EnterToTransitToNextLevelState();
+                _gameLoopStatesService.Enter<TransitToNextLevelState>();
+
             }).AddTo(this);
         }
     }
