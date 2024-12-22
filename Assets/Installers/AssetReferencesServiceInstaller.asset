@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 156e27cc3da198c4fb0faa74e7d01fff, type: 3}
-  m_Name: StaticDataServiceInstaller
+  m_Name: AssetReferencesServiceInstaller
   m_EditorClassIdentifier: 
-  _mainStaticData: {fileID: 11400000, guid: 45048a82c4ad0604198b19bac698d438, type: 2}
+  _assetReferencesData: {fileID: 11400000, guid: 45048a82c4ad0604198b19bac698d438, type: 2}

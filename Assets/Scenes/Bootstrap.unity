@@ -335,14 +335,10 @@ MonoBehaviour:
   - {fileID: 5089391288073444642}
   _camera: {fileID: 906142386}
   _mainInstallers:
+  - {fileID: 11400000, guid: ed1924586bbc3bf44a7d7629d09d6ebe, type: 2}
   - {fileID: 11400000, guid: 763bcd2528a2af54cbf16a5d4875f11e, type: 2}
-  - {fileID: 11400000, guid: 4201967038835e14ea88f1845cd2953f, type: 2}
-  - {fileID: 11400000, guid: 3de48298f092a46489c57976b0e665c3, type: 2}
-  - {fileID: 11400000, guid: 80b7a12edf4d31a4a9a0d2727ac70453, type: 2}
-  - {fileID: 11400000, guid: 9b4efb6c5f8eb944aaf42fd64fab09d6, type: 2}
   - {fileID: 11400000, guid: f0260a21f33502f4ea19037d6919a97b, type: 2}
   - {fileID: 11400000, guid: bc54e75f7abb4054a8de78dd8c05218f, type: 2}
-  - {fileID: 11400000, guid: ed1924586bbc3bf44a7d7629d09d6ebe, type: 2}
   - {fileID: 11400000, guid: 930e6bd8828e9404b943ff6c66e970c9, type: 2}
   - {fileID: 11400000, guid: 6301f05ca92d1b14090f8e30f75602a4, type: 2}
 --- !u!114 &8330115254347532578

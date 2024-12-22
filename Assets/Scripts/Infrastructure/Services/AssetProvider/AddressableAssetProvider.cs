@@ -8,7 +8,7 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 
 namespace CodeBase.Infrastructure.Services
 {
-    public class AddressableProvider : IAssetProvider
+    public class AddressableAssetProvider : IAssetProvider
     {
         private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new();
         private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new();

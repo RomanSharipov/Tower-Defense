@@ -8,31 +8,31 @@ namespace CodeBase.Infrastructure.Services
 {
     public class AddressablesAssetReferencesService : IAddressablesAssetReferencesService
     {
-        private readonly AddressablesAssetReferencesData _mainStaticData;
-        public AddressablesAssetReferencesService(AddressablesAssetReferencesData mainStaticData)
+        private readonly AddressablesAssetReferencesData _assetReferencesData;
+        public AddressablesAssetReferencesService(AddressablesAssetReferencesData assetReferencesData)
         {
-            _mainStaticData = mainStaticData;
+            _assetReferencesData = assetReferencesData;
         }
         public AssetReference RootCanvas =>
-            _mainStaticData.WindowsData.rootCanvas;
+            _assetReferencesData.WindowsData.rootCanvas;
 
         public IReadOnlyDictionary<WindowId, AssetReference> Windows => 
-            _mainStaticData.WindowsData.WindowAssetReference.ToDictionary<WindowId, AssetReference>();
+            _assetReferencesData.WindowsData.WindowAssetReference.ToDictionary<WindowId, AssetReference>();
 
 
         public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences => 
-            _mainStaticData.SceneReferences.ToDictionary<AssetReference>();
+            _assetReferencesData.SceneReferences.ToDictionary<AssetReference>();
 
         public IReadOnlyList<AssetReference> LevelReferences =>
-            _mainStaticData.LevelReferences;
+            _assetReferencesData.LevelReferences;
         
         public IReadOnlyDictionary<TileId, AssetReference> Tiles =>
-            _mainStaticData.Tiles.ToDictionary<TileId, AssetReference>();
+            _assetReferencesData.Tiles.ToDictionary<TileId, AssetReference>();
 
         public IReadOnlyDictionary<EnemyType, AssetReference> Enemies =>
-            _mainStaticData.Enemies.ToDictionary<EnemyType, AssetReference>();
+            _assetReferencesData.Enemies.ToDictionary<EnemyType, AssetReference>();
 
         public IReadOnlyDictionary<TurretId, AssetReference> Turrets =>
-            _mainStaticData.Turrets.ToDictionary<TurretId, AssetReference>();
+            _assetReferencesData.Turrets.ToDictionary<TurretId, AssetReference>();
     }
 }   

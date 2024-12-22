@@ -48,6 +48,15 @@ namespace CodeBase.Infrastructure.Installers
             builder.Register<TurretsStatsLevelIndexService>(Lifetime.Singleton)
                 .As<ITurretsStatsLevelIndexService>()
                 .As<IInitializable>();
+
+            builder.Register<SceneLoader>(Lifetime.Singleton)
+                .As<ISceneLoader>();
+
+            builder.Register<UIFactory>(Lifetime.Singleton)
+                .As<IUIFactory>();
+
+            builder.Register<AddressableAssetProvider>(Lifetime.Singleton)
+                .As<IAssetProvider>();
         }
     }    
 }
