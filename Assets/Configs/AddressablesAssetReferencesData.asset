@@ -43,6 +43,12 @@ MonoBehaviour:
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
+    - WindowType: 6
+      assetReference:
+        m_AssetGUID: f0f57f2a9a90fec43a525e5f74775814
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
   SceneReferences:
   - SceneName: Menu
     Reference:

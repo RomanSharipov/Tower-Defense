@@ -6,6 +6,7 @@ using VContainer;
 using UniRx;
 using UnityEngine;
 using CodeBase.Infrastructure.UI;
+using System;
 
 namespace CodeBase.Infrastructure
 {
@@ -17,13 +18,16 @@ namespace CodeBase.Infrastructure
         [Inject] private readonly IGameLoopStatesService _gameLoopStatesService;
         [Inject] private readonly IGameStatusService _gameStatusService;
         [Inject] private readonly IClickOnTurretTracker _clickOnTurretTracker;
+        [Inject] private readonly IPlayerHealthService _playerHealthService;
 
         private CompositeDisposable _compositeDisposable = new();
 
         public async UniTask Enter()
         {
             _compositeDisposable.Clear();
-            
+
+            _playerHealthService.HealthIsOver += OnPlayerHealthIsOver;
+
             _gameStatusService.GameStatus
                 .Where(status => status == GameStatus.Win)
                 .Subscribe(_ => _gameLoopStatesService.Enter<PlayerWinState>())
@@ -41,6 +45,11 @@ namespace CodeBase.Infrastructure
             _gameLoopStatesService.Enter<PlayingIdleState>();
         }
 
+        private void OnPlayerHealthIsOver()
+        {
+            _gameLoopStatesService.Enter<PlayerLoseSate>();
+        }
+
         private void OnClickOnTurret(TurretBase turret)
         {
             _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
@@ -52,10 +61,9 @@ namespace CodeBase.Infrastructure
         
         public UniTask Exit()
         {
+            _playerHealthService.HealthChanged -= OnPlayerHealthIsOver;
             _clickOnTurretTracker.EndTracking();
-            _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
-            
-            _windowService.CloseWindow(WindowId.GameLoopWindow);
+            _windowService.CloseAllWindows();
             _levelService.UnLoadCurrentLevel();
             _assetProvider.Cleanup();
             _gameLoopStatesService.Enter<EmptyState>();

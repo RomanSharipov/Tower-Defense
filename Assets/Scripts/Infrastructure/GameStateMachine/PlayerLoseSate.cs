@@ -1,18 +1,17 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using CodeBase.Infrastructure.UI.Services;
+using Cysharp.Threading.Tasks;
 using VContainer;
 
 namespace CodeBase.Infrastructure
 {
     public class PlayerLoseSate : IState
     {
-        [Inject]
-        public PlayerLoseSate()
-        {
-            
-        }
+        [Inject] private IWindowService _windowService;
+
 
         public UniTask Enter()
         {
+            _windowService.Open(WindowId.LoseWindow);
             return UniTask.CompletedTask;
         }
 

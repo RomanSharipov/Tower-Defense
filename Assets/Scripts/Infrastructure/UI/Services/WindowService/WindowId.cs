@@ -8,6 +8,7 @@ namespace CodeBase.Infrastructure.UI.Services
         MainMenu = 2,
         GameLoopWindow = 3,
         WinWindow = 4,
-        TurretContextMenu = 5
+        TurretContextMenu = 5,
+        LoseWindow = 6,
     }
 }
