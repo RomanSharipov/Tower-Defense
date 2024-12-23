@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.CoreGamePlay
 {
-    public class EnemyHealth : IEnemyHealth
+    public class Health : IHealth
     {
         public int MaxHealth { get; private set; }
 
@@ -13,7 +13,7 @@ namespace Assets.Scripts.CoreGamePlay
         public event Action HealthIsOver;
         public event Action<int> HealthChanged;
 
-        public EnemyHealth(int maxHealth)
+        public Health(int maxHealth)
         {
             MaxHealth = maxHealth;
             _currentHealth = MaxHealth;

@@ -26,7 +26,7 @@ namespace CodeBase.Infrastructure
             
             _gameStatusService.GameStatus
                 .Where(status => status == GameStatus.Win)
-                .Subscribe(_ => OnPlayerWon())
+                .Subscribe(_ => _gameLoopStatesService.Enter<PlayerWinState>())
                 .AddTo(_compositeDisposable);
             
             _clickOnTurretTracker.ClickOnTurret
@@ -49,14 +49,7 @@ namespace CodeBase.Infrastructure
                 window.Setup(turret);
             }).Forget();
         }
-
-        private void OnPlayerWon()
-        {
-            Debug.Log($"OnPlayerWon");
-            _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
-            _windowService.Open(WindowId.WinWindow);
-        }
-
+        
         public UniTask Exit()
         {
             _clickOnTurretTracker.EndTracking();

@@ -1,14 +1,15 @@
 ﻿using System;
-using UniRx;
+using Assets.Scripts.CoreGamePlay;
 
-namespace Assets.Scripts.CoreGamePlay
+namespace CodeBase.Infrastructure.Services
 {
-    public interface IEnemyHealth
+    public interface IPlayerHealthService
     {
         public event Action<int> HealthChanged;
         public int MaxHealth { get; }
         public event Action HealthIsOver;
 
         public void ReduceHealth(int value);
+        public void ResetHealth();
     }
 }

@@ -17,7 +17,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private Collider _collider; 
         [SerializeField] private HealthBar _healthBar;
 
-        private IEnemyHealth _health;
+        private IHealth _health;
         
         public abstract IEnemyMovement EnemyMovement { get; }
         
@@ -36,7 +36,7 @@ namespace Assets.Scripts.CoreGamePlay
             AlreadyConstructed = true;
         }
 
-        public void Init(EnemySpawner enemySpawner, EnemyConfig enemyConfig, IEnemyHealth enemyHealth)
+        public void Init(EnemySpawner enemySpawner, EnemyConfig enemyConfig, IHealth enemyHealth)
         {
             Material targetMaterial = enemyConfig.Materials[UnityEngine.Random.Range(0, enemyConfig.Materials.Length)];
 

@@ -12,9 +12,9 @@ namespace CodeBase.Infrastructure.UI
         [SerializeField] private Color _minValue;
         [SerializeField] private Color _maxValue;
 
-        private IEnemyHealth _health;
+        private IHealth _health;
 
-        public void Init(IEnemyHealth health)
+        public void Init(IHealth health)
         {
             _health = health;
             _health.HealthChanged += OnHealthChanged;

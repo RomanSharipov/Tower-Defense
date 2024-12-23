@@ -91,7 +91,7 @@ namespace Assets.Scripts.CoreGamePlay
                 newEnemy.transform.localPosition = Vector3.zero;
                 newEnemy.gameObject.name = $"{_counter}.{newEnemy.gameObject.name}";
 
-                IEnemyHealth enemyHealth = new EnemyHealth(enemyConfig.Health);
+                IHealth enemyHealth = new Health(enemyConfig.Health);
 
                 newEnemy.Init(this, enemyConfig, enemyHealth);
                 newEnemy.HealthBar.Init(enemyHealth);
