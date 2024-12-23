@@ -7,6 +7,8 @@ namespace Assets.Scripts.CoreGamePlay
     {
         public event Action<int> HealthChanged;
         public int MaxHealth { get; }
+        public int CurrentHealth { get; }
+
         public event Action HealthIsOver;
 
         public void ReduceHealth(int value);

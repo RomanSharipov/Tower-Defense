@@ -13,9 +13,11 @@ namespace CodeBase.Infrastructure
         [Inject] private readonly IWindowService _windowService;
         [Inject] private readonly IGameStatusService _gameStatusService;
         [Inject] private readonly IWavesService _wavesService;
+        [Inject] private readonly IPlayerHealthService _playerHealthService;
 
         public async UniTask Enter()
         {
+            _playerHealthService.ResetHealth();
             _windowService.CloseWindow(WindowId.GameLoopWindow);
             _wavesService.ResetWaves();
             _windowService.CloseWindow(WindowId.WinWindow);

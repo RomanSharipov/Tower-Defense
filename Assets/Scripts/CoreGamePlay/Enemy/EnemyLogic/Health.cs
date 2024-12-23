@@ -6,8 +6,8 @@ namespace Assets.Scripts.CoreGamePlay
     public class Health : IHealth
     {
         public int MaxHealth { get; private set; }
-
-        private int _currentHealth;
+        public int CurrentHealth { get; private set; }
+        
         private bool _healthIsOver = false;
         
         public event Action HealthIsOver;
@@ -16,19 +16,19 @@ namespace Assets.Scripts.CoreGamePlay
         public Health(int maxHealth)
         {
             MaxHealth = maxHealth;
-            _currentHealth = MaxHealth;
+            CurrentHealth = MaxHealth;
         }
 
         public void ReduceHealth(int value)
         {
-            if (_currentHealth == 0)
+            if (CurrentHealth == 0)
                 return;
 
             value = Mathf.Max(value, 0);
 
-            if (_currentHealth <= value)
+            if (CurrentHealth <= value)
             {
-                _currentHealth = 0;
+                CurrentHealth = 0;
                 if (_healthIsOver)
                     return;
 
@@ -37,8 +37,8 @@ namespace Assets.Scripts.CoreGamePlay
             }
             else
             {
-                _currentHealth -= value;
-                HealthChanged?.Invoke(_currentHealth);
+                CurrentHealth -= value;
+                HealthChanged?.Invoke(CurrentHealth);
             }
         }
     }

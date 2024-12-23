@@ -25,7 +25,9 @@ namespace CodeBase.Infrastructure.Services
 
         public int MaxHealth => _health.MaxHealth;
 
-        public event Action<int> HealthChanged;
+        public int CurrentHealth => _health.CurrentHealth;
+
+        public event Action HealthChanged;
         public event Action HealthIsOver;
 
         public void Initialize()
@@ -41,7 +43,7 @@ namespace CodeBase.Infrastructure.Services
 
         private void OnHealthChanged(int health)
         {
-            HealthChanged?.Invoke(health);
+            HealthChanged?.Invoke();
         }
 
         public void ReduceHealth(int value)

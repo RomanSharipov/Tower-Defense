@@ -8,6 +8,7 @@ using NTC.Pool;
 using UnityEngine;
 using VContainer;
 using UniRx;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Assets.Scripts.CoreGamePlay
 {
@@ -17,6 +18,7 @@ namespace Assets.Scripts.CoreGamePlay
         [Inject] private IGameStatusService _gameStatusService;
         [Inject] private IWavesService _wavesService;
         [Inject] private IAllEnemyStorage _allEnemyStorage;
+        [Inject] private IPlayerHealthService _playerHealthService;
 
         [SerializeField] private TileView _start;
         [SerializeField] private TileView _target;
@@ -95,7 +97,7 @@ namespace Assets.Scripts.CoreGamePlay
 
                 newEnemy.Init(this, enemyConfig, enemyHealth);
                 newEnemy.HealthBar.Init(enemyHealth);
-                newEnemy.GoalIsReached += RemoveEnemy;
+                newEnemy.GoalIsReached += OnGoalIsReached;
                 newEnemy.Died += RemoveEnemy;
                 _allEnemyStorage.Add(newEnemy);
             }
@@ -103,11 +105,17 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void RemoveEnemy(EnemyBase enemy)
         {
-            enemy.GoalIsReached -= RemoveEnemy;
             enemy.Died -= RemoveEnemy;
             _allEnemyStorage.Remove(enemy);
             NightPool.Despawn(enemy.gameObject);
             _gameStatusService.TrackWin();
+        }
+
+        private void OnGoalIsReached(EnemyBase enemy)
+        {
+            _playerHealthService.ReduceHealth(1);
+            enemy.GoalIsReached -= OnGoalIsReached;
+            RemoveEnemy(enemy);
         }
 
         private void OnDestroy()

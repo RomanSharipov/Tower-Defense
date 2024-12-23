@@ -17,10 +17,12 @@ namespace CodeBase.Infrastructure.UI
         [SerializeField] private Button _nextWave;
         [SerializeField] private BuildButton[] _buildTurretButtons;
         [SerializeField] private TMP_Text _wavesCount;
+        [SerializeField] private TMP_Text _playerHealth;
 
         [Inject] private IAppStateService _appStateService;
         [Inject] private IGameLoopStatesService _gameLoopStatesService;
         [Inject] private IWavesService _wavesService;
+        [Inject] private IPlayerHealthService _playerHealthService;
         [Inject] private BuildingTurretState _buildingTurretState;
 
 
@@ -32,6 +34,8 @@ namespace CodeBase.Infrastructure.UI
         
         public override void Initialize()
         {
+            _playerHealthService.HealthChanged += UpdatePlayerHealth;
+
             _goToMenuButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _appStateService.Enter<MenuState>();
@@ -52,6 +56,12 @@ namespace CodeBase.Infrastructure.UI
                 buildButton.Clicked += OnBuildButtonClicked;
             }
             UpdateCurrentWavesText();
+            UpdatePlayerHealth();
+        }
+
+        private void UpdatePlayerHealth()
+        {
+            _playerHealth.text = $"{_playerHealthService.CurrentHealth}/{_playerHealthService.MaxHealth}";
         }
 
         private void UpdateCurrentWavesText()
@@ -65,6 +75,7 @@ namespace CodeBase.Infrastructure.UI
             {
                 buildButton.Clicked -= OnBuildButtonClicked;
             }
+            _playerHealthService.HealthChanged -= UpdatePlayerHealth;
         }
     }
 }

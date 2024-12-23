@@ -5,8 +5,10 @@ namespace CodeBase.Infrastructure.Services
 {
     public interface IPlayerHealthService
     {
-        public event Action<int> HealthChanged;
+        public event Action HealthChanged;
         public int MaxHealth { get; }
+        public int CurrentHealth { get; }
+
         public event Action HealthIsOver;
 
         public void ReduceHealth(int value);
