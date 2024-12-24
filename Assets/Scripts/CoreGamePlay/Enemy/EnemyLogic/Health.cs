@@ -17,6 +17,7 @@ namespace Assets.Scripts.CoreGamePlay
         {
             MaxHealth = maxHealth;
             CurrentHealth = MaxHealth;
+            HealthChanged?.Invoke(CurrentHealth);
         }
 
         public void ReduceHealth(int value)
@@ -29,6 +30,7 @@ namespace Assets.Scripts.CoreGamePlay
             if (CurrentHealth <= value)
             {
                 CurrentHealth = 0;
+                HealthChanged?.Invoke(CurrentHealth);
                 if (_healthIsOver)
                     return;
 
@@ -45,6 +47,7 @@ namespace Assets.Scripts.CoreGamePlay
         public void ResetHealth()
         {
             CurrentHealth = MaxHealth;
+            HealthChanged?.Invoke(CurrentHealth);
             _healthIsOver = false;
         }
     }

@@ -31,6 +31,11 @@ namespace CodeBase.Infrastructure.UI
             _buildingTurretState.Setup(id);
             _gameLoopStatesService.Enter<BuildingTurretState>();
         }
+        [ContextMenu("CurrentHealth()")]
+        private void CurrentHealth()
+        {
+            Debug.Log($"CurrentHealth = {_playerHealthService.CurrentHealth}");
+        }
         
         public override void Initialize()
         {
