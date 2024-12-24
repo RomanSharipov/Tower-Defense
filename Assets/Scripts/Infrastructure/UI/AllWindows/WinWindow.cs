@@ -11,15 +11,14 @@ namespace CodeBase.Infrastructure.UI
         [SerializeField] private Button _nextLevelButton;
         
         [Inject] private IGameLoopStatesService _gameLoopStatesService;
-
-        protected override void OnAwake()
+        
+        public override void Initialize()
         {
-            base.OnAwake();
+            base.Initialize();
 
             _nextLevelButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _gameLoopStatesService.Enter<TransitToNextLevelState>();
-
             }).AddTo(this);
         }
     }

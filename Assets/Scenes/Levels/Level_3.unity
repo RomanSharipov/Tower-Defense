@@ -4526,7 +4526,7 @@ MonoBehaviour:
   _enemySpawners:
   - {fileID: 1390109156}
   _pathInitializer: {fileID: 809222464}
-  _wavesOnLevelData: {fileID: 11400000, guid: a01ef079e913e254c9b2c8909c0736ed, type: 2}
+  _wavesOnLevelData: {fileID: 11400000, guid: fa3fac20fdbe7954592cfd9423bcde14, type: 2}
 --- !u!114 &809222464
 MonoBehaviour:
   m_ObjectHideFlags: 0

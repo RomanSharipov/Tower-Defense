@@ -39,6 +39,7 @@ namespace CodeBase.Infrastructure.Installers
                 gameLoopStatemachine.AddState(typeof(EmptyState), resolver.Resolve<EmptyState>());
                 gameLoopStatemachine.AddState(typeof(PlayerWinState), resolver.Resolve<PlayerWinState>());
                 gameLoopStatemachine.AddState(typeof(PlayerLoseSate), resolver.Resolve<PlayerLoseSate>());
+                gameLoopStatemachine.AddState(typeof(RestartState), resolver.Resolve<RestartState>());
             });
             
             builder.RegisterEntryPoint<EntryPoint>();
@@ -65,6 +66,8 @@ namespace CodeBase.Infrastructure.Installers
             builder.Register<PlayerWinState>(Lifetime.Singleton)
                 .AsSelf();
             builder.Register<PlayerLoseSate>(Lifetime.Singleton)
+                .AsSelf();
+            builder.Register<RestartState>(Lifetime.Singleton)
                 .AsSelf();
         }
     }    

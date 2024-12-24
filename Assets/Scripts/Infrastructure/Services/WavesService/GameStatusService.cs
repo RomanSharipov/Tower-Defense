@@ -28,12 +28,7 @@ namespace CodeBase.Infrastructure.Services
             SetStatus(Services.GameStatus.Win);
         }
 
-        public void TrackLose()
-        {
-            SetStatus(Services.GameStatus.Lose);
-        }
-
-        private void SetStatus(GameStatus gameStatus)
+        public void SetStatus(GameStatus gameStatus)
         {
             if (_gameStatus.Value != Services.GameStatus.None)
                 return;

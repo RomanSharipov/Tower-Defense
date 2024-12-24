@@ -61,7 +61,7 @@ namespace CodeBase.Infrastructure.Installers
             builder.Register<PlayerHealthService>(Lifetime.Singleton)
                 .As<IPlayerHealthService>()
                 .As<IInitializable>()
-                .WithParameter("maxHealth",10);
+                .WithParameter("maxHealth",3);
         }
     }    
 }

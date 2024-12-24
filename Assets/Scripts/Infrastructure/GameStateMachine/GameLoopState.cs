@@ -18,19 +18,17 @@ namespace CodeBase.Infrastructure
         [Inject] private readonly IGameLoopStatesService _gameLoopStatesService;
         [Inject] private readonly IGameStatusService _gameStatusService;
         [Inject] private readonly IClickOnTurretTracker _clickOnTurretTracker;
-        [Inject] private readonly IPlayerHealthService _playerHealthService;
+        
 
         private CompositeDisposable _compositeDisposable = new();
 
         public async UniTask Enter()
         {
             _compositeDisposable.Clear();
-
-            _playerHealthService.HealthIsOver += OnPlayerHealthIsOver;
-
+            
             _gameStatusService.GameStatus
-                .Where(status => status == GameStatus.Win)
-                .Subscribe(_ => _gameLoopStatesService.Enter<PlayerWinState>())
+                
+                .Subscribe(OnGameStatusChange)
                 .AddTo(_compositeDisposable);
             
             _clickOnTurretTracker.ClickOnTurret
@@ -45,11 +43,21 @@ namespace CodeBase.Infrastructure
             _gameLoopStatesService.Enter<PlayingIdleState>();
         }
 
-        private void OnPlayerHealthIsOver()
+        private void OnGameStatusChange(GameStatus status)
         {
-            _gameLoopStatesService.Enter<PlayerLoseSate>();
+            switch (status)
+            {
+                case GameStatus.None:
+                    break;
+                case GameStatus.Win:
+                    _gameLoopStatesService.Enter<PlayerWinState>();
+                    break;
+                case GameStatus.Lose:
+                    _gameLoopStatesService.Enter<PlayerLoseSate>();
+                    break;
+            }
         }
-
+        
         private void OnClickOnTurret(TurretBase turret)
         {
             _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
@@ -61,7 +69,6 @@ namespace CodeBase.Infrastructure
         
         public UniTask Exit()
         {
-            _playerHealthService.HealthChanged -= OnPlayerHealthIsOver;
             _clickOnTurretTracker.EndTracking();
             _windowService.CloseAllWindows();
             _levelService.UnLoadCurrentLevel();

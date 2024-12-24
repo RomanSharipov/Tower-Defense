@@ -41,5 +41,11 @@ namespace Assets.Scripts.CoreGamePlay
                 HealthChanged?.Invoke(CurrentHealth);
             }
         }
+
+        public void ResetHealth()
+        {
+            CurrentHealth = MaxHealth;
+            _healthIsOver = false;
+        }
     }
 }

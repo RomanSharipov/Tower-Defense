@@ -1,6 +1,7 @@
 ﻿using System;
 using Assets.Scripts.CoreGamePlay;
 using UniRx;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -10,17 +11,19 @@ namespace CodeBase.Infrastructure.Services
     {
         private Health _health;
         private int _maxHealth;
+        private IGameStatusService _gameStatusService;
         
         [Inject]
-        public PlayerHealthService(int maxHealth)
+        public PlayerHealthService(int maxHealth, IGameStatusService gameStatusService)
         {
             _maxHealth = maxHealth;
-            ResetHealth();
+            _health = new Health(_maxHealth);
+            _gameStatusService = gameStatusService;
         }
 
         public void ResetHealth()
         {
-            _health = new Health(_maxHealth);
+            _health.ResetHealth();
         }
 
         public int MaxHealth => _health.MaxHealth;
@@ -39,10 +42,12 @@ namespace CodeBase.Infrastructure.Services
         private void OnHealthIsOver()
         {
             HealthIsOver?.Invoke();
+            _gameStatusService.SetStatus(GameStatus.Lose);
         }
 
         private void OnHealthChanged(int health)
         {
+            
             HealthChanged?.Invoke();
         }
 

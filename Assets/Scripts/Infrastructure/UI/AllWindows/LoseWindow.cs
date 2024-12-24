@@ -12,6 +12,13 @@ namespace CodeBase.Infrastructure.UI
         
         [Inject] private IGameLoopStatesService _gameLoopStatesService;
 
-
+        public override void Initialize()
+        {
+            base.Initialize();
+            _restartButton.OnClickAsObservable().Subscribe(_ =>
+            {
+                _gameLoopStatesService.Enter<RestartState>();
+            }).AddTo(this);
+        }
     }
 }

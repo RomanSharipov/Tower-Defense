@@ -262,7 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _closeButton: {fileID: 0}
   _windowId: 6
-  _restartButton: {fileID: 0}
+  _restartButton: {fileID: 4969695202669548667}
 --- !u!1 &4795560152289319174
 GameObject:
   m_ObjectHideFlags: 0

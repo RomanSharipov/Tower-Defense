@@ -6,7 +6,7 @@ using VContainer;
 
 namespace CodeBase.Infrastructure
 {
-    public class TransitToNextLevelState : IState
+    public class RestartState : IState
     {
         [Inject] private readonly ILevelService _levelService;
         [Inject] private readonly IGameLoopStatesService _gameLoopStatesService;
@@ -23,7 +23,7 @@ namespace CodeBase.Infrastructure
             _windowService.CloseAllWindows();
             _levelService.UnLoadCurrentLevel();
 
-            _levelService.IncreaseCurrentLevel();
+
 
             ISceneInitializer levelMain = await _levelService.LoadCurrentLevel();
             levelMain.InitializeSceneServices();
@@ -33,6 +33,7 @@ namespace CodeBase.Infrastructure
         public UniTask Exit()
         {
             _windowService.Open(WindowId.GameLoopWindow);
+            
             return UniTask.CompletedTask;
         }
     }

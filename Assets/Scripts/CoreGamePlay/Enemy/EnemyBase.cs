@@ -51,6 +51,7 @@ namespace Assets.Scripts.CoreGamePlay
 
             EnemyMovement.StartMovement();
             EnemyMovement.GoalIsReached += OnGoalIsReached;
+            
             _health.HealthIsOver += OnHealthIsOver;
         }
 
@@ -72,6 +73,7 @@ namespace Assets.Scripts.CoreGamePlay
         public void OnDespawn()
         {
             EnemyMovement.StopMovement();
+            
             EnemyMovement.GoalIsReached -= OnGoalIsReached;
             _health.HealthIsOver -= OnHealthIsOver;
             _healthBar.OnDespawn();

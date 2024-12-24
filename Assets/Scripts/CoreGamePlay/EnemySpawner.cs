@@ -106,6 +106,7 @@ namespace Assets.Scripts.CoreGamePlay
         private void RemoveEnemy(EnemyBase enemy)
         {
             enemy.Died -= RemoveEnemy;
+            enemy.GoalIsReached -= OnGoalIsReached;
             _allEnemyStorage.Remove(enemy);
             NightPool.Despawn(enemy.gameObject);
             _gameStatusService.TrackWin();
@@ -113,8 +114,9 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnGoalIsReached(EnemyBase enemy)
         {
-            _playerHealthService.ReduceHealth(1);
             enemy.GoalIsReached -= OnGoalIsReached;
+            enemy.Died -= RemoveEnemy;
+            _playerHealthService.ReduceHealth(1);
             RemoveEnemy(enemy);
         }
 
