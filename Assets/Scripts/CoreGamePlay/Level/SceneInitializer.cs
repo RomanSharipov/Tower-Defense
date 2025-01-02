@@ -12,15 +12,20 @@ namespace Assets.Scripts.CoreGamePlay
         [Inject] private ICacherOfPath _cacherOfPath;
         [Inject] private ITilesStorage _tilesStorage;
         [Inject] private IWavesService _wavesService;
+        [Inject] private IPlayerHealthService _playerHealthService;
 
         [SerializeField] private TileView[] _tiles;
         [SerializeField] private Transform _turretsParrent;
         [SerializeField] private EnemySpawner[] _enemySpawners;
         [SerializeField] private PathInitializer _pathInitializer;
         [SerializeField] private WavesOnLevelData _wavesOnLevelData;
+        [SerializeField] private int _levelHealth = 10;
+
+        public int LevelHealth => _levelHealth;
 
         public void InitializeSceneServices()
         {
+            _playerHealthService.Init(_levelHealth);
             _cacherOfPath.SetSpawnersOnCurrentLevel(_enemySpawners);
             InitHexTiles();
 

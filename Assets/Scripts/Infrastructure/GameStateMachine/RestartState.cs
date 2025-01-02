@@ -22,7 +22,7 @@ namespace CodeBase.Infrastructure
             _wavesService.ResetWaves();
             _windowService.CloseAllWindows();
             _levelService.UnLoadCurrentLevel();
-
+            _playerHealthService.Unsubscribe();
 
 
             ISceneInitializer levelMain = await _levelService.LoadCurrentLevel();

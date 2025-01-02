@@ -18,6 +18,8 @@ namespace CodeBase.Infrastructure
         [Inject] private readonly IGameLoopStatesService _gameLoopStatesService;
         [Inject] private readonly IGameStatusService _gameStatusService;
         [Inject] private readonly IClickOnTurretTracker _clickOnTurretTracker;
+        [Inject] private readonly IPlayerHealthService _playerHealthService;
+        [Inject] private readonly IWavesService _wavesService;
         
 
         private CompositeDisposable _compositeDisposable = new();
@@ -69,9 +71,11 @@ namespace CodeBase.Infrastructure
         
         public UniTask Exit()
         {
+            _wavesService.ResetWaves();
             _clickOnTurretTracker.EndTracking();
             _windowService.CloseAllWindows();
             _levelService.UnLoadCurrentLevel();
+            _playerHealthService.Unsubscribe();
             _assetProvider.Cleanup();
             _gameLoopStatesService.Enter<EmptyState>();
             return UniTask.CompletedTask;

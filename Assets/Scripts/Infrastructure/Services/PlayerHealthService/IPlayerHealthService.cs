@@ -12,6 +12,8 @@ namespace CodeBase.Infrastructure.Services
         public event Action HealthIsOver;
 
         public void ReduceHealth(int value);
+        public void Init(int maxHealth);
         public void ResetHealth();
+        public void Unsubscribe();
     }
 }

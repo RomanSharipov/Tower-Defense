@@ -7,17 +7,14 @@ using VContainer.Unity;
 
 namespace CodeBase.Infrastructure.Services
 {
-    public class PlayerHealthService : IPlayerHealthService,IInitializable
+    public class PlayerHealthService : IPlayerHealthService 
     {
         private Health _health;
-        private int _maxHealth;
         private IGameStatusService _gameStatusService;
         
         [Inject]
-        public PlayerHealthService(int maxHealth, IGameStatusService gameStatusService)
+        public PlayerHealthService(IGameStatusService gameStatusService)
         {
-            _maxHealth = maxHealth;
-            _health = new Health(_maxHealth);
             _gameStatusService = gameStatusService;
         }
 
@@ -33,8 +30,9 @@ namespace CodeBase.Infrastructure.Services
         public event Action HealthChanged;
         public event Action HealthIsOver;
 
-        public void Initialize()
+        public void Init(int levelHealth)
         {
+            _health = new Health(levelHealth);
             _health.HealthChanged += OnHealthChanged;
             _health.HealthIsOver += OnHealthIsOver;
         }
@@ -54,6 +52,12 @@ namespace CodeBase.Infrastructure.Services
         public void ReduceHealth(int value)
         {
             _health.ReduceHealth(value);
+        }
+
+        public void Unsubscribe()
+        {
+            _health.HealthChanged -= OnHealthChanged;
+            _health.HealthIsOver -= OnHealthIsOver;
         }
     }
 }
