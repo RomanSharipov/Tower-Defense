@@ -6,7 +6,7 @@ using VContainer.Unity;
 
 namespace CodeBase.Infrastructure
 {
-    public class LevelInstaller : LifetimeScope
+    public class SceneInstaller : LifetimeScope
     {
         [Header("Scriptable Installers")]
         [SerializeField]
