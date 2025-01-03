@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure.UI.Services;
+﻿using CodeBase.Infrastructure.UI;
+using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
 using VContainer;
 
@@ -11,7 +12,7 @@ namespace CodeBase.Infrastructure
 
         public UniTask Enter()
         {
-            _windowService.Open(WindowId.LoseWindow);
+            _windowService.Open<LoseWindow>();
             return UniTask.CompletedTask;
         }
 

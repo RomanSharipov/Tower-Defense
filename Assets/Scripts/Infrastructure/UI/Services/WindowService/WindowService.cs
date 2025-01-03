@@ -8,84 +8,88 @@ namespace CodeBase.Infrastructure.UI.Services
     public class WindowService : IWindowService
     {
         private IUIFactory _uiFactory;
-        private Dictionary<WindowId,WindowBase> _openedWindows = new Dictionary<WindowId, WindowBase>();
+        private Dictionary<Type,WindowBase> _openedWindows = new Dictionary<Type, WindowBase>();
         
         public WindowService(IUIFactory uiFactory)
         {
             _uiFactory = uiFactory;
         }
-
-        public async UniTask Open(WindowId windowId)
+        
+        public async UniTask Open<TWindow>(Action<TWindow> setupBeforeOpen = null) where TWindow : WindowBase
         {
-            if (_openedWindows.ContainsKey(windowId))
+            if (_openedWindows.ContainsKey(typeof(TWindow)))
             {
-                Debug.LogError($"Window with name {windowId} already opened");
+                Debug.LogError($"Window with name {typeof(TWindow)} already opened");
                 return;
             }
-            CreateWindow(windowId).Forget();
+            TWindow window = await CreateWindow<TWindow>();
+            setupBeforeOpen.Invoke(window);
         }
 
-        public async UniTask Open<TWindow>(WindowId windowId,Action<TWindow> setupBeforeOpen) where TWindow : WindowBase
+        public bool NowIsOpen<TWindow>()
         {
-            if (_openedWindows.ContainsKey(windowId))
-            {
-                Debug.LogError($"Window with name {windowId} already opened");
-                return;
-            }
-            WindowBase window = await CreateWindow(windowId);
-            setupBeforeOpen.Invoke((TWindow)window);
+            return _openedWindows.ContainsKey(typeof(TWindow));
         }
 
-        public bool NowIsOpen(WindowId windowId)
-        {
-            return _openedWindows.ContainsKey(windowId);
-        }
-
-        private async UniTask<WindowBase> CreateWindow(WindowId windowId)
+        private async UniTask<TWindow> CreateWindow<TWindow>() where TWindow : WindowBase
         {
             try
             {
-                WindowBase window = await _uiFactory.CreateWindow(windowId);
+                TWindow window = await _uiFactory.CreateWindow<TWindow>();
                 if (window != null)
                 {
-                    _openedWindows.Add(windowId, window);
+                    _openedWindows.Add(typeof(TWindow), window);
                     window.Initialize();
-                    window.CloseButtonClicked += CloseWindow;
+                    window.CloseButtonClicked += CloseWindowInternal;
                 }
                 return window;
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Failed to create window with ID {windowId}: {ex.Message}");
+                Debug.LogError($"Failed to create window with ID {typeof(TWindow)}: {ex.Message}");
                 return null;
             }
         }
 
-        public void CloseWindow(WindowId windowId)
+        private void CloseWindowInternal(WindowBase window)
         {
-            if (_openedWindows.TryGetValue(windowId, out WindowBase window))
+            if (_openedWindows.TryGetValue(window.GetType(), out WindowBase windowInternal))
             {
-                window.CloseButtonClicked -= CloseWindow;
-                GameObject.Destroy(window.gameObject);
-                _openedWindows.Remove(windowId);
+                windowInternal.CloseButtonClicked -= CloseWindowInternal;
+                GameObject.Destroy(windowInternal.gameObject);
+                _openedWindows.Remove(window.GetType());
             }
             else
             {
-                Debug.LogWarning($"Attempted to close a window with ID {windowId} that was not open.");
+                Debug.LogWarning($"Attempted to close a window with ID {window.GetType()} that was not open.");
             }
         }
 
-        public void CloseWindowIfOpened(WindowId windowId)
+        public void CloseWindow<TWindow>() where TWindow : WindowBase
         {
-            if (NowIsOpen(windowId))
-                CloseWindow(windowId);
+            if (_openedWindows.TryGetValue(typeof(TWindow), out WindowBase windowInternal))
+            {
+                windowInternal.CloseButtonClicked -= CloseWindowInternal;
+                GameObject.Destroy(windowInternal.gameObject);
+                _openedWindows.Remove(typeof(TWindow));
+            }
+            else
+            {
+                Debug.LogWarning($"Attempted to close a window with ID {typeof(TWindow)} that was not open.");
+            }
+        }
+        
+        public void CloseWindowIfOpened<TWindow>() where TWindow : WindowBase
+        {
+            if (NowIsOpen<TWindow>())
+                CloseWindowInternal(_openedWindows[typeof(TWindow)]);
         }
 
         public void CloseAllWindows() 
         {
             foreach (WindowBase window in _openedWindows.Values)
             {
-                window.CloseButtonClicked -= CloseWindow;
+                window.CloseButtonClicked -= CloseWindowInternal;
                 GameObject.Destroy(window.gameObject);
             }
             _openedWindows.Clear();

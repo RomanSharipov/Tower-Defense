@@ -9,10 +9,6 @@ namespace CodeBase.Configs
     [CreateAssetMenu(fileName = "AddressablesAssetReferencesData", menuName = "StaticData/AddressablesAssetReferencesData")]
     public class AddressablesAssetReferencesData : ScriptableObject
     {
-        
-        public WindowsData WindowsData;
-
-       
         public SceneReference[] SceneReferences;
 
 

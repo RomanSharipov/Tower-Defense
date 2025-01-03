@@ -5,11 +5,10 @@ namespace CodeBase.Infrastructure.UI.Services
 {
     public interface IWindowService
     {
+        public UniTask Open<TWindow>(Action<TWindow> setupBeforeOpen = null) where TWindow : WindowBase;
+        public void CloseWindow<TWindow>() where TWindow : WindowBase;
+        public bool NowIsOpen<TWindow>();
+        public void CloseWindowIfOpened<TWindow>() where TWindow : WindowBase;
         public void CloseAllWindows();
-        public UniTask Open(WindowId windowId);
-        public void CloseWindow(WindowId windowId);
-        public bool NowIsOpen(WindowId windowId);
-        public void CloseWindowIfOpened(WindowId windowId);
-        public UniTask Open<TWindow>(WindowId windowId, Action<TWindow> setupBeforeOpen) where TWindow : WindowBase;
     }
 }

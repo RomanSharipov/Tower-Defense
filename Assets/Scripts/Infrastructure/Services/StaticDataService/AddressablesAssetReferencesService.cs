@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Assets.Scripts.CoreGamePlay;
 using CodeBase.Configs;
@@ -16,8 +17,8 @@ namespace CodeBase.Infrastructure.Services
         public AssetReference RootCanvas =>
             _assetReferencesData.WindowsData.rootCanvas;
 
-        public IReadOnlyDictionary<WindowId, AssetReference> Windows => 
-            _assetReferencesData.WindowsData.WindowAssetReference.ToDictionary<WindowId, AssetReference>();
+        public IReadOnlyDictionary<Type, AssetReference> Windows => 
+            _assetReferencesData.WindowsData.WindowAssetReference.ToDictionary<Type, AssetReference>();
 
 
         public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences => 

@@ -1,4 +1,5 @@
 ﻿using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.UI;
 using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
 using VContainer;
@@ -19,7 +20,7 @@ namespace CodeBase.Infrastructure
 
         public async UniTask Enter()
         {
-            _windowService.Open(WindowId.MainMenu).Forget();
+            _windowService.Open<MainMenu>().Forget();
         }
 
         public UniTask Exit()

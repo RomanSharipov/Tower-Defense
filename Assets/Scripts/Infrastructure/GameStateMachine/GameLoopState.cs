@@ -38,7 +38,7 @@ namespace CodeBase.Infrastructure
                 .AddTo(_compositeDisposable);
             
             _clickOnTurretTracker.StartTracking();
-            _windowService.Open(WindowId.GameLoopWindow).Forget();
+            _windowService.Open<GameLoopWindow>().Forget();
             
             ISceneInitializer levelMain = await _levelService.LoadCurrentLevel();
             levelMain.InitializeSceneServices();
@@ -62,8 +62,8 @@ namespace CodeBase.Infrastructure
         
         private void OnClickOnTurret(TurretBase turret)
         {
-            _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
-            _windowService.Open<TurretContextMenu>(WindowId.TurretContextMenu, window =>
+            _windowService.CloseWindowIfOpened<TurretContextMenu>();
+            _windowService.Open<TurretContextMenu>(window =>
             {
                 window.Setup(turret);
             }).Forget();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.CoreGamePlay;
 using CodeBase.Infrastructure.UI.Services;
 using UnityEngine.AddressableAssets;
@@ -7,7 +8,7 @@ namespace CodeBase.Infrastructure.Services
 {
     public interface IAddressablesAssetReferencesService
     {
-        public IReadOnlyDictionary<WindowId, AssetReference> Windows { get; }
+        public IReadOnlyDictionary<Type, AssetReference> Windows { get; }
 
         public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences { get; }
         public AssetReference RootCanvas { get; }

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.CoreGamePlay;
 using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.UI;
 using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
 using VContainer;
@@ -32,7 +33,7 @@ namespace CodeBase.Infrastructure
 
         public UniTask Exit()
         {
-            _windowService.Open(WindowId.GameLoopWindow);
+            _windowService.Open<GameLoopWindow>();
             return UniTask.CompletedTask;
         }
     }

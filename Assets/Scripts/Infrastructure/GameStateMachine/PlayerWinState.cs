@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure.UI.Services;
+﻿using CodeBase.Infrastructure.UI;
+using CodeBase.Infrastructure.UI.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
@@ -11,8 +12,8 @@ namespace CodeBase.Infrastructure
         
         public UniTask Enter()
         {
-            _windowService.CloseWindowIfOpened(WindowId.TurretContextMenu);
-            _windowService.Open(WindowId.WinWindow);
+            _windowService.CloseWindowIfOpened<TurretContextMenu>();
+            _windowService.Open<WinWindow>();
 
             return UniTask.CompletedTask;
         }

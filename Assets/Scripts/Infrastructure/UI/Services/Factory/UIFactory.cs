@@ -12,7 +12,7 @@ namespace CodeBase.Infrastructure.UI.Services
     public class UIFactory : IUIFactory
     {
         private readonly IAssetProvider _assetProvider;
-        private readonly IReadOnlyDictionary<WindowId, AssetReference> _assetReferenceData;
+        private readonly IReadOnlyDictionary<Type, AssetReference> _assetReferenceData;
         private readonly IObjectResolver _objectResolver;
         private readonly AssetReference _rootCanvasPrefab;
 
@@ -34,12 +34,12 @@ namespace CodeBase.Infrastructure.UI.Services
             _rootCanvas = rootCanvasGameobject.transform;
         }
 
-        public async UniTask<WindowBase> CreateWindow(WindowId windowType)
+        public async UniTask<TWindow> CreateWindow<TWindow>() where TWindow : WindowBase
         {
-            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[windowType]);
+            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[typeof(TWindow)]);
             GameObject newGameObject = GameObject.Instantiate(prefab, _rootCanvas);
             _objectResolver.InjectGameObject(newGameObject);
-            WindowBase windowComponent = newGameObject.GetComponent<WindowBase>();
+            TWindow windowComponent = newGameObject.GetComponent<TWindow>();
             return windowComponent;
         }
     }

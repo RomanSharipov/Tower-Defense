@@ -28,7 +28,7 @@ namespace CodeBase.Infrastructure.UI
             _removeTurretButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _turret.RemoveSelf();
-                _windowService.CloseWindow(WindowId.TurretContextMenu);
+                _windowService.CloseWindow<TurretContextMenu>();
             }).AddTo(this);
         }
 
