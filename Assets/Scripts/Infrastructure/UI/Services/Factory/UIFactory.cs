@@ -12,19 +12,19 @@ namespace CodeBase.Infrastructure.UI.Services
     public class UIFactory : IUIFactory
     {
         private readonly IAssetProvider _assetProvider;
-        private readonly IReadOnlyDictionary<Type, AssetReference> _assetReferenceData;
         private readonly IObjectResolver _objectResolver;
+        private readonly IReadOnlyDictionary<Type, AssetReference> _windowsData;
         private readonly AssetReference _rootCanvasPrefab;
 
         private Transform _rootCanvas;
 
         [Inject]
-        public UIFactory(IAssetProvider assetProvider, IAddressablesAssetReferencesService _addressablesAssetReferencesService, IObjectResolver objectResolver)
+        public UIFactory(IAssetProvider assetProvider, IObjectResolver objectResolver, IReadOnlyDictionary<Type, AssetReference> windowsData, AssetReference rootCanvasPrefab)
         {
             _assetProvider = assetProvider;
-            _assetReferenceData = _addressablesAssetReferencesService.Windows;
             _objectResolver = objectResolver;
-            _rootCanvasPrefab = _addressablesAssetReferencesService.RootCanvas;
+            _windowsData = windowsData;
+            _rootCanvasPrefab = rootCanvasPrefab;
         }
 
         public async UniTask CreateRootCanvas()
@@ -36,7 +36,7 @@ namespace CodeBase.Infrastructure.UI.Services
 
         public async UniTask<TWindow> CreateWindow<TWindow>() where TWindow : WindowBase
         {
-            GameObject prefab = await _assetProvider.Load<GameObject>(_assetReferenceData[typeof(TWindow)]);
+            GameObject prefab = await _assetProvider.Load<GameObject>(_windowsData[typeof(TWindow)]);
             GameObject newGameObject = GameObject.Instantiate(prefab, _rootCanvas);
             _objectResolver.InjectGameObject(newGameObject);
             TWindow windowComponent = newGameObject.GetComponent<TWindow>();
@@ -44,17 +44,5 @@ namespace CodeBase.Infrastructure.UI.Services
         }
     }
     
-    [Serializable]
-    public class WindowAssetReference
-    {
-        public WindowId WindowType;
-        public AssetReference assetReference;
-    }
 
-    [Serializable]
-    public class WindowsData
-    {
-        public AssetReference rootCanvas;
-        public WindowAssetReference[] WindowAssetReference;
-    }
 }

@@ -10,17 +10,11 @@ namespace CodeBase.Infrastructure.Services
     public class AddressablesAssetReferencesService : IAddressablesAssetReferencesService
     {
         private readonly AddressablesAssetReferencesData _assetReferencesData;
+
         public AddressablesAssetReferencesService(AddressablesAssetReferencesData assetReferencesData)
         {
             _assetReferencesData = assetReferencesData;
         }
-        public AssetReference RootCanvas =>
-            _assetReferencesData.WindowsData.rootCanvas;
-
-        public IReadOnlyDictionary<Type, AssetReference> Windows => 
-            _assetReferencesData.WindowsData.WindowAssetReference.ToDictionary<Type, AssetReference>();
-
-
         public IReadOnlyDictionary<string, AssetReference> SceneAssetReferences => 
             _assetReferencesData.SceneReferences.ToDictionary<AssetReference>();
 

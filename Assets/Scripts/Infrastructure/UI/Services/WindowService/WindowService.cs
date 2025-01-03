@@ -23,7 +23,7 @@ namespace CodeBase.Infrastructure.UI.Services
                 return;
             }
             TWindow window = await CreateWindow<TWindow>();
-            setupBeforeOpen.Invoke(window);
+            setupBeforeOpen?.Invoke(window);
         }
 
         public bool NowIsOpen<TWindow>()
