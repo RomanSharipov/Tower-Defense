@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 5024308002519946322}
   - component: {fileID: 5622466031539293950}
   - component: {fileID: 1709945744977673405}
+  - component: {fileID: -5185078185602017019}
   m_Layer: 6
   m_Name: GroundDrone
   m_TagString: Untagged
@@ -437,6 +438,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5185078185602017019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553927370055603711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0702453e896734db77d4658d6f4dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6602035993207529058
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,7 +843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5570130222171625827, guid: 69d5d83861beb26458492518eea893f1, type: 3}
       propertyPath: m_Name
-      value: HealthBarCanvas
+      value: EnemyCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

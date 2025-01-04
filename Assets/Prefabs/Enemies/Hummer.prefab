@@ -621,6 +621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6326626085479445887}
+  - component: {fileID: 1073709079990318634}
   - component: {fileID: 2016120243857341500}
   - component: {fileID: 1127763890091039581}
   - component: {fileID: 8318514487581250067}
@@ -652,6 +653,18 @@ Transform:
   - {fileID: 4816643459201391947}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1073709079990318634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6667403649540992965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0702453e896734db77d4658d6f4dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2016120243857341500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,7 +1018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5570130222171625827, guid: 69d5d83861beb26458492518eea893f1, type: 3}
       propertyPath: m_Name
-      value: HealthBarCanvas
+      value: EnemyCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
