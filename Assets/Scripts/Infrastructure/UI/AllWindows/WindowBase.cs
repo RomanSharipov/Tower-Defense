@@ -1,19 +1,14 @@
 ﻿using System;
-using CodeBase.Infrastructure.UI.Services;
 using UnityEngine;
 using UnityEngine.UI;
-using VContainer;
-using VContainer.Unity;
 
 namespace CodeBase.Infrastructure.UI
 {
     public abstract class WindowBase : MonoBehaviour
     {
         [SerializeField] private Button _closeButton;
-        [SerializeField] private WindowId _windowId;
-
+        
         public event Action<WindowBase> CloseButtonClicked;
-        public WindowId WindowId => _windowId;
         
         private void Awake()
         {
