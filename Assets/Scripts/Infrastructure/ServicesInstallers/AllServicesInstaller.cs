@@ -57,6 +57,9 @@ namespace CodeBase.Infrastructure.Installers
 
             builder.Register<PlayerHealthService>(Lifetime.Singleton)
                 .As<IPlayerHealthService>();
+
+            builder.Register<TurretPriceProvider>(Lifetime.Singleton)
+                .As<ITurretPriceProvider>();
         }
     }    
 }
