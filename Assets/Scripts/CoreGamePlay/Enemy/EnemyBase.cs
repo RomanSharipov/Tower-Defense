@@ -18,6 +18,7 @@ namespace Assets.Scripts.CoreGamePlay
         [SerializeField] private HealthBar _healthBar;
 
         private IHealth _health;
+        private IPlayerResourcesService _playerResourcesService;
         
         public abstract IEnemyMovement EnemyMovement { get; }
         
@@ -31,8 +32,9 @@ namespace Assets.Scripts.CoreGamePlay
         public event Action<EnemyBase> Died;
 
         [Inject]
-        public void Construct()
+        public void Construct(IPlayerResourcesService playerResourcesService)
         {
+            _playerResourcesService = playerResourcesService;
             AlreadyConstructed = true;
         }
 
@@ -57,6 +59,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnHealthIsOver()
         {
+            _playerResourcesService.IncreaseValue(ResourcesType.Money, _enemyConfig.Reward);
             Died?.Invoke(this);
         }
 

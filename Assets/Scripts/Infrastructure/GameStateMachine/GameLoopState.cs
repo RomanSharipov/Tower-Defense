@@ -41,6 +41,7 @@ namespace CodeBase.Infrastructure
             _windowService.Open<GameLoopWindow>().Forget();
             
             ISceneInitializer levelMain = await _levelService.LoadCurrentLevel();
+
             levelMain.InitializeSceneServices();
             _gameLoopStatesService.Enter<PlayingIdleState>();
         }

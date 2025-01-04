@@ -17,3 +17,4 @@ MonoBehaviour:
   _materials:
   - {fileID: 2100000, guid: ef048c73ce5ad4340af98bf4e790f26a, type: 2}
   _enemyType: 2
+  _reward: 5

@@ -15,7 +15,7 @@ namespace CodeBase.Infrastructure
         [Inject] private readonly IGameStatusService _gameStatusService;
         [Inject] private readonly IWavesService _wavesService;
         [Inject] private readonly IPlayerHealthService _playerHealthService;
-
+        
         public async UniTask Enter()
         {
             _gameStatusService.ResetStatus();
@@ -24,8 +24,7 @@ namespace CodeBase.Infrastructure
             _windowService.CloseAllWindows();
             _levelService.UnLoadCurrentLevel();
             _playerHealthService.Unsubscribe();
-
-
+            
             ISceneInitializer levelMain = await _levelService.LoadCurrentLevel();
             levelMain.InitializeSceneServices();
             _gameLoopStatesService.Enter<PlayingIdleState>();

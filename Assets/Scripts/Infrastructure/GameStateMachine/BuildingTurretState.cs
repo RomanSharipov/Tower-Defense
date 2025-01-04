@@ -8,26 +8,28 @@ namespace CodeBase.Infrastructure
 {
     public class BuildingTurretState : IState
     {
-        private IBuildingService _buildingService;
-        
-        private IGameLoopStatesService _gameLoopStatesService;
+        [Inject] private IBuildingService _buildingService;
+        [Inject] private IPlayerResourcesService _playerResourcesService;
+        [Inject] private IGameLoopStatesService _gameLoopStatesService;
+        [Inject] private ITurretPriceProvider _turretPriceProvider;
+
         private TurretId _turretId;
-
-        [Inject]
-        public BuildingTurretState(IBuildingService buildingService,IGameLoopStatesService gameLoopStatesService)
-        {
-            _buildingService = buildingService;
-            _gameLoopStatesService = gameLoopStatesService;
-        }
-
+        
         public async UniTask Enter()
         {
+            _buildingService.TurretIsBuilded += OnTurretIsBuilded;
             await _buildingService.StartBuilding(_turretId);
             _gameLoopStatesService.Enter<PlayingIdleState>();
         }
-        
+
+        private void OnTurretIsBuilded(TurretBase turret)
+        {
+            _playerResourcesService.DecreaseValue(ResourcesType.Money, _turretPriceProvider.GetPrice(_turretId));
+        }
+
         public UniTask Exit()
         {
+            _buildingService.TurretIsBuilded -= OnTurretIsBuilded;
             return UniTask.CompletedTask;
         }
 

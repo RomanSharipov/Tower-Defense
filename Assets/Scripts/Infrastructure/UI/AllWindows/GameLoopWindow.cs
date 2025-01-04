@@ -18,24 +18,33 @@ namespace CodeBase.Infrastructure.UI
         [SerializeField] private BuildButton[] _buildTurretButtons;
         [SerializeField] private TMP_Text _wavesCount;
         [SerializeField] private TMP_Text _playerHealth;
+        [SerializeField] private TMP_Text _moneyText;
 
         [Inject] private IAppStateService _appStateService;
         [Inject] private IGameLoopStatesService _gameLoopStatesService;
         [Inject] private IWavesService _wavesService;
         [Inject] private IPlayerHealthService _playerHealthService;
+        [Inject] private IPlayerResourcesService _playerResourcesService;
+        [Inject] private ITurretPriceProvider _turretPriceProvider;
         [Inject] private BuildingTurretState _buildingTurretState;
 
 
         private void OnBuildButtonClicked(TurretId id)
         {
-            _buildingTurretState.Setup(id);
-            _gameLoopStatesService.Enter<BuildingTurretState>();
+            if (_playerResourcesService.GetValue(ResourcesType.Money).Value >= _turretPriceProvider.GetPrice(id))
+            {
+                _buildingTurretState.Setup(id);
+                _gameLoopStatesService.Enter<BuildingTurretState>();
+            }
         }
         
         public override void Initialize()
         {
             _playerHealthService.HealthChanged += UpdatePlayerHealth;
-
+            _playerResourcesService.GetValue(ResourcesType.Money).Subscribe(money =>
+            {
+                _moneyText.text = $"{money}$";
+            }).AddTo(this);
             _goToMenuButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _appStateService.Enter<MenuState>();
