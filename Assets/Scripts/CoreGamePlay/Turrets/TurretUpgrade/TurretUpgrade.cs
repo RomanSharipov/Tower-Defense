@@ -12,6 +12,8 @@ namespace Assets.Scripts.CoreGamePlay
         public List<IUpgradeable> _upgradeables = new List<IUpgradeable>();
         
         public bool HasNextUpgrade => _currentLevelIndex < _maxLevel - 1;
+        public int CurrentLevelIndex => _currentLevelIndex;
+
         public event Action TurretUpgraded;
         
         public TurretUpgrade(int maxLevel)

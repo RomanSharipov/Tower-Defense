@@ -13,6 +13,8 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override IDetector DetectorEnemies => _detectorGroundEnemies;
 
+        public override TurretId TurretId => TurretId.Rocket;
+
         public override void InitIntance()
         {
             int indexDamage = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.RocketDamage);

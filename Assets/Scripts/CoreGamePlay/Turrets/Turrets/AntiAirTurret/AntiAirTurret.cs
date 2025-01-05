@@ -12,6 +12,8 @@ namespace Assets.Scripts.CoreGamePlay
 
         public override IDetector DetectorEnemies => _detectorEnyEnemies;
 
+        public override TurretId TurretId => TurretId.AntiAir;
+
         public override void InitIntance()
         {
             int indexDamage = _turretsStatsLevelIndexService.GetCurrentValue(StatsType.AntiAirDamage);

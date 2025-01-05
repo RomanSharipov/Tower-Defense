@@ -12,6 +12,8 @@ namespace Assets.Scripts.CoreGamePlay
         
         public override IDetector DetectorEnemies => _detectorGroundEnemies;
 
+        public override TurretId TurretId => TurretId.Cannon;
+
         public override void InitIntance()
         {
             _detectorGroundEnemies = new DetectorGroundEnemies(transform.position,_groundEnemy);

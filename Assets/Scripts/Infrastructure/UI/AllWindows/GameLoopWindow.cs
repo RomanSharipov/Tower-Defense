@@ -31,7 +31,7 @@ namespace CodeBase.Infrastructure.UI
 
         private void OnBuildButtonClicked(TurretId id)
         {
-            if (_playerResourcesService.GetValue(ResourcesType.Money).Value >= _turretPriceProvider.GetPrice(id))
+            if (_playerResourcesService.GetValue(ResourcesType.Money).Value >= _turretPriceProvider.GetBuyPrice(id))
             {
                 _buildingTurretState.Setup(id);
                 _gameLoopStatesService.Enter<BuildingTurretState>();

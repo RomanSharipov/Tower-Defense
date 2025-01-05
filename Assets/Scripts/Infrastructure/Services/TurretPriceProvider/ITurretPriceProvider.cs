@@ -4,6 +4,7 @@ namespace CodeBase.Infrastructure.Services
 {
     public interface ITurretPriceProvider
     {
-        public int GetPrice(TurretId turretId);
+        public int GetBuyPrice(TurretId turretId);
+        public int GetUpgradePrice(TurretId turretId,int levelIndex);
     }
 }

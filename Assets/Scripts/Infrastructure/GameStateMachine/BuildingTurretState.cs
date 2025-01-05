@@ -24,7 +24,7 @@ namespace CodeBase.Infrastructure
 
         private void OnTurretIsBuilded(TurretBase turret)
         {
-            _playerResourcesService.DecreaseValue(ResourcesType.Money, _turretPriceProvider.GetPrice(_turretId));
+            _playerResourcesService.DecreaseValue(ResourcesType.Money, _turretPriceProvider.GetBuyPrice(_turretId));
         }
 
         public UniTask Exit()

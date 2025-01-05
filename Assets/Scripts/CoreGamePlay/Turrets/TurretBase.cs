@@ -8,9 +8,9 @@ namespace Assets.Scripts.CoreGamePlay
     public abstract class TurretBase : MonoBehaviour
     {
         [SerializeField] private ColorTurret _colorTurret;
-        [SerializeField] protected TurretUpgrade _turretUpgrade;
         [SerializeField] private TurretView _turretView;
 
+        [SerializeField] protected TurretUpgrade _turretUpgrade;
         [SerializeField] protected LayerMask _groundEnemy;
         [SerializeField] protected LayerMask _flyingEnemy;
 
@@ -20,16 +20,19 @@ namespace Assets.Scripts.CoreGamePlay
         private bool _enabled;
         private Action _setIdleState;
 
-        public EnemyBase CurrentTarget;
-        public TileView TileView => _tileView;
-        
         [Inject] protected ITurretsStatsData _turretsStatsData;
         [Inject] protected ITurretsStatsLevelIndexService _turretsStatsLevelIndexService;
         [Inject] protected ITurretRemover _turretRemover;
+
+        public EnemyBase CurrentTarget;
+        public TileView TileView => _tileView;
+        
         public TurretStateMachine TurretStateMachine => _turretStateMachine;
+        public TurretUpgrade TurretUpgrade => _turretUpgrade;
         public abstract IDetector DetectorEnemies { get; }
         public abstract AttackComponent AttackComponent { get; }
         public abstract void InitIntance();
+        public abstract TurretId TurretId { get; }
 
         public void SetColor(ColorType color)
         {
@@ -62,7 +65,7 @@ namespace Assets.Scripts.CoreGamePlay
         }
 
         [ContextMenu("LevelUpTest()")]
-        public void LevelUpTest()
+        public void LevelUp()
         {
             _turretUpgrade.LevelUp();
         }

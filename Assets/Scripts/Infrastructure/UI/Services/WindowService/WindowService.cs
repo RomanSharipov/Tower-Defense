@@ -24,6 +24,8 @@ namespace CodeBase.Infrastructure.UI.Services
             }
             TWindow window = await CreateWindow<TWindow>();
             setupBeforeOpen?.Invoke(window);
+            window.Initialize();
+            window.CloseButtonClicked += CloseWindowInternal;
         }
 
         public bool NowIsOpen<TWindow>()
@@ -36,12 +38,8 @@ namespace CodeBase.Infrastructure.UI.Services
             try
             {
                 TWindow window = await _uiFactory.CreateWindow<TWindow>();
-                if (window != null)
-                {
-                    _openedWindows.Add(typeof(TWindow), window);
-                    window.Initialize();
-                    window.CloseButtonClicked += CloseWindowInternal;
-                }
+
+                _openedWindows.Add(typeof(TWindow), window);
                 return window;
             }
             catch (Exception ex)
