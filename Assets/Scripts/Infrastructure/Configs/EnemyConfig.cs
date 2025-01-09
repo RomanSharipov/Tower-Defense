@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace CodeBase.Configs
 {
-    [CreateAssetMenu(fileName = "EnemyConfig", menuName = "StaticData/EnemyConfig")]
-    public class EnemyConfig : ScriptableObject
+    [Serializable]
+    public class EnemyConfig 
     {
         [SerializeField] private float _movementSpeed;
         [SerializeField] private int _health;
