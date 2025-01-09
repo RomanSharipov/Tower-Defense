@@ -43,7 +43,7 @@ namespace Assets.Scripts.CoreGamePlay
             
             _wavesService.OnNextWave.Subscribe(waveIndex =>
             {
-                _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
+                _spawnTimer = _wavesService.CurrentSubWave.DelayBetweenSpawn;
                 StartSpawnEnemies();
             }).AddTo(this);
         }
@@ -70,7 +70,7 @@ namespace Assets.Scripts.CoreGamePlay
 
             if (_spawnTimer <= 0f)
             {
-                _spawnTimer = _wavesService.CurrentWave.DelayBetweenSpawn;
+                _spawnTimer = _wavesService.CurrentSubWave.DelayBetweenSpawn;
                 if (_detectorEnemies.TryFindEnemy(out EnemyBase enemy))
                 {
                     _spawnTimer += Time.deltaTime;
@@ -137,7 +137,7 @@ namespace Assets.Scripts.CoreGamePlay
 
         private void OnWaveIsOver(WaveData data)
         {
-            _spawnTimer += data.DelayOnEndWave;
+            _spawnTimer += _wavesService.CurrentSubWave.DelayOnEndWave;
         }
     }
 }

@@ -10,48 +10,56 @@ namespace CodeBase.Infrastructure.Services
     {
         private WavesOnLevelData _wavesOnLevelData;
         private WaveData _currentWave;
-        private int _spawned;
-        private Subject<int> _onNextWave = new();
+        private SubWaveData _currentSubWave;
+        private int _spawnedInSubWave;
         private int _currentWaveIndex;
+        private int _currentSubWaveIndex;
         private int _currentWaveNumber;
-        
+
+        private Subject<int> _onNextWave = new();
+
         public WaveData CurrentWave => _currentWave;
+        public SubWaveData CurrentSubWave => _currentSubWave;
         public int AllWavesCount => _wavesOnLevelData.WaveDatas.Length;
         public int CurrentWaveNumber => _currentWaveNumber;
 
         public event Action<WaveData> WaveIsOver;
+        public event Action<SubWaveData> SubWaveIsOver;
 
-        public IObservable<int> OnNextWave  => _onNextWave;
-        
+        public IObservable<int> OnNextWave => _onNextWave;
 
         public void Initialize(WavesOnLevelData wavesOnLevelData)
         {
             _wavesOnLevelData = wavesOnLevelData;
-            _spawned = 0;
+            _spawnedInSubWave = 0;
         }
 
         public bool TryGetEnemy(out EnemyConfig enemyConfig)
         {
             enemyConfig = null;
 
-            if (_spawned >= _currentWave.CountEnemy)
+            if (_spawnedInSubWave >= _currentSubWave.CountEnemy)
             {
-                WaveIsOver?.Invoke(_currentWave);
-                return false;
+                SubWaveIsOver?.Invoke(_currentSubWave);
+
+                if (!ProceedToNextSubWave())
+                {
+                    WaveIsOver?.Invoke(_currentWave);
+                    return false;
+                }
             }
 
-            if (EnemiesIsOver())
+            if (EnemiesInSubWaveAreOver())
                 return false;
 
-            _spawned++;
-            
-            enemyConfig = _currentWave.EnemyConfig;
+            _spawnedInSubWave++;
+            enemyConfig = _currentSubWave.EnemyConfig;
             return true;
         }
 
-        private bool EnemiesIsOver()
+        private bool EnemiesInSubWaveAreOver()
         {
-            return _spawned >= _currentWave.CountEnemy;
+            return _spawnedInSubWave >= _currentSubWave.CountEnemy;
         }
 
         public void ProceedToNextWave()
@@ -59,11 +67,26 @@ namespace CodeBase.Infrastructure.Services
             if (AllWavesIsOver())
                 return;
 
-            _spawned = 0;
+            _spawnedInSubWave = 0;
             _currentWaveNumber++;
             _currentWaveIndex = _currentWaveNumber - 1;
             _currentWave = _wavesOnLevelData.WaveDatas[_currentWaveIndex];
+            _currentSubWaveIndex = -1;
+
+            ProceedToNextSubWave();
             _onNextWave.OnNext(_currentWaveNumber);
+        }
+
+        private bool ProceedToNextSubWave()
+        {
+            _currentSubWaveIndex++;
+
+            if (_currentSubWaveIndex >= _currentWave.SubWaveData.Length)
+                return false;
+
+            _currentSubWave = _currentWave.SubWaveData[_currentSubWaveIndex];
+            _spawnedInSubWave = 0;
+            return true;
         }
 
         public bool AllWavesIsOver()
@@ -74,8 +97,11 @@ namespace CodeBase.Infrastructure.Services
         public void ResetWaves()
         {
             _currentWave = null;
+            _currentSubWave = null;
             _currentWaveIndex = 0;
+            _currentSubWaveIndex = -1;
             _currentWaveNumber = 0;
+            _spawnedInSubWave = 0;
         }
     }
 }
