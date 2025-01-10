@@ -1,5 +1,6 @@
 ﻿using System;
 using UniRx;
+using UnityEngine;
 using VContainer;
 
 namespace CodeBase.Infrastructure.Services
@@ -20,9 +21,11 @@ namespace CodeBase.Infrastructure.Services
         }
         public void TrackWin()
         {
+            Debug.Log($"_allEnemyStorage.Count = {_allEnemyStorage.Count}");
+
             if (!_wavesService.AllWavesIsOver())
                 return;
-
+            
             if (_allEnemyStorage.Count > 0)
                 return;
             SetStatus(Services.GameStatus.Win);

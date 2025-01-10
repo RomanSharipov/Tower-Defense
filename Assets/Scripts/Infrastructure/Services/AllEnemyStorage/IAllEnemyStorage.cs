@@ -10,5 +10,6 @@ namespace CodeBase.Infrastructure.Services
 
         public void Add(EnemyBase enemyBase);
         public void Remove(EnemyBase enemyBase);
+        public void Reset();
     }
 }

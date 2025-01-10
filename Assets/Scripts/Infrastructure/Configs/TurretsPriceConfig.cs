@@ -5,11 +5,11 @@ using UnityEngine;
 public class TurretsPriceConfig : ScriptableObject
 {
     [SerializeField] private int _minigun;
-    [SerializeField] private int _flameTurret;
     [SerializeField] private int _cannon;
     [SerializeField] private int _slow;
-    [SerializeField] private int _rocket;
     [SerializeField] private int _antiAir;
+    [SerializeField] private int _rocket;
+    [SerializeField] private int _flameTurret;
     
     public int Minigun => _minigun;
     public int FlameTurret => _flameTurret;
@@ -19,11 +19,11 @@ public class TurretsPriceConfig : ScriptableObject
     public int AntiAir => _antiAir;
 
     [SerializeField] private int[] _minigunUpgradePrices;
-    [SerializeField] private int[] _flameTurretUpgradePrices;
     [SerializeField] private int[] _cannonUpgradePrices;
     [SerializeField] private int[] _slowUpgradePrices;
-    [SerializeField] private int[] _rocketUpgradePrices;
     [SerializeField] private int[] _antiAirUpgradePrices;
+    [SerializeField] private int[] _rocketUpgradePrices;
+    [SerializeField] private int[] _flameTurretUpgradePrices;
 
     public int[] MinigunUpgradePrices => _minigunUpgradePrices;
     public int[] FlameTurretUpgradePrices => _flameTurretUpgradePrices;

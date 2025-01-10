@@ -14,6 +14,7 @@ namespace Assets.Scripts.CoreGamePlay
         [Inject] private IWavesService _wavesService;
         [Inject] private IPlayerHealthService _playerHealthService;
         [Inject] private IPlayerResourcesService _playerResourcesService;
+        [Inject] private IAllEnemyStorage _allEnemyStorage;
 
         [SerializeField] private TileView[] _tiles;
         [SerializeField] private Transform _turretsParrent;

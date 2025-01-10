@@ -18,5 +18,10 @@ namespace CodeBase.Infrastructure.Services
         {
             _allEnemies.Remove(enemyBase);
         }
+
+        public void Reset()
+        {
+            _allEnemies.Clear();
+        }
     }
 }

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: TurretsPriceConfig
   m_EditorClassIdentifier: 
   _minigun: 15
-  _flameTurret: 25
-  _cannon: 35
-  _slow: 45
+  _cannon: 25
+  _slow: 35
+  _antiAir: 45
   _rocket: 55
-  _antiAir: 65
+  _flameTurret: 65
   _minigunUpgradePrices: 0f0000001e000000
-  _flameTurretUpgradePrices: 1900000032000000
-  _cannonUpgradePrices: 2300000046000000
-  _slowUpgradePrices: 2d0000005a000000
+  _cannonUpgradePrices: 1900000032000000
+  _slowUpgradePrices: 2300000046000000
+  _antiAirUpgradePrices: 2d0000005a000000
   _rocketUpgradePrices: 370000006e000000
-  _antiAirUpgradePrices: 4100000082000000
+  _flameTurretUpgradePrices: 4100000082000000

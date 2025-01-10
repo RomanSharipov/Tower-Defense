@@ -20,6 +20,7 @@ namespace CodeBase.Infrastructure
         [Inject] private readonly IClickOnTurretTracker _clickOnTurretTracker;
         [Inject] private readonly IPlayerHealthService _playerHealthService;
         [Inject] private readonly IWavesService _wavesService;
+        [Inject] private readonly IAllEnemyStorage _allEnemyStorage;
         
 
         private CompositeDisposable _compositeDisposable = new();
@@ -38,11 +39,11 @@ namespace CodeBase.Infrastructure
                 .AddTo(_compositeDisposable);
             
             _clickOnTurretTracker.StartTracking();
-            _windowService.Open<GameLoopWindow>().Forget();
-            
+            _allEnemyStorage.Reset();
             ISceneInitializer levelMain = await _levelService.LoadCurrentLevel();
 
             levelMain.InitializeSceneServices();
+            _windowService.Open<GameLoopWindow>().Forget();
             _gameLoopStatesService.Enter<PlayingIdleState>();
         }
 

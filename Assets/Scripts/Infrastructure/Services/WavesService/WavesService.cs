@@ -15,6 +15,7 @@ namespace CodeBase.Infrastructure.Services
         private int _currentWaveIndex;
         private int _currentSubWaveIndex;
         private int _currentWaveNumber;
+        private int _currentSubWaveNumber;
 
         private Subject<int> _onNextWave = new();
 
@@ -31,7 +32,9 @@ namespace CodeBase.Infrastructure.Services
         public void Initialize(WavesOnLevelData wavesOnLevelData)
         {
             _wavesOnLevelData = wavesOnLevelData;
-            _spawnedInSubWave = 0;
+            
+            _currentWave = _wavesOnLevelData.WaveDatas[_currentWaveIndex];
+            _currentSubWave = _currentWave.SubWaveData[_currentSubWaveIndex];
         }
 
         public bool TryGetEnemy(out EnemyConfig enemyConfig)
@@ -71,37 +74,52 @@ namespace CodeBase.Infrastructure.Services
             _currentWaveNumber++;
             _currentWaveIndex = _currentWaveNumber - 1;
             _currentWave = _wavesOnLevelData.WaveDatas[_currentWaveIndex];
-            _currentSubWaveIndex = -1;
+            _currentSubWaveIndex = 0;
 
+            ResetSubWaves();
             ProceedToNextSubWave();
             _onNextWave.OnNext(_currentWaveNumber);
         }
 
         private bool ProceedToNextSubWave()
         {
-            _currentSubWaveIndex++;
-
-            if (_currentSubWaveIndex >= _currentWave.SubWaveData.Length)
+            if (_currentSubWaveIndex + 1 >= _currentWave.SubWaveData.Length)
                 return false;
 
-            _currentSubWave = _currentWave.SubWaveData[_currentSubWaveIndex];
             _spawnedInSubWave = 0;
+            _currentSubWaveNumber++;
+            _currentSubWaveIndex = _currentSubWaveNumber - 1;
+
+            _currentSubWave = _currentWave.SubWaveData[_currentSubWaveIndex];
+            
             return true;
         }
 
         public bool AllWavesIsOver()
         {
-            return _currentWaveIndex + 1 >= _wavesOnLevelData.WaveDatas.Length;
+            if (_currentWaveIndex + 1 >= _wavesOnLevelData.WaveDatas.Length)
+            {
+                if (_currentSubWaveIndex + 1 >= _currentWave.SubWaveData.Length)
+                    return true;
+            }
+
+            return false;
         }
 
         public void ResetWaves()
         {
             _currentWave = null;
-            _currentSubWave = null;
-            _currentWaveIndex = 0;
-            _currentSubWaveIndex = -1;
             _currentWaveNumber = 0;
+            _currentWaveIndex = 0;
+
+            ResetSubWaves();
+        }
+        public void ResetSubWaves()
+        {
             _spawnedInSubWave = 0;
+            _currentSubWave = null;
+            _currentSubWaveIndex = 0;
+            _currentSubWaveNumber = 0;
         }
     }
 }
