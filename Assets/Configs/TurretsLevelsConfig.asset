@@ -114,6 +114,40 @@ MonoBehaviour:
       Price: 0
     - Percent: 70
       Price: 0
+  _antiAirLevelData:
+    DetectDistance:
+    - DetectionRadius: 7
+      Price: 0
+    - DetectionRadius: 8
+      Price: 0
+    - DetectionRadius: 9
+      Price: 0
+    - DetectionRadius: 11
+      Price: 0
+    - DetectionRadius: 13
+      Price: 0
+    Damage:
+    - Damage: 25
+      Price: 0
+    - Damage: 35
+      Price: 0
+    - Damage: 45
+      Price: 0
+    - Damage: 55
+      Price: 0
+    - Damage: 65
+      Price: 0
+    ReloadTime:
+    - IntervalBeetweenAttack: 5
+      Price: 0
+    - IntervalBeetweenAttack: 4
+      Price: 0
+    - IntervalBeetweenAttack: 3
+      Price: 0
+    - IntervalBeetweenAttack: 2
+      Price: 0
+    - IntervalBeetweenAttack: 1
+      Price: 0
   _rocketTurretLevelData:
     DetectDistance:
     - DetectionRadius: 5
@@ -151,17 +185,3 @@ MonoBehaviour:
       Price: 0
     - Damage: 12
       Price: 0
-  _antiAirLevelData:
-    DetectDistance:
-    - DetectionRadius: 5
-      Price: 0
-    - DetectionRadius: 0
-      Price: 0
-    - DetectionRadius: 0
-      Price: 0
-    - DetectionRadius: 0
-      Price: 0
-    - DetectionRadius: 0
-      Price: 0
-    Damage: []
-    ReloadTime: []

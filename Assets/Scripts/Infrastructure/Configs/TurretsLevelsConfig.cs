@@ -7,9 +7,9 @@ public class TurretsLevelsConfig : ScriptableObject
     [SerializeField] private MinigunLevelData _minigunLevelData;
     [SerializeField] private CannonLevelData _cannonUpgradeData;
     [SerializeField] private SlowTurretData _slowTurretData;
+    [SerializeField] private AntiAirLevelData _antiAirLevelData;
     [SerializeField] private RocketTurretLevelData _rocketTurretLevelData;
     [SerializeField] private FlameTurretLevelData _flameTurretLevelData;
-    [SerializeField] private AntiAirLevelData _antiAirLevelData;
 
     public AntiAirLevelData AntiAirLevelData => _antiAirLevelData;
     public CannonLevelData CannonLevelData => _cannonUpgradeData;
