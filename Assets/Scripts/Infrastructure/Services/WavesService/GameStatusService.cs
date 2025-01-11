@@ -21,8 +21,6 @@ namespace CodeBase.Infrastructure.Services
         }
         public void TrackWin()
         {
-            Debug.Log($"_allEnemyStorage.Count = {_allEnemyStorage.Count}");
-
             if (!_wavesService.AllWavesIsOver())
                 return;
             

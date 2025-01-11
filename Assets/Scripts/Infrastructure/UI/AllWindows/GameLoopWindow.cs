@@ -75,7 +75,7 @@ namespace CodeBase.Infrastructure.UI
 
         private void UpdateCurrentWavesText()
         {
-            _wavesCount.text = $"{_wavesService.CurrentWaveNumber}/{_wavesService.AllWavesCount}";
+            _wavesCount.text = $"Wave : {_wavesService.CurrentWaveNumber}/{_wavesService.AllWavesCount}";
         }
 
         private void OnDestroy()

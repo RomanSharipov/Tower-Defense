@@ -11,18 +11,4 @@ namespace CodeBase.Configs
 
         public SubWaveData[] SubWaveData => _subWaveData;
     }
-
-    [Serializable]
-    public class SubWaveData
-    {
-        [SerializeField] private int _countEnemy;
-        [SerializeField] private float _delayBetweenSpawn;
-        [SerializeField] private float _delayOnEndWave;
-        [SerializeField] private EnemyConfig _enemyConfig;
-
-        public int CountEnemy => _countEnemy;
-        public float DelayBetweenSpawn => _delayBetweenSpawn;
-        public float DelayOnEndWave => _delayOnEndWave;
-        public EnemyConfig EnemyConfig => _enemyConfig;
-    }
 }

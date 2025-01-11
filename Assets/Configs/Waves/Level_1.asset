@@ -14,64 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveDatas:
   - _subWaveData:
-    - _countEnemy: 3
-      _delayBetweenSpawn: 3
-      _delayOnEndWave: 3
-      _enemyConfig:
-        _movementSpeed: 2
-        _health: 50
-        _materials:
-        - {fileID: 2100000, guid: 1a51e852f0f554842a787cb48ef8791f, type: 2}
-        _enemyType: 5
-        _reward: 5
-    - _countEnemy: 3
-      _delayBetweenSpawn: 2
-      _delayOnEndWave: 2
-      _enemyConfig:
-        _movementSpeed: 2
-        _health: 70
-        _materials:
-        - {fileID: 2100000, guid: bab1ecd87b38eef47b3bf1f7375c4ae2, type: 2}
-        _enemyType: 5
-        _reward: 7
-    - _countEnemy: 3
-      _delayBetweenSpawn: 2
-      _delayOnEndWave: 2
-      _enemyConfig:
-        _movementSpeed: 2
-        _health: 120
-        _materials:
-        - {fileID: 2100000, guid: d97b3c609dc376f4eb18f4e732a3409f, type: 2}
-        _enemyType: 5
-        _reward: 15
+    - {fileID: 11400000, guid: 8bba4f88b8e457d4cb068b024c8888b3, type: 2}
+    - {fileID: 11400000, guid: c69072fce9b58144aab66c61bcbfc2dc, type: 2}
+    - {fileID: 11400000, guid: 68469bb91a5f40244bba72a83b0a0c21, type: 2}
   - _subWaveData:
-    - _countEnemy: 10
-      _delayBetweenSpawn: 2
-      _delayOnEndWave: 2
-      _enemyConfig:
-        _movementSpeed: 2
-        _health: 60
-        _materials:
-        - {fileID: 2100000, guid: 1a51e852f0f554842a787cb48ef8791f, type: 2}
-        _enemyType: 2
-        _reward: 10
-    - _countEnemy: 10
-      _delayBetweenSpawn: 2
-      _delayOnEndWave: 2
-      _enemyConfig:
-        _movementSpeed: 2
-        _health: 70
-        _materials:
-        - {fileID: 2100000, guid: bab1ecd87b38eef47b3bf1f7375c4ae2, type: 2}
-        _enemyType: 2
-        _reward: 12
-    - _countEnemy: 10
-      _delayBetweenSpawn: 2
-      _delayOnEndWave: 2
-      _enemyConfig:
-        _movementSpeed: 3
-        _health: 100
-        _materials:
-        - {fileID: 2100000, guid: d97b3c609dc376f4eb18f4e732a3409f, type: 2}
-        _enemyType: 2
-        _reward: 12
+    - {fileID: 11400000, guid: d95aa856fe8c81b4f9c96c6a854e2bca, type: 2}
+    - {fileID: 11400000, guid: 9c91a14c1a4117745896ab2683d0cf9e, type: 2}
+    - {fileID: 11400000, guid: 2ca4412902f438b438a3987885814f3a, type: 2}
+  - _subWaveData:
+    - {fileID: 11400000, guid: 2ca4412902f438b438a3987885814f3a, type: 2}
+    - {fileID: 11400000, guid: d95aa856fe8c81b4f9c96c6a854e2bca, type: 2}
+    - {fileID: 11400000, guid: 2c110396af65a014c975d0cf1b55fe75, type: 2}
+    - {fileID: 11400000, guid: e4c6e6bc2f8be504db77dffc2417d677, type: 2}
+  - _subWaveData:
+    - {fileID: 11400000, guid: d95aa856fe8c81b4f9c96c6a854e2bca, type: 2}
+    - {fileID: 11400000, guid: 85c613dd2f708584a8e3a0ed9c2f6641, type: 2}
+    - {fileID: 11400000, guid: c01c1c91f86ce134f9afc57456e83892, type: 2}
