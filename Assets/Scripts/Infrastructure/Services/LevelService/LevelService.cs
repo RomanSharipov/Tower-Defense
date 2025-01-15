@@ -11,7 +11,7 @@ namespace CodeBase.Infrastructure.Services
     {
         [Inject] private readonly ISceneLoader _sceneLoader;
 
-        private int _currentLevel = 1;
+        private int _currentLevel = 2;
         
         public void IncreaseCurrentLevel()
         {

@@ -138,15 +138,15 @@ MonoBehaviour:
     - Damage: 65
       Price: 0
     ReloadTime:
-    - IntervalBeetweenAttack: 5
+    - IntervalBeetweenAttack: 1.1
       Price: 0
-    - IntervalBeetweenAttack: 4
+    - IntervalBeetweenAttack: 0.9
       Price: 0
-    - IntervalBeetweenAttack: 3
+    - IntervalBeetweenAttack: 0.7
       Price: 0
-    - IntervalBeetweenAttack: 2
+    - IntervalBeetweenAttack: 0.5
       Price: 0
-    - IntervalBeetweenAttack: 1
+    - IntervalBeetweenAttack: 0.2
       Price: 0
   _rocketTurretLevelData:
     DetectDistance:

@@ -4038,7 +4038,9 @@ MonoBehaviour:
   _enemySpawners:
   - {fileID: 1390109156}
   _pathInitializer: {fileID: 809222464}
-  _wavesOnLevelData: {fileID: 11400000, guid: fa3fac20fdbe7954592cfd9423bcde14, type: 2}
+  _wavesOnLevelData: {fileID: 11400000, guid: a3e88ab735570594ea37874cf1ea07fd, type: 2}
+  _levelHealth: 10
+  _startMoney: 50
 --- !u!114 &809222464
 MonoBehaviour:
   m_ObjectHideFlags: 0
