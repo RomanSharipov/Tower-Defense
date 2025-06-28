@@ -160,8 +160,30 @@ MonoBehaviour:
       Price: 0
     - DetectionRadius: 0
       Price: 0
-    Damage: []
-    ReloadTime: []
+    Damage:
+    - Damage: 2
+      Price: 0
+    - Damage: 3
+      Price: 0
+    - Damage: 4
+      Price: 0
+    - Damage: 5
+      Price: 0
+    - Damage: 6
+      Price: 0
+    ReloadTime:
+    - IntervalBeetweenAttack: 2
+      Price: 0
+    - IntervalBeetweenAttack: 1.6
+      Price: 0
+    - IntervalBeetweenAttack: 1.3
+      Price: 0
+    - IntervalBeetweenAttack: 1.8
+      Price: 0
+    - IntervalBeetweenAttack: 1
+      Price: 0
+    - IntervalBeetweenAttack: 0.7
+      Price: 0
   _flameTurretLevelData:
     DetectDistance:
     - DetectionRadius: 5
